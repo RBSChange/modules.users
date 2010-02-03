@@ -1,0 +1,31 @@
+<h2 change:h="" change:translate="&modules.users.frontoffice.su.Switch-user;" />
+
+<form change:form="" id="searchUser" method="get">
+	<input type="text" change:textinput="" name="userWords" />
+	<input type="submit" change:submit="" name="filter" value="Rechercher" class="button" />
+</form>
+
+<p tal:condition="php: usersCount LE 0" change:translate="&modules.users.frontoffice.su.Search-no-result;" />
+<tal:block tal:condition="php: usersCount GT 0">
+	<p change:translate="&modules.users.frontoffice.su.Result-users-count; usersCount usersCount" />
+	<table class="normal">
+		<caption change:translate="&modules.users.frontoffice.su.Users-list;" />
+		<thead>
+			<tr>
+				<th change:translate="&modules.users.frontoffice.su.Last-name;" />
+				<th change:translate="&modules.users.frontoffice.su.First-name;" />
+				<th change:translate="&modules.users.frontoffice.su.Login;" />
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="user users" class="row-${repeat/feature/odd}">
+	   			<td>${user/getLastname}</td>
+	   			<td>${user/getFirstname}</td>
+	   			<td>${user/getLogin}</td>
+	   			<td><a class="link" change:actionlink="" block="users_su" action="switch" userId="${user/getId}" change:translate="&modules.users.frontoffice.su.Switch;" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<div change:paginator="users" />
+</tal:block>

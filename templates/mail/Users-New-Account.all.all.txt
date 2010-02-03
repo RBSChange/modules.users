@@ -1,0 +1,9 @@
+<body tal:omit-tag="">
+	<div tal:replace="greeting" />
+	<div tal:replace="explanation" />
+	<div tal:replace="login" />
+	<div tal:replace="password" />
+	<div tal:replace="accessLink" />
+	<div tal:replace="salutation" />
+	<div tal:replace="administratorSignature" />
+</body>

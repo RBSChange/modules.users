@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localization>
+	<entity id="property.lastlogin-empty">
+		<locale lang="fr">jamais connecté</locale>
+		<locale lang="en">never logged in</locale>
+	</entity>
+	<entity id="fieldsgroup.validityperiod">
+		<locale lang="fr">période de validité</locale>
+		<locale lang="en">validity period</locale>
+	</entity>
+	<entity id="fieldsgroup.updatepassword">
+		<locale lang="fr">mise à jour du mot de passe</locale>
+		<locale lang="en">password update</locale>
+	</entity>
+	
+	<entity id="property.cardinality">
+		<locale lang="fr">nombre d'utilisateurs</locale>
+		<locale lang="en">number of users</locale>
+	</entity>
+</localization>

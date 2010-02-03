@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="edition-form-title">
+    <locale lang="fr">propriétés d'un groupe pour utilisateur de(s) site(s)</locale>
+    <locale lang="en">group properties</locale>
+    <locale lang="de">Einstellungen einer Gruppe für Benutzer der Webseite(n)</locale>
+  </entity>
+  <entity id="document-name">
+    <locale lang="fr">groupe d'utilisateur des sites</locale>
+    <locale lang="en">website users group</locale>
+    <locale lang="de">Benutzergruppe der Seiten</locale>
+  </entity>
+  <entity id="label">
+    <locale lang="fr">libellé</locale>
+    <locale lang="en">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="description">
+    <locale lang="fr">description</locale>
+    <locale lang="en">description</locale>
+    <locale lang="de">Beschreibung</locale>
+  </entity>
+  <entity id="users">
+    <locale lang="fr">utilisateurs</locale>
+    <locale lang="en">users</locale>
+    <locale lang="de">Benutzer</locale>
+  </entity>
+  <entity id="sudoer">
+    <locale lang="fr">sudoers</locale>
+    <locale lang="en">sudoers</locale>
+    <locale lang="de">sudoers</locale>
+  </entity>
+  <entity id="sudoer-help">
+    <locale lang="fr">les utilisateurs sélectionnés seront autorisés à prendre l'identités de n'importe lequel des membres de ce groupe.</locale>
+    <locale lang="en">selected users will be able to connect as any member of this group</locale>
+    <locale lang="de">die selektierten Benutzer werden die möglichkeit haben die Identität jedes beliebigen Mitglieds dieser Gruppe einzunehmen.</locale>
+  </entity>
+</localization>

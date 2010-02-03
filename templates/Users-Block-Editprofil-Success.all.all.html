@@ -1,0 +1,24 @@
+<div>
+<ol class="modules-users-login-form">
+<li>
+<label change:translate="&modules.users.frontoffice.editprofil.Login;">Identifiant</label>
+<span tal:content="currentUser/getLogin"/></li>
+
+<li tal:condition="currentUser/getTitle">
+<label change:translate="&modules.users.frontoffice.editprofil.Title;">Civilité</label>
+<span tal:content="currentUser/getTitle/getLabel"/></li>
+<li>
+<label change:translate="&modules.users.frontoffice.editprofil.Firstname;">Prénom</label>
+<span tal:content="currentUser/getFirstname"/></li>
+
+<li>
+<label change:translate="&modules.users.frontoffice.editprofil.Lastname;">Nom</label>
+<span tal:content="currentUser/getLastname"/></li>
+
+<li>
+<label change:translate="&modules.users.frontoffice.editprofil.Email;">Adresse e-mail</label>
+<span tal:content="currentUser/getEmail"/></li>
+</ol>
+
+<a change:currentPageLink="" change:translate="&modules.users.frontoffice.editprofil.Modify;">Modifier</a>
+</div>

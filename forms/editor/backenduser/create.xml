@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="modules.uixul.bo.doceditor.fieldsgroup.Title">
+		<field name="title" />
+		<field name="firstname" />
+		<field name="lastname" />
+		<field name="email" />
+		<field name="login" />
+		<field name="generatepassword" id="users_backenduser_create_generatepassword" anonid="field_generatepassword" type="boolean" labeli18n="modules.users.document.backenduser.Generatepassword" shorthelp="&amp;modules.users.document.backenduser.Generatepassword-help;" />
+		<field name="password" id="users_backenduser_create_password" anonid="field_password" type="text" labeli18n="modules.users.document.backenduser.Password" shorthelp="&amp;modules.users.document.backenduser.Password-help;"
+			required="true">
+			<constraint name="password" parameter="auto"/>
+		</field>
+	</section>
+	<xul>
+		<javascript>
+			<field name="syncemailandlogin">true</field>
+
+			<constructor><![CDATA[
+				var me = this
+				this.fields['generatepassword'].addEventListener('fieldChanged', function (event) {me.onGeneratepassword(event);}, true);
+			]]></constructor>
+
+			<method name="onGeneratepassword">
+				<parameter name="event" />
+				<body><![CDATA[
+					var genPassword = (this.fields['generatepassword'].value === 'true');
+					this.fields['password'].disabled = genPassword;
+				]]></body>
+			</method>
+
+		</javascript>
+	</xul>
+</panel>

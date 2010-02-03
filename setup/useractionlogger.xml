@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+  <binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml"/>
+  <actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser"/>
+  <actiondef modulename="users" actionname="login.frontend" label="Connexion avec un navigateur ${browsername}"/>
+  <actiondef modulename="users" actionname="removeusers.backendgroup" label="modules.users.bo.useractionlogger.removeusers-backendgroup"/>
+  <actiondef modulename="users" actionname="insert.frontenduser" label="modules.users.bo.useractionlogger.insert-frontenduser"/>
+  <actiondef modulename="users" actionname="activate.frontenduser" label="modules.users.bo.useractionlogger.activate-frontenduser"/>
+  <actiondef modulename="users" actionname="deactivated.frontenduser" label="modules.users.bo.useractionlogger.deactivated-frontenduser"/>
+  <actiondef modulename="users" actionname="removeusers.frontendgroup" label="modules.users.bo.useractionlogger.removeusers-frontendgroup"/>
+  <actiondef modulename="users" actionname="insert.websitefrontenduser" label="modules.users.bo.useractionlogger.insert-websitefrontenduser"/>
+  <actiondef modulename="users" actionname="activate.websitefrontenduser" label="modules.users.bo.useractionlogger.activate-websitefrontenduser"/>
+  <actiondef modulename="users" actionname="deactivated.websitefrontenduser" label="modules.users.bo.useractionlogger.deactivated-websitefrontenduser"/>
+  <actiondef modulename="users" actionname="removeusers.websitefrontendgroup" label="modules.users.bo.useractionlogger.removeusers-websitefrontendgroup"/>
+  <actiondef modulename="users" actionname="insert.backenduser" label="modules.users.bo.useractionlogger.insert-backenduser"/>
+  <actiondef modulename="users" actionname="activate.backenduser" label="modules.users.bo.useractionlogger.activate-backenduser"/>
+  <actiondef modulename="users" actionname="deactivated.backenduser" label="modules.users.bo.useractionlogger.deactivated-backenduser"/>
+  <actiondef modulename="users" actionname="update.backenduser" label="modules.users.bo.useractionlogger.update-backenduser"/>
+  <actiondef modulename="users" actionname="update.websitefrontenduser" label="modules.users.bo.useractionlogger.update-websitefrontenduser"/>
+  <actiondef modulename="users" actionname="update.frontenduser" label="modules.users.bo.useractionlogger.update-frontenduser"/>
+  <actiondef modulename="users" actionname="reactivate.frontenduser" label="modules.users.bo.useractionlogger.reactivate-frontenduser"/>
+  <actiondef modulename="users" actionname="insert.frontendgroup" label="modules.users.bo.useractionlogger.insert-frontendgroup"/>
+  <actiondef modulename="users" actionname="move.frontenduser" label="modules.users.bo.useractionlogger.move-frontenduser"/>
+  <actiondef modulename="users" actionname="update.frontendgroup" label="modules.users.bo.useractionlogger.update-frontendgroup"/>
+  <actiondef modulename="users" actionname="update.websitefrontendgroup" label="modules.users.bo.useractionlogger.update-websitefrontendgroup"/>
+  <actiondef modulename="users" actionname="update.backendgroup" label="modules.users.bo.useractionlogger.update-backendgroup"/>
+  <actiondef modulename="users" actionname="delete.frontendgroup" label="modules.users.bo.useractionlogger.delete-frontendgroup"/>
+  <actiondef modulename="users" actionname="delete.backendgroup" label="modules.users.bo.useractionlogger.delete-backendgroup"/>
+  <actiondef modulename="users" actionname="insert.backendgroup" label="modules.users.bo.useractionlogger.insert-backendgroup"/>
+  <actiondef modulename="users" actionname="move.backenduser" label="modules.users.bo.useractionlogger.move-backenduser"/>
+  <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
+</script>

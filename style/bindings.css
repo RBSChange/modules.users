@@ -1,0 +1,11 @@
+wdialog[template="setrolesformodule"]{
+	-moz-binding: url(binding:modules.users.wSetRolesForModule#wSetRolesForModule);
+}
+
+wdialog[template="changepassword"]{
+	-moz-binding: url(binding:modules.users.cChangePasswordDialog#cChangePasswordDialog);
+}
+
+cconstraint[name="login"]{
+	-moz-binding: url(binding:modules.users.cUsersModule#cLoginConstraint);
+}

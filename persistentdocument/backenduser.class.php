@@ -1,0 +1,4 @@
+<?php
+class users_persistentdocument_backenduser extends users_persistentdocument_backenduserbase
+{
+}

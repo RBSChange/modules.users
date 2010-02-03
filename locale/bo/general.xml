@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+<!--
+#####################################################################
+#                                                                   #
+#                       Backoffice General                          #
+#                                                                   #
+#####################################################################
+-->
+  <entity id="module-name">
+    <locale lang="fr">utilisateurs</locale>
+    <locale lang="en">users</locale>
+    <locale lang="de">Benutzer</locale>
+  </entity>
+  <entity id="tree-root-name">
+    <locale lang="fr">utilisateurs</locale>
+    <locale lang="en">users</locale>
+    <locale lang="de">Benutzer</locale>
+  </entity>
+  <entity id="system-folder-name">
+    <locale lang="fr">utilisateurs</locale>
+    <locale lang="en">users</locale>
+    <locale lang="de">Benutzer</locale>
+  </entity>
+  <entity id="ChangePassword">
+    <locale lang="fr">changer mon mot de passe</locale>
+    <locale lang="en">change my password</locale>
+    <locale lang="de">mein Passwort ändern</locale>
+  </entity>
+  <entity id="disconnect">
+    <locale lang="fr">déconnexion</locale>
+    <locale lang="en">exit</locale>
+    <locale lang="de">Abmeldung</locale>
+  </entity>
+  <entity id="disconnectConfirm">
+    <locale lang="fr">Souhaitez-vous vraiment vous déconnecter ?</locale>
+    <locale lang="en">Do you really want to disconnect ?</locale>
+    <locale lang="de">Möchten Sie sich wirklich abmelden?</locale>
+  </entity>
+<!--
+#####################################################################
+#                                                                   #
+#                        Backoffice Dashboard                       #
+#                                                                   #
+#####################################################################
+-->
+  <entity id="Dashboard-UsersListTitle">
+    <locale lang="fr">utilisateurs connectés</locale>
+    <locale lang="en">connected users list</locale>
+    <locale lang="de">verbundene Benutzer</locale>
+  </entity>
+  <entity id="Dashboard-UsersListMore">
+    <locale lang="fr">afficher les utilisateurs déconnectés</locale>
+    <locale lang="en">show disconnected users</locale>
+    <locale lang="de">die abgemeldeten Benutzer anzeigen</locale>
+  </entity>
+  <entity id="Dashboard-UsersListLess">
+    <locale lang="fr">masquer les utilisateurs déconnectés</locale>
+    <locale lang="en">hide disconnected users</locale>
+    <locale lang="de">die abgemeldeten Benutzer ausblenden</locale>
+  </entity>
+  <entity id="Dashboard-StatusNull">
+    <locale lang="fr">jamais connecté</locale>
+    <locale lang="en">never connected</locale>
+    <locale lang="de">nie verbunden</locale>
+  </entity>
+  <entity id="Dashboard-StatusDisconnected">
+    <locale lang="fr">déconnecté</locale>
+    <locale lang="en">disconnected</locale>
+    <locale lang="de">abgemeldet</locale>
+  </entity>
+  <entity id="Dashboard-StatusNullFemale">
+    <locale lang="fr">jamais connectée</locale>
+    <locale lang="en">never connected</locale>
+    <locale lang="de">nie verbunden</locale>
+  </entity>
+  <entity id="Dashboard-StatusDisconnectedFemale">
+    <locale lang="fr">déconnectée</locale>
+    <locale lang="en">disconnected</locale>
+    <locale lang="de">abgemeldet</locale>
+  </entity>
+  <entity id="Dashboard-StatusNew">
+    <locale lang="fr">vient de se connecter</locale>
+    <locale lang="en">has just connected</locale>
+    <locale lang="de">hat sich eben angemeldet</locale>
+  </entity>
+  <entity id="Dashboard-StatusSince">
+    <locale lang="fr">connecté depuis</locale>
+    <locale lang="en">connected since</locale>
+    <locale lang="de">angemeldet seit</locale>
+  </entity>
+  <entity id="Dashboard-StatusSinceFemale">
+    <locale lang="fr">connectée depuis</locale>
+    <locale lang="en">connected since</locale>
+    <locale lang="de">angemeldet seit</locale>
+  </entity>
+  <entity id="Dashboard-StatusLastConnection">
+    <locale lang="fr">dernière connexion</locale>
+    <locale lang="en">last connection</locale>
+    <locale lang="de">letzte Anmeldung</locale>
+  </entity>
+<!--
+#####################################################################
+#                                                                   #
+#                       Backoffice Access Form                      #
+#                                                                   #
+#####################################################################
+-->
+  <entity id="accessForm.CheckingExtension">
+    <locale lang="fr">Pour vous connecter à l'interface d'administration RBS Change, veuillez installer l'extension "RBS Change manager" disponible <a href="http://www.rbs.fr/extension/install.html">ici</a>.</locale>
+    <locale lang="de">Um sich mit der RBS Change-Verwaltungsoberfläche zu verbinden, installieren Sie bitte die <a href="http://www.rbs.fr/extension/install.html">hier</a> erhältliche Erweiterung "RBS Change manager".</locale>
+  </entity>
+  <entity id="accessForm.NavigatorErrorMessage">
+    <locale lang="fr">Afin d'accéder à l'interface d'administration de RBS Change, nous vous prions d'utiliser le navigateur Firefox 3.0.<br/> Merci de votre compréhension.</locale>
+    <locale lang="en">In order to access the RBS Change administration interface, please use the Firefox 3.0 web broswer.<br/> Thank you for your understanding.</locale>
+    <locale lang="de">Um die RBS Change-Verwaltungsoberfläche zu betreten, bitten wir Sie um die Nutzung des Browsers Firefox 3.0.<br/> Danke für Ihr Verständnis.</locale>
+  </entity>
+  <entity id="accessForm.Title">
+    <locale lang="fr">identification</locale>
+    <locale lang="en">identification</locale>
+    <locale lang="de">Identifikation</locale>
+  </entity>
+  <entity id="accessForm.DownloadFirefox">
+    <locale lang="fr">télécharger Firefox</locale>
+    <locale lang="en">download Firefox</locale>
+    <locale lang="de">Firefox runterladen</locale>
+  </entity>
+<!-- Extension -->
+  <entity id="accessForm.introduction">
+    <locale lang="fr">pour accéder à l'interface d'administration de RBS Change, il est nécessaire de passer par l'extension RBS Change manager.</locale>
+    <locale lang="en">to access and manage RBS Change back-office administration, you need to use the RBS Change manager extension.</locale>
+    <locale lang="de">Um die RBS Change-Verwaltungsoberfläche zu erreichen, ist es nötig über die RBS Change manager Erweiterung zu gehen.</locale>
+  </entity>
+  <entity id="accessForm.check-title">
+    <locale lang="fr">vérifier si l'extension est installée</locale>
+    <locale lang="en">check if the extension is installed</locale>
+    <locale lang="de">Überprüfen Sie ob die Erweiterung installiert ist</locale>
+  </entity>
+  <entity id="accessForm.check-description">
+    <locale lang="fr">pour vérifier si l'extension RBS Change manager est installée sur votre navigateur, rendez-vous dans le menu "Outils" de Firefox, section "Modules complémentaires", onglet "Extensions" et recherchez "RBS Change Manager" dans la liste des extensions installées (celles-ci sont classées par ordre alphabétique).</locale>
+    <locale lang="en">to check if the RBS Change manager extension is installed on your browser, please click on the "Tools" menu of Firefox, then on "Add-ons", tab "Extensions" et look for "RBS Change Manager" in the list of extensions (they are sorted out alphabetically).</locale>
+    <locale lang="de">Zur Prüfung, ob die RBS Change manager Erweiterung auf Ihrem Browser installiert ist, gehen Sie in das Menü "Werkzeuge" von Firefox, Spalte "komplementäre Module", Reiter "Erweiterungen" und suchen Sie den "RBS Change Manager" in der Liste der installierten Erweiterungen (diese sind in alfabetischer Rheienfolge geordnet).</locale>
+  </entity>
+  <entity id="accessForm.install-title">
+    <locale lang="fr">installer l'extension</locale>
+    <locale lang="en">install the extension</locale>
+    <locale lang="de">Erweiterung installieren</locale>
+  </entity>
+  <entity id="accessForm.install-description">
+    <locale lang="fr">si l'extension RBS Change manager n'est pas installée sur votre navigateur, rendez-vous <a href="http://www.rbs.fr/extension/install.html">ici</a>.</locale>
+    <locale lang="en">if the RBS Change manager extension is not installed on your browser, click <a href="http://www.rbs.fr/extension/install.html">here</a>.</locale>
+    <locale lang="de">Ist die Erweiterung RBS Change Manager nicht auf Ihrem Browser installiert, klicken Sie <a href="http://www.rbs.fr/extension/install.html">hier</a>.</locale>
+  </entity>
+  <entity id="accessForm.connect-title">
+    <locale lang="fr">se connecter à RBS Change</locale>
+    <locale lang="en">connect to RBS Change</locale>
+    <locale lang="de">RBS Change Anmeldung</locale>
+  </entity>
+  <entity id="accessForm.connect-description">
+    <locale lang="fr">vous pouvez vous connecter à RBS Change via le menu "Outils" en sélectionnant "Connexion à RBS Change..." ou bien en utilisant le raccourci clavier <code>Alt+c</code>. La fenêtre de connexion s'ouvre alors et vous demande de saisir l'adresse du site, votre identifiant et votre mot de passe.</locale>
+    <locale lang="en">you can connect to RBS Change via the "Tools" menu, by clicking on "Connect to RBS Change..." or by using the keypad shortcut <code>Alt+c</code>. The connexion window opens and you must type in the website’s URL, your ID and your password.</locale>
+    <locale lang="de">Sie können sich auch über das Menü "Werkzeuge" und "RBS Change Anmeldung..." an RBS Change anmelden, oder indem SIe die Tastenkombination <code>Alt+c</code> drücken. Das Anmeldefenster öffnet sich und fragt Sie nach der Adresse der Webseite, Ihrem Benutzernamen und Ihrem Passwort.</locale>
+  </entity>
+<!--
+#####################################################################
+#                                                                   #
+#             	Backoffice Reset Password                           #
+#                                                                   #
+#####################################################################
+-->
+  <entity id="ResetPassword.Title">
+    <locale lang="fr">ré-initialisation du mot de passe</locale>
+    <locale lang="en">re-init password</locale>
+    <locale lang="de">Passwort resetten</locale>
+  </entity>
+  <entity id="ResetPassword.Success">
+    <locale lang="fr">mot de passe ré-initialisé avec succès</locale>
+    <locale lang="en">Password successfully reset</locale>
+    <locale lang="de">Passwort erfolgreich resettet</locale>
+  </entity>
+  <entity id="ResetPassword.SuccessText">
+    <locale lang="fr">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</locale>
+    <locale lang="en">your new password has been emailed at the following address: {email}</locale>
+    <locale lang="de">Ihr neues Passwort wurde Ihnen soeben per E-mail an folgende Adresse zugeschickt:{email}</locale>
+  </entity>
+  <entity id="ResetPassword.ClosePopup">
+    <locale lang="fr">fermer la fenêtre</locale>
+    <locale lang="en">close window</locale>
+    <locale lang="de">Fenster schliessen</locale>
+  </entity>
+  <entity id="ResetPasswordForm.Explanation">
+    <locale lang="fr">ce formulaire vous permet de regénérer un mot de passe pour votre compte.<br/>Ce nouveau mot de passe vous sera transmis par mail.</locale>
+    <locale lang="en">with this form you'll generate a new password for your account.<br/>You will receive an e-mail with new password.</locale>
+    <locale lang="de">Dieses Formular ermöglicht Ihnen ein neues Passwort für Ihr Konto zu erstellen.<br/>Dieses neue Passwort wird Ihnen per E-mail zugeschickt.</locale>
+  </entity>
+  <entity id="ResetPasswordForm.Login">
+    <locale lang="fr">votre identifiant</locale>
+    <locale lang="en">your login</locale>
+    <locale lang="de">Ihr Benutzername</locale>
+  </entity>
+  <entity id="ResetPasswordForm.Or">
+    <locale lang="fr">ou</locale>
+    <locale lang="en">or</locale>
+    <locale lang="de">oder</locale>
+  </entity>
+  <entity id="ResetPasswordForm.Email">
+    <locale lang="fr">adresse email</locale>
+    <locale lang="en">email</locale>
+    <locale lang="de">E-mail Adresse</locale>
+  </entity>
+  <entity id="ResetPasswordForm.GenerateNewPassword">
+    <locale lang="fr">recevoir un nouveau mot de passe.</locale>
+    <locale lang="en">receive a new password</locale>
+    <locale lang="de">ein neues Passwort bekommen.</locale>
+  </entity>
+  <entity id="generate-random-password">
+    <locale lang="fr">générer un mot de passe aléatoire</locale>
+    <locale lang="en">generate random password</locale>
+    <locale lang="de">ein zufallsgeneriertes Passwort erhalten</locale>
+  </entity>
+<!--
+#####################################################################
+#                                                                   #
+#             	Backoffice Change Password                          #
+#                                                                   #
+#####################################################################
+-->
+  <entity id="ChangePassword.Title">
+    <locale lang="fr">Changer mon mot de passe</locale>
+    <locale lang="en">Change my password</locale>
+    <locale lang="de">Mein Passwort ändern</locale>
+  </entity>
+  <entity id="ChangePassword.ForUser">
+    <locale lang="fr">Utilisateur: </locale>
+    <locale lang="en">User: </locale>
+    <locale lang="de">Benutzer: </locale>
+  </entity>
+  <entity id="ChangePassword.OldPassword">
+    <locale lang="fr">Ancien mot de passe</locale>
+    <locale lang="en">Old password</locale>
+    <locale lang="de">Altes Passwort</locale>
+  </entity>
+  <entity id="ChangePassword.NewPassword">
+    <locale lang="fr">Nouveau mot de passe</locale>
+    <locale lang="en">New password</locale>
+    <locale lang="de">Neues Passwort</locale>
+  </entity>
+  <entity id="ChangePassword.NewPasswordConfirmation">
+    <locale lang="fr">Confirmation du mot de passe</locale>
+    <locale lang="en">Confirm new password</locale>
+    <locale lang="de">Bestätigung des Passwortes</locale>
+  </entity>
+  <entity id="ChangePassword.Submit">
+    <locale lang="fr">Changer mon mot de passe</locale>
+    <locale lang="en">Change my password</locale>
+    <locale lang="de">Mein Passwort ändern</locale>
+  </entity>
+  <entity id="ChangePassword.Success">
+    <locale lang="fr">mot de passe changé avec succès</locale>
+    <locale lang="en">Password successfully change</locale>
+    <locale lang="de">Passwort erfolgreich geändert</locale>
+  </entity>
+  <entity id="ChangePassword.SuccessText">
+    <locale lang="fr">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</locale>
+    <locale lang="en">your new password has been emailed at the following address: {email}</locale>
+    <locale lang="de">Ihr neues Passwort wurde Ihnen soeben per E-mail an folgende Adresse zugeschickt:{email}</locale>
+  </entity>
+  <entity id="column.login">
+    <locale lang="fr">identifiant</locale>
+    <locale lang="en">login</locale>
+  </entity>
+  <entity id="confirmExportMessage">
+    <locale lang="fr">voulez-vous exporter le groupe au format CSV?</locale>
+    <locale lang="en">do you want to export the group in CSV format?</locale>
+  </entity>
+</localization>

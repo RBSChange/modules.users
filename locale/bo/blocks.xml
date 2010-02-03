@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="Su">
+    <locale lang="fr">Su</locale>
+    <locale lang="en">Su</locale>
+    <locale lang="de">Su</locale>
+  </entity>
+  <entity id="dashboardconnectedusers.title">
+    <locale lang="fr">utilisateurs connectés</locale>
+    <locale lang="en">connected users list</locale>
+  </entity>
+</localization>

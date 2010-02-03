@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	<binding fileName="modules/generic/persistentdocument/import/generic_binding.xml" />
+	<binding name="preferences" className="users_PreferencesScriptDocumentElement" />
+	<binding name="userspreferences" className="users_PreferencesScriptDocumentElement" />
+
+	<binding name="backendgroup" className="users_BackendgroupScriptDocumentElement" />
+	<binding name="backenduser" className="users_BackenduserScriptDocumentElement" />
+
+	<binding name="frontenduser" className="users_FrontenduserScriptDocumentElement" />
+	<binding name="frontendgroup" className="users_FrontendgroupScriptDocumentElement" />
+
+	<binding name="websitefrontenduser" className="users_WebsitefrontenduserScriptDocumentElement" />
+	<binding name="websitefrontendgroup" className="users_WebsitefrontendgroupScriptDocumentElement" />
+
+	<binding name="group" className="users_GroupScriptDocumentElement" />
+	<binding name="user" className="users_UserScriptDocumentElement" />
+	
+	<binding name="websitefrontenduser" className="users_WebsitefrontenduserScriptDocumentElement" />
+	<binding name="websitefrontendgroup" className="users_WebsitefrontendgroupScriptDocumentElement" />
+
+	<binding name="permissions" className="users_PermissionsScriptDocumentElement" />
+	<binding name="frontendpermission" className="users_FrontendPermissionScriptDocumentElement" />
+	<binding name="backendpermission" className="users_BackendPermissionScriptDocumentElement" />
+</script>

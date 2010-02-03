@@ -1,0 +1,242 @@
+body{
+	font: 78% "Trebuchet MS";
+	background: url(/media/backoffice/bg_cms.jpg) #FFF top center repeat-y;
+}
+*{
+	padding: 0;
+	margin: 0;
+}
+img{
+	vertical-align: middle;
+	border: 0;
+}
+div.pop-password{
+	background: url(/media/backoffice/bg_main_menu.jpg) top left no-repeat;
+	position: relative;
+	height: 31px;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #818181;
+	padding: 2px;
+}
+div.pop-sub-password{
+	background: #eee;
+	position: relative;
+	border-bottom: 1px solid #d4d0c0;
+	padding: 4px;
+	color: #6e6a12;
+}
+dl{
+	clear: both;
+}
+dt{
+	float: left;
+	width: 50%;
+	text-align: right;
+}
+dd{
+	margin-left: 51%;
+}
+.form-login{
+	top: 40px;
+	position: relative;
+	margin: 0px auto;
+	width: 230px;
+	padding: 10px;
+}
+.form-login-password{
+	position: relative;
+	width: 95%;
+	padding: 10px;
+}
+h1{
+	font-size: 1.2em;
+	padding-bottom: 30px;
+	text-align: center;
+}
+h2{
+	color: #6e6a12;
+	padding-bottom: 15px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 1.4em;
+	text-align: center;
+}
+p{
+	color: #6e6a12;
+	font-size: 0.9em;
+	text-align: center;
+	padding-bottom: 5px;
+}
+ul.form-login-error{
+	background: #6e6a12;
+	list-style: none;
+	color: #c8db00;
+	padding: 5px;
+	margin-bottom: 0px;
+}
+ul.form-login-error-back li{
+	font-size: 0.9em;
+	text-align: center;
+}
+ul.form-login-error-back{
+	background: #6e6a12;
+	list-style: none;
+	color: #c8db00;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+ul.form-login-error li{
+	font-size: 0.9em;
+	text-align: center;
+}
+p.form-login-error{
+	background: #6e6a12;
+	color: #c8db00;
+	padding: 5px;
+	margin-bottom: 20px;
+	font-size: 0.9em;
+	text-align: center;
+}
+.form-login a:link{
+	text-decoration: none;
+	color: #6e6a12;
+}
+.form-login a:link:hover{
+	text-decoration: none;
+	color: #FFF;
+}
+p.pop-message{
+	margin-bottom: 20px;
+}
+p.pop-message-back{
+	margin-bottom: 10px;
+}
+.form-login a:link:hover{
+	text-decoration: none;
+	color: #FFF;
+}
+ul.form-link{
+	list-style: none;
+	text-align: center;
+}
+ul.form-link li{
+	font-size: 0.9em;
+}
+ol{
+	list-style: none;
+	padding-top: 20px;
+}
+ol li{
+	text-align: center;
+}
+ol li label{
+	font-weight: bold;
+	letter-spacing: 1px;
+	float: left;
+	font-size: 0.9em;
+	display: block;
+	text-align: center;
+	width: 230px;
+	color: #6e6a12;
+	text-transform: uppercase;
+}
+ol li label.small{
+	font-weight: normal;
+	letter-spacing: normal;
+	float: none;
+	font-size: 0.8em;
+	text-transform: none;
+	margin-left: -25px;
+}
+p.copyright{
+	margin-top: 50px;
+	font-size: 0.9em;
+	color: #6e6a12;
+}
+.passwordFormCaption{
+	font-weight: bold;
+}
+.passwordFormLink{
+	color: #6e6a12!important;
+	font-weight: bold;
+	text-decoration: none;
+}
+.resetPasswordFormLink{
+	color: #6e6a12!important;
+	font-weight: bold;
+	text-decoration: none;
+}
+.resetPasswordSuccess{
+	color: #6e6a12!important;
+	font-weight: bold;
+}
+.browser-warning{
+	padding: 3px 10px 10px 10px;
+	background: url(/icons/small/window_warning.png) lightyellow 5px 5px no-repeat;
+	border: 1px solid #808080;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.browser-warning h3{
+	font-weight: bold;
+	color: firebrick;
+	font-size: 13px;
+}
+.browser-extension{
+	padding: 10px;
+	background: lightyellow;
+	border: 1px solid #808080;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.browser-extension h3{
+	font-weight: bold;
+	color: firebrick;
+	font-size: 13px;
+}
+.browser-extension p{
+	text-align: left;
+}
+.popup-warning{
+	padding: 3px 10px 10px 10px;
+	background: url(/icons/small/window_error.png) lightyellow 5px 5px no-repeat;
+	border: 1px solid grey;
+	-moz-border-radius: 10px;
+}
+.browser-failure-warning{
+	padding: 3px 10px 0px 10px;
+	background: url(/icons/small/window_error.png) lightyellow 5px 5px no-repeat;
+	border: 1px solid grey;
+	margin-bottom: 10px;
+	-moz-border-radius: 10px;
+}
+.notabene{
+	padding: 0 0 0 25px;
+	background: url(/icons/command/hand_point2.png) center left no-repeat;
+	text-align: left;
+}
+.browser-failure-warning p{
+	font-weight: bold;
+	color: firebrick;
+	margin-bottom: 5px;
+}
+a:hover.no-white,a:link:hover.no-white{
+	color: forestgreen;
+}
+a.no-white,a:visited.no-white,a:active.no-white{
+	color: #6e6a12;
+	text-decoration: none;
+}
+ol.desc{
+	text-align: left;
+	list-style-type: decimal;
+	margin: 0;
+	padding: 0;
+}
+ol.desc li{
+	text-align: left;
+	list-style-type: decimal;
+	margin: 0 0 0 15px;
+	padding: 0;
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="error.BadAuthentication">
+    <locale lang="fr">identifiant ou mot de passe incorrect</locale>
+    <locale lang="en">login failed</locale>
+    <locale lang="de">Benutzername oder Passwort falsch</locale>
+  </entity>
+  <entity id="error.BadUserType">
+    <locale lang="fr">impossible de se connecter à l'administration avec cet utilisateur</locale>
+    <locale lang="en"/>
+    <locale lang="de">Verbindung zur Administration mit diesem Benutzer unmöglich</locale>
+  </entity>
+  <entity id="error.LoginAndPasswordRequired">
+    <locale lang="fr">identifiant et mot de passe obligatoires</locale>
+    <locale lang="en">login and password required</locale>
+    <locale lang="de">Benutzername und Passwort obligatorisch</locale>
+  </entity>
+  <entity id="error.EndDateMustBeAfterStartDate">
+    <locale lang="fr">la date de fin de validité doit être supérieur à la date de début.</locale>
+    <locale lang="en">the end date must be after the start date</locale>
+    <locale lang="de">Das Datum Gültigkeitsende muss später sein als das Anfangsdatum.</locale>
+  </entity>
+  <entity id="error.LoginDoesNotExist">
+    <locale lang="fr">l'identifiant n'éxiste pas.</locale>
+    <locale lang="en">login does not exist.</locale>
+    <locale lang="de">Dieser Benutzer existiert nicht.</locale>
+  </entity>
+  <entity id="error.AllFieldsAreRequired">
+    <locale lang="fr">tous les champs sont obligatoires.</locale>
+    <locale lang="en">all fields are required.</locale>
+    <locale lang="de">alle Felder sind obligatorisch.</locale>
+  </entity>
+  <entity id="error.NewPasswordsNotSames">
+    <locale lang="fr">les nouveaux mot de passe ne sont pas identiques.</locale>
+    <locale lang="en">new passwords are not sames.</locale>
+    <locale lang="de">die neuen Passwörter sind nicht identisch.</locale>
+  </entity>
+  <entity id="error.BadOldPassword">
+    <locale lang="fr">l'ancien mot de passe n'est pas correct.</locale>
+    <locale lang="en">bad old password</locale>
+    <locale lang="de">das alte Passwort ist nicht korrekt.</locale>
+  </entity>
+  <entity id="error.PasswordNotSecure">
+    <locale lang="fr">votre mot de passe ne répond pas aux critères de sécurité</locale>
+    <locale lang="en">your passwrod doesn't enough secure</locale>
+    <locale lang="de">Ihr Passwort stimmt nicht mit den Sicherheitskriterien überein</locale>
+  </entity>
+  <entity id="error.PasswordNotSecure.Low">
+    <locale lang="fr">votre mot de passe doit comporter entre 6 et 12 caractères</locale>
+    <locale lang="en"/>
+    <locale lang="de">Ihr Passwort muss zwichen 6 und 12 Zeichen beinhalten</locale>
+  </entity>
+  <entity id="error.PasswordNotSecure.Medium">
+    <locale lang="fr">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques</locale>
+    <locale lang="en"/>
+    <locale lang="de">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen beinhalten</locale>
+  </entity>
+  <entity id="error.PasswordNotSecure.High">
+    <locale lang="fr">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques comprenant des lettres minuscules et majuscules</locale>
+    <locale lang="de">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen und sowohl Gross- als Kleinbuchstaben beinhalten</locale>
+  </entity>
+  <entity id="error.CanNotResetAdminAccount">
+    <locale lang="fr">Vous ne pouvez pas demander un nouveau mot de passe pour ce compte.</locale>
+    <locale lang="de">Sie dürfen kein neues Passwort für dieses Konto beantragen.</locale>
+  </entity>
+  <entity id="info.GeneratePassword">
+    <locale lang="fr">génération du mot de passe</locale>
+    <locale lang="en">password generation</locale>
+    <locale lang="de">Passwort wird generiert</locale>
+  </entity>
+<!--<entity id="">
+		<locale lang="fr"></locale>
+		<locale lang="en"></locale>
+	</entity>-->
+</localization>

@@ -1,0 +1,46 @@
+form.formauthentication{
+	width: 100%;
+	text-align: center;
+	border: 1px solid #d4d0c0;
+}
+ol.modules-users-login-form{
+	list-style: none;
+	padding-top: 20px;
+}
+ol.modules-users-login-form li{
+	text-align: left;
+}
+ol.modules-users-login-form li label{
+	font-weight: bold;
+	letter-spacing: 1px;
+	float: left;
+	font-size: 0.9em;
+	display: block;
+	width: 150px;
+	text-transform: uppercase;
+}
+ol.modules-users-login-form li.button{
+	text-align: center;
+}
+ol.modules-users-changepassword-form{
+	list-style: none;
+	padding-top: 20px;
+}
+ol.modules-users-changepassword-form li{
+	text-align: left;
+}
+ol.modules-users-changepassword-form li label{
+	font-weight: bold;
+	letter-spacing: 1px;
+	float: left;
+	font-size: 0.9em;
+	display: block;
+	width: 250px;
+	text-transform: uppercase;
+}
+ol.modules-users-changepassword-form li.button{
+	text-align: center;
+}
+div.showuserinfo{
+	font-weight: bold;
+}

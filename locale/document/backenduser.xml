@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="document-name">
+    <locale lang="fr">utilisateur Change</locale>
+    <locale lang="en">Change user</locale>
+    <locale lang="de">Change Benutzer</locale>
+  </entity>
+  <entity id="edition-form-title">
+    <locale lang="fr">propriétés d'un utilisateur Change</locale>
+    <locale lang="en">user properties</locale>
+    <locale lang="de">Eigenschaften eines Change Benutzers</locale>
+  </entity>
+  <entity id="lastname">
+    <locale lang="fr">nom</locale>
+    <locale lang="en">name</locale>
+    <locale lang="ar">label</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="lastname-help">
+    <locale lang="fr">nom de l'utilisateur</locale>
+    <locale lang="en">user name</locale>
+    <locale lang="de">Name des Benutzers</locale>
+  </entity>
+  <entity id="startpublicationdate">
+    <locale lang="fr">début de validité du compte</locale>
+    <locale lang="en">beginning of validity of the account</locale>
+    <locale lang="de">Gültigkeitsanfang des Kontos</locale>
+  </entity>
+  <entity id="startpublicationdate-help">
+    <locale lang="fr">le compte ne pourra être utilisé qu'à partir de cette date</locale>
+    <locale lang="en">account will be available only starting from this date</locale>
+    <locale lang="de">das Konto kann nur ab diesem Datum genutzt werden</locale>
+  </entity>
+  <entity id="endpublicationdate">
+    <locale lang="fr">fin de validité du compte</locale>
+    <locale lang="en">end of validity of the account</locale>
+    <locale lang="de">Gültigkeitsende des Kontos</locale>
+  </entity>
+  <entity id="endpublicationdate-help">
+    <locale lang="fr">le compte ne pourra plus être utilisé à partir de cette date</locale>
+    <locale lang="en">account won't be available after this date</locale>
+    <locale lang="de">das Konto wird ab diesem Datum nicht mehr verfügbar sein</locale>
+  </entity>
+  <entity id="title">
+    <locale lang="fr">civilité</locale>
+    <locale lang="en">title</locale>
+    <locale lang="ar">title</locale>
+    <locale lang="de">Anrede</locale>
+  </entity>
+  <entity id="title-help">
+    <locale lang="fr">civilité de l'utilisateur</locale>
+    <locale lang="en">user's title</locale>
+    <locale lang="de">Anrede des Benutzers</locale>
+  </entity>
+  <entity id="firstname">
+    <locale lang="fr">prénom</locale>
+    <locale lang="en">first name</locale>
+    <locale lang="ar">firstname</locale>
+    <locale lang="de">Vorname</locale>
+  </entity>
+  <entity id="firstname-help">
+    <locale lang="fr">prénom de l'utilisateur</locale>
+    <locale lang="en">user first name</locale>
+    <locale lang="de">Vorname des Benutzers</locale>
+  </entity>
+  <entity id="email">
+    <locale lang="fr">adresse e-mail</locale>
+    <locale lang="en">e-mail address</locale>
+    <locale lang="ar">email</locale>
+    <locale lang="de">E-mail Adresse</locale>
+  </entity>
+  <entity id="email-help">
+    <locale lang="fr">e-mail de l'utilisateur</locale>
+    <locale lang="en">user e-mail</locale>
+    <locale lang="de">E-mail Adresse des Benutzers</locale>
+  </entity>
+  <entity id="login">
+    <locale lang="fr">identifiant</locale>
+    <locale lang="en">login</locale>
+    <locale lang="ar">login</locale>
+    <locale lang="de">Benutzername</locale>
+  </entity>
+  <entity id="login-help">
+    <locale lang="fr">nom de connexion (login)</locale>
+    <locale lang="en">login</locale>
+    <locale lang="de">Login</locale>
+  </entity>
+  <entity id="password">
+    <locale lang="fr">mot de passe</locale>
+    <locale lang="en">password</locale>
+    <locale lang="de">Passwort</locale>
+  </entity>
+  <entity id="password-help">
+    <locale lang="fr">Mot de passe de l'utilisateur. Pour générer un mot de passe aléatoire, cliquez sur le bouton à droite du champ. Ce champ ne peut pas être modifié, mais seulement réinitialisé.</locale>
+    <locale lang="en">User password. To generate a random password, click on the button at the right of the field. Note that the password cannot be changed here, it can only be reset.</locale>
+    <locale lang="de">Passwort des Benutzers. Um ein zufallsbedingtes Passwort zu erzeugen, klicken Sie auf den Knopf rechts des Feldes. Dieses Feld kann nicht geändert werden, nur resettet.</locale>
+  </entity>
+<!--  Export infos -->
+  <entity id="id">
+    <locale lang="fr">Identifiant Change</locale>
+    <locale lang="de">Change Benutzername</locale>
+  </entity>
+  <entity id="label">
+    <locale lang="fr">Compte</locale>
+    <locale lang="de">Konto</locale>
+  </entity>
+  <entity id="author">
+    <locale lang="fr">Créé par</locale>
+    <locale lang="de">Erstellt von</locale>
+  </entity>
+  <entity id="creationdate">
+    <locale lang="fr">Créé le</locale>
+    <locale lang="de">Erstellt am</locale>
+  </entity>
+  <entity id="modificationdate">
+    <locale lang="fr">Modifié le</locale>
+    <locale lang="de">Geändert am</locale>
+  </entity>
+  <entity id="publicationstatus">
+    <locale lang="fr">Status</locale>
+    <locale lang="de">Status</locale>
+  </entity>
+  <entity id="lastlogin">
+    <locale lang="fr">Dernière connexion</locale>
+    <locale lang="de">Letzte Anmeldung</locale>
+  </entity>
+  <entity id="lastping">
+    <locale lang="fr">Dernière visite</locale>
+    <locale lang="de">Letzter Besuch</locale>
+  </entity>
+  <entity id="isroot">
+    <locale lang="fr">Super administrateur</locale>
+    <locale lang="de">Super Administrator</locale>
+  </entity>
+  <entity id="passwordupdate">
+    <locale lang="fr">nouveau mot de passe</locale>
+  </entity>
+  <entity id="generatepassword">
+    <locale lang="fr">générer le mot de passe automatiquement</locale>
+  </entity>
+</localization>

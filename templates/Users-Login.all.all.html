@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" tal:attributes="xml:lang lang; lang lang;">
+    <head>
+        <title i18n:translate="&modules.uixul.bo.general.Project-name;">CHANGE4</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="chrome://global/skin/" type="text/css" />
+        <style tal:replace="cssInclusion"/>
+        <!-- Scripts -->
+        <span tal:replace="scriptInclusion" />
+        <link rel="icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
+        <script type="text/javascript">
+		    $(document).ready(function(){
+	            initOpenChange();
+			});
+	        
+	        function initOpenChange()
+	        {	
+	        	blink(".browser-warning");
+	        }
+	        
+	        function blink(elt)
+	        {
+	        	$(elt).fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast");
+	        }
+		</script>
+    </head>
+
+    <body>
+        <div class="form-login">
+	        <h1><a href="http://www.rbs.fr/new/produits/change/" title="RBS CHANGE"><img change:image="logoCMS.png" alt="RBS CHANGE" /></a></h1>
+	        <h2 i18n:translate="&modules.users.bo.general.accessForm.TitleSpaced;"></h2>
+	        
+	        <div class="browser-warning">
+		        <h3 i18n:translate="&modules.users.bo.general.accessForm.NavigatorErrorMessage;"></h3>
+			    <br />
+				<p><a href="http://www.getfirefox.com"><img border="0" i18n:attributes="alt &modules.users.bo.general.accessForm.DownloadFirefox; title &modules.users.bo.general.accessForm.DownloadFirefox;" change:image="firefox-spread-btn-1.png" /></a></p>
+				<p><a class="no-white" href="http://www.getfirefox.com" i18n:translate="&modules.users.bo.general.accessForm.DownloadFirefox;"/></p>
+			</div>
+	    	<p class="copyright">RBS Change&trade; &copy; 2009 Ready Business System</p>
+        </div>
+    </body>
+</html>

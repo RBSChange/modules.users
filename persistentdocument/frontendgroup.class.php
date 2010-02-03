@@ -1,0 +1,4 @@
+<?php
+class users_persistentdocument_frontendgroup extends users_persistentdocument_frontendgroupbase
+{
+}

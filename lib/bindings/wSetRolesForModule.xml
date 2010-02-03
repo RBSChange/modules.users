@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bindings xmlns="http://www.mozilla.org/xbl" 
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:xbl="http://www.mozilla.org/xbl">
+	
+	<binding id="wSetRolesForModule" extends="core.wDialog#wDialog">
+		<implementation>
+			<field name="roleData">null</field>
+					
+			<constructor>
+			<![CDATA[
+				try
+				{
+					wCore.debug("wSetRolesForModule.constructor");
+				} 
+				catch (e)
+				{
+					wCore.error("wSetRolesForModule.constructor", [], e);
+				}
+			]]>
+			</constructor>
+	
+			<method name="onInitialize">
+				<body><![CDATA[
+					this.resizeTo(840, 500);
+					try
+					{
+						var accessorId = this.parameters.id;
+						var url = Context.UIBASEURL + "/xul_controller.php?module=users&action=GetUserModulePermission&cmpref=" + accessorId;
+						var serverRequest = $.ajax({url: url, type: "GET", async: false, dataType: 'text'});
+					 	var result = eval(serverRequest.responseText);
+					 	this.roleData = result[0];
+						//wCore.debug(wCore.dump(this.roleData))
+						this.buildAll();
+					} 
+					catch (e)
+					{
+						wCore.error("wSetRolesForModule.onInitialize", [], e);
+					}
+				]]></body>
+			</method>	
+			<method name="buildAll">
+			
+				<body><![CDATA[
+					var titleinfo = this.getElementById('titleinfo');
+					titleinfo.value =  this.roleData.user.label;
+					this.buildColumns();
+					var odd = false;
+					for (var moduleName in this.roleData.modules)
+					{
+						this.buildModule(moduleName, this.roleData.modules[moduleName], this.roleData.roles, odd);
+						odd = (odd) ? false : true;
+					}
+				]]></body>
+			</method>	
+			
+			<method name="buildColumns">
+				<body><![CDATA[
+					var headerColumnDef1 = this.getElementById('headerColumnDef1');
+					var headerColumnDef2 = this.getElementById('headerColumnDef2');
+					var rowHeader = this.getElementById('rowHeader');
+					var roles = this.roleData.roles;
+					
+					
+					
+					for (var roleName in roles)
+					{
+						if (roles[roleName].used > 1)
+						{
+							var column1 = document.createElement('column');
+							column1.setAttribute('style', 'width:105px');
+							headerColumnDef1.appendChild(column1);
+							
+							column2 = document.createElement('column');
+							column2.setAttribute('style', 'width:105px');
+							headerColumnDef2.appendChild(column2);
+							
+							var hbox = document.createElement('hbox');
+							hbox.setAttribute('flex', '1');
+							hbox.setAttribute('style', 'width:95px;overflow:hidden');
+
+							var checkbox = document.createElement('checkbox');						
+							checkbox.setAttribute('anonid', roleName);
+							checkbox.setAttribute('style', 'font-weight: bolder');
+							checkbox.setAttribute('label', roles[roleName].name);
+							hbox.appendChild(checkbox);							
+							rowHeader.appendChild(hbox);
+							
+							var xbl = this;
+							var eventRolename = roleName;
+							checkbox.addEventListener("command", function(event) {xbl.onCheckAllRoll(event);}, false);
+						}	
+					}
+				]]></body>
+			</method>
+			
+			<method name="buildModule">
+				<parameter name="moduleName" />
+				<parameter name="moduleinfos" />
+				<parameter name="roles" />
+				<parameter name="odd" />
+				
+				<body><![CDATA[
+					var rowContainer = this.getElementById('rowContainer');
+					var row =  document.createElement('row');
+					row.setAttribute('align', 'center');
+					if (odd)
+					{
+						row.setAttribute('style', 'background-color: #e8e8e8');
+					}
+					
+					var modulelabel = document.createElement('label');
+					modulelabel.setAttribute('crop', 'end');
+					modulelabel.setAttribute('style', 'font-weight: bolder');
+					modulelabel.setAttribute('value', moduleinfos.name);
+					row.appendChild(modulelabel);
+					
+					for (var roleName in roles)
+					{
+						if (roles[roleName].used > 1)
+						{
+							var hbox = document.createElement('hbox');
+							hbox.setAttribute('flex', '1');
+							
+							/*
+							var spacer1 = document.createElement('spacer');
+							spacer1.setAttribute('flex', '1');
+							hbox.appendChild(spacer1);
+							*/
+							
+							var checkbox = document.createElement('checkbox');
+							checkbox.setAttribute('anonid', moduleName + '_' + roleName);
+							if (moduleinfos.roles[roleName] == null)
+							{	
+								checkbox.setAttribute('disabled', 'true');
+							} 
+							else if (moduleinfos.roles[roleName] == 2)
+							{
+								checkbox.setAttribute('checked', 'true');
+							}
+							hbox.appendChild(checkbox);
+							
+							var spacer2 = document.createElement('spacer');
+							spacer2.setAttribute('flex', '5');
+							hbox.appendChild(spacer2);
+							hbox.appendChild(spacer2);
+							
+							row.appendChild(hbox);
+						}
+					}
+					rowContainer.appendChild(row);
+				]]></body>
+			</method>					
+			
+			<method name="onCheckAllRoll">
+				<parameter name="event" />
+				<body><![CDATA[
+					var roleName = event.currentTarget.getAttribute('anonid');
+					var checked = this.getElementById(roleName).checked;
+					for (var moduleName in this.roleData.modules)
+					{
+						var elem = this.getElementById(moduleName + '_' + roleName);
+						if (elem != null && (!elem.disabled))
+						{
+							elem.checked = checked;
+						}
+					}
+				]]></body>
+			</method>					
+										
+			<method name="onOk">
+				<body><![CDATA[
+					wCore.debug('Ok :' + this.controller + ":"  + this.sender + ":"   + this.parameters);
+					var roles = this.roleData.roles;
+					var modifiedRoles = [];
+					for (var moduleName in this.roleData.modules)
+					{
+						var moduleinfos = this.roleData.modules[moduleName];
+						for (var roleName in roles)
+						{
+							
+							var elem = this.getElementById(moduleName + '_' + roleName);
+							if (elem != null && (!elem.disabled))
+							{
+								var state = elem.checked ? '2' : '1';
+								if (state != moduleinfos.roles[roleName])
+								{
+									modifiedRoles.push(moduleName + ',' + roleName + ',' + moduleinfos.rootfolderid + ',' + state)
+									wCore.debug('Modif : ' + moduleName  + ', ' + roleName + ', ' + moduleinfos.roles[roleName] + ' => ' + state);
+								}
+							}
+						}
+					}
+					if (modifiedRoles.length > 0)
+					{
+						this.controller.execute('SetUserModulePermission', this, 'users', 'SetUserModulePermission', 
+						{cmpref:this.roleData.user.id, acl:modifiedRoles}, 'post');
+					}
+					else
+					{
+						this.controller.closeModalDialog(true);
+					}					
+				]]></body>
+			</method>
+			
+			<method name="onSetUserModulePermissionSuccess">
+				<parameter name="e4x" />
+				<parameter name="xmlHttp" />
+				<parameter name="callBackParameters" />
+				<body><![CDATA[
+					wCore.debug('onSetUserModulePermissionSuccess');
+					this.controller.closeModalDialog(true);
+				]]></body>
+			</method>
+														
+		</implementation>
+		
+		<xbl:content
+			xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+			xmlns:html="http://www.w3.org/1999/xhtml"
+			xmlns:xbl="http://www.mozilla.org/xbl">
+			<vbox flex="1">
+				<label anonid="titleinfo" value="&amp;modules.users.bo.dialog.Base-title;" class="wizardTitle" />
+				<spacer height="5px" />
+				<vbox style="height:390px">
+					<grid style="height:20px;border-bottom : black solid 2px">
+						<columns anonid="headerColumnDef1">
+					    	<column style="width:150px" />	
+					  	</columns>
+						<rows>
+							<row anonid="rowHeader">
+								<label value="&amp;modules.users.bo.dialog.Module-role;" style="font-weight: bolder" crop="end"/>
+							</row>
+						</rows>
+					</grid>
+					<grid flex="1" style="overflow: auto;border-bottom : black solid 2px">
+						<columns anonid="headerColumnDef2">
+					    	<column style="width:150px" />	
+					  	</columns>
+						<rows anonid="rowContainer">
+						</rows>
+					</grid>
+				</vbox>
+				<spacer height="5px" />
+				<hbox>
+					<button width="100px" image="{HttpHost}/icons/small/check.png" oncommand="onOk();" label="&amp;modules.uixul.bo.dialog.Apply;" />
+					<spacer flex="1" />
+					<button width="100px" image="{HttpHost}/icons/small/delete.png" oncommand="onCancel();" label="&amp;modules.uixul.bo.dialog.Cancel;" />
+				</hbox>
+			</vbox>		
+		</xbl:content>
+	</binding>
+
+</bindings>

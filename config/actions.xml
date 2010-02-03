@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<actions extends="generic">
+	<action name="createFrontenduser">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_frontenduser', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createBackenduser">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_backenduser', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createFrontendgroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_frontendgroup', listWidget.getSelectedItems()[0].id);
+    	]]></body>
+	</action>
+	<action name="createBackendgroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_backendgroup', listWidget.getSelectedItems()[0].id);
+    	]]></body>
+	</action>
+	<action name="createWebsitefrontenduser">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_websitefrontenduser', listWidget.getSelectedItems()[0].id);
+		]]></body>
+	</action>
+	<action name="createGroupMailingList">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var ids = listWidget.getSelectedIds();
+			this.execute("&amp;modules.users.bo.actions.Creating-group-mailing-list;", "CreateGroupMailinglist", { cmpref : ids[0] });
+		]]></body>
+		<checkDisplay><![CDATA[
+			return this.getController().checkModuleVersion('emailing', '2.0.1-4');
+		]]></checkDisplay>
+	</action>
+	
+	<action name="removeUser">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var docs = listWidget.getSelectedItems();
+			var parentItem = listWidget.getSelectedParentItem();
+			
+			var labels = [];
+			var ids = [], parentIds = [];
+			
+			for (var i=0; i < docs.length; i++)
+			{
+				ids.push(docs[i].id);
+				labels.push(docs[i].label);
+			}
+
+			var label;
+			if (labels.length > 10)
+			{
+				label = "&amp;modules.uixul.bo.general.ConfirmDeleteMessage; (" + labels.length + " &amp;modules.uixul.backoffice.items;)";
+			}
+			else
+			{
+				label = "&amp;modules.uixul.bo.general.ConfirmDeleteMessageList;\n - " + labels.join("\n - ");
+			}
+
+			if (confirm(label))
+			{
+				this.executeJSON("RemoveUsers", {cmpref: ids, parentref: parentItem.id});
+			}
+		]]></body>
+	</action>
+	
+	<action name="exportUsers">
+		<parameter name="listWidget" />
+		<body><![CDATA[			
+			if (confirm("&amp;modules.users.bo.general.ConfirmExportMessage;"))
+			{
+				var docId = listWidget.getSelectedIds()[0];
+				var lang = this.getContextLang(listWidget);
+				wToolkit.openlink('users', 'Export', { cmpref: docId, lang : lang});
+			}
+		]]></body>
+	</action>
+	<action name="setRolesForModule">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+	    	var ids = listWidget.getSelectedIds();
+	    	var lang = this.getContextLang(listWidget);
+	    	this.getController().openModalDialog(this, "setrolesformodule", {id: ids[0], lang: lang});
+		]]></body>
+	</action>
+</actions>

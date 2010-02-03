@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="Create-Frontenduser">
+    <locale lang="fr">créer un 'Utilisateur enregistré sur un site'</locale>
+    <locale lang="en">create user</locale>
+    <locale lang="de">einen 'auf einer Seite gespeicherten Benutzer' erstellen</locale>
+  </entity>
+  <entity id="Create-Backenduser">
+    <locale lang="fr">créer un utilisateur Change</locale>
+    <locale lang="en">create Change user</locale>
+    <locale lang="de">einen Change Benutzer erstellen</locale>
+  </entity>
+  <entity id="Create-Frontendgroup">
+    <locale lang="fr">créer un groupe d'utilisateurs enregistrés sur le(s) site(s)</locale>
+    <locale lang="en">create frontend group</locale>
+    <locale lang="de">eine auf der/die Seite(n) gespeicherte Benutzergruppe erstellen</locale>
+  </entity>
+  <entity id="Create-Backendgroup">
+    <locale lang="fr">créer un groupe d'utilisateurs Change</locale>
+    <locale lang="en">create Change users group</locale>
+    <locale lang="de">eine Change Benutzergruppe erstellen</locale>
+  </entity>
+  <entity id="CreateOnRootFolder_">
+    <locale lang="fr">créer</locale>
+    <locale lang="en">create</locale>
+    <locale lang="de">neu</locale>
+  </entity>
+  <entity id="CreateBackend_">
+    <locale lang="fr">créer</locale>
+    <locale lang="en">create</locale>
+    <locale lang="de">neu</locale>
+  </entity>
+  <entity id="CreateFrontend_">
+    <locale lang="fr">créer</locale>
+    <locale lang="en">create</locale>
+    <locale lang="de">neu</locale>
+  </entity>
+  <entity id="Remove-User">
+    <locale lang="fr">suppression d'un utilisateur</locale>
+    <locale lang="en">user suppression</locale>
+    <locale lang="de">Löschvorgang eines Benutzers</locale>
+  </entity>
+  <entity id="Export-Users">
+    <locale lang="fr">Exporter les utilisateurs publié</locale>
+    <locale lang="en">Export published users</locale>
+    <locale lang="de">Veröffentlichte Benutzer exportieren</locale>
+  </entity>
+  <entity id="createWebsiteFrontend_">
+    <locale lang="fr">créer</locale>
+    <locale lang="en">create</locale>
+    <locale lang="de">neu</locale>
+  </entity>
+  <entity id="Create-Websitefrontenduser">
+    <locale lang="fr">créer un utilisateur du site</locale>
+    <locale lang="en">Create user site</locale>
+    <locale lang="de">einen Benutzer der Seite erstellen</locale>
+  </entity>
+  <entity id="SetRolesForModule">
+    <locale lang="fr">Définir les rôles de base pour tous les modules</locale>
+    <locale lang="de">Basisrollen für alle Module definieren</locale>
+  </entity>
+  <entity id="create-dynamic-mailing-list">
+    <locale lang="fr">créer une liste d'abonnés dynamique à partir de ce groupe</locale>
+  </entity>
+  <entity id="creating-group-mailing-list">
+    <locale lang="fr">création de la liste d'abonnés</locale>
+  </entity>
+</localization>

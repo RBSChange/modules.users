@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="Address">
+    <locale lang="fr">Adresse(s)</locale>
+    <locale lang="en"/>
+    <locale lang="ar"/>
+    <locale lang="de">Adresse(n)</locale>
+  </entity>
+  <entity id="process.UseThisAddress">
+    <locale lang="fr">utiliser cette adresse</locale>
+    <locale lang="en"/>
+    <locale lang="ar"/>
+    <locale lang="de">diese Adresse verwenden</locale>
+  </entity>
+  <entity id="process.DeliveryAddress">
+    <locale lang="fr">mon adresse de LIVRAISON</locale>
+    <locale lang="en"/>
+    <locale lang="ar"/>
+    <locale lang="de">meine LIEFERAdresse</locale>
+  </entity>
+  <entity id="process.informationAddAddress">
+    <locale lang="fr">
+			Si Vous souhaitez livrer votre commande à une autre adresse
+			que celle(s) actuellement affichée(e), créer une nouvelle
+			adresse de livraison qui sera ajouté à votre compte client
+		</locale>
+    <locale lang="en"/>
+    <locale lang="ar"/>
+    <locale lang="de">Möchten Sie Ihre Bestellung an eine andere Adresse liefern lassen als die aktuell angezeigte(n), erstellen Sie eine 
+			neue Lieferadresse, die zu Ihrem Kundenkonto hinzugefügt wird</locale>
+  </entity>
+  <entity id="salutation">
+    <locale lang="fr">Cher {title} {name}</locale>
+    <locale lang="de">Sehr geehrter {title} {name}</locale>
+  </entity>
+  <entity id="salutation-woman">
+    <locale lang="fr">Chère {title} {name}</locale>
+    <locale lang="de">Sehr geehrte {title} {name}</locale>
+  </entity>
+  <entity id="salutation-undefined">
+    <locale lang="fr">Cher/chère {name}</locale>
+    <locale lang="de">Sehr geehrter / Sehr geehrte {title} {name}</locale>
+  </entity>
+<!--
+		#####################################################################
+		#                                                                   #
+		#                       Envoi mail                                  #
+		#                                                                   #
+		#####################################################################
+	-->
+  <entity id="password-successfully-changed">
+    <locale lang="fr">
+			votre nouveau mot de passe vient de vous être envoyé par
+			e-mail.
+		</locale>
+    <locale lang="de">Ihr neues Passwort wurde Ihnen soeben per E-mail zugeschickt.</locale>
+  </entity>
+  <entity id="mail.Starting">
+    <locale lang="fr">
+			Vous recevez cet e-mail car vous venez de créer un compte.
+		</locale>
+    <locale lang="en">
+			You got this e-mail because you have created an account.
+		</locale>
+    <locale lang="ar"/>
+    <locale lang="de">Sie erhalten diese E-mail, da Sie soeben ein Konto erstellt haben.</locale>
+  </entity>
+  <entity id="mail.AccessToYourAccount">
+    <locale lang="fr">
+			Pour accéder à notre site et à votre compte :
+		</locale>
+    <locale lang="en">
+			Access to our site and your account by :
+		</locale>
+    <locale lang="ar"/>
+    <locale lang="de">Um zu unserer Webseite und auf Ihr Konto zu gelangen:</locale>
+  </entity>
+  <entity id="mail.MailSubject">
+    <locale lang="fr">Création d'un compte</locale>
+    <locale lang="en">Account creation</locale>
+    <locale lang="ar"/>
+    <locale lang="de">Erstellung eines Kontos</locale>
+  </entity>
+  <entity id="mail.accountCreationEnd">
+    <locale lang="fr">A bientôt sur notre site.</locale>
+    <locale lang="en">See you soon on our site.</locale>
+    <locale lang="de">Bis Bald auf unserer Webseite.</locale>
+  </entity>
+<!--
+		#####################################################################
+		#                                                                   #
+		#                       Bloc authentification                       #
+		#                                                                   #
+		#####################################################################
+	-->
+  <entity id="authentication.BadAuthentication">
+    <locale lang="fr">identifiant ou mot de passe incorrect</locale>
+    <locale lang="en">login failed</locale>
+    <locale lang="de">Benutzername oder Passwort falsch</locale>
+  </entity>
+  <entity id="authentication.Logout">
+    <locale lang="fr">Déconnexion</locale>
+    <locale lang="en">Logout</locale>
+    <locale lang="de">Abmeldung</locale>
+  </entity>
+  <entity id="authentication.Login">
+    <locale lang="fr">votre identifiant</locale>
+    <locale lang="en">your login</locale>
+    <locale lang="de">Ihr Benutzername</locale>
+  </entity>
+  <entity id="authentication.Password">
+    <locale lang="fr">votre mot de passe</locale>
+    <locale lang="en">your password</locale>
+    <locale lang="de">Ihr Passwort</locale>
+  </entity>
+  <entity id="authentication.SubmitButton">
+    <locale lang="fr">valider</locale>
+    <locale lang="en">submit</locale>
+    <locale lang="de">bestätigen</locale>
+  </entity>
+  <entity id="authentication.anonymousUser">
+    <locale lang="fr">Invité</locale>
+    <locale lang="en">Anonymous</locale>
+    <locale lang="de">Gast</locale>
+  </entity>
+  <entity id="authentication.Resetpasswordlink">
+    <locale lang="fr">J'ai oublié mon mot de passe</locale>
+    <locale lang="en">I forgot my password</locale>
+    <locale lang="de">Ich habe mein Passwort vergessen</locale>
+  </entity>
+  <entity id="resetpassword.success">
+    <locale lang="fr">
+			un nouveau mot de passe vient de vous être envoyé par email.
+		</locale>
+    <locale lang="en">a new password has just been sent by e-mail</locale>
+    <locale lang="de">ein neues Passwort ist Ihnen soeben per E-mail zugeschickt worden</locale>
+  </entity>
+  <entity id="resetpassword.exception">
+    <locale lang="fr">
+			une erreur est survenu pendant la sauvegarde de votre mot
+			passe.
+		</locale>
+    <locale lang="en">an error occured while saving your password</locale>
+    <locale lang="de">ein Fehler ist beim Speichervorgang Ihres Passwortes vorgekommen.</locale>
+  </entity>
+  <entity id="resetpassword.invalidlogin">
+    <locale lang="fr">le login n'existe pas.</locale>
+    <locale lang="en">this login does not exist.</locale>
+    <locale lang="de">Das Login existiert nicht.</locale>
+  </entity>
+  <entity id="resetpassword.submitButton">
+    <locale lang="fr">envoyer</locale>
+    <locale lang="en">send</locale>
+    <locale lang="de">senden</locale>
+  </entity>
+  <entity id="resetpassword.emptylogin">
+    <locale lang="fr">le login ne peux pas etre vide.</locale>
+    <locale lang="en">login can not be empty.</locale>
+    <locale lang="de">Das Login kann nicht leer sein.</locale>
+  </entity>
+  <entity id="changepassword.oldpassword">
+    <locale lang="fr">ancien mot de passe</locale>
+    <locale lang="en">old password</locale>
+    <locale lang="de">altes Passwort</locale>
+  </entity>
+  <entity id="changepassword.newpassword">
+    <locale lang="fr">nouveau mot de passe</locale>
+    <locale lang="en">new password</locale>
+    <locale lang="de">neues Passwort</locale>
+  </entity>
+  <entity id="changepassword.confirmnewpassword">
+    <locale lang="fr">confirmer le nouveau mot de passe</locale>
+    <locale lang="en">confirm new password</locale>
+    <locale lang="de">neues Passwort bestätigen</locale>
+  </entity>
+  <entity id="changepassword.submitButton">
+    <locale lang="fr">modifier</locale>
+    <locale lang="en">modify</locale>
+    <locale lang="de">ändern</locale>
+  </entity>
+  <entity id="changepassword.success">
+    <locale lang="fr">
+			la confirmation du changement de votre mot de passe va vous
+			etre envoyé par email.
+		</locale>
+    <locale lang="en">you are going to receive an e-mail confirming you password was successfuly changed.</locale>
+    <locale lang="de">die Änderungsbestätigung ihres Passwortes wird Ihnen per E-mail zugeschickt.</locale>
+  </entity>
+  <entity id="changepassword.exception">
+    <locale lang="fr">
+			une erreur est survenu pendant la sauvegarde de votre mot
+			passe.
+		</locale>
+    <locale lang="en">an error occured while saving your password.</locale>
+    <locale lang="de">ein Fehler ist während des Speichrvorgangs aufgekommen.</locale>
+  </entity>
+  <entity id="changepassword.invalidoldpassword">
+    <locale lang="fr">
+			votre ancien mot de passe ne correspond pas.
+		</locale>
+    <locale lang="en">your old password does not match.</locale>
+    <locale lang="de">Ihr altes Passwort stimmt nicht überein.</locale>
+  </entity>
+  <entity id="changepassword.notconfirmpassword">
+    <locale lang="fr">
+			votre nouveau mot de passe n'a pas été confirmé.
+		</locale>
+    <locale lang="en">your new password was not confirmed.</locale>
+    <locale lang="de">Ihr neues Passwort wurde nicht bestätigt.</locale>
+  </entity>
+  <entity id="changepassword.emptypassword">
+    <locale lang="fr">
+			tout les champs du formulaire sont obligatoires.
+		</locale>
+    <locale lang="en">all the fields are required.</locale>
+    <locale lang="de">alle Formularfelder sind obligatorisch.</locale>
+  </entity>
+  <entity id="editprofil.login">
+    <locale lang="fr">identifiant</locale>
+    <locale lang="en">login</locale>
+    <locale lang="de">Benutzername</locale>
+  </entity>
+  <entity id="editprofil.changepassword">
+    <locale lang="fr">changer le mot de passe</locale>
+    <locale lang="en">change password</locale>
+    <locale lang="de">Passwort ändern</locale>
+  </entity>
+  <entity id="editprofil.title">
+    <locale lang="fr">civilité</locale>
+    <locale lang="en">title</locale>
+    <locale lang="de">Anrede</locale>
+  </entity>
+  <entity id="editprofil.firstname">
+    <locale lang="fr">prénom</locale>
+    <locale lang="en">first name</locale>
+    <locale lang="de">Vorname</locale>
+  </entity>
+  <entity id="editprofil.lastname">
+    <locale lang="fr">nom</locale>
+    <locale lang="en">name</locale>
+    <locale lang="de">Name</locale>
+  </entity>
+  <entity id="editprofil.email">
+    <locale lang="fr">adresse e-mail</locale>
+    <locale lang="en">e-mail address</locale>
+    <locale lang="de">E-mail Adresse</locale>
+  </entity>
+  <entity id="editprofil.modify">
+    <locale lang="fr">modifier</locale>
+    <locale lang="en">modify</locale>
+    <locale lang="de">ändern</locale>
+  </entity>
+  <entity id="editprofil.submitButton">
+    <locale lang="fr">modifier</locale>
+    <locale lang="en">modify</locale>
+    <locale lang="de">ändern</locale>
+  </entity>
+<!-- Su -->
+  <entity id="su.switch-user">
+    <locale lang="fr">prendre l'identité d'un autre utilisateur</locale>
+    <locale lang="de">die Identität eines anderen Benutzers nehmen</locale>
+  </entity>
+  <entity id="su.search">
+    <locale lang="fr">filtrer</locale>
+    <locale lang="de">filtern</locale>
+  </entity>
+  <entity id="su.search-no-result">
+    <locale lang="fr">aucun utilisateur ne correspond à votre recherche.</locale>
+    <locale lang="de">kein Benutzer entspricht Ihrer suche.</locale>
+  </entity>
+  <entity id="su.result-users-count">
+    <locale lang="fr">{usersCount} utilisateurs trouvés.</locale>
+    <locale lang="de">{usersCount} gefundene Benutzer.</locale>
+  </entity>
+  <entity id="su.users-list">
+    <locale lang="fr">liste des utilisateurs</locale>
+    <locale lang="de">Benutzerliste</locale>
+  </entity>
+  <entity id="su.full-name">
+    <locale lang="fr">nom complet</locale>
+    <locale lang="de">Kompletter Name</locale>
+  </entity>
+  <entity id="su.first-name">
+    <locale lang="fr">prénom</locale>
+    <locale lang="de">Vorname</locale>
+  </entity>
+  <entity id="su.last-name">
+    <locale lang="fr">nom</locale>
+    <locale lang="de">Nachname</locale>
+  </entity>
+  <entity id="su.login">
+    <locale lang="fr">login</locale>
+    <locale lang="de">Login</locale>
+  </entity>
+  <entity id="su.switch">
+    <locale lang="fr">connexion</locale>
+    <locale lang="de">Verbindung</locale>
+  </entity>
+  <entity id="su.switched-success-title">
+    <locale lang="fr">connexion réussie</locale>
+    <locale lang="de">Verbindung hergestellt</locale>
+  </entity>
+  <entity id="su.switched-success">
+    <locale lang="fr">vous êtes maintenant connecté en tant que {fullName} ({login}).</locale>
+    <locale lang="de">Sie sind nun als {fullName} angemeldet ({login}).</locale>
+  </entity>
+  <entity id="su.switched-error-title">
+    <locale lang="fr">connexion échouée</locale>
+    <locale lang="de">Verbindung fehlgeschlagen</locale>
+  </entity>
+  <entity id="su.switched-error-bad-arguments">
+    <locale lang="fr">paramètres incorrects.</locale>
+    <locale lang="de">falsche Einstellungen.</locale>
+  </entity>
+  <entity id="su.switched-error-do-not-have-permission">
+    <locale lang="fr">vous n'avez pas l'autorisation de vous connecter en tant que {fullName} ({login}).</locale>
+    <locale lang="de">Sie haben nicht die Rechte sich als {fullName} einzuloggen ({login}).</locale>
+  </entity>
+<!--  -->
+  <entity id="adminauthentication.login">
+    <locale lang="fr">Identifiant</locale>
+  </entity>
+  <entity id="adminauthentication.email">
+    <locale lang="fr">Courriel</locale>
+  </entity>
+  <entity id="adminauthentication.password">
+    <locale lang="fr">Mot de passe</locale>
+  </entity>
+  <entity id="adminauthentication.logged">
+    <locale lang="fr">Connecté sous {fullName}</locale>
+  </entity>
+  <entity id="adminauthentication.logout">
+    <locale lang="fr">Déconnexion</locale>
+  </entity>
+  <entity id="adminauthentication.logout-success">
+    <locale lang="fr">Vous êtes désormais déconnecté</locale>
+  </entity>
+  <entity id="adminauthentication.lostpassword">
+    <locale lang="fr">Mot de passe oublié ?</locale>
+  </entity>
+  <entity id="adminauthentification.lostpassword-nouser">
+    <locale lang="fr">Aucun compte utilisateur n'est associé à l'identifiant {login}.</locale>
+  </entity>
+  <entity id="adminauthentification.lostpassword-success">
+    <locale lang="fr">Votre demande de renouvellement de mot de passe pour le compte {login} a bien été prise en compte. Un courrier vous a été envoyé à l'adresse associée au compte.</locale>
+  </entity>
+  <entity id="adminauthentication.remember-me">
+    <locale lang="fr">Se souvenir de moi</locale>
+  </entity>
+  <entity id="adminauthentication.remember-me-help">
+    <locale lang="fr">Si vous choisissez cette option, vos informations de connexion seront stockées dans un cookie persistant. N'activez cette fonction que si vous êtes sur votre propre ordinateur.</locale>
+  </entity>
+</localization>

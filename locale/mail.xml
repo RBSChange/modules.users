@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+  <entity id="Password.Title">
+    <locale lang="fr">identifiant ou mot de passe incorrect</locale>
+    <locale lang="en">login failed</locale>
+    <locale lang="de">Benutzername oder Passwort falsch</locale>
+  </entity>
+  <entity id="Password.Greeting">
+    <locale lang="fr">Bonjour {title} {fullname},</locale>
+    <locale lang="en">Hello {title} {fullname},</locale>
+    <locale lang="de">Guten Tag {title} {fullname}</locale>
+  </entity>
+  <entity id="Password.Login">
+    <locale lang="fr">votre identifiant {login}</locale>
+    <locale lang="en">your login {login}</locale>
+    <locale lang="de">Ihr Benutzername {login}</locale>
+  </entity>
+  <entity id="Password.Password">
+    <locale lang="fr">votre mot de passe {password}</locale>
+    <locale lang="en">your password {password}</locale>
+    <locale lang="de">Ihr Passwort {password}</locale>
+  </entity>
+  <entity id="Password.AccessLink">
+    <locale lang="fr">pour accéder à votre compte : <a href="{url}">{url}</a></locale>
+    <locale lang="en">to access to yout account: <a href="{url}">{url}</a></locale>
+    <locale lang="de">Zugang zu Ihrem Konto:<a href="{url}">{url}</a></locale>
+  </entity>
+  <entity id="Password.Salutation">
+    <locale lang="fr">cordialement,</locale>
+    <locale lang="en">best regards,</locale>
+    <locale lang="de">Mit freundlichen Grüssen</locale>
+  </entity>
+  <entity id="Password.AdministratorSignature">
+    <locale lang="fr">votre administrateur Change</locale>
+    <locale lang="en">your Change administrator</locale>
+    <locale lang="de">Ihr Change Administrator</locale>
+  </entity>
+  <entity id="Password.ExplanationNewAccountFrontendUser">
+    <locale lang="fr">vous recevez cet e-mail car un compte vient de vous être créé sur notre site Internet.</locale>
+    <locale lang="en">you are receiving this e-mail because an account has just been created for you on our website.</locale>
+    <locale lang="de">Sie erhalten diese E-mail, da für Sie ein Konto auf unserer Webseite erstellt wurde.</locale>
+  </entity>
+  <entity id="Password.ExplanationChangePasswordFrontendUser">
+    <locale lang="fr">vous recevez cet e-mail car votre mot de passe a été changé.</locale>
+    <locale lang="en">you are receiving this e-mail because your password has been changed.</locale>
+    <locale lang="de">Sie erhalten diese E-mail, da Ihr Passwort geändert wurde.</locale>
+  </entity>
+  <entity id="Password.ExplanationNewAccountBackendUser">
+    <locale lang="fr">vous recevez cet e-mail car un compte vient de vous être créé dans Change.</locale>
+    <locale lang="en">you are receiving this e-mail because an account has just been created for you in RBS Change.</locale>
+    <locale lang="de">Sie erhalten diese E-mail, da für Sie ein Konto in Change erstellt wurde.</locale>
+  </entity>
+  <entity id="Password.ExplanationChangePasswordBackendUser">
+    <locale lang="fr">vous recevez cet e-mail car votre mot de passe dans Change a été changé.</locale>
+    <locale lang="en">you are receiving this e-mail because your RBS Change password has been modified.</locale>
+    <locale lang="de">Sie erhalten diese E-mail, da Ihr Passwort in Change geändert wurde.</locale>
+  </entity>
+  <entity id="Password.Subject">
+    <locale lang="fr">Informations utilisateurs</locale>
+    <locale lang="en">User details</locale>
+    <locale lang="de">Benutzerinformationen</locale>
+  </entity>
+  <entity id="Password.Sender">
+    <locale lang="fr">NoReply@{host}</locale>
+    <locale lang="en">NoReply@{host}</locale>
+    <locale lang="de">NoReply@{host}</locale>
+  </entity>
+</localization>

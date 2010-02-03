@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="cLoginConstraint" extends="form.cConstraint#cConstraint">
+		<implementation>
+			<constructor><![CDATA[
+				wCore.debug('cLoginConstraint.constructor');
+			]]></constructor>
+								
+			<method name="getServerParams">
+				<body><![CDATA[
+					wCore.debug("cLoginConstraint.getServerParams");
+					var pn = this.parentNode;
+					var name = pn.name;
+					
+					while (pn && !pn.hasAttribute("modelname")) {pn = pn.parentNode;}
+					if (pn)
+					{
+						var id = (pn.getAttribute("documentid") != "") ?  pn.getAttribute("documentid") : pn.getAttribute("parentid");
+						return this.name + ':' + pn.getAttribute("modelname") + ',' + name + ',' + id;
+					}
+					return this.name + ':' + name;
+				]]></body>	
+			</method>		
+		</implementation>
+	</binding>	
+</bindings>

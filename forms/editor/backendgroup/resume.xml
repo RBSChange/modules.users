@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<panel>
+	<section name="properties" linkedtab="properties" labeli18n="modules.uixul.bo.doceditor.section.Properties" image="{HttpHost}/icons/small/edit-properties.png">
+		<property name="label" labeli18n="modules.uixul.bo.doceditor.property.Label" />
+		<property name="cardinality" labeli18n="modules.users.bo.doceditor.property.Cardinality" />
+	</section>
+
+	<section name="history" linkedtab="history" actiontexti18n="modules.uixul.bo.doceditor.section.action.View" labeli18n="modules.uixul.bo.doceditor.section.History" image="{HttpHost}/icons/small/history.png">
+		<property name="modificationdate" labeli18n="modules.uixul.bo.doceditor.property.Modificationdate" />
+	</section>
+
+</panel>
