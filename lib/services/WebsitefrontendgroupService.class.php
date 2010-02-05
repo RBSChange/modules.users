@@ -56,7 +56,9 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 	 */
 	protected function preDelete($document)
 	{
+		$document->setIsdefault(false);
 		parent::preDelete($document);
+		
 		$wfus = users_WebsitefrontenduserService::getInstance();
 		foreach($document->getUserArrayInverse() as $user)
 		{
