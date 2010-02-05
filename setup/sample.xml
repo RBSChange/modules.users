@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
+	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
+
+
+	<websitefrontendgroup for-default-website="true" id="websitefrontendgroup"/>
 
 	<website byTag="default_modules_website_default-website" template="tplTwo">
 		<topic label="Pages spéciales" navigationVisibility="hidden" byLabel="Pages spéciales">
@@ -55,6 +59,11 @@
 					<changeblock type="modules_users_editprofil" />
 				</changecontent>
 			</page>
+			
+			<permissions>
+				<frontendpermission module="website" role="AuthenticatedFrontUser" group-refid="websitefrontendgroup"/>
+			</permissions>
+
 		</topic>
 	</website>
 </script>

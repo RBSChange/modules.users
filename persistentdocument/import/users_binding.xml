@@ -16,9 +16,6 @@
 	<binding name="group" className="users_GroupScriptDocumentElement" />
 	<binding name="user" className="users_UserScriptDocumentElement" />
 	
-	<binding name="websitefrontenduser" className="users_WebsitefrontenduserScriptDocumentElement" />
-	<binding name="websitefrontendgroup" className="users_WebsitefrontendgroupScriptDocumentElement" />
-
 	<binding name="permissions" className="users_PermissionsScriptDocumentElement" />
 	<binding name="frontendpermission" className="users_FrontendPermissionScriptDocumentElement" />
 	<binding name="backendpermission" className="users_BackendPermissionScriptDocumentElement" />
