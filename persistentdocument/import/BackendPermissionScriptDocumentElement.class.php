@@ -35,7 +35,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid group '.$this->attributes['group'].'".');
+					Framework::warn(__METHOD__ . ' invalid group '.$this->attributes['group-refid'].'".');
 				}
 			}
 			
@@ -55,13 +55,13 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 			else if (isset($this->attributes['user-refid']))
 			{
 				$user = $this->script->getElementById($this->attributes['user-refid'], 'import_ScriptObjectElement')->getObject();
-				if ($user instanceof users_persistentdocument_frontenduser)
+				if ($user instanceof users_persistentdocument_backenduser)
 				{
 					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['users'].'".');
+					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['user-refid'].'".');
 				}
 			}
 		}
