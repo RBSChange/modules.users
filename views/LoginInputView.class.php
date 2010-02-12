@@ -10,20 +10,23 @@ class users_LoginInputView extends f_view_BaseView
     	$rq = RequestContext::getInstance();
 		try 
 		{
-        	$rq->beginI18nWork($rq->getUILang());
-        	
+			$lang = $rq->getUILang();
+        	$rq->beginI18nWork($lang);
         	$this->forceModuleName("users");
-			$this->setTemplateName('Users-Login', K::HTML);
-	
+        	$templateName = 'Users-Login-'.$lang;
+        	$path = TemplateResolver::getInstance()->setPackageName('modules_users')->setDirectory('templates')->getPath($templateName);        	
+        	if ($path === null)
+        	{
+        		$templateName = 'Users-Login-en';
+        	}
+			$this->setTemplateName($templateName, K::HTML);
 			if (!$request->hasParameter('access'))
 			{
 				Framework::log("No informations to display an authentication in front office", Logger::WARN);
 			}
-			    	
 	        $this->setAttribute('cssInclusion',
 	           $this->getStyleService()
-		    	  ->registerStyle('modules.generic.frontoffice')
-		    	  ->registerStyle('modules.users.backoffice')
+		    	  ->registerStyle('modules.users.bologin')
 		    	  ->execute(K::HTML)
 		    );
 	        
