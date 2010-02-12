@@ -16,7 +16,7 @@ body {
 
 .header {
 	height: 39px;
-	background: url(/media/backoffice/header-bg.png) repeat-x;
+	background: url(/media/backoffice/login-header-bg.png) repeat-x;
 }
 
 .header span {
