@@ -1,8 +1,8 @@
 <tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
 <span tal:content="currentUser/getFullname"></span>
-<a tal:attributes="href logoutUrl" i18n:translate="&modules.users.frontoffice.authentication.Logout;">Logout</a>
-<tal:block tal:condition="customerRegistrationPage">
-	<li tal:condition="php: !customer_CustomerService::getInstance().getCurrentCustomer()">
-		<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
-	</li>
+<a class="link" tal:attributes="href logoutUrl" i18n:translate="&modules.users.frontoffice.authentication.Logout;" />
+<tal:block tal:condition="php: customerRegistrationPage && !customer_CustomerService::getInstance().getCurrentCustomer()">
+<p>
+	<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
+</p>
 </tal:block>
