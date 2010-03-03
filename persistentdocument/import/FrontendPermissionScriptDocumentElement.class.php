@@ -36,13 +36,19 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid group '.$this->attributes['group'].'".');
+					Framework::warn(__METHOD__ . ' invalid group refid '.$this->attributes['group-refid'].'".');
 				}
 			}
 			
 			// Handle users.
 			if (isset($this->attributes['user']))
 			{
+				if (!($website instanceof website_persistentdocument_website))
+				{
+					Framework::warn(__METHOD__ . ' user identified by login can\'t be found outside from the context of a website! Permission on "'.$this->attributes['user'].'" skipped.');
+					return;
+				}
+				
 				$user = users_WebsitefrontenduserService::getInstance()->getFrontendUserByLogin($this->attributes['user'], $website->getId());
 				if ($user instanceof users_persistentdocument_frontenduser)
 				{
@@ -50,7 +56,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['users'].'".');
+					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['user'].'".');
 				}
 			}
 			else if (isset($this->attributes['user-refid']))
@@ -62,7 +68,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['users'].'".');
+					Framework::warn(__METHOD__ . ' invalid user refid '.$this->attributes['user-refid'].'".');
 				}
 			}
 		}

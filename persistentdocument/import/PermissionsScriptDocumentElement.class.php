@@ -9,6 +9,7 @@ class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
      */
 	public function setPermissions($document)
 	{
+		$website = null;
 		if ($document instanceof website_persistentdocument_website)
 		{
 			$website = $document;
@@ -17,7 +18,7 @@ class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
 		{
 			$website = f_util_ArrayUtils::firstElement($document->getDocumentService()->getAncestorsOf($document, 'modules_website/website'));
 		}
-				
+		
 		$children = $this->script->getChildren($this);
 		foreach ($children as $child)
 		{
@@ -27,14 +28,7 @@ class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
 			}
 			else if ($child instanceof users_FrontendPermissionScriptDocumentElement)
 			{
-				if ($website instanceof website_persistentdocument_website)
-				{
-					$child->setPermission($document, $website);
-				}
-				else 
-				{
-					Framework::warn(__METHOD__ . ' no website found.');
-				}
+				$child->setPermission($document, $website);
 			}
 		}
 	}

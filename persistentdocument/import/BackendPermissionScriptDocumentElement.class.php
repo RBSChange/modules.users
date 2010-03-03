@@ -35,7 +35,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid group '.$this->attributes['group-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid group refid '.$this->attributes['group-refid'].'".');
 				}
 			}
 			
@@ -61,7 +61,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['user-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid user refid '.$this->attributes['user-refid'].'".');
 				}
 			}
 		}
