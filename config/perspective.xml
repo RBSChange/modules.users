@@ -62,7 +62,6 @@
 				<contextaction name="exportUsers" />
 				<groupactions name="createFrontend_">
 					<contextaction name="createFrontenduser" />
-					<contextaction name="createGroupMailingList" />
 				</groupactions>
 			</contextactions>
 		</model>
@@ -84,7 +83,6 @@
 				<contextaction name="setRolesForModule" />
 				<groupactions name="createBackend_">
 					<contextaction name="createBackenduser" />
-					<contextaction name="createGroupMailingList" />
 				</groupactions>
 			</contextactions>
 		</model>
@@ -101,7 +99,6 @@
 				<contextaction name="exportUsers" />
 				<groupactions name="createWebsiteFrontend_">
 					<contextaction name="createWebsitefrontenduser" />
-					<contextaction name="createGroupMailingList" />
 				</groupactions>
 			</contextactions>
 		</model>
@@ -125,7 +122,6 @@
 		<action name="delete" single="true" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
 		<action name="exportUsers" icon="download" label="&amp;modules.users.bo.actions.Export-Users;" />
 		<action name="openTreeNodeOrder" single="true" permission="Order" icon="document_exchange" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
-		<action name="createGroupMailingList" icon="mail_server" label="&amp;modules.users.bo.actions.Create-dynamic-mailing-list;" />
 		<action name="createFrontend_" actions="createFrontenduser" icon="add" />
 		<action name="createFrontenduser" permission="Insert_frontenduser" group="createFrontend_" label="&amp;modules.users.bo.actions.Create-Frontenduser;" />
 		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />

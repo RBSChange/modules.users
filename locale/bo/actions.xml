@@ -59,10 +59,4 @@
     <locale lang="fr">Définir les rôles de base pour tous les modules</locale>
     <locale lang="de">Basisrollen für alle Module definieren</locale>
   </entity>
-  <entity id="create-dynamic-mailing-list">
-    <locale lang="fr">créer une liste d'abonnés dynamique à partir de ce groupe</locale>
-  </entity>
-  <entity id="creating-group-mailing-list">
-    <locale lang="fr">création de la liste d'abonnés</locale>
-  </entity>
 </localization>

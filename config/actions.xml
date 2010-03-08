@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<actions extends="generic">
+<actions>
 	<action name="createFrontenduser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -30,17 +30,7 @@
 			this.createDocumentEditor('modules_users_websitefrontenduser', listWidget.getSelectedItems()[0].id);
 		]]></body>
 	</action>
-	<action name="createGroupMailingList">
-		<parameter name="listWidget" />
-		<body><![CDATA[
-			var ids = listWidget.getSelectedIds();
-			this.execute("&amp;modules.users.bo.actions.Creating-group-mailing-list;", "CreateGroupMailinglist", { cmpref : ids[0] });
-		]]></body>
-		<checkDisplay><![CDATA[
-			return this.getController().checkModuleVersion('emailing', '2.0.1-4');
-		]]></checkDisplay>
-	</action>
-	
+
 	<action name="removeUser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
