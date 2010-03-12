@@ -1,98 +1,50 @@
 <?php
-class users_BlockEditprofilAction extends block_BlockAction
+/**
+ * users_BlockEditprofilAction
+ * @package modules.users.lib.blocks
+ */
+class users_BlockEditprofilAction extends website_BlockAction
 {
-
-    /**
-     * @param block_BlockContext $context
-     * @param block_BlockRequest $request
-     * @return String the view name
-     */
-    public function execute ($context, $request)
-    {
-		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
-		if ($currentUser === NULL)
+	/**
+	 * @see website_BlockAction::execute()
+	 *
+	 * @param f_mvc_Request $request
+	 * @param f_mvc_Response $response
+	 * @return String
+	 */
+	function execute($request, $response)
+	{
+		$user = users_UserService::getInstance()->getCurrentFrontEndUser();
+		if ($user === NULL)
 		{
-		    return block_BlockView::NONE;
+			return block_BlockView::NONE;
 		}
 		
-		$this->setParameter('currentUser', $currentUser);
-		$errors = array();
+		$request->setAttribute('user', $user);
 		
-		if ($request->hasParameter('submit'))
+		$module = $request->getParameter('blockModule', 'users');
+		$blockName = $request->getParameter('blockName', 'EditFrontendUserProfile');
+		
+		$list = list_ListService::getInstance()->getByListId('modules_users/editprofilepanels');
+		$panels = array();
+		foreach ($list->getItems() as $item)
 		{
-		    $this->setProperties($currentUser, $request);
-			if (!$currentUser->isValid())
+			list ($panelModule, $panelBlockName) = explode('/', $item->getValue());
+			$isCurrent = ($panelModule == $module && $blockName == $panelBlockName);
+			$panel = array(
+				'label' => $item->getLabel(),
+				'module' => $panelModule,
+				'blockName' => $panelBlockName,
+				'isCurrent' => $isCurrent
+			);
+			if ($isCurrent)
 			{
-				$errors = $this->localizeErrorField($currentUser->getValidationErrors());
+				$request->setAttribute('currentPanel', $panel);
 			}
-			else
-			{
-                try
-                {
-                    $currentUser->save();
-                    return block_BlockView::SUCCESS;
-                } 
-                catch (Exception $e)
-                {
-                    Framework::exception($e);
-                    $errors[] = f_Locale::translate('&modules.users.frontoffice.editprofil.exception;');
-                }
-			}
+			$panels[] = $panel;
 		}
+		$request->setAttribute('panels', $panels);
 		
-		if (count($errors) > 0)
-		{
-		     $this->setParameter('errors', $errors);
-		}
-		return block_BlockView::INPUT;  		
-		
-    }
-    
-    /**
-     * @param block_BlockContext $context
-     * @param block_BlockRequest $request
-     * @return String the view name
-     */
-    public function executeBackOffice ($context, $request)
-    {
-    	return block_BlockView::INPUT;
-    }
-    
-    private function setProperties($currentUser, $request)
-    {
-        $documentModel = $currentUser->getPersistentModel();
-		$values = array();
-		foreach ($request->getParameters() as $name => $value)
-		{
-			$property = $documentModel->getProperty($name);
-			if ($property == null)
-			{
-				continue;
-			}
-			$values[$name] = $value;
-		}
-		DocumentHelper::setPropertiesTo($values, $currentUser);
-    }
-    
-    private function localizeErrorField($errors)
-    {
-        $result = array();
-        foreach ($errors as $error) 
-        {
-        	if (strpos($error, 'email') !== false)
-        	{
-        	    $error = str_replace('email', f_Locale::translate('&modules.users.document.frontenduser.Email;'), $error);
-        	} 
-        	else if (strpos($error, 'firstname') !== false)
-        	{
-        	    $error = str_replace('firstname', f_Locale::translate('&modules.users.document.frontenduser.Firstname;'), $error);
-        	}
-            else if (strpos($error, 'lastname') !== false)
-        	{
-       	        $error = str_replace('lastname', f_Locale::translate('&modules.users.document.frontenduser.Lastname;'), $error);
-        	}
-        	$result[] = $error;
-        }
-        return $result;
-    }
+		return website_BlockView::SUCCESS;
+	}
 }

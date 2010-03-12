@@ -16,7 +16,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	{
 		if ($this->isInBackoffice())
 		{
-			return;
+			return website_BlockView::NONE;
 		}
 
 		$us = users_UserService::getInstance();
@@ -25,6 +25,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		{
 			$us->authenticateFrontEndUser(null);
 			$this->currentUser = null;
+			users_ModuleService::getInstance()->unsetAutoLogin();
 			$this->redirectToUrl(website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl());
 		}
 		else 
@@ -39,6 +40,11 @@ class users_BlockAuthenticationAction extends website_BlockAction
 				{
 					$this->currentUser = $user;
 					$us->authenticateFrontEndUser($this->currentUser);
+					$autoLogin = $this->findParameterValue('autoLogin');
+					if ($autoLogin === 'yes')
+					{
+						users_ModuleService::getInstance()->setAutoLogin($user);
+					}					
 					
 					$agaviUser = Controller::getInstance()->getContext()->getUser();
 					$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
@@ -91,7 +97,8 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array('usersParam[logout]' => 'logout')));
 			return website_BlockView::SUCCESS;
 		}
-
+		
+		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		return website_BlockView::INPUT;
 	}
 }

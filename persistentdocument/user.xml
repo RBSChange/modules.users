@@ -18,6 +18,4 @@
 		<add name="lastping" type="DateTime" />
 		<add name="changepasswordkey" type="String" db-size="50"/>
 	</properties>
-
-
 </document>

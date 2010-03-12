@@ -22,7 +22,12 @@
 			<item id="mr" label-fr="M" label-en="Mr"/>
 			<item label-fr="Mlle" label-en="Mlle"/>
 			<item label-fr="Mme" label-en="Mme"/>
-		</editablelist>	
+		</editablelist>
+		
+		<staticlist listid="modules_users/editprofilepanels"
+			label="Panneaux d'édition du profil" description="Liste des panneaux du bloc d'édition du profil d'un utilisateur front">
+			<staticitem label="&amp;modules.users.frontoffice.User-informations;" value="users/EditFrontendUserProfile" />
+		</staticlist>
 	</systemfolder>
 
 	<rootfolder module="users">
@@ -75,7 +80,6 @@
 				footer="Cordialement, votre administrateur Change"
 				senderUsername="info-compte" />
 				
-				
 			<notification
 				label="Nouvel utilisateur enregistré sur le site"
 				codename="modules_users/newFrontendUser"
@@ -109,6 +113,40 @@
 &lt;dt&gt;URL d'accès à notre site Internet&lt;/dt&gt;
 &lt;dd&gt;{accesslink}&lt;/dd&gt;
 &lt;/dl&gt;" 
+				footer="Cordialement, votre administrateur Change"
+				senderUsername="info-compte" />
+
+			<notification
+				label="Demande de confirmation de l'adresse email d'un nouvel utilisateur enregistré sur le site"
+				codename="modules_users/emailConfirmationNew"
+				availableparameters="{email}, {emailConfirmUrl}, {login}, {password}, {fullname}, {title}"
+				subject="Informations utilisateurs"
+				header="Cher(chère) {fullname},"
+				body="vous recevez cet e-mail suite à votre inscription sur note site Internet.
+&lt;dl&gt;
+&lt;dt&gt;Nom de connexion&lt;/dt&gt;
+&lt;dd&gt;{login}&lt;/dd&gt;
+&lt;dt&gt;Mot de passe&lt;/dt&gt;
+&lt;dd&gt;{password}&lt;/dd&gt;
+&lt;dt&gt;Pour activer votre compte, veuillez suivre l'URL ci-dessous&lt;/dt&gt;
+&lt;dd&gt;{emailConfirmUrl}&lt;/dd&gt;
+&lt;/dl&gt;"
+				footer="Cordialement, votre administrateur Change"
+				senderUsername="info-compte" />
+
+			<notification
+				label="Demande de confirmation de l'adresse email d'un utilisateur existant sur le site"
+				codename="modules_users/emailConfirmationUpdate"
+				availableparameters="{email}, {emailConfirmUrl}, {login}, {fullname}, {title}"
+				subject="Informations utilisateurs"
+				header="Cher(chère) {fullname},"
+				body="vous recevez cet e-mail suite à une modifiation de votre adresse e-mail.
+&lt;dl&gt;
+&lt;dt&gt;Nom de connexion&lt;/dt&gt;
+&lt;dd&gt;{login}&lt;/dd&gt;
+&lt;dt&gt;Pour confirmer votre nouvelle adresse e-mail, veuillez suivre l'URL ci-dessous&lt;/dt&gt;
+&lt;dd&gt;{emailConfirmUrl}&lt;/dd&gt;
+&lt;/dl&gt;"
 				footer="Cordialement, votre administrateur Change"
 				senderUsername="info-compte" />
 	</systemfolder>

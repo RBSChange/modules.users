@@ -1,0 +1,51 @@
+<h2 change:h="" change:translate="modules.users.frontoffice.Already-registered" />
+<form id="login-form" change:form="" class="cmxform">
+	<ul change:errors="relKey login-form" />
+	<ol>
+		<li>
+			<label for="users_register_login-form_login"><tal:block change:translate="modules.users.frontoffice.authentication.LoginLabel" /> *</label>
+			<input change:textinput="name login" />
+		</li>
+		<li>
+			<label for="users_register_login-form_password"><tal:block change:translate="modules.users.frontoffice.authentication.PasswordLabel" /> *</label>
+			<input change:passwordinput="name password" />
+		</li>
+		<li tal:condition="allowAutoLogin">
+			<label for="users_register_login-form_autoLogin_" change:translate="modules.users.frontoffice.authentication.Auto-login-meLabel" />
+			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
+			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
+		</li>
+	</ol>
+	<p class="buttons">
+		<input change:submit="label &modules.users.frontoffice.Login-button;" class="button" name="login" />
+		<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button" change:translate="modules.users.frontoffice.authentication.Resetpasswordlink" />
+	</p>
+</form>
+
+<h2 change:h="" change:translate="modules.users.frontoffice.Registration" />
+<form id="registration-form" change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user" class="cmxform">
+	<ul change:errors="relKey registration-form" />
+	<div><input change:field="name beanId" /></div>
+	<ol>
+		<li><input change:field="name email" /></li>
+		<li><input change:field="name login" required="false" /></li>
+		<tal:block tal:condition="configuration/getShowPersonalFields">
+			<li><input change:field="name title" /></li>
+			<tal:block tal:condition="configuration/getRequireNameFields">
+				<li><input change:field="name firstname" required="true" /></li>
+				<li><input change:field="name lastname" required="true" /></li>
+			</tal:block>
+			<tal:block tal:condition="not:configuration/getRequireNameFields">
+				<li><input change:field="name firstname" required="false" /></li>
+				<li><input change:field="name lastname" required="false" /></li>
+			</tal:block>
+		</tal:block>
+		<tal:block tal:condition="configuration/getShowPasswordFields">
+			<li><input change:passwordinput="" required="true" name="password" label="&modules.forums.document.member.PasswordLabel;" /></li>
+			<li><input change:passwordinput="" required="true" name="password_confirm" label="&modules.forums.document.member.ConfirmPasswordLabel;" /></li>
+		</tal:block>
+	</ol>
+	<p class="buttons">
+		<input change:submit="label &modules.users.frontoffice.Create-my-account;" class="button" name="save" />
+	</p>
+</form>

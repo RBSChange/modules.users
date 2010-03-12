@@ -4,4 +4,5 @@
 	<tag label="&amp;modules.users.bo.tags.Change-password;" icon="change-password">contextual_website_website_modules_users_change-password</tag>
 	<tag label="&amp;modules.users.bo.tags.Edit-profil;" icon="edit">contextual_website_website_modules_users_edit-profil</tag>
 	<tag label="&amp;modules.users.bo.tags.Secure-homepage;" icon="page-home">contextual_website_website_modules_users_secure-homepage</tag>
+	<tag label="&amp;modules.users.bo.tags.register-block;" icon="add">contextual_website_website_modules_users_register</tag>
 </tags>

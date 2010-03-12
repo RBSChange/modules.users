@@ -175,4 +175,82 @@ class users_FrontenduserService extends users_UserService
 		return $rows[0]['count'];
 	}
 	
+	// Email confirmation.
+	
+	const EMAIL_CONFIRMATION_META_KEY = 'modules.users.email-confirmation-key';
+	
+	/**
+	 * @param users_persistentdocument_frontenduser $user
+	 * @param Boolean $isNew
+	 * @param String $password
+	 * @return Boolean
+	 */
+	public function sendEmailConfirmationMessage($user, $isNew, $password = null)
+	{
+		$userKey = f_util_StringUtils::randomString();		
+		$user->setMeta(self::EMAIL_CONFIRMATION_META_KEY, $userKey);
+		$user->saveMeta();
+		try
+		{
+			$ns = notification_NotificationService::getInstance();
+			$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
+			$notification = notification_NotificationService::getInstance()->getNotificationByCodeName($notificationCode);
+			$emailConfirmUrl = LinkHelper::getUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $userKey));
+			$replacements = array(
+				'email' => $user->getEmail(), 
+				'emailConfirmUrl' => $emailConfirmUrl,
+				'login' => $user->getLogin(),
+				'password' => $password,
+				'fullname' => $user->getFullname(),
+				'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
+			);
+			$recipients = new mail_MessageRecipients();
+			$recipients->setTo($user->getEmail());
+			return $ns->send($notification, $recipients, $replacements, 'users');
+		}
+		catch (Exception $e)
+		{
+			Framework::exception($e);
+			return false;
+		}
+	}
+	
+	/**
+	 * @param users_persistentdocument_frontenduser $user
+	 * @param String $key
+	 * @return Boolean
+	 */
+	public function confirmEmail($user, $key)
+	{
+		if ($user instanceof users_persistentdocument_frontenduser && $key == $user->getMeta(self::EMAIL_CONFIRMATION_META_KEY))
+		{
+			$status = $user->getPublicationstatus();
+			Framework::fatal(__METHOD__ . ' ' . $status);
+			if ($status === 'DRAFT' || $status === 'DEACTIVATED')
+			{
+				$this->activateFrontendUser($user);
+			}
+			return true;
+		}
+		Framework::fatal(__METHOD__ . ' bad key: "' . $key . '" != "' . $user->getMeta(self::EMAIL_CONFIRMATION_META_KEY) . '"');
+		return false;
+	}
+	
+	/**
+	 * @param users_persistentdocument_frontenduser $user
+	 * @return Boolean
+	 */
+	private function activateFrontendUser($user)
+	{
+		if ($user instanceof users_persistentdocument_frontenduser && !$user->isPublished())
+		{
+			Framework::fatal(__METHOD__ . ' OK');
+			$user->setStartpublicationdate(date_Calendar::now()->toString());
+			$user->save();
+			$user->activate();
+			return true;
+		}
+		Framework::fatal(__METHOD__ . ' KO');
+		return false;
+	}
 }

@@ -1,0 +1,9 @@
+#
+# To enable auto-login, just add the following code into config/aop.xml
+#
+
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+	<!-- Auto-login handling. -->
+	<replace pointcut="controller_ChangeController" class="users_ChangeController" />
+</aop>

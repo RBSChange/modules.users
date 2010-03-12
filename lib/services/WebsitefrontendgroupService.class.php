@@ -141,7 +141,7 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 	 */
 	public function getByWebsite($website)
 	{
-		return $this->createDefaultFromWebsite($website);
+		return $this->getDefaultByWebsite($website);
 	}
 	
 	/**

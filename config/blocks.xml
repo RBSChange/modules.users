@@ -1,10 +1,33 @@
 <?xml version="1.0"?>
 <blocks>
+	<block type="modules_users_register" icon="add" label="&amp;modules.users.bo.blocks.register.Title;">
+		<parameters>
+			<parameter name="showPersonalFields" type="Boolean" default-value="false" />
+			<parameter name="requireNameFields" type="Boolean" default-value="false" />
+			<parameter name="showPasswordFields" type="Boolean" default-value="false" />
+		</parameters>
+		<xul>
+			<javascript>
+				<constructor><![CDATA[
+					var fields = this.getFields();
+					var me = this;
+					fields['showPersonalFields'].addEventListener('fieldChanged', function(event) {me.onShowPersonalFieldsChange(event)}, true);
+				]]></constructor>
+				<method name="onShowPersonalFieldsChange">
+					<body><![CDATA[
+						var fields = this.getFields();
+						var value = !(fields['showPersonalFields'].value == 'true');
+						this.getElementByAnonId('requireNameFields_cnt').collapsed = value;
+					]]></body>
+				</method>
+			</javascript>
+		</xul>
+	</block>
 	<block type="modules_users_authentication" display="" icon="user-frontoffice" label="&amp;modules.users.bo.layout.authentication;" />
 	<block type="modules_users_showinfo" display="" icon="user-frontoffice" label="&amp;modules.users.bo.layout.showinfo;" />
 	<block type="modules_users_resetpassword" display="" icon="change-password" label="&amp;modules.users.bo.layout.resetpassword;" />
 	<block type="modules_users_changepassword" display="" icon="change-password" label="&amp;modules.users.bo.layout.changepassword;" />
-	<block type="modules_users_editprofil" display="" icon="edit" label="&amp;modules.users.bo.layout.editprofil;" />
+	<block type="modules_users_editprofil" icon="edit" label="&amp;modules.users.bo.layout.editprofil;" />
 	<block type="modules_users_Su" display="" icon="user-frontoffice" label="&amp;modules.users.bo.blocks.Su;">
 		<parameters>
 			<parameter name="itemsperpage" type="Integer" default-value="10" />

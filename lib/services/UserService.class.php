@@ -89,7 +89,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		if (!is_null($document->getClearPassword()))
 		{
 			// Send the mail with new informations
-			if ( $this->sendUserInformations($document, false) !== true )
+			if ($this->sendUserInformations($document, false) !== true)
 			{
 				Framework::error('[UserService] Mail not send after reset of password for email: ' . $document->getEmail());
 			}
@@ -108,7 +108,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		if (!is_null($document->getClearPassword()))
 		{
 			// Send the mail with new informations
-			if ( $this->sendUserInformations($document, true) !== true )
+			if ($this->sendUserInformations($document, true) !== true)
 			{
 				Framework::error('[UserService] Mail not send after account creation for: ' . $document->getEmail());
 			}
@@ -622,11 +622,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 			'accesslink' => $accessLink,
 			'fullname' => $user->getFullname(),
 			'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
-			);
+		);
 
-			$recipients = new mail_MessageRecipients();
-			$recipients->setTo($user->getEmail());
-			return $ns->send($notification, $recipients, $replacementArray, 'users');
+		$recipients = new mail_MessageRecipients();
+		$recipients->setTo($user->getEmail());
+		return $ns->send($notification, $recipients, $replacementArray, 'users');
 	}
 
 

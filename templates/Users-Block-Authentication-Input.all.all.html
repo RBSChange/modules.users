@@ -1,21 +1,30 @@
+<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
 <tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
-<form action="" method="post" name="formauthentication" class="cmxform">
+<form change:form="" name="formauthentication" class="cmxform">
 	<ul class="errors" tal:condition="errors">
 		<li tal:repeat="error errors" tal:content="error" />
 	</ul>
 	<ol class="modules-users-login-form">
 		<li>
 			<label for="authenticationlogin" change:translate="&modules.users.frontoffice.authentication.Login;">Login</label>
-			<input name="usersParam[login]" id="authenticationlogin" type="text" value="" maxlength="50" /></li>
+			<input class="textfield" name="usersParam[login]" id="authenticationlogin" type="text" value="" maxlength="50" /></li>
 		<li>
 			<label for="authenticationpassword" change:translate="&modules.users.frontoffice.authentication.Password;">Password</label>
-			<input name="usersParam[password]" id="authenticationpassword" type="password" value="" maxlength="20" />
+			<input class="textfield" name="usersParam[password]" id="authenticationpassword" type="password" value="" maxlength="20" />
+		</li>
+		<li tal:condition="allowAutoLogin">
+			<label for="users_register_login-form_autoLogin_" change:translate="modules.users.frontoffice.authentication.Auto-login-me" />
+			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
+			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
 		</li>
 		<li class="button">
 			<input name="usersParam[submit]" type="submit" change:i18nattr="value &modules.users.frontoffice.authentication.SubmitButton;" />
 		</li>
 		<li>
 			<a change:link="tag contextual_website_website_modules_users_reset-password" change:translate="&modules.users.frontoffice.authentication.Resetpasswordlink;">J'ai oublié mon mot de passe</a>
+		</li>
+		<li tal:condition="registrationPage">
+			<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;" />
 		</li>
 		<li tal:condition="customerRegistrationPage">
 			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
