@@ -58,16 +58,17 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	 * Called when the block is inserted into a page content:
 	 * hide page From Menus And SiteMap and call website_TaggerBlockAction::onPageInsertion()
 	 * @param website_persistentdocument_Page $page
-	 * @see lib/blocks/website_TaggerBlockAction#onPageInsertion($page)
+	 * @param Boolean $absolute true if block was introduced considering all versions (langs) of the page
+	 * @see lib/blocks/website_TaggerBlockAction#onPageInsertion($page, $absolute)
 	 */
-	function onPageInsertion($page)
+	function onPageInsertion($page, $absolute = false)
 	{
 		if ($page->getNavigationVisibility() != 0)
 		{
 			$page->setNavigationvisibility(0);
 			$page->save();
 		}
-		parent::onPageInsertion($page);
+		parent::onPageInsertion($page, $absolute);
 	}
 
 	// Private methods.
