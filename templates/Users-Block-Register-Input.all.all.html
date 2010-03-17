@@ -28,7 +28,10 @@
 	<div><input change:field="name beanId" /></div>
 	<ol>
 		<li><input change:field="name email" /></li>
-		<li><input change:field="name login" required="false" /></li>
+		<li>
+			<input change:field="name login" required="false" />
+			<p class="help-text" change:translate="modules.users.frontoffice.Registration-login-help" />	
+		</li>
 		<tal:block tal:condition="configuration/getShowPersonalFields">
 			<li><input change:field="name title" /></li>
 			<tal:block tal:condition="configuration/getRequireNameFields">

@@ -363,4 +363,7 @@
 	<entity id="register-link">
 		<locale lang="fr">je crée mon compte utilisateur</locale>
 	</entity>
+	<entity id="registration-login-help">
+		<locale lang="fr">Laisser ce champ vide pour prendre votre adresse e-mail comme identifiant.</locale>
+	</entity>
 </localization>
