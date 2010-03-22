@@ -63,6 +63,15 @@ class users_ChromeLoginAction extends users_Action
 			if ($user !== null)
 			{
 				$us->authenticateBackEndUser($user);
+				if ($request->hasParameter('uilang'))
+				{
+					$uilang = $request->getParameter('uilang');
+					if (in_array($uilang, RequestContext::getInstance()->getUISupportedLanguages()))
+					{
+						$_SESSION['uilang']	= $uilang;
+					}
+				}
+				
 				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : PROFILE;
 				$_SESSION['ChromeBaseUri'] = "rbschange/content/ext/" . $result['ok'];	
 				$this->logAction($user);	
