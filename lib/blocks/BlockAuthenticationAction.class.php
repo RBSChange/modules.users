@@ -5,7 +5,18 @@
  */
 class users_BlockAuthenticationAction extends website_BlockAction
 {
+	/**
+	 * @var users_persistentodcument_frontenduser
+	 */
 	private $currentUser;
+	
+	/**
+	 * @return users_persistentodcument_frontenduser
+	 */
+	protected final function getCurrentUser()
+	{
+		return $this->currentUser;
+	}
 
 	/**
 	 * @param f_mvc_Request $request
@@ -16,12 +27,12 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	{
 		if ($this->isInBackoffice())
 		{
-			return website_BlockView::NONE;
+			return;
 		}
 
 		$us = users_UserService::getInstance();
 		$this->currentUser = $us->getCurrentFrontEndUser();
-		if (!is_null($this->currentUser) && $this->findParameterValue('logout'))
+		if ($this->currentUser !== null && $this->findParameterValue('logout'))
 		{
 			$us->authenticateFrontEndUser(null);
 			$this->currentUser = null;
@@ -84,17 +95,17 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	 * @param f_mvc_Response $response
 	 * @return String
 	 */
-	function execute($request, $response)
+	public function execute($request, $response)
 	{
 		if ($this->isInBackoffice())
 		{
-			return website_BlockView::INPUT;
+			return website_BlockView::NONE;
 		}
 
-		if (!is_null($this->currentUser))
+		if ($this->currentUser !== null)
 		{
 			$request->setAttribute('currentUser', $this->currentUser);
-			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array('usersParam[logout]' => 'logout')));
+			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array($this->getModuleName().'Param[logout]' => 'logout')));
 			return website_BlockView::SUCCESS;
 		}
 		
