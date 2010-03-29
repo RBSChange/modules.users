@@ -6,13 +6,13 @@
 	</ul>
 	<ol class="modules-users-login-form">
 		<li>
-			<input change:textinput="name login" label="&modules.change.frontoffice.authentication.IdentifiantLabel;" />
+			<input change:textinput="name login" label="&modules.users.frontoffice.authentication.Login;" />
 		</li>
 		<li>
-			<input change:passwordinput="name password" label="&modules.users.frontoffice.authentication.PasswordLabel;" />
+			<input change:passwordinput="name password" label="&modules.users.frontoffice.authentication.Password;" />
 		</li>
 		<li tal:condition="allowAutoLogin">
-			<label for="users_authentication_formauthentication_autoLogin_yes" change:translate="modules.users.frontoffice.authentication.Auto-login-me" />
+			<label for="users_authentication_autoLogin_yes" change:translate="modules.users.frontoffice.authentication.Auto-login-me" />
 			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
 			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
 		</li>
