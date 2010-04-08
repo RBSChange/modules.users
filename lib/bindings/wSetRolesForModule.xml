@@ -244,9 +244,9 @@
 				</vbox>
 				<spacer height="5px" />
 				<hbox>
-					<button width="100px" image="{HttpHost}/icons/small/check.png" oncommand="onOk();" label="&amp;modules.uixul.bo.dialog.Apply;" />
+					<button width="100px" image="{IconsBase}/small/check.png" oncommand="onOk();" label="&amp;modules.uixul.bo.dialog.Apply;" />
 					<spacer flex="1" />
-					<button width="100px" image="{HttpHost}/icons/small/delete.png" oncommand="onCancel();" label="&amp;modules.uixul.bo.dialog.Cancel;" />
+					<button width="100px" image="{IconsBase}/small/delete.png" oncommand="onCancel();" label="&amp;modules.uixul.bo.dialog.Cancel;" />
 				</hbox>
 			</vbox>		
 		</xbl:content>

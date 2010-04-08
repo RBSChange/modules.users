@@ -1,29 +1,29 @@
 treechildren::-moz-tree-image(modules_users_frontenduser){
-	list-style-image: url(/icons/small/user-frontoffice.png) ;
+	list-style-image: url(/changeicons/small/user-frontoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_backenduser){
-	list-style-image: url(/icons/small/user-backoffice.png) ;
+	list-style-image: url(/changeicons/small/user-backoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_frontendgroup){
-	list-style-image: url(/icons/small/users-frontoffice.png) ;
+	list-style-image: url(/changeicons/small/users-frontoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_backendgroup){
-	list-style-image: url(/icons/small/users-backoffice.png) ;
+	list-style-image: url(/changeicons/small/users-backoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_websitefrontendgroup){
-	list-style-image: url(/icons/small/users-frontoffice.png) ;
+	list-style-image: url(/changeicons/small/users-frontoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_websitefrontenduser){
-	list-style-image: url(/icons/small/user-frontoffice.png) ;
+	list-style-image: url(/changeicons/small/user-frontoffice.png) ;
 }
 treechildren::-moz-tree-image(modules_users_group){
-	list-style-image: url(/icons/small/users.png) ;
+	list-style-image: url(/changeicons/small/users.png) ;
 }
 treechildren::-moz-tree-image(modules_users_preferences){
-	list-style-image: url(/icons/small/users.png) ;
+	list-style-image: url(/changeicons/small/users.png) ;
 }
 treechildren::-moz-tree-image(modules_users_user){
-	list-style-image: url(/icons/small/user.png) ;
+	list-style-image: url(/changeicons/small/user.png) ;
 }
 
 @import url(/modules/users/style/backoffice.!xul.all.css);

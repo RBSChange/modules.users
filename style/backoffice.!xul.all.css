@@ -173,7 +173,7 @@ p.copyright{
 }
 .browser-warning{
 	padding: 3px 10px 10px 10px;
-	background: url(/icons/small/window_warning.png) lightyellow 5px 5px no-repeat;
+	background: url(/changeicons/small/window_warning.png) lightyellow 5px 5px no-repeat;
 	border: 1px solid #808080;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -200,20 +200,20 @@ p.copyright{
 }
 .popup-warning{
 	padding: 3px 10px 10px 10px;
-	background: url(/icons/small/window_error.png) lightyellow 5px 5px no-repeat;
+	background: url(/changeicons/small/window_error.png) lightyellow 5px 5px no-repeat;
 	border: 1px solid grey;
 	-moz-border-radius: 10px;
 }
 .browser-failure-warning{
 	padding: 3px 10px 0px 10px;
-	background: url(/icons/small/window_error.png) lightyellow 5px 5px no-repeat;
+	background: url(/changeicons/small/window_error.png) lightyellow 5px 5px no-repeat;
 	border: 1px solid grey;
 	margin-bottom: 10px;
 	-moz-border-radius: 10px;
 }
 .notabene{
 	padding: 0 0 0 25px;
-	background: url(/icons/command/hand_point2.png) center left no-repeat;
+	background: url(/changeicons/command/hand_point2.png) center left no-repeat;
 	text-align: left;
 }
 .browser-failure-warning p{
