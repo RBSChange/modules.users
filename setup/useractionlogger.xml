@@ -2,7 +2,7 @@
 <script>
   <binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml"/>
   <actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser"/>
-  <actiondef modulename="users" actionname="login.frontend" label="Connexion avec un navigateur ${browsername}"/>
+  <actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend"/>
   <actiondef modulename="users" actionname="removeusers.backendgroup" label="modules.users.bo.useractionlogger.removeusers-backendgroup"/>
   <actiondef modulename="users" actionname="insert.frontenduser" label="modules.users.bo.useractionlogger.insert-frontenduser"/>
   <actiondef modulename="users" actionname="activate.frontenduser" label="modules.users.bo.useractionlogger.activate-frontenduser"/>

@@ -225,14 +225,12 @@ class users_FrontenduserService extends users_UserService
 		if ($user instanceof users_persistentdocument_frontenduser && $key == $user->getMeta(self::EMAIL_CONFIRMATION_META_KEY))
 		{
 			$status = $user->getPublicationstatus();
-			Framework::fatal(__METHOD__ . ' ' . $status);
 			if ($status === 'DRAFT' || $status === 'DEACTIVATED')
 			{
 				$this->activateFrontendUser($user);
 			}
 			return true;
 		}
-		Framework::fatal(__METHOD__ . ' bad key: "' . $key . '" != "' . $user->getMeta(self::EMAIL_CONFIRMATION_META_KEY) . '"');
 		return false;
 	}
 	
@@ -244,13 +242,11 @@ class users_FrontenduserService extends users_UserService
 	{
 		if ($user instanceof users_persistentdocument_frontenduser && !$user->isPublished())
 		{
-			Framework::fatal(__METHOD__ . ' OK');
 			$user->setStartpublicationdate(date_Calendar::now()->toString());
 			$user->save();
 			$user->activate();
 			return true;
 		}
-		Framework::fatal(__METHOD__ . ' KO');
 		return false;
 	}
 }

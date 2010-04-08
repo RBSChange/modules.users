@@ -116,6 +116,48 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$document->resetClearPassword();
 		}
 	}
+	
+	/**
+	 * @param Integer[] $accessorIds
+	 * @return Integer[]
+	 */
+	public function convertToUserIds($accessorIds)
+	{
+		if (f_util_ArrayUtils::isEmpty($accessorIds))
+		{
+			return array();
+		}
+		
+		$ids1 = $this->createQuery()->add(Restrictions::in('id', $accessorIds))->setProjection(Projections::property('id'))->findColumn('id');
+		if (count($accessorIds) === count($ids1))
+		{
+			return $ids1;
+		}
+		
+		$ids2 = $this->createQuery()->add(Restrictions::in('groups.id', $accessorIds))->setProjection(Projections::groupProperty('id'))->findColumn('id');
+		return array_unique(array_merge($ids1, $ids2));
+	}
+	
+	/**
+	 * @param Integer[] $accessorIds
+	 * @return Integer[]
+	 */
+	public function convertToPublishedUserIds($accessorIds)
+	{
+		if (f_util_ArrayUtils::isEmpty($accessorIds))
+		{
+			return array();
+		}
+		
+		$ids1 = $this->createQuery()->add(Restrictions::published())->add(Restrictions::in('id', $accessorIds))->setProjection(Projections::property('id'))->findColumn('id');
+		if (count($accessorIds) === count($ids1))
+		{
+			return $ids1;
+		}
+		
+		$ids2 = $this->createQuery()->add(Restrictions::published())->add(Restrictions::in('groups.id', $accessorIds))->setProjection(Projections::groupProperty('id'))->findColumn('id');
+		return array_unique(array_merge($ids1, $ids2));
+	}
 
 	/**
 	 * Check if the combining of login and password exist in database
@@ -829,9 +871,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 *  Retrieves the current FrameworkSecurityUser from the context
-	 *  @deprecated use getCurrentBackEndUser or getCurrentFrontEndUser
-	 * 	@return users_persistentdocument_user frontendUser or backendUser or null, depending on the controller (ChangeController or XULController)
+	 * Retrieves the current FrameworkSecurityUser from the context.
+	 * @return users_persistentdocument_user frontendUser or backendUser or null, depending on the controller (ChangeController or XULController)
 	 */
 	public final function getCurrentUser()
 	{
