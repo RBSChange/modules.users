@@ -1003,11 +1003,12 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 *
 	 * @param users_persistentdocument_user $document
 	 * @param string $forModuleName
+	 * @param array $allowedSections
 	 * @return array
 	 */
-	public function getResume($document, $forModuleName)
+	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
-		$data = parent::getResume($document, $forModuleName);
+		$data = parent::getResume($document, $forModuleName, $allowedSections);
 		$lastLogin = $document->getUILastlogin();
 		if ($lastLogin === null)
 		{

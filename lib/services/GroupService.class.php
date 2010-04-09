@@ -80,13 +80,12 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	 *
 	 * @param users_persistentdocument_group $document
 	 * @param string $forModuleName
-	 * @param unknown_type $allowedSections
+	 * @param array $allowedSections
 	 * @return array
 	 */
 	public function getResume($document, $forModuleName, $allowedSections)
 	{
-		$data = parent::getResume($document, $forModuleName);
-
+		$data = parent::getResume($document, $forModuleName, $allowedSections);
 		$data['properties']['cardinality'] = strval($document->getUserCountInverse());
 		return $data;
 	}
