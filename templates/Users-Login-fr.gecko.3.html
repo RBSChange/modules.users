@@ -8,11 +8,20 @@
 		<link rel="icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
 		<script type="text/javascript">
-			var host = "${UIHOST}";
+		function startExtension()
+		{
+			try
+			{
+				var element = document.getElementById('changexchrome');   
+				var evt = document.createEvent("Events");   
+				evt.initEvent("RBSChangeExtensionStartEvent", true, false);   
+				element.dispatchEvent(evt);
+			} catch (e) {}
+		} 
 		</script> 	
 	</head>
 
-	<body>
+	<body onload="startExtension();">
 		<div class="header">
 			<h1>Identification</h1>
 		</div>
