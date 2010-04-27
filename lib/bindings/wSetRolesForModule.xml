@@ -72,7 +72,7 @@
 							column1.setAttribute('style', 'width:105px');
 							headerColumnDef1.appendChild(column1);
 							
-							column2 = document.createElement('column');
+							var column2 = document.createElement('column');
 							column2.setAttribute('style', 'width:105px');
 							headerColumnDef2.appendChild(column2);
 							
