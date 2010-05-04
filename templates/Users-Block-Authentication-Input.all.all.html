@@ -1,5 +1,3 @@
-<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
-<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
 <form change:form="" class="cmxform">
 	<ul class="errors" tal:condition="errors">
 		<li tal:repeat="error errors" tal:content="error" />
@@ -22,11 +20,15 @@
 		<li>
 			<a change:link="tag contextual_website_website_modules_users_reset-password" change:translate="&modules.users.frontoffice.authentication.Resetpasswordlink;" />
 		</li>
-		<li tal:condition="registrationPage">
-			<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;" />
-		</li>
-		<li tal:condition="customerRegistrationPage">
-			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
-		</li>
+		<tal:block tal:condition="not: hideRegistrationLinks">
+			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
+			<li tal:condition="registrationPage">
+				<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;" />
+			</li>
+			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
+			<li tal:condition="customerRegistrationPage">
+				<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
+			</li>
+		</tal:block>
 	</ol>
 </form>

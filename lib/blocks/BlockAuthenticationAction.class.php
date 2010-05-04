@@ -109,6 +109,10 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			return website_BlockView::SUCCESS;
 		}
 		
+		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
+		{
+			$request->setAttribute('hideRegistrationLinks', true);
+		}
 		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		return website_BlockView::INPUT;
 	}

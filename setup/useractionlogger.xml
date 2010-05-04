@@ -29,4 +29,5 @@
   <actiondef modulename="users" actionname="insert.backendgroup" label="modules.users.bo.useractionlogger.insert-backendgroup"/>
   <actiondef modulename="users" actionname="move.backenduser" label="modules.users.bo.useractionlogger.move-backenduser"/>
   <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
+  <actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend"/>
 </script>
