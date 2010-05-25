@@ -26,6 +26,10 @@ treechildren::-moz-tree-image(modules_users_user){
 	list-style-image: url(/changeicons/small/user.png) ;
 }
 
+wdialog[template="changepassword"] .dialog-header{
+	background: url(/changeicons/small/change-password.png) transparent center  left no-repeat !important;
+}
+
 @import url(/modules/users/style/backoffice.!xul.all.css);
 @import url(/modules/users/style/backoffice.gecko.all.css);
 @import url(/modules/users/style/backoffice.khtml.all.css);
