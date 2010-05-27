@@ -73,6 +73,10 @@ class users_ChromeLoginAction extends users_Action
 				}
 				
 				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : PROFILE;
+				if ($user->getIsroot())
+				{
+					$result['OAuth'] = $this->getOAuthParams();
+				}
 				$_SESSION['ChromeBaseUri'] = "rbschange/content/ext/" . $result['ok'];	
 				$this->logAction($user);	
 			}
@@ -85,6 +89,17 @@ class users_ChromeLoginAction extends users_Action
 		return View::NONE;
 	}
 
+	/**
+	 * @return array
+	 */
+	private function getOAuthParams()
+	{
+		list($consumerKey, $consumerValue) = explode('#', file_get_contents(WEBEDIT_HOME . '/build/config/oauth/script/consumer.txt'));
+		list($tokenKey, $tokenValue) = explode('#', file_get_contents(WEBEDIT_HOME . '/build/config/oauth/script/token.txt'));
+		return array('consumerKey' => $consumerKey, 'consumerSecret' => $consumerValue,
+		'token' => $tokenKey, 'tokenSecret' => $tokenValue);
+	}
+	
 	public function isSecure()
 	{
 		return false;
