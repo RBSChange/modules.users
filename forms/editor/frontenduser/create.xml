@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
 	<section labeli18n="modules.uixul.bo.doceditor.fieldsgroup.Title">
-		<field name="title" />
-		<field name="firstname" />
-		<field name="lastname" />
-		<field name="email" />
+		<field name="title" hidehelp="true" />
+		<field name="firstname" hidehelp="true" />
+		<field name="lastname" hidehelp="true" />
+		<field name="email" hidehelp="true" />
 		<field name="login" />
-		<field name="generatepassword"  id="users_frontenduser_create_generatepassword" anonid="field_generatepassword"
-			type="boolean" 
-			labeli18n="modules.users.document.frontenduser.Generatepassword"
-			shorthelp="&amp;modules.users.document.frontenduser.Generatepassword-help;" />
-		<field name="password"  id="users_frontenduser_create_password" anonid="field_password"
-			type="text" required="true"
-			labeli18n="modules.users.document.frontenduser.Password"
-			shorthelp="&amp;modules.users.document.frontenduser.Password-help;">
-				<constraint name="password" parameter="auto"/>
-			</field>
+		<field name="generatepassword" id="users_frontenduser_create_generatepassword" anonid="field_generatepassword"
+			type="boolean" labeli18n="modules.users.document.frontenduser.Generatepassword" />
+		<field name="password" id="users_frontenduser_create_password" anonid="field_password" type="text" required="true"
+			labeli18n="modules.users.document.frontenduser.Password" shorthelp="&amp;modules.users.document.frontenduser.Password-help;">
+			<constraint name="password" parameter="auto"/>
+		</field>
 	</section>
 	<xul>
 		<javascript>
-			
 			<constructor><![CDATA[
 				var me = this
 				this.fields['generatepassword'].addEventListener('fieldChanged', function (event) {me.onGeneratepassword(event);}, true);
@@ -32,7 +27,6 @@
 					this.fields['password'].disabled = genPassword;
 				]]></body>
 			</method>	
-
 		</javascript>
 	</xul>
 </panel>

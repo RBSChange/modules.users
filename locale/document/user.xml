@@ -36,9 +36,9 @@
 		<locale lang="de">Anrede</locale>
 	</entity>
 	<entity id="title-help">
-		<locale lang="fr">civilité</locale>
-		<locale lang="en">title</locale>
-		<locale lang="de">Anrede</locale>
+		<locale lang="fr">civilité de l'utilisateur</locale>
+		<locale lang="en">user's title</locale>
+		<locale lang="de">Anrede des Benutzers</locale>
 	</entity>
 	<entity id="firstname">
 		<locale lang="fr">prénom</locale>
@@ -76,9 +76,58 @@
 		<locale lang="de">Passwort</locale>
 	</entity>
 	<entity id="password-help">
-		<locale lang="fr">Mot de passe de l'utilisateur. Pour générer un mot de passe aléatoire, cliquez sur le bouton à droite du champ. Ce champ ne peut pas être modifié, mais seulement réinitialisé.
-		</locale>
-		<locale lang="en">User password. To generate a random password, click on the button at the right of the field. Note that the password cannot be changed here, it can only be reset.</locale>
-		<locale lang="de">Passwort des Benutzers. Um ein zufallsbedingtes Passwort zu erzeugen, klicken Sie auf den Knopf rechts des Feldes. Dieses Feld kann nicht geändert werden, nur resettet.</locale>
+		<locale lang="fr">Mot de passe de l'utilisateur. Ce champ ne peut pas être modifié, mais seulement réinitialisé.</locale>
+		<locale lang="en">User password. Note that the password cannot be changed here, it can only be reset.</locale>
+		<locale lang="de">Passwort des Benutzers. Dieses Feld kann nicht geändert werden, nur resettet.</locale>
+	</entity>
+	<entity id="passwordupdate">
+		<locale lang="fr">nouveau mot de passe</locale>
+		<locale lang="en">new password</locale>
+		<locale lang="en">Neues Passwort</locale>
+	</entity>
+	<entity id="generatepassword">
+		<locale lang="fr">générer le mot de passe automatiquement</locale>
+		<locale lang="en">generate password automatically</locale>
+	</entity>
+	<!--  Export infos -->
+	<entity id="id">
+		<locale lang="fr">Identifiant Change</locale>
+		<locale lang="fr">Change unique id</locale>
+		<locale lang="de">Change Benutzername</locale>
+	</entity>
+	<entity id="label">
+		<locale lang="fr">Compte</locale>
+		<locale lang="en">Account</locale>
+		<locale lang="de">Konto</locale>
+	</entity>
+	<entity id="author">
+		<locale lang="fr">Créé par</locale>
+		<locale lang="en">Created by</locale>
+		<locale lang="de">Erstellt von</locale>
+	</entity>
+	<entity id="creationdate">
+		<locale lang="fr">Créé le</locale>
+		<locale lang="en">Created on</locale>
+		<locale lang="de">Erstellt am</locale>
+	</entity>
+	<entity id="modificationdate">
+		<locale lang="fr">Modifié le</locale>
+		<locale lang="en">Modified on</locale>
+		<locale lang="de">Geändert am</locale>
+	</entity>
+	<entity id="publicationstatus">
+		<locale lang="fr">Status</locale>
+		<locale lang="en">Status</locale>
+		<locale lang="de">Status</locale>
+	</entity>
+	<entity id="lastlogin">
+		<locale lang="fr">Dernière connexion</locale>
+		<locale lang="en">Last login</locale>
+		<locale lang="de">Letzte Anmeldung</locale>
+	</entity>
+	<entity id="lastping">
+		<locale lang="fr">Dernière activité</locale>
+		<locale lang="en">Last activity</locale>
+		<locale lang="de">Letzter Besuch</locale>
 	</entity>
 </localization>
