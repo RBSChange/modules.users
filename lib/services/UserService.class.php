@@ -240,7 +240,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 	{
 		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
 		{
-			Framework::warn(__METHOD__ . " (1) LOGIN: " . $login . " PASSWORD: " . $password . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
 			return null;
 		}
 		
