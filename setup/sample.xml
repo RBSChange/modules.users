@@ -6,7 +6,7 @@
 
 	<websitefrontendgroup for-default-website="true" id="websitefrontendgroup"/>
 
-	<website byTag="default_modules_website_default-website" template="tplTwo">
+	<website byTag="default_modules_website_default-website" template="webfactory/tplTwo">
 		<topic label="Pages spéciales" navigationVisibility="hidden" byLabel="Pages spéciales">
 			<page label="Authentification">
 				<tag name="contextual_website_website_error401-1" />

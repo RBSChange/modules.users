@@ -2,7 +2,7 @@
 <script>
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
 
-	<website byTag="default_modules_website_default-website" template="tplTwo">
+	<website byTag="default_modules_website_default-website" template="webfactory/tplTwo">
 		<topic label="Pages spéciales" navigationVisibility="hidden" byLabel="Pages spéciales">
 		
 			<page label="Authentification">
