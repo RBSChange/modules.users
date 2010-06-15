@@ -2,10 +2,11 @@
 	<actions>
 		<document name="rootfolder" />
 		<document name="backenduser" />
-		<document name="frontenduser" />
+		<document name="frontenduser" />		
+		<document name="websitefrontenduser" />	
 		<document name="backendgroup" />
 		<document name="frontendgroup" />
-		<document name="websitefrontenduser" />		
+		<document name="websitefrontendgroup" />	
 		<action name="GetUserModulePermission" />
 	</actions>
 	<roles>
