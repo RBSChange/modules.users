@@ -89,4 +89,52 @@ class users_GroupService extends f_persistentdocument_DocumentService
 		$data['properties']['cardinality'] = strval($document->getUserCountInverse());
 		return $data;
 	}
+	
+	
+	/**
+	 * @param filter_persistentdocument_queryfolder $document
+	 * @param string[] $subModelNames
+	 * @param integer $locateDocumentId null if use startindex
+	 * @param integer $pageSize
+	 * @param integer $startIndex
+	 * @param integer $totalCount
+	 * @return f_persistentdocument_PersistentDocument[]
+	 */
+	public function getVirtualChildrenAt($document, $subModelNames, $locateDocumentId, $pageSize, &$startIndex, &$totalCount)
+	{
+		if ($locateDocumentId !== null)
+		{
+			$startIndex = 0;
+			
+			$idsArray = users_UserService::getInstance()->createQuery()
+          			 ->add(Restrictions::eq('groups.id', $document->getId()))
+          			 ->addOrder(Order::asc('document_label'))
+           		 ->setProjection(Projections::property('id', 'id'))->find(); 
+           		          		 
+           	$totalCount = count($idsArray);
+           	foreach ($idsArray as $index => $row)
+           	{            		
+           		if ($row['id'] == $locateDocumentId)
+           		{
+           			$startIndex = $index - ($index % $pageSize);
+           			break;
+           		}
+           	}	 
+		}
+		else
+		{
+			$countQuery = users_UserService::getInstance()->createQuery()
+				->add(Restrictions::eq('groups.id', $document->getId()))
+				->setProjection(Projections::rowCount('countItems'));
+      			$resultCount = $countQuery->find();
+			$totalCount = intval($resultCount[0]['countItems']);
+			Framework::info(__METHOD__  . "  $pageSize $startIndex $totalCount");
+		}
+		
+		$query = users_UserService::getInstance()->createQuery()
+          			 ->add(Restrictions::eq('groups.id', $document->getId()))
+          			 ->addOrder(Order::asc('document_label'))
+           		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
+		return $query->find();
+	}	
 }
