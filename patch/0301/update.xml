@@ -26,8 +26,7 @@
 &lt;dt&gt;Pour activer votre compte, veuillez suivre l'URL ci-dessous&lt;/dt&gt;
 &lt;dd&gt;{emailConfirmUrl}&lt;/dd&gt;
 &lt;/dl&gt;"
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
+				footer="Cordialement, votre administrateur Change" />
 
 			<notification
 				label="Demande de confirmation de l'adresse email d'un utilisateur existant sur le site"
@@ -42,7 +41,6 @@
 &lt;dt&gt;Pour confirmer votre nouvelle adresse e-mail, veuillez suivre l'URL ci-dessous&lt;/dt&gt;
 &lt;dd&gt;{emailConfirmUrl}&lt;/dd&gt;
 &lt;/dl&gt;"
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
+				footer="Cordialement, votre administrateur Change" />
 	</systemfolder>
 </script>
