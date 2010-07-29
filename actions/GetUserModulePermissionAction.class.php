@@ -26,7 +26,6 @@ class users_GetUserModulePermissionAction extends users_Action
 		{
 			$type = 'group';
 			$label = f_Locale::translateUI('&modules.users.bo.dialog.Group-title;', array('name' => $accessor->getLabel()));
-			$name = $accessor->getLabel();
 		}
 		else
 		{
@@ -81,7 +80,7 @@ class users_GetUserModulePermissionAction extends users_Action
 				}
 				if ($backEndRole)
 				{
-					list($null, $roleName) = explode('.', $qualifiefRoleName);
+					list(, $roleName) = explode('.', $qualifiefRoleName);
 					if (!isset($result['roles'][$roleName]))
 					{
 						$result['roles'][$roleName]  = array('name' => f_Locale::translateUI('&modules.users.bo.dialog.'.$roleName.';'), 'nbperm' => count($permissions), 'used' => 1);

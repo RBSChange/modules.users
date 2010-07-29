@@ -174,6 +174,7 @@ class users_BackenduserService extends users_UserService
 			$this->tm->rollBack($e);
 			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
 		}
+		return null;
 	}
 	
 	/**

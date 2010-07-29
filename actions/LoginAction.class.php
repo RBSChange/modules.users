@@ -10,7 +10,7 @@ class users_LoginAction extends users_ActionBase
 		if (!RequestContext::getInstance()->inHTTPS() && DEFAULT_UI_PROTOCOL === 'https')
 		{
 			Controller::getInstance()->redirectToUrl(LinkHelper::getUIActionLink('users', 'Login')->getUrl());
-			return;
+			return null;
 		}
 		return View::INPUT;
 	}

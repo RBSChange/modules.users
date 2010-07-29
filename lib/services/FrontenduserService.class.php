@@ -136,6 +136,7 @@ class users_FrontenduserService extends users_UserService
 			Framework::exception($e);
 			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
 		}
+		return null;
 	}
 	
 		/**
@@ -211,8 +212,8 @@ class users_FrontenduserService extends users_UserService
 		catch (Exception $e)
 		{
 			Framework::exception($e);
-			return false;
 		}
+		return false;
 	}
 	
 	/**

@@ -58,7 +58,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param users_persistentdocument_user $document
 	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 */
-	protected function preSave($document, $parentNodeId = null)
+	protected function preSave($document, $parentNodeId)
 	{
 		// The label is auto generated with login, first and last name.
 		$document->setLabel( $document->getLogin() . ' - ' . ucfirst($document->getFirstname()) . ' ' . ucfirst($document->getLastname()) );
@@ -83,7 +83,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param users_persistentdocument_user $document
 	 * @param Integer $parentNodeId
 	 */
-	protected function postUpdate($document, $parentNodeId = null)
+	protected function postUpdate($document, $parentNodeId)
 	{
 		// If password has changed send email
 		if (!is_null($document->getClearPassword()))
@@ -102,7 +102,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param users_persistentdocument_user $document
 	 * @param Integer $parentNodeId
 	 */
-	protected function postInsert($document, $parentNodeId = null)
+	protected function postInsert($document, $parentNodeId)
 	{
 		// If password has changed send email
 		if (!is_null($document->getClearPassword()))
