@@ -70,7 +70,7 @@ class users_ModuleService extends ModuleBaseService
 	/**
 	 * @return Boolean
 	 */
-	public function unsetAutoLogin($user)
+	public function unsetAutoLogin()
 	{
 		if ($this->allowAutoLogin())
 		{
