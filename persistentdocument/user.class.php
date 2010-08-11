@@ -5,17 +5,11 @@
  */
 class users_persistentdocument_user extends users_persistentdocument_userbase
 {
-	/**
-	 * Save the clear password here.
-	 * @var string
-	 */
 	private $password = null;
-	
 	private $generatepassword = false;
 	
 	/**
-	 * Validate the documentinstance
-	 * @return Boolean 
+	 * @return boolean 
 	 */
 	public function isValid()
 	{
@@ -36,10 +30,8 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * This method is used to set the password because it must be crypted with md5
-	 *
+	 * This method is used to set the password because it must be crypted with md5.
 	 * @param string $newValue
-	 *
 	 * @throws ValidationException
 	 */
 	public function setPassword($newValue)
@@ -49,7 +41,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * Get the value of the clear password in user object
+	 * Get the value of the clear password in user object.
 	 * @return string
 	 */
 	public function getClearPassword()
@@ -58,7 +50,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * Reset the value of the clear password in user object
+	 * Reset the value of the clear password in user object.
 	 */
 	public function resetClearPassword()
 	{
@@ -66,7 +58,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * Return the Fullname of the user composed by Name and Firstname
+	 * Return the Fullname of the user composed by Name and Firstname.
 	 * @return string
 	 */
 	public function getFullname()
@@ -75,7 +67,16 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * @return Array<String, String>
+	 * Return the Fullname of the user composed by Name and Firstname.
+	 * @return string
+	 */
+	public function getFullnameAsHtml()
+	{
+		return $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
+	}
+	
+	/**
+	 * @return array<string, string>
 	 */
 	public function getTreeViewAttributeArray()
 	{
@@ -87,7 +88,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * @return Array<String>
+	 * @return string[]
 	 */
 	public function getEmailAddresses()
 	{
@@ -95,7 +96,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getGeneratepassword()
 	{
@@ -103,12 +104,10 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * @param String $generatepassword
+	 * @param string $generatepassword
 	 */
 	public function setGeneratepassword($generatepassword)
 	{
 		$this->generatepassword = ($generatepassword == "true");
 	}
-
-	
 }
