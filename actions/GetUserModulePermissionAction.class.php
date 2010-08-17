@@ -1,6 +1,6 @@
 <?php
 
-class users_GetUserModulePermissionAction extends users_Action
+class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 {
 	
 	/**
@@ -123,8 +123,7 @@ class users_GetUserModulePermissionAction extends users_Action
 			$result['modules'][$moduleName]['roles'][$roleName] = 2;
 		}
 		
-		echo f_util_StringUtils::JSONEncode(array($result));
-		return View::NONE;
+		return $this->sendJSON($result);
 	}
 	
 	public static function sortModule($a, $b)
