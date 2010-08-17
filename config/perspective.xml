@@ -121,7 +121,7 @@
 		<action name="setRolesForModule" permission="GetUserModulePermission" icon="roles-for-module" label="&amp;modules.users.bo.actions.SetRolesForModule;" />
 		<action name="delete" single="true" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
 		<action name="exportUsers" icon="download" label="&amp;modules.users.bo.actions.Export-Users;" />
-		<action name="openTreeNodeOrder" single="true" permission="Order" icon="document_exchange" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
+		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
 		<action name="createFrontend_" actions="createFrontenduser" icon="add" />
 		<action name="createFrontenduser" permission="Insert_frontenduser" group="createFrontend_" label="&amp;modules.users.bo.actions.Create-Frontenduser;" />
 		<action name="move" permission="Move" icon="up_down" label="&amp;modules.uixul.bo.actions.Move;" />
