@@ -27,11 +27,8 @@
 					try
 					{
 						var accessorId = this.parameters.id;
-						var url = Context.UIBASEURL + "/xul_controller.php?module=users&action=GetUserModulePermission&cmpref=" + accessorId;
-						var serverRequest = $.ajax({url: url, type: "GET", async: false, dataType: 'text'});
-					 	var result = eval(serverRequest.responseText);
-					 	this.roleData = result[0];
-						//wCore.debug(wCore.dump(this.roleData))
+						var result = wCore.executeJSON('users', 'GetUserModulePermission', {cmpref: accessorId}, null, true);
+					 	this.roleData = result.contents;
 						this.buildAll();
 					} 
 					catch (e)
