@@ -10,7 +10,7 @@
 			<input change:passwordinput="name password" label="&modules.users.frontoffice.authentication.Password;" />
 		</li>
 		<li tal:condition="allowAutoLogin">
-			<label for="users_authentication_autoLogin_yes" change:translate="modules.users.frontoffice.authentication.Auto-login-me" />
+			<label for="users_authentication_autoLogin_yes" change:translate="modules.users.frontoffice.authentication.Auto-login-me"></label>
 			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
 			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
 		</li>
@@ -18,16 +18,16 @@
 			<input name="usersParam[submit]" type="submit" class="button" change:i18nattr="value &modules.users.frontoffice.authentication.SubmitButton;" />
 		</li>
 		<li>
-			<a change:link="tag contextual_website_website_modules_users_reset-password" change:translate="&modules.users.frontoffice.authentication.Resetpasswordlink;" />
+			<a change:link="tag contextual_website_website_modules_users_reset-password" change:translate="&modules.users.frontoffice.authentication.Resetpasswordlink;"></a>
 		</li>
 		<tal:block tal:condition="not: hideRegistrationLinks">
 			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
 			<li tal:condition="registrationPage">
-				<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;" />
+				<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;"></a>
 			</li>
 			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
 			<li tal:condition="customerRegistrationPage">
-				<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;" />
+				<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;"></a>
 			</li>
 		</tal:block>
 	</ol>

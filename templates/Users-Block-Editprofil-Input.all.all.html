@@ -1,17 +1,17 @@
 <form action="" method="post" name="formauthentication" class="cmxform">
 	<ul tal:condition="errors" class="errors">
-		<li tal:repeat="error errors" tal:content="error"/>
+		<li tal:repeat="error errors">${error}</li>
 	</ul>
 	
 	<ol class="modules-users-login-form">
 		<li>
 			<label change:translate="&modules.users.frontoffice.editprofil.Login;">Identifiant</label>
-			<span tal:content="currentUser/getLogin"/>
+			<span>${currentUser/getLogin}</span>
 			<a change:link="tag contextual_website_website_modules_users_change-password" change:translate="&modules.users.frontoffice.editprofil.changepassword;">Changer le mot de passe</a>
 		</li>
 		<li>
 			<label for="title" change:translate="&modules.users.frontoffice.editprofil.Title;">Civilité</label>
-			<span change:select="name 'usersParam[title]'; listId 'modules_users/title'; defaultValue currentUser/getTitle/getId" />
+			<span change:select="name 'usersParam[title]'; listId 'modules_users/title'; defaultValue currentUser/getTitle/getId"></span>
 		</li>
 		<li>
 			<label for="firstname" change:translate="&modules.users.frontoffice.editprofil.Firstname;">Prénom</label>

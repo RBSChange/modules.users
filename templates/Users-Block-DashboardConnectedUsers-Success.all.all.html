@@ -8,7 +8,7 @@
 			<ul class="no-bullet">
 				<li tal:repeat="user users">
 					<img tal:attributes="src user/icon"/>
-					<strong tal:content="user/name" tal:attributes="style user/self"/><small tal:condition="user/DISABLEDself"> - [<a href="#" onclick="openDialog('users', 'ChangePsswd', null, {height: 260, chrome: 'yes', dialog: 'yes', titlebar: 'no', close: 'no'})" i18n:attributes="title &amp;modules.users.bo.general.ChangePasswordEllipsis;" i18n:translate="&amp;modules.users.bo.general.ChangePassword;"/>]</small> - <small tal:content="user/status"/>
+					<strong tal:attributes="style user/self">${user/name}</strong><small tal:condition="user/DISABLEDself"> - [<a href="#" onclick="openDialog('users', 'ChangePsswd', null, {height: 260, chrome: 'yes', dialog: 'yes', titlebar: 'no', close: 'no'})" i18n:attributes="title &amp;modules.users.bo.general.ChangePasswordEllipsis;" i18n:translate="&amp;modules.users.bo.general.ChangePassword;"></a>]</small> - <small>${user/status}</small>
 				</li>
 			</ul>
 		</div>

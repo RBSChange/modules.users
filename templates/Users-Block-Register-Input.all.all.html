@@ -1,6 +1,6 @@
-<h2 change:h="" change:translate="modules.users.frontoffice.Already-registered" />
+<h2 change:h="" change:translate="modules.users.frontoffice.Already-registered"></h2>
 <form id="login-form" change:form="" class="cmxform">
-	<ul change:errors="relKey login-form" />
+	<ul change:errors="relKey login-form"></ul>
 	<ol>
 		<li>
 			<label for="users_register_login-form_login"><tal:block change:translate="modules.users.frontoffice.authentication.LoginLabel" /> *</label>
@@ -11,20 +11,20 @@
 			<input change:passwordinput="name password" />
 		</li>
 		<li tal:condition="allowAutoLogin">
-			<label for="users_register_login-form_autoLogin_" change:translate="modules.users.frontoffice.authentication.Auto-login-meLabel" />
+			<label for="users_register_login-form_autoLogin_" change:translate="modules.users.frontoffice.authentication.Auto-login-meLabel"></label>
 			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
 			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
 		</li>
 	</ol>
 	<p class="buttons">
 		<input change:submit="label &modules.users.frontoffice.Login-button;" class="button" name="login" />
-		<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button" change:translate="modules.users.frontoffice.authentication.Resetpasswordlink" />
+		<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button" change:translate="modules.users.frontoffice.authentication.Resetpasswordlink"></a>
 	</p>
 </form>
 
-<h2 change:h="" change:translate="modules.users.frontoffice.Registration" />
+<h2 change:h="" change:translate="modules.users.frontoffice.Registration"></h2>
 <form id="registration-form" change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user" class="cmxform">
-	<ul change:errors="relKey registration-form" />
+	<ul change:errors="relKey registration-form"></ul>
 	<div><input change:field="name beanId" /></div>
 	<ol>
 		<li><input change:field="name email" /></li>
