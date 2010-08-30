@@ -4,9 +4,18 @@
 		<model name="modules_generic/rootfolder">
 			<children>
 				<child model="modules_users/frontendgroup" />
+				<child model="modules_users/dynamicfrontendgroup" />
 				<child model="modules_users/websitefrontendgroup" />
 				<child model="modules_users/backendgroup" />
+				<child model="modules_generic/systemfolder" />
 			</children>
+			<drops>
+				<drop model="modules_users/frontendgroup" action="move" />
+				<drop model="modules_users/dynamicfrontendgroup" action="move" />
+				<drop model="modules_users/websitefrontendgroup" action="move" />
+				<drop model="modules_users/backendgroup" action="move" />
+				<drop model="modules_generic/systemfolder" action="move" />
+			</drops>
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="openTreeNodeOrder" />
@@ -14,6 +23,20 @@
 					<contextaction name="createFrontendgroup" />
 					<contextaction name="createBackendgroup" />
 				</groupactions>
+			</contextactions>
+		</model>
+		<model name="modules_generic/systemfolder">
+			<children>
+				<child model="modules_users/dynamicfrontendgroup" />
+			</children>	
+			<columns>
+				<column name="refreshing" />
+				<column name="autoRefresh" />
+			</columns>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="openTreeNodeOrder" />
+				<contextaction name="openFolder" />
 			</contextactions>
 		</model>
 		<model name="modules_users/frontenduser">
@@ -63,6 +86,26 @@
 				<groupactions name="createFrontend_">
 					<contextaction name="createFrontenduser" />
 				</groupactions>
+			</contextactions>
+		</model>
+		<model name="modules_users/dynamicfrontendgroup">
+			<children>
+				<child model="modules_users/frontenduser" from="function" />
+			</children>
+			<drops>
+				<drop model="modules_users/frontenduser" action="move" />
+				<drop model="modules_users/websitefrontenduser" action="move" />
+			</drops>
+			<styles properties="block actualtype" />
+			<columns>
+				<column name="login" label="Login" flex="1" />
+			</columns>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+				<contextaction name="exportUsers" />
+				<contextaction name="setRolesForModule" />
+				<contextaction name="refreshDynamicfrontendgroup" />
 			</contextactions>
 		</model>
 		<model name="modules_users/backendgroup">
@@ -119,7 +162,7 @@
 		<action name="reactivate" permission="ReActivate" icon="reactivate" label="&amp;modules.uixul.bo.actions.ReActivate;" />
 		<action name="deactivated" permission="Deactivated" icon="deactivated" label="&amp;modules.uixul.bo.actions.Deactivate;" />
 		<action name="setRolesForModule" permission="GetUserModulePermission" icon="roles-for-module" label="&amp;modules.users.bo.actions.SetRolesForModule;" />
-		<action name="delete" single="true" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
+		<action name="delete" permission="Delete" icon="delete" label="&amp;modules.uixul.bo.actions.Delete;" />
 		<action name="exportUsers" icon="download" label="&amp;modules.users.bo.actions.Export-Users;" />
 		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" label="&amp;modules.uixul.bo.actions.Set-children-order;" />
 		<action name="createFrontend_" actions="createFrontenduser" icon="add" />
@@ -134,5 +177,6 @@
 		<action name="createBackendgroup" permission="Insert_backendgroup" group="createOnRootFolder_" label="&amp;modules.users.bo.actions.Create-Backendgroup;" />
 		<action name="createFolder" single="true" icon="create-folder" label="&amp;modules.uixul.bo.actions.Create-folder;" />
 		<action name="openFolder" icon="open-folder" label="&amp;modules.uixul.bo.actions.OpenFolder;" />
+		<action name="refreshDynamicfrontendgroup" single="true" icon="users-frontoffice-refresh" />
 	</actions>
 </perspective>

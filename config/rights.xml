@@ -1,12 +1,14 @@
+<?xml version="1.0"?>
 <rights>
 	<actions>
 		<document name="rootfolder" />
 		<document name="backenduser" />
-		<document name="frontenduser" />		
-		<document name="websitefrontenduser" />	
+		<document name="frontenduser" />
+		<document name="websitefrontenduser" />
 		<document name="backendgroup" />
 		<document name="frontendgroup" />
-		<document name="websitefrontendgroup" />	
+		<document name="websitefrontendgroup" />
+		<document name="dynamicfrontendgroup" />
 		<action name="GetUserModulePermission" />
 	</actions>
 	<roles>
@@ -14,9 +16,9 @@
 			<permission name="*" />
 			<permission name="LoadPermissions.*" />
 			<permission name="SavePermissions.*" />
-			<permission name="GetUserModulePermission" />			
+			<permission name="GetUserModulePermission" />
 			<permission name="Enabled" />
-			<permission name="EditLocale" />			
+			<permission name="EditLocale" />
 			<permission name="Order" />
 			<permission name="Move.*" />
 			<permission name="Load.*" />

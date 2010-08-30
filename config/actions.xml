@@ -82,4 +82,12 @@
 	    	this.getController().openModalDialog(this, "setrolesformodule", {id: ids[0], lang: lang});
 		]]></body>
 	</action>
+	
+	<action name="refreshDynamicfrontendgroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			var id = listWidget.getSelectedIds()[0];
+			this.executeJSON("RefreshDynamicfrontendgroup", { cmpref: id });
+		]]></body>
+	</action>
 </actions>

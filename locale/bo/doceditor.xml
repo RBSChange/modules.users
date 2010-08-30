@@ -17,4 +17,16 @@
 		<locale lang="fr">nombre d'utilisateurs</locale>
 		<locale lang="en">number of users</locale>
 	</entity>
+	<entity id="property.refreshing">
+		<locale lang="fr">rafraichissement en cours</locale>
+		<locale lang="en">refreshing</locale>
+	</entity>
+	<entity id="property.reference">
+		<locale lang="fr">référence</locale>
+		<locale lang="en">reference</locale>
+	</entity>
+	
+	<entity id="unexisting-reference">
+		<locale lang="fr">la référence n'existe plus !</locale>
+	</entity>
 </localization>

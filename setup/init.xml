@@ -3,6 +3,7 @@
 	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
 	<binding fileName="modules/notification/persistentdocument/import/notification_binding.xml" />
+	<binding fileName="modules/task/persistentdocument/import/task_binding.xml" />
 
 	<rootfolder module="preferences">
 		<userspreferences />
@@ -148,5 +149,9 @@
 &lt;/dl&gt;"
 				footer="Cordialement, votre administrateur Change"
 				senderUsername="info-compte" />
+	</systemfolder>
+	
+	<systemfolder module="task" relatedmodule="users">
+		<plannedtask label="Rafraichissement des groupes dynamiques" systemtaskclassname="users_RefreshDynamicfrontendgroupsTask" minute="0" hour="2" />
 	</systemfolder>
 </script>

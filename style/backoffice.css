@@ -25,6 +25,9 @@ treechildren::-moz-tree-image(modules_users_preferences){
 treechildren::-moz-tree-image(modules_users_user){
 	list-style-image: url(/changeicons/small/user.png) ;
 }
+treechildren::-moz-tree-image(modules_users_dynamicfrontendgroup){
+	list-style-image: url(/changeicons/small/users-frontoffice-dynamic.png);
+}
 
 wdialog[template="changepassword"] .dialog-header{
 	background: url(/changeicons/small/change-password.png) transparent center  left no-repeat !important;

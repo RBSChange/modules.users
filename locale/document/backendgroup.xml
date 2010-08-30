@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<localization>
-  <entity id="edition-form-title">
-    <locale lang="fr">propriétés d'un groupe Change</locale>
-    <locale lang="en">group properties</locale>
-    <locale lang="de">Eigenschaften einer Change Gruppe</locale>
-  </entity>
-  <entity id="document-name">
-    <locale lang="fr">groupe Change</locale>
-    <locale lang="en">group user</locale>
-    <locale lang="de">Change Gruppe</locale>
-  </entity>
-  <entity id="label">
-    <locale lang="fr">libellé</locale>
-    <locale lang="en">label</locale>
-    <locale lang="ar">label</locale>
-    <locale lang="de">Name</locale>
-  </entity>
-  <entity id="description">
-    <locale lang="fr">description</locale>
-    <locale lang="en">description</locale>
-    <locale lang="ar">description</locale>
-    <locale lang="de">Beschreibung</locale>
-  </entity>
-  <entity id="users">
-    <locale lang="fr">utilisateurs</locale>
-    <locale lang="en">users</locale>
-    <locale lang="ar">users</locale>
-    <locale lang="de">Benutzer</locale>
-  </entity>
+<localization extend="modules.users.document.group">
+	<entity id="document-name">
+		<locale lang="fr">groupe Change</locale>
+		<locale lang="en">group user</locale>
+		<locale lang="de">Change Gruppe</locale>
+	</entity>
 </localization>
