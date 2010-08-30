@@ -1,11 +1,8 @@
 <?php
-
-class users_SetUserModulePermissionAction extends users_Action
+class users_SetUserModulePermissionAction extends f_action_BaseAction
 {
-	
 	/**
 	 * @see f_action_BaseAction::suffixSecureActionByDocument()
-	 *
 	 * @return Boolean
 	 */
 	protected function suffixSecureActionByDocument()

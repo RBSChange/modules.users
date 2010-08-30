@@ -1,5 +1,5 @@
 <?php
-class users_ChromeLoginAction extends users_Action
+class users_ChromeLoginAction extends f_action_BaseAction
 {
 	/**
 	 * @param Context $context
@@ -17,7 +17,7 @@ class users_ChromeLoginAction extends users_Action
 		}
 		else
 		{			
-			$us = $this->getUserService();
+			$us = users_UserService::getInstance();
 			$user = $us->getBackEndUserByLogin($login);
 			
 			if ($user !== null && $user->getEmail() == null && $user->getPasswordmd5() == null)

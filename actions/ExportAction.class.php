@@ -1,6 +1,6 @@
 <?php
 
-class users_ExportAction extends users_ActionBase
+class users_ExportAction extends f_action_BaseAction
 {	
 	/**
 	 * @param Context $context
@@ -9,7 +9,7 @@ class users_ExportAction extends users_ActionBase
 	public function _execute($context, $request)
     {
 		$group = $this->getDocumentInstanceFromRequest($request);
-		$users = $this->getUserService()->createQuery()->add(Restrictions::eq('groups.id', $group->getId()))->add(Restrictions::published())->find();
+		$users = users_UserService::getInstance()->createQuery()->add(Restrictions::eq('groups.id', $group->getId()))->add(Restrictions::published())->find();
     	
         if (count($users) == 0)
         {

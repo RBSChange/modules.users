@@ -1,5 +1,5 @@
 <?php
-class users_LoginAction extends users_ActionBase
+class users_LoginAction extends f_action_BaseAction
 {
 	/**
 	 * @param Context $context
@@ -15,16 +15,25 @@ class users_LoginAction extends users_ActionBase
 		return View::INPUT;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getDefaultView()
 	{
 		return View::INPUT;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function handleError()
 	{
 		return View::INPUT;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function validate()
 	{
 		$context = $this->getContext();
@@ -40,12 +49,12 @@ class users_LoginAction extends users_ActionBase
 		}
 		else
 		{
-			$us = $this->getUserService();
+			$us = users_UserService::getInstance();
 			$user = $us->getIdentifiedBackendUser($login, $password);
 			if ($user !== null)
 			{
 				$us->authenticateBackEndUser($user);
-					
+				
 				// Clears the request parameters: 1) keep the ones we need
 				$pageRef = $request->getParameter(K::PAGE_REF_ACCESSOR);
 				$module = $request->getParameter(AG_MODULE_ACCESSOR);
@@ -66,7 +75,7 @@ class users_LoginAction extends users_ActionBase
 				// 2) Remove all parameters
 				$request->clearParameters();
 				// 3) Set the desired parameters
-				if (! is_null($access))
+				if (!is_null($access))
 				{
 					$request->setParameter('access', $access);
 				}
@@ -85,7 +94,7 @@ class users_LoginAction extends users_ActionBase
 			}
 		}
 		
-		if (! empty($errors))
+		if (!empty($errors))
 		{
 			$request->setAttribute('errors', $errors);
 			return false;
@@ -94,11 +103,17 @@ class users_LoginAction extends users_ActionBase
 		return true;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getRequestMethods()
 	{
 		return Request::POST;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function isSecure()
 	{
 		return false;

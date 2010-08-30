@@ -3,7 +3,7 @@
  * users_CreateGroupMailinglistAction
  * @package modules.users
  */
-class users_CreateGroupMailinglistAction extends users_ActionBase
+class users_CreateGroupMailinglistAction extends f_action_BaseAction
 {
 	/**
 	 * @param Context $context

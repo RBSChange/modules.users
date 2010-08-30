@@ -1,5 +1,5 @@
 <?php
-class users_FrontendLogoutAction extends users_ActionBase
+class users_FrontendLogoutAction extends f_action_BaseAction
 {
     /**
 	 * @param Context $context
