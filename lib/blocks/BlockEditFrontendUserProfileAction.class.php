@@ -24,6 +24,11 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 		return website_BlockView::INPUT;
     }
     
+    public function saveNeedTransaction()
+    {
+    	return true;
+    }
+    
     /**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
