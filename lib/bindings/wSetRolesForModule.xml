@@ -23,7 +23,7 @@
 	
 			<method name="onInitialize">
 				<body><![CDATA[
-					this.resizeTo(840, 500);
+					this.autoResize(840, 500);
 					try
 					{
 						var accessorId = this.parameters.id;
@@ -220,7 +220,7 @@
 			<vbox flex="1">
 				<label anonid="titleinfo" value="&amp;modules.users.bo.dialog.Base-title;" class="wizardTitle" />
 				<spacer height="5px" />
-				<vbox style="height:390px">
+				<vbox flex="1" style="min-height:200px">
 					<grid style="height:20px;border-bottom : black solid 2px">
 						<columns anonid="headerColumnDef1">
 					    	<column style="width:150px" />	
