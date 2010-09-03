@@ -9,6 +9,41 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	private $generatepassword = false;
 	
 	/**
+	 * @param list_persistentdocument_item $title
+	 */
+	public function setTitle($title)
+	{
+		if ($title instanceof list_persistentdocument_item)
+		{
+			$this->setTitleid($title->getId());
+		}
+		else 
+		{
+			$this->setTitleid(null);
+		}
+	}
+
+	/**
+	 * @return list_persistentdocument_item
+	 */
+	public function getTitle()
+	{
+		try
+		{
+			$titleId = $this->getTitleid();
+			if ($titleId)
+			{
+				return DocumentHelper::getDocumentInstance($titleId, 'modules_list/item');
+			}
+		}
+		catch ( Exception $e )
+		{
+			Framework::exception($e);
+		}
+		return null;
+	}
+	
+	/**
 	 * @return boolean 
 	 */
 	public function isValid()

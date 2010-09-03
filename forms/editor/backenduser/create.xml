@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
 	<section labeli18n="modules.uixul.bo.doceditor.fieldsgroup.Title">
-		<field name="title" hidehelp="true" />
+		<field name="titleid" hidehelp="true" />
 		<field name="firstname" hidehelp="true" />
 		<field name="lastname" hidehelp="true" />
 		<field name="email" hidehelp="true" />

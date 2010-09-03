@@ -40,6 +40,16 @@
 		<locale lang="en">user's title</locale>
 		<locale lang="de">Anrede des Benutzers</locale>
 	</entity>
+	<entity id="titleid">
+		<locale lang="fr">civilité</locale>
+		<locale lang="en">title</locale>
+		<locale lang="de">Anrede</locale>
+	</entity>
+	<entity id="titleid-help">
+		<locale lang="fr">civilité de l'utilisateur</locale>
+		<locale lang="en">user's title</locale>
+		<locale lang="de">Anrede des Benutzers</locale>
+	</entity>
 	<entity id="firstname">
 		<locale lang="fr">prénom</locale>
 		<locale lang="en">first name</locale>
