@@ -34,7 +34,7 @@
 	<rootfolder module="users">
 		<backendgroup label="Utilisateurs Change" isdefault="true" 
 			description="Groupe de tous les utilisateurs pouvant accéder à Change. Ce groupe ne peut pas être supprimé.">
-			<backenduser title-refid="mr" firstname="Administrateur" lastname="Change" email="admin-webfactory@rbs.fr"
+			<backenduser firstname="Administrateur" lastname="Change" email="admin-webfactory@rbs.fr"
 				login="wwwadmin" isroot="true" passwordmd5="326379df03facd04daff1578132d2540"
 				publicationstatus="ACTIVE" />
 		</backendgroup>
