@@ -790,6 +790,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function authenticate($user)
 	{
+		if (session_id() != '')
+		{
+			session_regenerate_id(true);
+		}
 		$agaviUser = $this->getAgaviUser();
 		if ($agaviUser === NULL) {return;}
 
