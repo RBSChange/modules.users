@@ -76,6 +76,10 @@
 		<locale lang="en">your password</locale>
 		<locale lang="de">Ihr Passwort</locale>
 	</entity>
+	<entity id="authentication.ConfirmPassword">
+		<locale lang="fr">confirmer votre mot de passe</locale>
+		<locale lang="en">confirm your password</locale>
+	</entity>
 	<entity id="authentication.SubmitButton">
 		<locale lang="fr">valider</locale>
 		<locale lang="en">submit</locale>

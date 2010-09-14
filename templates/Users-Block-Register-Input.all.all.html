@@ -33,7 +33,7 @@
 			<p class="help-text" change:translate="modules.users.frontoffice.Registration-login-help" />	
 		</li>
 		<tal:block tal:condition="configuration/getShowPersonalFields">
-			<li><input change:field="name title" /></li>
+			<li><input change:field="name titleid" /></li>
 			<tal:block tal:condition="configuration/getRequireNameFields">
 				<li><input change:field="name firstname" required="true" /></li>
 				<li><input change:field="name lastname" required="true" /></li>
@@ -44,8 +44,8 @@
 			</tal:block>
 		</tal:block>
 		<tal:block tal:condition="configuration/getShowPasswordFields">
-			<li><input change:passwordinput="" required="true" name="password" label="&modules.forums.document.member.PasswordLabel;" /></li>
-			<li><input change:passwordinput="" required="true" name="password_confirm" label="&modules.forums.document.member.ConfirmPasswordLabel;" /></li>
+			<li><input change:passwordinput="" required="true" name="password" label="&modules.users.frontoffice.authentication.PasswordLabel;" /></li>
+			<li><input change:passwordinput="" required="true" name="password_confirm" label="&modules.users.frontoffice.authentication.ConfirmPasswordLabel;" /></li>
 		</tal:block>
 	</ol>
 	<p class="buttons">
