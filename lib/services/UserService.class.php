@@ -1020,4 +1020,43 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$data['history']['lastlogin'] = $lastLogin;
 		return $data;
 	}
+	
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @param string $notificationCode
+	 * @param string[] $replacements
+	 * @return boolean
+	 */
+	public function sendNotificationToUser($user, $notificationCode, $replacements, $senderModuleName)
+	{
+		$notification = notification_NotificationService::getInstance()->getByCodeName($notificationCode);
+		if ($notification === null)
+		{
+			if (Framework::isDebugEnabled())
+			{
+				Framework::debug(__METHOD__ . ' No published notification for code "' . $notificationCode . '"');
+			}
+			return false;
+		}
+		
+		$userReplacements = array(
+			'receiverFirstName' => $user->getFirstnameAsHtml(),
+			'receiverLastName' => $user->getLastnameAsHtml(),
+			'receiverFullName' => $user->getFullnameAsHtml(),
+			'receiverTitle' => ($user->getTitleid()) ? $user->getTitleidLabelAsHtml() : '',
+			'receiverEmail' => $user->getEmailAsHtml()
+		);
+		$replacements = array_merge($userReplacements, $replacements);
+		$receiverEmail = $user->getEmail();
+		
+		$ns = $notification->getDocumentService();
+		$recipients = new mail_MessageRecipients();
+		$recipients->setTo($receiverEmail);
+		if (!$ns->send($notification, $recipients, $replacements, $senderModuleName))
+		{
+			Framework::warn(__METHOD__ . ' Can\'t send notification to ' . $receiverEmail);
+			return false;
+		}
+		return true;
+	}
 }
