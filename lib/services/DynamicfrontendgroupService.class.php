@@ -124,8 +124,11 @@ class users_DynamicfrontendgroupService extends users_FrontendgroupService
 	/**
 	 * @return users_persistentdocument_dynamicfrontendgroup[]
 	 */
-	public function getToRefresh($group)
+	public function getToRefresh()
 	{
-		return $this->createQuery()->add(Restrictions::eq('refreshing', false))->add(Restrictions::eq('autoRefresh', true))->find();
+		return $this->createQuery()
+			->add(Restrictions::eq('refreshing', false))
+			->add(Restrictions::eq('autoRefresh', true))
+			->find();
 	}
 }
