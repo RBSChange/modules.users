@@ -213,4 +213,4 @@
 	<entity id="log-login-frontend">
 		<locale lang="fr">log-login-frontend</locale>
 	</entity>
-</localization>
+<entity id="Login"><locale lang="fr">Login {documentlabel}</locale></entity><entity id="log-Login"><locale lang="fr">log-Login</locale></entity><entity id="login-backend"><locale lang="fr">login.backend {browsername} {documentlabel}</locale></entity><entity id="log-login-backend"><locale lang="fr">log-login-backend</locale></entity><entity id="chromelogin-backenduser"><locale lang="fr">chromelogin.backenduser {documentlabel}</locale></entity><entity id="log-chromelogin-backenduser"><locale lang="fr">log-chromelogin-backenduser</locale></entity></localization>
