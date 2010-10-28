@@ -30,4 +30,7 @@
   <actiondef modulename="users" actionname="move.backenduser" label="modules.users.bo.useractionlogger.move-backenduser"/>
   <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
   <actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend"/>
+  <actiondef modulename="users" actionname="Login" label="modules.users.bo.useractionlogger.Login"/>
+  <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
+  <actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser"/>
 </script>
