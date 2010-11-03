@@ -196,7 +196,7 @@ class users_FrontenduserService extends users_UserService
 			$ns = notification_NotificationService::getInstance();
 			$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
 			$notification = notification_NotificationService::getInstance()->getNotificationByCodeName($notificationCode);
-			$emailConfirmUrl = LinkHelper::getUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $userKey));
+			$emailConfirmUrl = LinkHelper::getActionUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $userKey));
 			$replacements = array(
 				'email' => $user->getEmail(), 
 				'emailConfirmUrl' => $emailConfirmUrl,

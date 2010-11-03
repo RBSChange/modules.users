@@ -29,7 +29,7 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 				{
 					Controller::getInstance()->redirect('website', 'Error404');
 				}
-				HttpController::getInstance()->redirectToUrl(LinkHelper::getUrl($page));
+				HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($page));
 			}
 			else if (Framework::isInfoEnabled())
 			{
