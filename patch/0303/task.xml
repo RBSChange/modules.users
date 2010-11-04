@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<script>
-	<binding fileName="modules/task/persistentdocument/import/task_binding.xml" />
-
-	<systemfolder module="task" relatedmodule="users">
-		<plannedtask label="Rafraichissement des groupes dynamiques" bySystemtaskclassname="users_RefreshDynamicfrontendgroupsTask" minute="0" hour="2" />
-	</systemfolder>
-</script>
