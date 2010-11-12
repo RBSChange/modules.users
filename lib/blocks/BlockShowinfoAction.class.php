@@ -1,39 +1,30 @@
 <?php
-class users_BlockShowinfoAction extends block_BlockAction
+class users_BlockShowinfoAction extends website_BlockAction
 {
 
- 	/**
-	 * @param block_BlockContext $context
-	 * @param block_BlockRequest $request
-	 * @return String the view name
+	/**
+	 * @see f_mvc_Action::execute()
+	 *
+	 * @param f_mvc_Request $request
+	 * @param f_mvc_Response $response
+	 * @return String
 	 */
-    public function execute($context, $request)
+	function execute($request, $response)
     {
-    	$user = $context->getUser();
-    	
+    	    	
     	$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
 
     	$date = date_Calendar::getInstance();
-    	$user->setAttribute('LastTime', $date->toString());
-
-    	$params = array();
-    	foreach ($user->getAttributeNamespaces() as $namespace)
-    	{
-    		foreach ($user->getAttributeNames($namespace) as $name)
-		    {
-		    	$params[$name] = $user->getAttribute($name, $namespace);
-		    }
-    	}
-
-    	$this->setParameter('currentUserParam', $params);
+    	$request->setAttribute('LastTime', $date->toString());
+    	$request->setAttribute('currentUserParam', array());
     	if (is_null($currentUser))
     	{
-    		$this->setParameter('anonymousUser', true);
+    		$request->setAttribute('anonymousUser', true);
     	}
     	else
     	{
-    		$this->setParameter('currentUser', $currentUser);
+    		$request->setAttribute('currentUser', $currentUser);
     	}
-    	return block_BlockView::SUCCESS;
+    	return website_BlockView::SUCCESS;
     }
 }

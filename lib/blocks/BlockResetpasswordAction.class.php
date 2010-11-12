@@ -1,21 +1,25 @@
 <?php
-class users_BlockResetpasswordAction extends block_BlockAction
+class users_BlockResetpasswordAction extends website_BlockAction
 {
 
 	private function getUserService()
 	{
 		return users_UserService::getInstance();
 	}
-
+	
 	/**
-	 * @param block_BlockContext $context
-	 * @param block_BlockRequest $request
-	 * @return String the view name
+	 * @param f_mvc_Request $request
+	 * @param f_mvc_Response $response
+	 * @return String
 	 */
-	public function execute($context, $request)
-	{		
+	function execute($request, $response)
+	{	
+		if ($this->isInBackoffice())
+		{
+			return website_BlockView::INPUT;
+		}
         if ($request->hasParameter('submit'))
-        {
+		{
             $errors = array();
             $login = trim($request->getParameter('login'));
             
@@ -51,20 +55,10 @@ class users_BlockResetpasswordAction extends block_BlockAction
             
             if (count($errors) > 0)
             {
-                $this->setParameter('errors', $errors);
+            	$request->setAttribute('errors', $errors);
             }
-            return block_BlockView::SUCCESS;
+            return website_BlockView::SUCCESS;
         }
-        return block_BlockView::INPUT;
+        return website_BlockView::INPUT;
 	}
-	
-    /**
-     * @param block_BlockContext $context
-     * @param block_BlockRequest $request
-     * @return String the view name
-     */
-    public function executeBackOffice ($context, $request)
-    {
-    	return block_BlockView::INPUT;
-    }
 }

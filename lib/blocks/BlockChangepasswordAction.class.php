@@ -1,5 +1,5 @@
 <?php
-class users_BlockChangepasswordAction extends block_BlockAction
+class users_BlockChangepasswordAction extends website_BlockAction
 {
 	private function getUserService()
 	{
@@ -7,22 +7,24 @@ class users_BlockChangepasswordAction extends block_BlockAction
 	}
 
 	/**
-	 * @param block_BlockContext $context
-	 * @param block_BlockRequest $request
-	 * @return String the view name
+	 * @see f_mvc_Action::execute()
+	 *
+	 * @param f_mvc_Request $request
+	 * @param f_mvc_Response $response
+	 * @return String
 	 */
-	public function execute($context, $request)
+	function execute($request, $response)
 	{
-		if ($context->inBackofficeMode())
+		if ($this->isInBackoffice())
 		{
-			return block_BlockView::INPUT;
+			return website_BlockView::INPUT;
 		}
 		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
 		if ($currentUser === NULL)
 		{
-		    return block_BlockView::NONE;
+		    return website_BlockView::NONE;
 		}
-		$this->setParameter('currentUser', $currentUser);
+		$request->setAttribute('currentUser', $currentUser);
 		
 		$errors = array();
 		if ($request->hasParameter('submit'))
@@ -41,7 +43,7 @@ class users_BlockChangepasswordAction extends block_BlockAction
 		            {
 		                $currentUser->setPassword($password);
 		                $currentUser->save();
-		                return  block_BlockView::SUCCESS; 
+		                return  website_BlockView::SUCCESS; 
 		            }
 		            catch (Exception $e)
 		            {
@@ -66,8 +68,8 @@ class users_BlockChangepasswordAction extends block_BlockAction
 		}
 		if (count($errors) > 0)
 		{
-		     $this->setParameter('errors', $errors);
+		     $request->setAttribute('errors', $errors);
 		}
-		return block_BlockView::INPUT;  
+		return website_BlockView::INPUT;  
 	}
 }

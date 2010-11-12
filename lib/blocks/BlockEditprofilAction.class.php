@@ -17,7 +17,7 @@ class users_BlockEditprofilAction extends website_BlockAction
 		$user = users_UserService::getInstance()->getCurrentFrontEndUser();
 		if ($user === NULL)
 		{
-			return block_BlockView::NONE;
+			return website_BlockView::NONE;
 		}
 		
 		$request->setAttribute('user', $user);
