@@ -2,10 +2,9 @@
 class users_SetUserModulePermissionAction extends f_action_BaseAction
 {
 	/**
-	 * @see f_action_BaseAction::suffixSecureActionByDocument()
 	 * @return Boolean
 	 */
-	protected function suffixSecureActionByDocument()
+	protected function isDocumentAction()
 	{
 		return false;
 	}

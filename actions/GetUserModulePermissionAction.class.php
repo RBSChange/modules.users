@@ -1,14 +1,10 @@
 <?php
-
 class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 {
-	
 	/**
-	 * @see f_action_BaseAction::suffixSecureActionByDocument()
-	 *
 	 * @return Boolean
 	 */
-	protected function suffixSecureActionByDocument()
+	protected function isDocumentAction()
 	{
 		return false;
 	}
