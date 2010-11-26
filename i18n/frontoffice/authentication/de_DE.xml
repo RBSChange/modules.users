@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.authentication" lcid="de_DE">
+  <key id="badauthentication">Benutzername oder Passwort falsch</key>
+  <key id="logout">Abmeldung</key>
+  <key id="login">Ihr Benutzername</key>
+  <key id="password">Ihr Passwort</key>
+  <key id="submitbutton">bestätigen</key>
+  <key id="anonymoususer">Gast</key>
+  <key id="resetpasswordlink">Ich habe mein Passwort vergessen</key>
+</i18n>

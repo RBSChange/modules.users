@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.tags" lcid="de_DE">
+  <key id="reset-password">Neues Passwort</key>
+  <key id="change-password">Passwort ändern</key>
+  <key id="edit-profil">Profil bearbeiten</key>
+  <key id="secure-homepage">Geschützte Startseite</key>
+</i18n>

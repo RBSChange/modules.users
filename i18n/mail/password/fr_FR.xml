@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.mail.password" lcid="fr_FR">
+  <key id="title">identifiant ou mot de passe incorrect</key>
+  <key id="greeting">Bonjour {title} {fullname},</key>
+  <key id="login">votre identifiant {login}</key>
+  <key id="password">votre mot de passe {password}</key>
+  <key id="accesslink">pour accéder à votre compte : {url}</key>
+  <key id="salutation">cordialement,</key>
+  <key id="administratorsignature">votre administrateur Change</key>
+  <key id="explanationnewaccountfrontenduser">vous recevez cet e-mail car un compte vient de vous être créé sur notre site Internet.</key>
+  <key id="explanationchangepasswordfrontenduser">vous recevez cet e-mail car votre mot de passe a été changé.</key>
+  <key id="explanationnewaccountbackenduser">vous recevez cet e-mail car un compte vient de vous être créé dans Change.</key>
+  <key id="explanationchangepasswordbackenduser">vous recevez cet e-mail car votre mot de passe dans Change a été changé.</key>
+  <key id="subject">Informations utilisateurs</key>
+  <key id="sender">NoReply@{host}</key>
+</i18n>

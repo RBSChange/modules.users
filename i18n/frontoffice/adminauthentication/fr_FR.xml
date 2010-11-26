@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.adminauthentication" lcid="fr_FR">
+  <key id="login">Identifiant</key>
+  <key id="email">Courriel</key>
+  <key id="password">Mot de passe</key>
+  <key id="logged">Connecté sous {fullName}</key>
+  <key id="logout">Déconnexion</key>
+  <key id="logout-success">Vous êtes désormais déconnecté</key>
+  <key id="lostpassword">Mot de passe oublié ?</key>
+  <key id="remember-me">Se souvenir de moi</key>
+  <key id="remember-me-help">Si vous choisissez cette option, vos informations de connexion seront stockées dans un cookie persistant. N'activez cette fonction que si vous êtes sur votre propre ordinateur.</key>
+</i18n>

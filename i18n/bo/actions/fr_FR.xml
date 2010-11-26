@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.actions" lcid="fr_FR">
+  <key id="create-frontenduser">créer un 'Utilisateur enregistré sur un site'</key>
+  <key id="create-backenduser">créer un utilisateur Change</key>
+  <key id="create-frontendgroup">créer un groupe d'utilisateurs enregistrés sur le(s) site(s)</key>
+  <key id="create-backendgroup">créer un groupe d'utilisateurs Change</key>
+  <key id="createonrootfolder_">créer</key>
+  <key id="createbackend_">créer</key>
+  <key id="createfrontend_">créer</key>
+  <key id="remove-user">suppression d'un utilisateur</key>
+  <key id="export-users">Exporter les utilisateurs publié</key>
+  <key id="createwebsitefrontend_">créer</key>
+  <key id="create-websitefrontenduser">créer un utilisateur du site</key>
+  <key id="setrolesformodule">Définir les rôles de base pour tous les modules</key>
+  <key id="refreshdynamicfrontendgroup">rafraichir la liste des utilisateurs</key>
+</i18n>

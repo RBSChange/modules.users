@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice" lcid="de_DE">
+  <key id="address">Adresse(n)</key>
+  <key id="salutation">Sehr geehrter {title} {name}</key>
+  <key id="salutation-woman">Sehr geehrte {title} {name}</key>
+  <key id="salutation-undefined">Sehr geehrter / Sehr geehrte {title} {name}</key>
+  <key id="password-successfully-changed">Ihr neues Passwort wurde Ihnen soeben per E-mail zugeschickt.</key>
+</i18n>

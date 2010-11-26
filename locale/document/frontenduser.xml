@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<localization extend="modules.users.document.user">
-	<entity id="document-name">
-		<locale lang="fr">utilisateur des sites</locale>
-		<locale lang="en">website user</locale>
-		<locale lang="de">Benutzer der Seiten</locale>
-	</entity>
-</localization>

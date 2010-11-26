@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.list.securitylevel" lcid="de_DE">
+  <key id="low">niedrig</key>
+  <key id="medium">mittel</key>
+  <key id="high">hoch</key>
+</i18n>

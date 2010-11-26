@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.accessform" lcid="de_DE">
+  <key id="checkingextension">Um sich mit der RBS Change-Verwaltungsoberfläche zu verbinden, installieren Sie bitte die hier erhältliche Erweiterung ″RBS Change manager″.</key>
+  <key id="navigatorerrormessage">Um die RBS Change-Verwaltungsoberfläche zu betreten, bitten wir Sie um die Nutzung des Browsers Firefox 3.0.Danke für Ihr Verständnis.</key>
+  <key id="title">Identifikation</key>
+  <key id="downloadfirefox">Firefox runterladen</key>
+  <key id="introduction">Um die RBS Change-Verwaltungsoberfläche zu erreichen, ist es nötig über die RBS Change manager Erweiterung zu gehen.
+		</key>
+  <key id="check-title">Überprüfen Sie ob die Erweiterung installiert ist</key>
+  <key id="check-description">Zur Prüfung, ob die RBS Change manager Erweiterung auf Ihrem Browser installiert ist, gehen Sie in das Menü ″Werkzeuge″ von Firefox, Spalte ″komplementäre Module″, Reiter ″Erweiterungen″ und suchen Sie den ″RBS Change Manager″ in der Liste der installierten Erweiterungen (diese sind in alfabetischer Rheienfolge geordnet).</key>
+  <key id="install-title">Erweiterung installieren</key>
+  <key id="install-description">Ist die Erweiterung RBS Change Manager nicht auf Ihrem Browser installiert, klicken Sie hier.</key>
+  <key id="connect-title">RBS Change Anmeldung</key>
+  <key id="connect-description">Sie können sich auch über das Menü ″Werkzeuge″ und ″RBS Change Anmeldung...″ an RBS Change anmelden, oder indem SIe die Tastenkombination Alt+c drücken. Das Anmeldefenster öffnet sich und fragt Sie nach der Adresse der Webseite, Ihrem Benutzernamen und Ihrem Passwort.</key>
+</i18n>

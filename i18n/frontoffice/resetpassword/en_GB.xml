@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.resetpassword" lcid="en_GB">
+  <key id="success">a new password has just been sent by e-mail</key>
+  <key id="exception">an error occured while saving your password</key>
+  <key id="invalidlogin">this login does not exist.</key>
+  <key id="submitbutton">send</key>
+  <key id="emptylogin">login can not be empty.</key>
+</i18n>

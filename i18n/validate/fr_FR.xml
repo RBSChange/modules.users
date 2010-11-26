@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.validate" lcid="fr_FR">
+  <key id="errors-header-message">Erreurs lors de la validation:</key>
+  <key id="passwords-do-not-match">Le mot de	passe n'a pas été confirmé.</key>
+  <key id="lastname-is-not-valid">Le champ ″Nom″ n'est pas valide.</key>
+  <key id="firstname-is-not-valid">Le champ ″Prénom″ n'est pas valide.</key>
+  <key id="email-is-not-valid">Le champ ″Adresse e-mail″ n'est pas valide.</key>
+  <key id="password-is-not-valid">Le champ ″Mot de passe″ n'est pas valide.</key>
+  <key id="addressline1-is-not-valid">Le champ ″Adresse (ligne 1)″ n'est pas valide.</key>
+  <key id="label-is-not-valid">Le champ ″Intitulé″ n'est pas valide.</key>
+  <key id="zipcode-is-not-valid">Le champ ″Code postal″ n'est pas valide.</key>
+  <key id="city-is-not-valid">Le champ ″Ville″ n'est pas valide.</key>
+  <key id="country-is-not-valid">Le champ ″Pays″ n'est pas valide.</key>
+  <key id="phone-is-not-valid">Le champ ″Téléphone″ n'est pas valide.</key>
+  <key id="email-address-already-used-message">L'adresse email saisie est déjà utilisée par un autre compte.</key>
+</i18n>

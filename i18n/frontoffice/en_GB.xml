@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice" lcid="en_GB">
+  <key id="password-wrong">wrong password</key>
+  <key id="registration-confirmed">registration confirmed</key>
+  <key id="email-confirmation-required">Your will receive an email to validate your account.</key>
+  <key id="edit-profile">edit your profile</key>
+  <key id="informations-updated">Your informations are successfuly updated.</key>
+  <key id="user-informations">user informations</key>
+  <key id="login-button">login</key>
+  <key id="already-registered">already registered?</key>
+  <key id="already-logged-in">you're logged in</key>
+  <key id="you-are-logged-as">You're logged in as {fullName}</key>
+</i18n>

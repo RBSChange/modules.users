@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice" lcid="fr_FR">
+  <key id="address">Adresse(s)</key>
+  <key id="salutation">Cher {title} {name}</key>
+  <key id="salutation-woman">Chère {title} {name}</key>
+  <key id="salutation-undefined">Cher/chère {name}</key>
+  <key id="password-successfully-changed">votre nouveau mot de passe vient de vous être envoyé par e-mail.</key>
+  <key id="password-wrong">mot de passe erroné</key>
+  <key id="login-disallowed">login non-autorisé</key>
+  <key id="login-used">login déjà utilisé</key>
+  <key id="registration">inscription</key>
+  <key id="create-my-account">créer mon compte</key>
+  <key id="registration-confirmed">inscription confirmée</key>
+  <key id="email-confirmation-required">Vous allez recevoir un email pour valider votre compte.</key>
+  <key id="edit-profile">modifier votre profil</key>
+  <key id="informations-updated">Vos informations ont bien été mises à jour.</key>
+  <key id="user-informations">informations utilisateur</key>
+  <key id="login-button">connexion</key>
+  <key id="already-registered">déjà inscrit ?</key>
+  <key id="already-logged-in">vous êtes connecté</key>
+  <key id="you-are-logged-as">Vous êtes connecté en tant que {fullName}.</key>
+  <key id="register-link">je crée mon compte utilisateur</key>
+  <key id="registration-login-help">Laisser ce champ vide pour prendre votre adresse e-mail comme identifiant.</key>
+</i18n>

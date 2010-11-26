@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.backenduser" lcid="fr_FR">
+  <include id="m.users.document.user"/>
+  <key id="document-name">utilisateur Change</key>
+  <key id="isroot">Super administrateur</key>
+</i18n>

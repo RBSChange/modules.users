@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.errors" lcid="en_GB">
+  <key id="modules-users-enabled">you don't have the appropriate permission to perform this operation : ″Access to the module″</key>
+  <key id="modules-users-editlocale">you don't have the appropriate permission to perform this operation : ″Edit a locale″</key>
+  <key id="modules-users-order">you don't have the appropriate permission to perform this operation : ″Sort out the elements″</key>
+  <key id="invalid-login">invalid login</key>
+  <key id="unable-to-generate-password">unable to generate password</key>
+  <key id="invalid-authentification">invalid authentification</key>
+  <key id="invalid-login-or-password">Invalid login or password</key>
+</i18n>

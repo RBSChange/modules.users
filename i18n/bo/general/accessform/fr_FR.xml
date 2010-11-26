@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.accessform" lcid="fr_FR">
+  <key id="checkingextension">Pour vous connecter à l'interface d'administration RBS Change, veuillez installer l'extension ″RBS Change manager″ disponible ici.</key>
+  <key id="navigatorerrormessage">Afin d'accéder à l'interface d'administration de RBS Change, nous vous prions d'utiliser le navigateur Firefox 3.0.Merci de votre compréhension.</key>
+  <key id="title">identification</key>
+  <key id="downloadfirefox">télécharger Firefox</key>
+  <key id="introduction">Pour accéder à l'interface d'administration de RBS Change, il est nécessaire de passer par l'extension RBS Change manager.</key>
+  <key id="check-title">vérifier si l'extension est installée</key>
+  <key id="check-description">Pour vérifier si l'extension RBS Change manager est installée sur votre navigateur, rendez-vous dans le menu ″Outils″ de Firefox, section ″Modules complémentaires″, onglet ″Extensions″ et recherchez ″RBS Change Manager″ dans la liste des extensions installées (celles-ci sont classées par ordre alphabétique).</key>
+  <key id="install-title">installer l'extension</key>
+  <key id="install-description">Si l'extension RBS Change manager n'est pas installée sur votre navigateur, rendez-vous ici.</key>
+  <key id="connect-title">se connecter à RBS Change</key>
+  <key id="connect-description">Vous pouvez vous connecter à RBS Change via le menu ″Outils″ en sélectionnant ″Connexion à RBS Change...″ ou bien en utilisant le raccourci clavierAlt+c. La fenêtre de connexion s'ouvre alors et vous demande de saisir l'adresse du site, votre identifiant et votre mot de passe.</key>
+</i18n>

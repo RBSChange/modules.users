@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.changepassword" lcid="en_GB">
+  <key id="title">Change my password</key>
+  <key id="foruser">User: </key>
+  <key id="oldpassword">Old password</key>
+  <key id="newpassword">New password</key>
+  <key id="newpasswordconfirmation">Confirm new password</key>
+  <key id="submit">Change my password</key>
+  <key id="success">Password successfully change</key>
+  <key id="successtext">your new password has been emailed at the following address: {email}</key>
+</i18n>

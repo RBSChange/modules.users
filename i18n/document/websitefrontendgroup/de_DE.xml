@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.websitefrontendgroup" lcid="de_DE">
+  <include id="m.users.document.frontendgroup"/>
+  <key id="document-name">Benutzergruppe einer Webseite</key>
+  <key id="label-format">Benutzer der Webseite {website}</key>
+</i18n>

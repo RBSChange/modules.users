@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.doceditor.property" lcid="en_GB">
+  <key id="lastlogin-empty">never logged in</key>
+  <key id="cardinality">number of users</key>
+  <key id="refreshing">refreshing</key>
+  <key id="reference">reference</key>
+</i18n>

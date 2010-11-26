@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.frontendgroup" lcid="de_DE">
+  <include id="m.users.document.group"/>
+  <key id="document-name">Benutzergruppe der Seiten</key>
+  <key id="sudoer">sudoers</key>
+  <key id="sudoer-help">die selektierten Benutzer werden die möglichkeit haben die Identität jedes beliebigen Mitglieds dieser Gruppe	einzunehmen.</key>
+</i18n>

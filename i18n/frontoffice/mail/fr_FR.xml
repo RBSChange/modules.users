@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.mail" lcid="fr_FR">
+  <key id="starting">Vous recevez cet e-mail car vous venez de créer un compte.</key>
+  <key id="accesstoyouraccount">Pour accéder à notre site et à votre compte :</key>
+  <key id="mailsubject">Création d'un compte</key>
+  <key id="accountcreationend">A bientôt sur notre site.</key>
+</i18n>

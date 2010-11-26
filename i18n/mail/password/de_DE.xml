@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.mail.password" lcid="de_DE">
+  <key id="title">Benutzername oder Passwort falsch</key>
+  <key id="greeting">Guten Tag {title} {fullname}</key>
+  <key id="login">Ihr Benutzername {login}</key>
+  <key id="password">Ihr Passwort {password}</key>
+  <key id="accesslink">Zugang zu Ihrem Konto:{url}</key>
+  <key id="salutation">Mit freundlichen Grüssen</key>
+  <key id="administratorsignature">Ihr Change Administrator</key>
+  <key id="explanationnewaccountfrontenduser">Sie erhalten diese E-mail, da für Sie ein Konto auf unserer Webseite erstellt wurde.</key>
+  <key id="explanationchangepasswordfrontenduser">Sie erhalten diese E-mail, da Ihr Passwort geändert wurde.</key>
+  <key id="explanationnewaccountbackenduser">Sie erhalten diese E-mail, da für Sie ein Konto in Change erstellt wurde.</key>
+  <key id="explanationchangepasswordbackenduser">Sie erhalten diese E-mail, da Ihr Passwort in Change geändert wurde.</key>
+  <key id="subject">Benutzerinformationen</key>
+  <key id="sender">NoReply@{host}</key>
+</i18n>

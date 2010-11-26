@@ -32,4 +32,12 @@ class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
 			}
 		}
 	}
+	
+	/**
+	 * @return void
+	 */
+	public function endProcess()
+	{
+		$this->setPermissions($this->getParent()->getPersistentDocument());
+	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general" lcid="en_GB">
+  <key id="module-name">users</key>
+  <key id="tree-root-name">users</key>
+  <key id="system-folder-name">users</key>
+  <key id="changepassword">change my password</key>
+  <key id="disconnect">exit</key>
+  <key id="disconnectconfirm">Do you really want to disconnect?</key>
+  <key id="dashboard-userslisttitle">connected users list</key>
+  <key id="dashboard-userslistmore">show disconnected users</key>
+  <key id="dashboard-userslistless">hide disconnected users</key>
+  <key id="dashboard-statusnull">never connected</key>
+  <key id="dashboard-statusdisconnected">disconnected</key>
+  <key id="dashboard-statusnullfemale">never connected</key>
+  <key id="dashboard-statusdisconnectedfemale">disconnected</key>
+  <key id="dashboard-statusnew">has just connected</key>
+  <key id="dashboard-statussince">connected since</key>
+  <key id="dashboard-statussincefemale">connected since</key>
+  <key id="dashboard-statuslastconnection">last connection</key>
+  <key id="generate-random-password">generate random password</key>
+  <key id="confirmexportmessage">do you want to export the group in CSV format?</key>
+</i18n>

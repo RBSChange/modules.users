@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.resetpasswordform" lcid="de_DE">
+  <key id="explanation">Dieses Formular ermöglicht Ihnen ein neues Passwort für Ihr Konto zu erstellen.Dieses neue Passwort wird Ihnen per E-mail zugeschickt.</key>
+  <key id="login">Ihr Benutzername</key>
+  <key id="or">oder</key>
+  <key id="email">E-mail Adresse</key>
+  <key id="generatenewpassword">ein neues Passwort bekommen.</key>
+</i18n>

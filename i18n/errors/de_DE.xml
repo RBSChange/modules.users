@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.errors" lcid="de_DE">
+  <key id="modules-users-enabled">Sie haben nicht die Rechte folgende Aktion auszuführen:″Zugang zum Modul″</key>
+  <key id="modules-users-editlocale">Sie haben nicht die Rechte folgende Aktion auszuführen:″Eine Lokale bearbeiten″</key>
+  <key id="modules-users-order">Sie haben nicht die Rechte folgende Aktion auszuführen:″Reihenfolge der Elemente ändern″</key>
+  <key id="invalid-login">ungültiger Benutzername</key>
+  <key id="unable-to-generate-password">unmöglich neues Passwort zu generieren</key>
+  <key id="invalid-authentification">Authentifikationsfehler</key>
+  <key id="invalid-login-or-password">Benutzername oder Passwort ungültig</key>
+</i18n>

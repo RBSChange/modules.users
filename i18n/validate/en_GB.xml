@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.validate" lcid="en_GB">
+  <key id="errors-header-message">Validation errors:</key>
+  <key id="passwords-do-not-match">The password could not be confirmed.</key>
+  <key id="lastname-is-not-valid">The ″Lastname″ field is not valid.</key>
+  <key id="firstname-is-not-valid">The ″Firslastname″ field is not valid.</key>
+  <key id="email-is-not-valid">The ″E-mail address″ field is not valid.</key>
+  <key id="password-is-not-valid">The ″Password″ field is not valid.</key>
+  <key id="addressline1-is-not-valid">The ″Address (line 1)″ field is not valid.</key>
+  <key id="label-is-not-valid">The ″Label″ field is not valid.</key>
+  <key id="zipcode-is-not-valid">The ″Zipcode″ field is not valid.</key>
+  <key id="city-is-not-valid">The ″City″ field is not valid.</key>
+  <key id="country-is-not-valid">The ″Country″ field is not valid.</key>
+  <key id="phone-is-not-valid">The ″Phone″ field is not valid.</key>
+  <key id="email-address-already-used-message">The provided email address is already used by another user account.</key>
+</i18n>

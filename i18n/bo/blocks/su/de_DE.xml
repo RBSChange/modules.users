@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.blocks.su" lcid="de_DE">
+  <key id="itemsperpage">Benutzer pro Seite</key>
+  <key id="itemsperpage-help">pro Seite angezeigte Benutzer aus der Liste der verfügbaren Benutzer.</key>
+  <key id="masknonfiltered">Liste ohne Filter ausblenden</key>
+  <key id="masknonfiltered-help">Benutzerliste nicht anzeigen, wenn kein Stichwort erfasst ist.</key>
+</i18n>

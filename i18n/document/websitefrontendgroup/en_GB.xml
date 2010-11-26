@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.websitefrontendgroup" lcid="en_GB">
+  <include id="m.users.document.frontendgroup"/>
+  <key id="document-name">website users group</key>
+  <key id="label-format">users of website {website}</key>
+</i18n>

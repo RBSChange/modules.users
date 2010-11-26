@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.actions" lcid="de_DE">
+  <key id="create-frontenduser">einen 'auf einer Seite gespeicherten Benutzer' erstellen</key>
+  <key id="create-backenduser">einen Change Benutzer erstellen</key>
+  <key id="create-frontendgroup">eine auf der/die Seite(n) gespeicherte Benutzergruppe erstellen</key>
+  <key id="create-backendgroup">eine Change Benutzergruppe erstellen</key>
+  <key id="createonrootfolder_">neu</key>
+  <key id="createbackend_">neu</key>
+  <key id="createfrontend_">neu</key>
+  <key id="remove-user">Löschvorgang eines Benutzers</key>
+  <key id="export-users">Veröffentlichte Benutzer exportieren</key>
+  <key id="createwebsitefrontend_">neu</key>
+  <key id="create-websitefrontenduser">einen Benutzer der Seite erstellen</key>
+  <key id="setrolesformodule">Basisrollen für alle Module definieren</key>
+</i18n>

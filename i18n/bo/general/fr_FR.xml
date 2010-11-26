@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general" lcid="fr_FR">
+  <key id="module-name">utilisateurs</key>
+  <key id="tree-root-name">utilisateurs</key>
+  <key id="system-folder-name">utilisateurs</key>
+  <key id="changepassword">changer mon mot de passe</key>
+  <key id="disconnect">déconnexion</key>
+  <key id="disconnectconfirm">Souhaitez-vous vraiment vous déconnecter ?</key>
+  <key id="dashboard-userslisttitle">utilisateurs connectés</key>
+  <key id="dashboard-userslistmore">afficher les utilisateurs déconnectés</key>
+  <key id="dashboard-userslistless">masquer les utilisateurs déconnectés</key>
+  <key id="dashboard-statusnull">jamais connecté</key>
+  <key id="dashboard-statusdisconnected">déconnecté</key>
+  <key id="dashboard-statusnullfemale">jamais connectée</key>
+  <key id="dashboard-statusdisconnectedfemale">déconnectée</key>
+  <key id="dashboard-statusnew">vient de se connecter</key>
+  <key id="dashboard-statussince">connecté depuis</key>
+  <key id="dashboard-statussincefemale">connectée depuis</key>
+  <key id="dashboard-statuslastconnection">dernière connexion</key>
+  <key id="generate-random-password">générer un mot de passe aléatoire</key>
+  <key id="confirmexportmessage">voulez-vous exporter le groupe au format CSV ?</key>
+</i18n>

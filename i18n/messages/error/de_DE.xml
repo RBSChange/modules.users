@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.messages.error" lcid="de_DE">
+  <key id="badauthentication">Benutzername oder Passwort falsch</key>
+  <key id="badusertype">Verbindung zur Administration mit diesem Benutzer unmöglich</key>
+  <key id="loginandpasswordrequired">Benutzername und Passwort obligatorisch</key>
+  <key id="enddatemustbeafterstartdate">Das Datum Gültigkeitsende muss später sein als das Anfangsdatum.</key>
+  <key id="logindoesnotexist">Dieser Benutzer existiert nicht.</key>
+  <key id="allfieldsarerequired">alle Felder sind obligatorisch.</key>
+  <key id="newpasswordsnotsames">die neuen Passwörter sind nicht identisch.</key>
+  <key id="badoldpassword">das alte Passwort ist nicht korrekt.</key>
+  <key id="passwordnotsecure">Ihr Passwort stimmt nicht mit den Sicherheitskriterien überein</key>
+  <key id="cannotresetadminaccount">Sie dürfen kein neues Passwort für dieses Konto beantragen.</key>
+</i18n>

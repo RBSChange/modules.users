@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.resetpassword" lcid="de_DE">
+  <key id="title">Passwort resetten</key>
+  <key id="success">Passwort erfolgreich resettet</key>
+  <key id="successtext">Ihr neues Passwort wurde Ihnen soeben per E-mail an folgende Adresse zugeschickt:{email}</key>
+  <key id="closepopup">Fenster schliessen</key>
+</i18n>

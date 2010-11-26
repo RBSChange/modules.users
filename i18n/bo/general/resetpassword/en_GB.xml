@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.resetpassword" lcid="en_GB">
+  <key id="title">re-init password</key>
+  <key id="success">Password successfully reset</key>
+  <key id="successtext">your new password has been emailed at the following address: {email}</key>
+  <key id="closepopup">close window</key>
+</i18n>

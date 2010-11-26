@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.user" lcid="fr_FR">
+  <key id="lastname">nom</key>
+  <key id="lastname-help">nom de l'utilisateur</key>
+  <key id="startpublicationdate">début de validité du compte</key>
+  <key id="startpublicationdate-help">le compte ne pourra être utilisé qu'à partir de cette date</key>
+  <key id="endpublicationdate">fin de validité du compte</key>
+  <key id="endpublicationdate-help">le compte ne pourra plus être utilisé à partir de cette date</key>
+  <key id="title">civilité</key>
+  <key id="title-help">civilité de l'utilisateur</key>
+  <key id="titleid">civilité</key>
+  <key id="titleid-help">civilité de l'utilisateur</key>
+  <key id="firstname">prénom</key>
+  <key id="firstname-help">prénom de l'utilisateur</key>
+  <key id="email">adresse e-mail</key>
+  <key id="email-help">e-mail de l'utilisateur</key>
+  <key id="login">identifiant</key>
+  <key id="login-help">nom de connexion</key>
+  <key id="password">mot de passe</key>
+  <key id="password-help">Mot de passe de l'utilisateur. Ce champ ne peut pas être modifié, mais seulement réinitialisé.</key>
+  <key id="passwordupdate">nouveau mot de passe</key>
+  <key id="generatepassword">générer le mot de passe automatiquement</key>
+  <key id="id">Identifiant Change</key>
+  <key id="label">Compte</key>
+  <key id="author">Créé par</key>
+  <key id="creationdate">Créé le</key>
+  <key id="modificationdate">Modifié le</key>
+  <key id="publicationstatus">Status</key>
+  <key id="lastlogin">Dernière connexion</key>
+  <key id="lastping">Dernière activité</key>
+</i18n>

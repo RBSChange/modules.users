@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.validate" lcid="de_DE">
+  <key id="errors-header-message">Fehler bei der Validierung:</key>
+  <key id="passwords-do-not-match">Das Passwort wurde nicht bestätigt.</key>
+  <key id="lastname-is-not-valid">Das Feld ″Nachname″ ist ungültig.</key>
+  <key id="firstname-is-not-valid">Das Feld ″Vorname″ ist ungültig.</key>
+  <key id="email-is-not-valid">Das Feld ″E-mail Adresse″ ist ungültig.</key>
+  <key id="password-is-not-valid">Das Feld ″Passwort″ ist ungültig.</key>
+  <key id="addressline1-is-not-valid">Das Feld ″Adresse (Zeile 1)″ ist ungültig.</key>
+  <key id="label-is-not-valid">Das Feld ″Titel″ ist ungültig.</key>
+  <key id="zipcode-is-not-valid">Das Feld ″Postleitzahl″ ist ungültig.</key>
+  <key id="city-is-not-valid">Das Feld ″Ort″ ist ungültig.</key>
+  <key id="country-is-not-valid">Das Feld ″Land″ ist ungültig.</key>
+  <key id="phone-is-not-valid">Das Feld ″Telefon″ ist ungültig.</key>
+  <key id="email-address-already-used-message">Die erfasste E-mail Adresse wird bereits von einem anderen Konto genutzt.</key>
+</i18n>

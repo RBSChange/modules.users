@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.permission" lcid="fr_FR">
+  <key id="edition-form-title">gestion des droits</key>
+  <key id="permission-panel-1">Partie 1</key>
+  <key id="permission-panel-2">Partie 2</key>
+  <key id="admin">Administrateur</key>
+  <key id="admin-help">Administrateur</key>
+  <key id="user">Intégrateur</key>
+  <key id="user-help">Utilisation du module en temps que ressource</key>
+</i18n>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<localization extend="modules.users.document.group">
-	<entity id="document-name">
-		<locale lang="fr">groupe Change</locale>
-		<locale lang="en">group user</locale>
-		<locale lang="de">Change Gruppe</locale>
-	</entity>
-</localization>

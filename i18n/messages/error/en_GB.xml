@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.messages.error" lcid="en_GB">
+  <key id="badauthentication">login failed</key>
+  <key id="badusertype"></key>
+  <key id="loginandpasswordrequired">login and password required</key>
+  <key id="enddatemustbeafterstartdate">the end date must be after the start date</key>
+  <key id="logindoesnotexist">login does not exist.</key>
+  <key id="allfieldsarerequired">all fields are required.</key>
+  <key id="newpasswordsnotsames">new passwords are not sames.</key>
+  <key id="badoldpassword">bad old password</key>
+  <key id="passwordnotsecure">your passwrod doesn't enough secure</key>
+</i18n>

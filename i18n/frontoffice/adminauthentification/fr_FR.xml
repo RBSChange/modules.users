@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.adminauthentification" lcid="fr_FR">
+  <key id="lostpassword-nouser">Aucun compte utilisateur n'est associé à l'identifiant {login}.</key>
+  <key id="lostpassword-success">Votre demande de renouvellement de mot de passe pour le compte {login} a bien été prise en compte. Un courrier vous a été envoyé à l'adresse associée au compte.</key>
+</i18n>

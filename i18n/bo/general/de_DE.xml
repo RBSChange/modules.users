@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general" lcid="de_DE">
+  <key id="module-name">Benutzer</key>
+  <key id="tree-root-name">Benutzer</key>
+  <key id="system-folder-name">Benutzer</key>
+  <key id="changepassword">mein Passwort ändern</key>
+  <key id="disconnect">Abmeldung</key>
+  <key id="disconnectconfirm">Möchten Sie sich wirklich abmelden?</key>
+  <key id="dashboard-userslisttitle">verbundene Benutzer</key>
+  <key id="dashboard-userslistmore">die abgemeldeten Benutzer anzeigen</key>
+  <key id="dashboard-userslistless">die abgemeldeten Benutzer ausblenden</key>
+  <key id="dashboard-statusnull">nie verbunden</key>
+  <key id="dashboard-statusdisconnected">abgemeldet</key>
+  <key id="dashboard-statusnullfemale">nie verbunden</key>
+  <key id="dashboard-statusdisconnectedfemale">abgemeldet</key>
+  <key id="dashboard-statusnew">hat sich eben angemeldet</key>
+  <key id="dashboard-statussince">angemeldet seit</key>
+  <key id="dashboard-statussincefemale">angemeldet seit</key>
+  <key id="dashboard-statuslastconnection">letzte Anmeldung</key>
+  <key id="generate-random-password">ein zufallsgeneriertes Passwort erhalten</key>
+</i18n>

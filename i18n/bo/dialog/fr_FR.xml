@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.dialog" lcid="fr_FR">
+  <key id="admin">Administrateur</key>
+  <key id="writer">Rédacteur</key>
+  <key id="treemanager">gestionnaire</key>
+  <key id="translator">Traducteur</key>
+  <key id="validator">Validateur</key>
+  <key id="guest">Invité</key>
+  <key id="user">Intégrateur</key>
+  <key id="base-title">Définition des rôles.</key>
+  <key id="user-title">Définition des rôles pour l'utilisateur ″{name}″.</key>
+  <key id="group-title">Définition des rôles pour le groupe ″{name}″.</key>
+  <key id="module-role">Modules / rôles</key>
+</i18n>

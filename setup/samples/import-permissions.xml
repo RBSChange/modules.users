@@ -4,7 +4,7 @@
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
 
 	<website tagname="default_modules_website_default-website" template="webfactory/tplTwo">
-		<topic label="Test permissions" byLabel="Test permissions">
+		<topic byLabel="Test permissions">
 			<permissions>
 				<backendpermission module="website" role="Admin" user="wwwadmin" group="Utilisateurs Change" />
 				<backendpermission module="website" role="Guest" group="Utilisateurs Change" />

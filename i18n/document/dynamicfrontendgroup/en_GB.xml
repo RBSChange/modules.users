@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.dynamicfrontendgroup" lcid="en_GB">
+  <include id="m.users.document.frontendgroup"/>
+  <key id="document-name">dynamic website users group</key>
+  <key id="autorefresh">refresh automatically</key>
+</i18n>

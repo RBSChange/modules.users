@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.su" lcid="de_DE">
+  <key id="switch-user">die Identität eines anderen Benutzers nehmen</key>
+  <key id="search">filtern</key>
+  <key id="search-no-result">kein Benutzer entspricht Ihrer suche.</key>
+  <key id="result-users-count">{usersCount} gefundene Benutzer.</key>
+  <key id="users-list">Benutzerliste</key>
+  <key id="full-name">Kompletter Name</key>
+  <key id="first-name">Vorname</key>
+  <key id="last-name">Nachname</key>
+  <key id="login">Login</key>
+  <key id="switch">Verbindung</key>
+  <key id="switched-success-title">Verbindung hergestellt</key>
+  <key id="switched-success">Sie sind nun als {fullName} angemeldet ({login}).</key>
+  <key id="switched-error-title">Verbindung fehlgeschlagen</key>
+  <key id="switched-error-bad-arguments">falsche Einstellungen.</key>
+  <key id="switched-error-do-not-have-permission">Sie haben nicht die Rechte sich als {fullName} einzuloggen ({login}).</key>
+</i18n>

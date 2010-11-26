@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.dynamicfrontendgroup" lcid="fr_FR">
+  <include id="m.users.document.frontendgroup"/>
+  <key id="document-name">groupe dynamique d'utilisateur des sites</key>
+  <key id="autorefresh">rafraishir automatiquement</key>
+  <key id="autorefresh-help">Activer cette option rafraichira la liste des utilisateurs du groupe tous les jours.</key>
+</i18n>

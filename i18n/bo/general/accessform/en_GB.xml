@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.general.accessform" lcid="en_GB">
+  <key id="navigatorerrormessage">In order to access the RBS Change administration interface, please use the Firefox 3.0 web broswer.Thank you for your understanding.</key>
+  <key id="title">identification</key>
+  <key id="downloadfirefox">download Firefox</key>
+  <key id="introduction">To access and manage RBS Change back-office administration, you need to use the RBS Change manager extension.</key>
+  <key id="check-title">check if the extension is installed</key>
+  <key id="check-description">To check if the RBS Change manager extension is installed on your browser, please click on the ″Tools″ menu of Firefox, then on ″Add-ons″, tab ″Extensions″ et look for ″RBS Change Manager″ in the list of extensions (they are sorted out alphabetically).</key>
+  <key id="install-title">install the extension</key>
+  <key id="install-description">If the RBS Change manager extension is not installed on your browser, click here.</key>
+  <key id="connect-title">connect to RBS Change</key>
+  <key id="connect-description">You can connect to RBS Change via the ″Tools″ menu, by clicking on ″Connect to RBS Change...″ or by using the keypad shortcut Alt+c. The connexion window opens and you must type in the website’s URL, your ID and your password.</key>
+</i18n>
