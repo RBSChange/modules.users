@@ -36,6 +36,15 @@ class users_FrontenduserService extends users_UserService
 	{
 		return $this->pp->createQuery('modules_users/frontenduser');
 	}
+	
+	/**
+	 * Only documents that are strictly instance of modules_users/frontenduser
+	 * @return f_persistentdocument_criteria_Query
+	 */
+	public function createStrictQuery()
+	{
+		return $this->pp->createQuery('modules_users/frontenduser', false);
+	}
 
 	/**
 	 * @param users_persistentdocument_frontenduser $document
@@ -249,5 +258,31 @@ class users_FrontenduserService extends users_UserService
 			return true;
 		}
 		return false;
+	}
+	
+	private $currentUser = false;
+	
+	/**
+	 * @return users_persistentdocument_frontenduser or null
+	 */
+	public function getCurrentUser()
+	{
+		if ($this->currentUser === false)
+		{
+			$agaviUser = $this->getAgaviUser();
+			if ($agaviUser !== null)
+			{
+				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
+				$id = $agaviUser->getId();
+
+				$agaviUser->setUserNamespace($oldNameSpace);
+				$this->currentUser = $this->getUserFromSessionId($id);
+			}
+			else
+			{
+				$this->currentUser = null;
+			}
+		}
+		return $this->currentUser;
 	}
 }

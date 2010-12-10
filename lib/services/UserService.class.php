@@ -160,45 +160,9 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * Check if the combining of login and password exist in database
-	 * @deprecated use getIdentifiedBackendUser or getIdentifiedFrontendUser
-	 * @param string $login
-	 * @param string $password
-	 * @return boolean
-	 */
-	public final function checkIdentityByLogin($login, $password)
-	{
-		if (!is_null($user = $this->getUserByLogin($login)))
-		{
-			return $this->checkIdentity($user, $password);
-		}
-		else
-		{
-			return false;
-		}
-
-	}
-
-	/**
-	 * Get the complete list of groups for the user named $groupName.
-	 * @deprecated use getGroupsByUser
-	 * @param String $groupName the name of an existing group
-	 * @return Array<users_persistentdocument_group> the list of groups for the user
-	 */
-	public final function getGroupsForUser($login)
-	{
-		$user = $this->getUserByLogin($login);
-		if ($user !== null)
-		{
-			return $user->getGroupsArray();
-		}
-		return array();
-	}
-
-	/**
 	 * @param users_persistentdocument_user $user
 	 */
-	public final function getGroupsByUser($user)
+	public function getGroupsByUser($user)
 	{
 		if ($user !== null)
 		{
@@ -212,23 +176,14 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param users_persistentdocument_user $user
 	 * @param string $password
 	 * @return boolean
-	 *
-	 * @throws IllegalArgumentException
 	 */
-	public final function checkIdentity($user, $password)
+	public function checkIdentity($user, $password)
 	{
-		// Check password user is ok
-		return $user->isPublished() && $user->getPasswordmd5() == md5($password);
-	}
-
-	/**
-	 * @param String $documentName
-	 * @return f_persistentdocument_criteria_Query
-	 */
-	private function createUsersQueryByDocumentName($documentName)
-	{
-		$modelName = f_persistentdocument_PersistentDocumentModel::getInstance('users', $documentName)->getName();
-		return $this->pp->createQuery($modelName);
+		if ($user instanceof users_persistentdocument_user)
+		{
+			return $user->isPublished() && $user->getPasswordmd5() == md5($password);
+		}
+		return false;
 	}
 
 	/**
@@ -236,7 +191,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param String $password
 	 * @return users_persistentdocument_backenduser
 	 */
-	public final function getIdentifiedBackendUser($login, $password)
+	public function getIdentifiedBackendUser($login, $password)
 	{
 		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
 		{
@@ -292,7 +247,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param Integer $websiteId
 	 * @return users_persistentdocument_frontenduser
 	 */
-	public final function getIdentifiedFrontendUser($login, $password, $websiteId = null)
+	public function getIdentifiedFrontendUser($login, $password, $websiteId = null)
 	{
 		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
 		{
@@ -347,7 +302,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param String $passwordmd5
 	 * @return users_persistentdocument_backenduser
 	 */
-	public final function getIdentifiedBackendPortalUser($login, $passwordmd5)
+	public function getIdentifiedBackendPortalUser($login, $passwordmd5)
 	{
 		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($passwordmd5))
 		{
@@ -373,13 +328,13 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param string $login
 	 * @return users_persistentdocument_backenduser
 	 */
-	public final function getBackEndUserByLogin($login)
+	public function getBackEndUserByLogin($login)
 	{
 		// Check if User exist in database
 		if (!empty($login))
 		{
-			return $this->createUsersQueryByDocumentName('backenduser')
-			->add(Restrictions::eq('login', $login))->findUnique();
+			return users_BackenduserService::getInstance()->createQuery()
+				->add(Restrictions::eq('login', $login))->findUnique();
 		}
 
 		return null;
@@ -391,13 +346,13 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param string $email
 	 * @return users_persistentdocument_backenduser[]
 	 */
-	public final function getBackEndUserByEmail($email)
+	public function getBackEndUserByEmail($email)
 	{
 		// Check if User exist in database
 		if (!empty($email))
 		{
-			return $this->createUsersQueryByDocumentName('backenduser')
-			->add(Restrictions::eq('email', $email))->find();
+			return users_BackenduserService::getInstance()->createQuery()
+					->add(Restrictions::eq('email', $email))->find();
 		}
 		return array();
 	}
@@ -409,31 +364,34 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param Integer $websiteId
 	 * @return users_persistentdocument_frontenduser
 	 */
-	public final function getFrontendUserByLogin($login, $websiteId = null)
+	public function getFrontendUserByLogin($login, $websiteId = null)
 	{
 		if (!empty($login))
 		{
 			if (intval($websiteId) > 0)
 			{
-				$user = $this->createUsersQueryByDocumentName('websitefrontenduser')
-				->add(Restrictions::eq('websiteid', $websiteId))
-				->add(Restrictions::eq('login', $login))
-				->findUnique();
-				if ($user !== null)
+				$websiteIds = users_WebsitefrontendgroupService::getInstance()->getLinkedWebsiteIds($websiteId);
+				foreach ($websiteIds as $websiteId) 
 				{
-					return $user;
+					$user = users_WebsitefrontenduserService::getInstance()->createQuery()
+						->add(Restrictions::eq('websiteid', $websiteId))
+						->add(Restrictions::eq('login', $login))
+						->findUnique();
+					if ($user !== null)
+					{
+						return $user;
+					}
 				}
+				
 			}
 
-			$users = $this->createUsersQueryByDocumentName('frontenduser')
-			->add(Restrictions::eq('login', $login))
-			->find();
+			$users = users_FrontenduserService::getInstance()->createQuery()
+				->add(Restrictions::eq('login', $login))
+				->find();
 			foreach ($users as $user)
 			{
-				if (!($user instanceof users_persistentdocument_websitefrontenduser))
-				{
-					return $user;
-				}
+				if ($user instanceof users_persistentdocument_websitefrontenduser) {continue;}
+				return $user;
 			}
 		}
 
@@ -441,53 +399,12 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * Search in database a user with his login. If no user found return null.
-	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
-	 * @param string $login
-	 * @return users_persistentdocument_user or null
-	 */
-	public final function getUserByLogin($login)
-	{
-		// Check if User exist in database
-		if (!empty($login))
-		{
-			$query = $this->createQuery()->add(Restrictions::eq('login', $login));
-			$users = $query->find();
-			if (count($users) > 0)
-			{
-				if (count($users) > 1)
-				{
-					if (Framework::isWarnEnabled())
-					{
-						Framework::warn(__METHOD__ . ' return '. count($users) . ' possible users!!!');
-						Framework::warn(f_util_ProcessUtils::getBackTrace());
-					}
-				}
-				return $users[0];
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Check in database if a login already exist
-	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
-	 * @param string $login
-	 * @return boolean
-	 */
-	public final function loginExist($login)
-	{
-		return $this->getUserByLogin($login) !== null;
-	}
-
-	/**
 	 * Generate a password to respond of a high security level define in change. Ex: hS2I7GF0r - number, letter in upper and lower case.
 	 *
 	 * @param int $length Define the length of the generated password
 	 * @return string
 	 */
-	public final function generatePassword($length = 10)
+	public function generatePassword($length = 10)
 	{
 
 		// Define the lists of characters
@@ -550,26 +467,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 	}
 
-	/**
-	 * Reset a password for an user with login. If you pass the password, it's will be used else it's will be generated.
-	 * @deprecated use resetPassword
-	 * @param string $login
-	 * @param string $password
-	 *
-	 * @throws Exception
-	 */
-	public final function resetPasswordForLogin($login, $password = null)
-	{
-		$user = $this->getUserByLogin($login);
-		if ($user === null)
-		{
-			throw new Exception('User not found for login: ' . $login);
-		}
 
-		// Call the method to reset password
-		$this->resetPassword($user, $password);
-
-	}
 
 	/**
 	 * Reset a password for an user. If you pass the password, it's will be used else it's will be generated.
@@ -579,7 +477,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 *
 	 * @throws IllegalArgumentException
 	 */
-	public final function resetPassword($user, $password = null)
+	public function resetPassword($user, $password = null)
 	{
 		// If password does not passed, generate it
 		if ($password === null || $password == '')
@@ -601,7 +499,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 *
 	 * @throws IllegalArgumentException
 	 */
-	public final function checkPassword($password)
+	public function checkPassword($password)
 	{
 		// Init validator
 		$passwordValidator = new validation_PasswordValidator();
@@ -674,7 +572,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	/**
 	 * @return FrameworkSecurityUser or null
 	 */
-	private function getAgaviUser()
+	protected function getAgaviUser()
 	{
 		try
 		{
@@ -785,7 +683,30 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @deprecated use authenticateBackEndUser or authenticateFrontEndUser
+	 * @param users_persistentdocument_backenduser $user
+	 */
+	public function authenticateBackEndUser($user)
+	{
+		$agaviUser = $this->getAgaviUser();
+		if ($agaviUser === null) {return;}
+
+		$agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
+		$this->authenticate($user);
+	}
+
+	/**
+	 * @param users_persistentdocument_frontenduser $user
+	 */
+	public function authenticateFrontEndUser($user)
+	{
+		$agaviUser = $this->getAgaviUser();
+		if ($agaviUser === null) {return;}
+
+		$agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
+		$this->authenticate($user);
+	}
+	
+	/**
 	 * @param users_persistentdocument_user $user
 	 */
 	public function authenticate($user)
@@ -830,45 +751,14 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param users_persistentdocument_backenduser $user
-	 */
-	public function authenticateBackEndUser($user)
-	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser === null) {return;}
-
-		$agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
-		$this->authenticate($user);
-	}
-
-	/**
-	 * @param users_persistentdocument_frontenduser $user
-	 */
-	public function authenticateFrontEndUser($user)
-	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser === null) {return;}
-
-		$agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
-		$this->authenticate($user);
-	}
-
-	/**
 	 * 	@return users_persistentdocument_user
 	 */
-	private function getUserFromSessionId($id)
+	protected function getUserFromSessionId($id)
 	{
 		$id = intval($id);
 		if ($id > 0)
 		{
-			try
-			{
-				return $this->getDocumentInstance($id, "modules_users/user");
-			}
-			catch (Exception $e)
-			{
-				Framework::exception($e);
-			}
+			return $this->createQuery()->add(Restrictions::eq('id', $id))->findUnique();
 		}
 		return null;
 	}
@@ -877,7 +767,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * Retrieves the current FrameworkSecurityUser from the context.
 	 * @return users_persistentdocument_user frontendUser or backendUser or null, depending on the controller (ChangeController or XULController)
 	 */
-	public final function getCurrentUser()
+	public function getCurrentUser()
 	{
 		$agaviUser = $this->getAgaviUser();
 		if ($agaviUser !== null)
@@ -886,35 +776,13 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		return null;
 	}
-
-	private $currentBackendUser = false;
-	private $currentFrontendUser = false;
-
+	
 	/**
 	 * @return users_persistentdocument_backenduser or null
 	 */
 	public function getCurrentBackEndUser()
 	{
-		if ($this->currentBackendUser === false)
-		{
-			if (Framework::isDebugEnabled())
-			{
-				Framework::debug(__METHOD__);
-			}
-			$agaviUser = $this->getAgaviUser();
-			if ($agaviUser !== null)
-			{
-				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
-				$id = $agaviUser->getId();
-				$agaviUser->setUserNamespace($oldNameSpace);
-				$this->currentBackendUser = $this->getUserFromSessionId($id);
-			}
-			else
-			{
-				$this->currentBackendUser = null;
-			}
-		}
-		return $this->currentBackendUser;
+		return users_BackenduserService::getInstance()->getCurrentUser();
 	}
 
 	/**
@@ -922,28 +790,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function getCurrentFrontEndUser()
 	{
-		if ($this->currentFrontendUser === false)
-		{
-			if (Framework::isDebugEnabled())
-			{
-				Framework::debug(__METHOD__);
-			}
-
-			$agaviUser = $this->getAgaviUser();
-			if ($agaviUser !== null)
-			{
-				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
-				$id = $agaviUser->getId();
-
-				$agaviUser->setUserNamespace($oldNameSpace);
-				$this->currentFrontendUser = $this->getUserFromSessionId($id);
-			}
-			else
-			{
-				$this->currentFrontendUser = null;
-			}
-		}
-		return $this->currentFrontendUser;
+		return users_FrontenduserService::getInstance()->getCurrentUser();
 	}
 
 	public function pingBackEndUser()
@@ -1058,5 +905,85 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return false;
 		}
 		return true;
+	}
+	
+	
+	//DEPRECATED
+	
+	/**
+	 * @deprecated use getIdentifiedBackendUser or getIdentifiedFrontendUser
+	 */
+	public final function checkIdentityByLogin($login, $password)
+	{
+		if (!is_null($user = $this->getUserByLogin($login)))
+		{
+			return $this->checkIdentity($user, $password);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * @deprecated use getGroupsByUser
+	 */
+	public final function getGroupsForUser($login)
+	{
+		$user = $this->getUserByLogin($login);
+		if ($user !== null)
+		{
+			return $user->getGroupsArray();
+		}
+		return array();
+	}
+	
+	/**
+	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
+	 */
+	public final function getUserByLogin($login)
+	{
+		// Check if User exist in database
+		if (!empty($login))
+		{
+			$query = $this->createQuery()->add(Restrictions::eq('login', $login));
+			$users = $query->find();
+			if (count($users) > 0)
+			{
+				if (count($users) > 1)
+				{
+					if (Framework::isWarnEnabled())
+					{
+						Framework::warn(__METHOD__ . ' return '. count($users) . ' possible users!!!');
+						Framework::warn(f_util_ProcessUtils::getBackTrace());
+					}
+				}
+				return $users[0];
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
+	 */
+	public final function loginExist($login)
+	{
+		return $this->getUserByLogin($login) !== null;
+	}
+	
+	/**
+	 * @deprecated use resetPassword
+	 */
+	public final function resetPasswordForLogin($login, $password = null)
+	{
+		$user = $this->getUserByLogin($login);
+		if ($user === null)
+		{
+			throw new Exception('User not found for login: ' . $login);
+		}
+
+		// Call the method to reset password
+		$this->resetPassword($user, $password);
 	}
 }

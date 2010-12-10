@@ -3,6 +3,8 @@
 	<section name="properties" linkedtab="properties" labeli18n="modules.uixul.bo.doceditor.section.Properties" image="{IconsBase}/small/edit-properties.png">
 		<property name="label" labeli18n="modules.uixul.bo.doceditor.property.Label" />
 		<property name="cardinality" labeli18n="modules.users.bo.doceditor.property.Cardinality" />
+		<property name="website" labeli18n="m.users.bo.doceditor.property.website" />
+		<property name="linkedWebsites" labeli18n="m.users.bo.doceditor.property.linkedwebsites" />
 	</section>
 
 	<section name="history" linkedtab="history" actiontexti18n="modules.uixul.bo.doceditor.section.action.View" labeli18n="modules.uixul.bo.doceditor.section.History" image="{IconsBase}/small/history.png">

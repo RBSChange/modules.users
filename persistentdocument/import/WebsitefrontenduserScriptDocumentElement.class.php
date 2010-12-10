@@ -38,4 +38,12 @@ class users_WebsitefrontenduserScriptDocumentElement extends import_ScriptDocume
 		}
 		return $props;
 	}
+	
+	/**
+	 * @see import_ScriptDocumentElement::getParentInTree()
+	 */
+	protected function getParentInTree()
+	{
+		return null;
+	}
 }

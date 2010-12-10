@@ -60,20 +60,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	public function getByLabel($label)
 	{
 		return $this->createQuery()->add(Restrictions::eq('label', $label))->findUnique();
-	}
-	
-	// Deprecated methods.
-	
-	/**
-	 * @param String $groupName
-	 * @return users_persistentdocument_group or null
-	 * @deprecated use getByLabel()
-	 */
-	public final function getGroupByName($groupName)
-	{
-		return $this->getByLabel($groupName);
-	}
-	
+	}	
 
 	/**
 	 * @see f_persistentdocument_DocumentService::getResume()
@@ -83,7 +70,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	 * @param array $allowedSections
 	 * @return array
 	 */
-	public function getResume($document, $forModuleName, $allowedSections)
+	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
 		$data = parent::getResume($document, $forModuleName, $allowedSections);
 		$data['properties']['cardinality'] = strval($document->getUserCountInverse());
@@ -136,5 +123,17 @@ class users_GroupService extends f_persistentdocument_DocumentService
           			 ->addOrder(Order::asc('document_label'))
            		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
 		return $query->find();
-	}	
+	}
+
+	// DEPRECATED
+	
+	/**
+	 * @param String $groupName
+	 * @return users_persistentdocument_group or null
+	 * @deprecated use getByLabel()
+	 */
+	public final function getGroupByName($groupName)
+	{
+		return $this->getByLabel($groupName);
+	}
 }

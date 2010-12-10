@@ -2,5 +2,6 @@
 <i18n baseKey="m.users.document.websitefrontendgroup" lcid="fr_FR">
   <include id="m.users.document.frontendgroup"/>
   <key id="document-name">groupe d'utilisateur d'un site</key>
-  <key id="label-format">utilisateurs du site {website}</key>
+  <key id="label-format">utilisateurs du site {website}</key> 
+  <key id="linkedwebsites">sites liés</key>
 </i18n>

@@ -4,8 +4,8 @@
 	model-version="1.0" icon="user1" has-url="false">
 	<properties>
 		<add name="titleid" from-list="modules_users/title" type="Integer"/>
-		<add name="firstname" type="String" min-occurs="1" />
-		<add name="lastname" type="String" min-occurs="1" />
+		<add name="firstname" type="String" />
+		<add name="lastname" type="String" />
 		<add name="email" type="String" min-occurs="1" >
 			<constraints>email:true</constraints>
 		</add>

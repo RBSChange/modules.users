@@ -84,14 +84,6 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 	private function getEditProfilePage()
 	{
 		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
-		try
-		{
-			$page = TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_edit-profil', $website);
-		}
-		catch (Exception $e)
-		{
-			Framework::error(__METHOD__ . ': ' . $e->getMessage());
-		}
-		return $page;
+ 		return TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_edit-profil', $website, false);
 	}
 }

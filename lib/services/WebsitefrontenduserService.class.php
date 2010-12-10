@@ -36,6 +36,16 @@ class users_WebsitefrontenduserService extends users_FrontenduserService
 	}
 	
 	/**
+	 * Only documents that are strictly instance of modules_users/websitefrontenduser
+	 * @return f_persistentdocument_criteria_Query
+	 */
+	public function createStrictQuery()
+	{
+		return $this->pp->createQuery('modules_users/websitefrontenduser', false);
+	}
+	
+	
+	/**
 	 * @param users_persistentdocument_websitefrontenduser $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document.
 	 * @return void
@@ -43,12 +53,23 @@ class users_WebsitefrontenduserService extends users_FrontenduserService
 	protected function preInsert($document, $parentNodeId = null)
 	{
 		parent::preInsert($document, $parentNodeId);
-		$group = $this->getDocumentInstance($parentNodeId);
-		if (!$group instanceof users_persistentdocument_websitefrontendgroup)
+		if ($parentNodeId != null)
 		{
-			throw new IllegalArgumentException('parentNode', 'users_persistentdocument_websitefrontendgroup');
+			$websitefrontendgroup = DocumentHelper::getDocumentInstance($parentNodeId, 'modules_users/websitefrontendgroup');
 		}
-		$document->setWebsiteid($group->getWebsiteid());
+		
+		$websiteid = $document->getWebsiteid();
+		if ($websiteid == null && $parentNodeId == null)
+		{
+			throw new Exception('Invalid website');
+		}
+		else if ($websiteid == null)
+		{
+			$websiteid = $websitefrontendgroup->getWebsiteid();
+		}
+		
+		$mastergroup = users_WebsitefrontendgroupService::getInstance()->getDefaultByWebsiteId($websiteid);
+		$document->setWebsiteid($mastergroup->getWebsiteid());
 	}
 	
 	/**

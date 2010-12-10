@@ -4,4 +4,6 @@
   <key id="cardinality">nombre d'utilisateurs</key>
   <key id="refreshing">rafraichissement en cours</key>
   <key id="reference">référence</key>
+  <key id="website">utilisateur du site</key>
+  <key id="linkedwebsites">site lié pour l'authentification</key>
 </i18n>

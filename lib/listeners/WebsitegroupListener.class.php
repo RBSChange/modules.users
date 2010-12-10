@@ -17,7 +17,10 @@ class users_WebsitegroupListener
 		{
 			$website = $params['document'];
 			$wfgs = users_WebsitefrontendgroupService::getInstance();
-			$wfgs->createDefaultFromWebsite($website);
+			if ($wfgs->getDefaultByWebsite($website) === null)
+			{
+				$wfgs->createDefaultFromWebsite($website);
+			}
 		}
 	}
 	

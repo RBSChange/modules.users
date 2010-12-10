@@ -8,4 +8,12 @@ class users_BackenduserScriptDocumentElement extends import_ScriptDocumentElemen
     {
     	return users_BackenduserService::getInstance()->getNewDocumentInstance();
     }
+    
+	/**
+	 * @see import_ScriptDocumentElement::getParentInTree()
+	 */
+	protected function getParentInTree()
+	{
+		return null;
+	}
 }

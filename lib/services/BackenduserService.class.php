@@ -214,4 +214,28 @@ class users_BackenduserService extends users_UserService
 		return $rows[0]['count'];
 	}
 
+	private $currentUser = false;
+	
+	/**
+	 * @return users_persistentdocument_backenduser or null
+	 */
+	public function getCurrentUser()
+	{
+		if ($this->currentUser === false)
+		{
+			$agaviUser = $this->getAgaviUser();
+			if ($agaviUser !== null)
+			{
+				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
+				$id = $agaviUser->getId();
+				$agaviUser->setUserNamespace($oldNameSpace);
+				$this->currentUser = $this->getUserFromSessionId($id);
+			}
+			else
+			{
+				$this->currentUser = null;
+			}
+		}
+		return $this->currentUser;
+	}
 }

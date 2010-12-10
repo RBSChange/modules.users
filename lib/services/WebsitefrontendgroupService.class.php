@@ -68,15 +68,33 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 	
 	/**
 	 * Get the default frontend Group
+	 * @param website_persistentdocument_website $website
 	 * @return users_persistentdocument_websitefrontendgroup
 	 */
 	public function getDefaultByWebsite($website)
 	{
+		return $this->getDefaultByWebsiteId($website->getId());
+	}
+	
+	/**
+	 * Get the default frontend Group
+	 * @return users_persistentdocument_websitefrontendgroup
+	 */
+	public function getDefaultByWebsiteId($websiteId)
+	{	
 		$query = $this->createQuery()
 			->add(Restrictions::eq('isdefault', true))
-			->add(Restrictions::eq('websiteid', $website->getId()));
-		return $query->findUnique();
-	}
+			->add(Restrictions::eq('websiteid', $websiteId));
+		$group = $query->findUnique();
+		
+		if ($group === null)
+		{
+			$group = $this->createQuery()
+				->add(Restrictions::eq('isdefault', true))
+				->add(Restrictions::eq('linkedwebsites.id', $websiteId))->findUnique();
+		}
+		return $group;
+	}	
 	
 	/**
 	 * @param website_persistentdocument_website $website
@@ -114,7 +132,7 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		$group = $this->getDefaultByWebsite($website);
 		if ($group === null)
 		{
-			$this->createFromWebsite($website);	
+			$this->createDefaultFromWebsite($website);	
 		}
 		else 
 		{
@@ -132,6 +150,150 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		$group->setLabel(f_Locale::translate('&modules.users.document.websitefrontendgroup.Label-format;', array('website' => $website->getVoLabel())));
 	}
 	
+	
+
+	/**
+	 * @param users_persistentdocument_websitefrontendgroup $document
+	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @return void
+	 */
+	protected function preSave($document, $parentNodeId)
+	{
+		parent::preSave($document, $parentNodeId);
+		if ($document->isPropertyModified('linkedwebsites'))
+		{
+			$this->applyModifiedLinkedWebsites($document);
+		}
+	}
+	
+	/**
+	 * @param users_persistentdocument_websitefrontendgroup $document
+	 */
+	protected function applyModifiedLinkedWebsites($document)
+	{
+		$result = array();
+		foreach ($document->getLinkedwebsitesArray() as $doc) 
+		{
+			if ($doc instanceof users_persistentdocument_websitefrontendgroup)
+			{
+				if ($document->getWebsiteid() == $doc->getWebsiteid())
+				{
+					continue;
+				}
+				$website = DocumentHelper::getDocumentInstance($doc->getWebsiteid(), 'modules_website/website');
+				$result[$website->getId()] = $website;
+			}
+			else if ($doc instanceof website_persistentdocument_website)
+			{
+				if ($document->getWebsiteid() == $doc->getId())
+				{
+					continue;
+				}
+				$result[$doc->getId()] = $doc;
+			}
+		}
+		$document->setLinkedwebsitesArray(array_values($result));
+	}
+	
+	/**
+	 * @param integer $websiteId
+	 * @return integer[]
+	 */
+	public function getLinkedWebsiteIds($websiteId)
+	{
+		$result =  array();
+		$group = $this->createQuery()
+				->add(Restrictions::eq('isdefault', true))
+				->add(Restrictions::eq('websiteid', $websiteId))->findUnique();
+				
+		if ($group === null)
+		{
+			$group = $this->createQuery()
+				->add(Restrictions::eq('isdefault', true))
+				->add(Restrictions::eq('linkedwebsites.id', $websiteId))->findUnique();
+		}
+		
+		if ($group === null)
+		{
+			Framework::warn(__METHOD__ . ' not default group for website id: '  .$websiteId);
+			$result[] = $websiteId;
+		}
+		else
+		{
+			$result[] = $group->getWebsiteid();
+			foreach ($group->getLinkedwebsitesArray() as $websiste) 
+			{
+				$result[] = $websiste->getId();
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * @param users_persistentdocument_websitefrontendgroup $document
+	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @return void
+	 */
+	protected function postSave($document, $parentNodeId)
+	{
+		parent::postSave($document, $parentNodeId);
+		
+		$query = $this->createQuery();
+		$query->createCriteria('linkedwebsites')
+			->setProjection(Projections::property('id', 'websiteid'));
+			
+		foreach ($query->find() as $row) 
+		{
+			$group = $this->createQuery()->add(Restrictions::eq('isdefault', true))
+				->add(Restrictions::eq('websiteid', $row['websiteid']))->delete();
+		}
+	
+		foreach (website_WebsiteService::getInstance()->getAll() as $website) 
+		{
+			$group = $this->getDefaultByWebsite($website);
+			if ($group === null)
+			{
+				$this->createDefaultFromWebsite($website);
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * @see users_GroupService::getByLabel()
+	 */
+	public function getByLabel($label)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see f_persistentdocument_DocumentService::getResume()
+	 *
+	 * @param users_persistentdocument_websitefrontendgroup $document
+	 * @param string $forModuleName
+	 * @param array $allowedSections
+	 * @return array
+	 */
+	public function getResume($document, $forModuleName, $allowedSections = null)
+	{
+		$data = parent::getResume($document, $forModuleName, $allowedSections);
+		$website = DocumentHelper::getDocumentInstance($document->getWebsiteid());
+		$data['properties']['website'] = $website->getUrl();
+		if ($document->getLinkedwebsitesCount())
+		{
+			$linkedWebsites = array();
+			foreach ($document->getLinkedwebsitesArray() as $website) 
+			{
+				$linkedWebsites[] = $website->getUrl();
+			}
+			$data['properties']['linkedWebsites'] = implode(" \n", $linkedWebsites);
+		}
+		return $data;
+	}
+
 	// Deprecated methods.
 	
 	/**
