@@ -1,5 +1,5 @@
 <?php
-class users_SetUserModulePermissionAction extends f_action_BaseAction
+class users_SetUserModulePermissionAction extends f_action_BaseJSONAction
 {
 	/**
 	 * @return Boolean
@@ -63,6 +63,6 @@ class users_SetUserModulePermissionAction extends f_action_BaseAction
 		}
 		$eventParam = array('nodeId' => null, 'updatedRoles' => $modifiedRoles, 'module' => null);
 		$ps->dispatchPermissionsUpdatedEvent($eventParam);
-		return $this->getSuccessView();
+		return $this->sendJSON($eventParam);
 	}
 }

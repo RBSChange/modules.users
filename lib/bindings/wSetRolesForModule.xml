@@ -191,8 +191,10 @@
 					}
 					if (modifiedRoles.length > 0)
 					{
-						this.controller.execute('SetUserModulePermission', this, 'users', 'SetUserModulePermission', 
-						{cmpref:this.roleData.user.id, acl:modifiedRoles}, 'post');
+						var me = this;
+        				var callBack = function(result) {me.onSetUserModulePermission(result);};
+						wCore.executeJSON('users', 'SetUserModulePermission', 
+							{cmpref:this.roleData.user.id, acl:modifiedRoles}, callBack, true);
 					}
 					else
 					{
@@ -201,12 +203,10 @@
 				]]></body>
 			</method>
 			
-			<method name="onSetUserModulePermissionSuccess">
-				<parameter name="e4x" />
-				<parameter name="xmlHttp" />
-				<parameter name="callBackParameters" />
+			<method name="onSetUserModulePermission">
+				<parameter name="result" />
 				<body><![CDATA[
-					wCore.debug('onSetUserModulePermissionSuccess');
+					wCore.debug('onSetUserModulePermission: ' + result.status);
 					this.controller.closeModalDialog(true);
 				]]></body>
 			</method>
