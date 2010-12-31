@@ -22,16 +22,18 @@ class users_GetBackEndUserAccessAction extends f_action_BaseJSONAction
 			
 			$fullAccess = $user->getIsroot();
 			
-			foreach (ModuleService::getInstance()->getPackageVersionList() as $packageName => $version)
+			foreach (ModuleService::getInstance()->getModulesObj() as $cModule)
 			{
-				$moduleName = substr($packageName, 8);
-				$prefixConstModulename = strtoupper('mod_'.$moduleName.'_');
-				$enabled = constant($prefixConstModulename . 'ENABLED');
-				$rootFolderId = ModuleService::getInstance()->getRootFolderId($moduleName);
-				$visible = constant($prefixConstModulename . 'VISIBLE');
+				$packageName = $cModule->getFullName();
+				$moduleName = $cModule->getName();
+				$version = $cModule->getVersion();
+				$enabled = $cModule->isEnabled();
+				$rootFolderId = $cModule->getRootFolderId();
+				$visible = $cModule->isVisible();
+	
 				if ($visible)
 				{
-					$menu = (defined($prefixConstModulename . 'CATEGORY')) ? constant($prefixConstModulename . 'CATEGORY') : 'modules';
+					$menu = $cModule->getCategory();
 					$access = $fullAccess || f_permission_PermissionService::getInstance()->hasPermission($user, $packageName . '.Enabled', $rootFolderId);
 					$list = $fullAccess || f_permission_PermissionService::getInstance()->hasPermission($user, $packageName . '.List.rootfolder', $rootFolderId);	
 				}
