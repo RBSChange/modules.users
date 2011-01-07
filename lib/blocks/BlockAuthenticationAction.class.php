@@ -55,10 +55,15 @@ class users_BlockAuthenticationAction extends website_BlockAction
 					if ($autoLogin === 'yes')
 					{
 						users_ModuleService::getInstance()->setAutoLogin($user);
-					}					
+					}
 					
+					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter("illegalAccessPage");
 					$agaviUser = Controller::getInstance()->getContext()->getUser();
-					$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
+					if (f_util_StringUtils::isEmpty($illegalAccessPage))
+					{
+						$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
+					}
+					
 					if ($illegalAccessPage)
 					{
 						$agaviUser->setAttribute('illegalAccessPage', null);
