@@ -57,8 +57,8 @@ class users_LoginAction extends f_action_BaseAction
 				
 				// Clears the request parameters: 1) keep the ones we need
 				$pageRef = $request->getParameter(K::PAGE_REF_ACCESSOR);
-				$module = $request->getParameter(AG_MODULE_ACCESSOR);
-				$action = $request->getParameter(AG_ACTION_ACCESSOR);
+				$module = $request->getParameter('module');
+				$action = $request->getParameter('action');
 				$access = $request->getParameter('access');
 				$popup = $request->hasParameter("popup");
 				
@@ -80,8 +80,8 @@ class users_LoginAction extends f_action_BaseAction
 					$request->setParameter('access', $access);
 				}
 				$request->setParameter(K::PAGE_REF_ACCESSOR, $pageRef);
-				$request->setParameter(AG_MODULE_ACCESSOR, $module);
-				$request->setParameter(AG_ACTION_ACCESSOR, $action);
+				$request->setParameter('module', $module);
+				$request->setParameter('action', $action);
 				if ($popup)
 				{
 					$request->setParameter("popup", "on");

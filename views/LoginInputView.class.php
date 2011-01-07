@@ -24,12 +24,6 @@ class users_LoginInputView extends f_view_BaseView
 			{
 				Framework::log("No informations to display an authentication in front office", Logger::WARN);
 			}
-	        $this->setAttribute('cssInclusion',
-	           $this->getStyleService()
-		    	  ->registerStyle('modules.users.bologin')
-		    	  ->execute(K::HTML)
-		    );
-	        
 	        $this->setAttribute('UIHOST',  Framework::getUIBaseUrl());
 			$rq->endI18nWork();
 		}
