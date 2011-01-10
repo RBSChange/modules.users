@@ -635,6 +635,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 	public function sendUserInformations($user, $newAccount = true)
 	{
 		$ns = notification_NotificationService::getInstance();
+		
+		$websiteId = null;
 
 		// Retrieve the right notification to use.
 		if ($user instanceof users_persistentdocument_frontenduser)
@@ -643,10 +645,12 @@ class users_UserService extends f_persistentdocument_DocumentService
 			if ($user instanceof users_persistentdocument_websitefrontenduser)
 			{
 				$accessLink = DocumentHelper::getDocumentInstance($user->getWebsiteid())->getUrl();
+				$websiteId = $user->getWebsiteid();
 			}
 			else
 			{
 				$accessLink = Framework::getUIBaseUrl();
+				
 			}
 		}
 		else if ($user instanceof users_persistentdocument_backenduser)
@@ -655,7 +659,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$accessLink = Framework::getUIBaseUrl() . '/admin/';
 		}
 		// This will return the desired notification only if it is publicated.
-		$notification = $ns->getNotificationByCodeName($notificationCodeName);
+		$notification = $ns->getByCodeName($notificationCodeName, $websiteId);
 
 		$replacementArray = array(
 			'login' => $user->getLogin(),
