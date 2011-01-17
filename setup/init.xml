@@ -21,9 +21,9 @@
 		<editablelist listid="modules_users/title" order="false"
 			description="Civilités pour le module utilisateur"
 			label="Civilités pour le module utilisateur">	
-			<item id="mr" label-fr="M" label-en="Mr"/>
-			<item label-fr="Mlle" label-en="Mlle"/>
-			<item label-fr="Mme" label-en="Mme"/>
+			<item byLabel="M" />
+			<item byLabel="Mlle" />
+			<item byLabel="Mme" />
 		</editablelist>
 		
 		<staticlist listid="modules_users/editprofilepanels"
