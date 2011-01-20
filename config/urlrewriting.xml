@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlrewriting>
-
-  <rules>
-
-    <rule redirection="users/FrontendLogout" lang="fr">
-      <template>/deconnexion/</template>
-    </rule>
-    <rule redirection="users/FrontendLogout">
-      <template>/logout/</template>
-    </rule>
-
-  </rules>
-
+	<rules>
+		<rule redirection="users/FrontendLogout" lang="fr">
+			<template>/deconnexion/</template>
+		</rule>
+		<rule redirection="users/FrontendLogout">
+			<template>/logout/</template>
+		</rule>
+		<rule redirection="users/ConfirmEmail">
+			<template>/confirm-email/$cmpref/$key</template>
+			<parameters>
+				<globalParameter name="key" />
+				<globalParameter name="cmpref" />
+			</parameters>
+		</rule>
+	</rules>
 </urlrewriting>
