@@ -34,32 +34,9 @@
 	<action name="removeUser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-			var docs = listWidget.getSelectedItems();
+			var ids = listWidget.getSelectedIds();
 			var parentItem = listWidget.getSelectedParentItem();
-			
-			var labels = [];
-			var ids = [], parentIds = [];
-			
-			for (var i=0; i < docs.length; i++)
-			{
-				ids.push(docs[i].id);
-				labels.push(docs[i].label);
-			}
-
-			var label;
-			if (labels.length > 10)
-			{
-				label = "&amp;modules.uixul.bo.general.ConfirmDeleteMessage; (" + labels.length + " &amp;modules.uixul.backoffice.items;)";
-			}
-			else
-			{
-				label = "&amp;modules.uixul.bo.general.ConfirmDeleteMessageList;\n - " + labels.join("\n - ");
-			}
-
-			if (confirm(label))
-			{
-				this.executeJSON("RemoveUsers", {cmpref: ids, parentref: parentItem.id});
-			}
+			this.executeJSON("RemoveUsers", {cmpref: ids, parentref: parentItem.id});
 		]]></body>
 	</action>
 	
