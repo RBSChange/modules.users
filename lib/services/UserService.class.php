@@ -236,7 +236,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		else 
 		{
-			Framework::warn(__METHOD__ . " (2) LOGIN: " . $login . " PASSWORD: " . $password . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
+			Framework::warn(__METHOD__ . " (2) LOGIN: " . $login . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
 			return null;
 		}
 	}
