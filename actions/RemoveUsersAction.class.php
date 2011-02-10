@@ -9,29 +9,20 @@ class users_RemoveUsersAction extends f_action_BaseJSONAction
 	{
 		$parentId = $request->getParameter(K::PARENT_ID_ACCESSOR);
 		$parentDoc = DocumentHelper::getDocumentInstance($parentId, 'modules_users/group');
-
+		if ($parentDoc->getIsdefault())
+		{
+			throw new BaseException("Can't remove from default group", 'modules.users.errors.Cant-remove-from-default-group');
+		}
+		
 		$docIds = $this->getDocumentIdArrayFromRequest($request);
-		$result = array('deleted' => array(), 'removed' => array(), 'from' => $parentDoc->getLabel(), 'parentid' => $parentId);
-			
 		foreach ($docIds as $docId)
 		{
 			$doc = DocumentHelper::getDocumentInstance($docId, 'modules_users/user');	
 			$userLabel = $doc->getLabel();
-			// Perform the removing or deletion.
-			if ($parentDoc->getIsdefault())
-			{
-				$doc->delete();
-				$result['deleted'][] = $docId;
-				
-			}
-			else
-			{
-				$parentDoc->removeUserInverse($doc);
-				$parentDoc->save();
-				$result['removed'][] = $docId;
-			}
+			$parentDoc->removeUserInverse($doc);
+			$parentDoc->save();
 			$this->logAction($parentDoc, array('userid' => $docId, 'userlabel' => $userLabel));
 		}
-		return $this->sendJSON($result);
+		return $this->sendJSON(array());
 	}
 }

@@ -22,7 +22,7 @@ class users_LoginInputView extends f_view_BaseView
 			$this->setTemplateName($templateName, K::HTML);
 			if (!$request->hasParameter('access'))
 			{
-				Framework::log("No informations to display an authentication in front office", Logger::WARN);
+				Framework::warn(__METHOD__ . " No informations to display an authentication in front office");
 			}
 	        $this->setAttribute('UIHOST',  Framework::getUIBaseUrl());
 			$rq->endI18nWork();

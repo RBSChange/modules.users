@@ -7,4 +7,5 @@
   <key id="unable-to-generate-password">impossible de generer un nouveau mot de passe</key>
   <key id="invalid-authentification">erreur d'authentification</key>
   <key id="invalid-login-or-password">Identifiant ou mot de passe non valide</key>
+  <key id="cant-remove-from-default-group">Aucun utilisateur ne peut être retiré de ce groupe. Si vous souhaitez supprimer un utilisateur, utilisez plutôt le bouton "supprimer".</key>
 </i18n>

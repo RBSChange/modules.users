@@ -236,7 +236,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		else 
 		{
-			Framework::warn(__METHOD__ . " (2) LOGIN: " . $login . " PASSWORD: " . $password . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
+			Framework::warn(__METHOD__ . " (2) LOGIN: " . $login . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
 			return null;
 		}
 	}
@@ -715,10 +715,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function authenticate($user)
 	{
-		if (session_id() != '')
-		{
-			session_regenerate_id(true);
-		}
 		$agaviUser = $this->getAgaviUser();
 		if ($agaviUser === NULL) {return;}
 
