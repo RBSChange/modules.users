@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" tal:attributes="xml:lang lang; lang lang;">
+	<head>
+		<title i18n:translate="&modules.uixul.bo.general.Project-name;">CHANGE4</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="chrome://global/skin/" type="text/css" />
+<style type="text/css">
+html {
+	background: #4e4a49;
+}
+img{
+	border: 0;
+	vertical-align: middle;
+}
+body {
+	background: -moz-linear-gradient(90deg, #4e4a49, #383433) no-repeat;
+	font-family: "Trebuchet MS", verdana, arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	min-height: 500px;
+	overflow: hidden;
+}
+
+.header {
+	height: 39px;
+	background: url(/media/backoffice/login-header-bg.png) repeat-x;
+}
+
+.header span {
+	line-height: 39px;
+}
+
+h1 {
+	color: #393534;
+	text-transform: uppercase;
+	margin: 0 auto;
+	padding: 0;
+	font-size: 18px; line-height : 39px;
+	text-align: center;
+	line-height: 39px; 
+	text-align : center;
+	text-shadow: 1px 2px 1px #b4b0af;
+}
+
+
+.content {
+	width: 100%;
+	text-align: center;
+	color: white;
+}
+
+.content p {
+	width: 640px;
+	margin:auto;
+	text-align: justify;
+}
+
+.content a {
+	color: #AAA;
+	text-decoration: none;	
+}
+
+.content a:hover {
+	color: #CCC;
+	text-decoration: underline;	
+}
+
+p.download {
+	margin: 25px auto;
+	text-align: center;
+}
+
+p.download a {
+	background: #CCC;
+	color: #333;
+	font-weight: bold;
+	padding:5px 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border:1px #999 solid;
+}
+
+p.download a:hover {
+	color: #444;
+	background: #DDD;
+	text-shadow: 0px 0px 20px #FFF;
+	text-decoration: none;	
+}
+
+p.copyright {
+	margin-top:50px;
+	text-align: center;
+	font-size:10px;
+}
+		</style>
+		<link rel="icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="${UIHOST}/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript">
+		function startExtension()
+		{
+			try
+			{
+				var element = document.getElementById('changexchrome');   
+				var evt = document.createEvent("Events");   
+				evt.initEvent("RBSChangeExtensionStartEvent", true, false);   
+				element.dispatchEvent(evt);
+			} catch (e) {}
+		} 
+		</script> 	
+	</head>
+
+	<body onload="startExtension();">
+		<div class="header">
+			<h1>Identification</h1>
+		</div>
+		<div class="content" >
+			<a href="http://www.rbschange.com" title="Visit rbschange.com"  hreflang="en"><img change:image="login-logo.png" /></a>
+			<h2>Log on to your backoffice interface</h2>
+			<p>Welcome to RBS Change! In order to log on to your backoffice interface, you have to use the RBS Change Manager Firefox extension for Firefox
+			3.5 or above. If you would like to know more about this extension, please read the 
+			<a href="http://www.rbschange.com/docs/rbs-change-manager-firefox-extension/" hreflang="en">online documentation</a> on our website.
+			</p> 
+			<p class="download" id="changexchrome" url="${UIHOST}"><a href="https://addons.mozilla.org/fr/firefox/addon/261963/" target="_blank" title="Install RBS Change Manager">Install</a></p>
+			<p class="copyright">RBS Change&trade; &copy; 2010 <a href="http://www.rbs.fr" title="visit rbs.fr" hreflang="fr">Ready Business System</a></p>
+		</div>
+
+	</body>
+</html>
