@@ -131,4 +131,18 @@ class users_DynamicfrontendgroupService extends users_FrontendgroupService
 			->add(Restrictions::eq('autoRefresh', true))
 			->find();
 	}
+	
+	/* (non-PHPdoc)
+	 * @see f_persistentdocument_DocumentService::addTreeAttributes()
+	 */
+	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
+	{
+		// TODO Auto-generated method stub
+	    parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
+	    $nodeAttributes['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getRefreshing() ? 'Yes' : 'No').';');
+	    $nodeAttributes['autoRefresh'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getAutoRefresh() ? 'Yes' : 'No').';');
+	}
+
+	
+	
 }

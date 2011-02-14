@@ -51,15 +51,5 @@ class users_persistentdocument_dynamicfrontendgroup extends users_persistentdocu
 		$this->setParametersArray($parameters);
 	}
 	
-	/**
-	 * @param string $moduleName
-	 * @param string $treeType
-	 * @param array<string, string> $nodeAttributes
-	 */	
-	protected function addTreeAttributes($moduleName, $treeType, &$nodeAttributes)
-	{
-	    parent::addTreeAttributes($moduleName, $treeType, $nodeAttributes);
-	    $nodeAttributes['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.($this->getRefreshing() ? 'Yes' : 'No').';');
-	    $nodeAttributes['autoRefresh'] = f_Locale::translateUI('&modules.generic.backoffice.'.($this->getAutoRefresh() ? 'Yes' : 'No').';');
-	}
+
 }
