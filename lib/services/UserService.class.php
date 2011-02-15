@@ -8,7 +8,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @var users_UserService
 	 */
 	private static $instance;
-
+	
 	/**
 	 * Returns the unique instance of UserService.
 	 * @return users_UserService
@@ -535,41 +535,15 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$ns = notification_NotificationService::getInstance();
 		
 		$websiteId = null;
-
-		// Retrieve the right notification to use.
-		if ($user instanceof users_persistentdocument_frontenduser)
-		{
-			$notificationCodeName = $newAccount ? 'modules_users/newFrontendUser' : 'modules_users/changeFrontendUserPassword';
-			if ($user instanceof users_persistentdocument_websitefrontenduser)
-			{
-				$accessLink = DocumentHelper::getDocumentInstance($user->getWebsiteid())->getUrl();
-				$websiteId = $user->getWebsiteid();
-			}
-			else
-			{
-				$accessLink = Framework::getUIBaseUrl();
-				
-			}
-		}
-		else if ($user instanceof users_persistentdocument_backenduser)
-		{
-			$notificationCodeName = $newAccount ? 'modules_users/newBackendUser' : 'modules_users/changeBackendUserPassword';
-			$accessLink = Framework::getUIBaseUrl() . '/admin/';
-		}
+		$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', "users_DefaultUsersNotificationStrategy");
+		$strategy =  new $strategyClassName();
 		// This will return the desired notification only if it is publicated.
-		$notification = $ns->getByCodeName($notificationCodeName, $websiteId);
-
-		$replacementArray = array(
-			'login' => $user->getLogin(),
-			'password' => $user->getClearPassword(),
-			'accesslink' => $accessLink,
-			'fullname' => $user->getFullname(),
-			'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
-		);
-
+		$code = $newAccount ? $strategy->getNewAccountNotificationCodeByUser($user) : $strategy->getPasswordChangeNotificationCodeByUser($user);
+		$websiteId = $strategy->getNotificationWebsiteIdByUser($user);
+		$replacementArray = $strategy->getNotificationSubstitutions($user, $code);
 		$recipients = new mail_MessageRecipients();
 		$recipients->setTo($user->getEmail());
-		return $ns->send($notification, $recipients, $replacementArray, 'users');
+		return $ns->send($notification = $ns->getByCodeName($code, $websiteId), $recipients, $replacementArray, 'users');
 	}
 
 
