@@ -58,4 +58,6 @@
   <key id="log-move-backenduser">log-move-backenduser</key>
   <key id="login">Login {documentlabel}</key>
   <key id="log-login">log-Login</key>
+  <key id="refreshdynamicfrontendgroup-dynamicfrontendgroup">refreshdynamicfrontendgroup.dynamicfrontendgroup {documentlabel}</key>
+  <key id="log-refreshdynamicfrontendgroup-dynamicfrontendgroup">log refreshdynamicfrontendgroup dynamicfrontendgroup</key>
 </i18n>
