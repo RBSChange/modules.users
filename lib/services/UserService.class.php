@@ -10,6 +10,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 	private static $instance;
 	
 	/**
+	 * @var boolean
+	 */
+	private $isLoginCaseSensitive;
+	
+	/**
 	 * Returns the unique instance of UserService.
 	 * @return users_UserService
 	 */
@@ -28,6 +33,21 @@ class users_UserService extends f_persistentdocument_DocumentService
 	public function getNewDocumentInstance()
 	{
 		return $this->getNewDocumentInstanceByModelName('modules_users/user');
+	}
+	
+	/**
+	 * Are logins case sensitive. Default false starting with version 3.5.0.
+	 * To enable login case sensitivity, turn to true "modules/users/loginCaseSensitive"
+	 * configuration entry
+	 * @return boolean
+	 */
+	public function isLoginCaseSensitive()
+	{
+		if ($this->isLoginCaseSensitive === null)
+		{
+			$this->isLoginCaseSensitive = Framework::getConfigurationValue("modules/users/loginCaseSensitive", false);
+		}
+		return $this->isLoginCaseSensitive;
 	}
 
 	/**
@@ -76,6 +96,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 			{
 				$document->setPasswordmd5(md5($password));
 			}
+		}
+		
+		if (!$this->isLoginCaseSensitive())
+		{
+			$document->setLogin(f_util_StringUtils::strtolower($document->getLogin()));
 		}
 	}
 
@@ -333,6 +358,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 		// Check if User exist in database
 		if (!empty($login))
 		{
+			if (!$this->isLoginCaseSensitive())
+			{
+				$login = f_util_StringUtils::strtolower($login);
+			}
 			return users_BackenduserService::getInstance()->createQuery()
 				->add(Restrictions::eq('login', $login))->findUnique();
 		}
@@ -368,6 +397,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 	{
 		if (!empty($login))
 		{
+			if (!$this->isLoginCaseSensitive())
+			{
+				$login = f_util_StringUtils::strtolower($login);
+			}
 			if (intval($websiteId) > 0)
 			{
 				$websiteIds = users_WebsitefrontendgroupService::getInstance()->getLinkedWebsiteIds($websiteId);
@@ -382,7 +415,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 						return $user;
 					}
 				}
-				
 			}
 
 			$users = users_FrontenduserService::getInstance()->createQuery()
@@ -924,6 +956,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 		// Check if User exist in database
 		if (!empty($login))
 		{
+			if (!$this->isLoginCaseSensitive())
+			{
+				$login = f_util_StringUtils::strtolower($login);
+			}
 			$query = $this->createQuery()->add(Restrictions::eq('login', $login));
 			$users = $query->find();
 			if (count($users) > 0)

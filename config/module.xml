@@ -6,4 +6,9 @@
 		<icon>users</icon>
 		<category>admin</category>
 	</module>
+	<!-- Enable login case sentitivity ; default false starting with 3.5.0 version
+	<project>
+		<entry name="loginCaseSensitive">true</entry>
+	</project>
+	-->
 </config>
