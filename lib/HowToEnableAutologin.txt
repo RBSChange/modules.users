@@ -1,0 +1,10 @@
+#
+# To enable auto-login, just add the following code into config/project.xml
+#
+	<config>
+		<mvc>
+			<classes>
+				<entry name="controller_ChangeController">users_ChangeController</entry>
+			</classes>	
+		</mvc>
+	</config>

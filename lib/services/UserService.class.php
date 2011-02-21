@@ -543,7 +543,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$replacementArray = $strategy->getNotificationSubstitutions($user, $code);
 		$recipients = new mail_MessageRecipients();
 		$recipients->setTo($user->getEmail());
-		return $ns->send($notification = $ns->getByCodeName($code, $websiteId), $recipients, $replacementArray, 'users');
+		if ($code !== null)
+		{
+			return $ns->send($ns->getByCodeName($code, $websiteId), $recipients, $replacementArray, 'users');
+		}
+		return true;
 	}
 
 

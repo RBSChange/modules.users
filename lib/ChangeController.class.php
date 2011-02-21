@@ -41,7 +41,7 @@ class users_ChangeController extends controller_ChangeController
 	/**
 	 * @return Boolean
 	 */
-	public static function allowAutoLogin()
+	public function allowAutoLogin()
 	{
 		return true;
 	}

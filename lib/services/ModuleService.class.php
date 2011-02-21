@@ -52,7 +52,7 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function allowAutoLogin()
 	{
-		return (f_util_ClassUtils::methodExists('controller_ChangeController', 'allowAutoLogin') && controller_ChangeController::allowAutoLogin() === true);
+		return (f_util_ClassUtils::methodExists(Controller::getInstance(), 'allowAutoLogin') && controller::getInstance()->allowAutoLogin() === true);
 	}
 	
 	/**
