@@ -592,7 +592,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		{
 			return Controller::getInstance()->getContext()->getUser();
 		}
-		catch (ControllerException $e)
+		catch (Exception $e)
 		{
 			if (Framework::isInfoEnabled())
 			{
