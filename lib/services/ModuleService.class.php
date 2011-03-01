@@ -62,8 +62,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
-      		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
+			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
+      		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
 		}
 	}
 	
@@ -74,8 +74,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
-      		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
+			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
+      		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
 		}
 	}
 }
