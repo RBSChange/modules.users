@@ -10,27 +10,27 @@ class users_WebsitefrontendgroupScriptDocumentElement extends import_ScriptDocum
 	 */
 	protected function initPersistentDocument()
 	{
-		$website = null;
 		$groupService = users_WebsitefrontendgroupService::getInstance();
-		if (isset($this->attributes['for-default-website']) && $this->attributes['for-default-website'] == 'true')
+		$website = $this->getComputedAttribute('website');
+		
+		if ($website === null && isset($this->attributes['for-default-website']) && $this->attributes['for-default-website'] == 'true')
 		{
 			$website = website_WebsiteModuleService::getInstance()->getDefaultWebsite();
 			if ($website->isNew())
 			{
 				throw new Exception("No default website available");
 			}
-			$group = $groupService->getDefaultByWebsite($website);
 			unset($this->attributes['for-default-website']);
-			if ($group !== null)
-			{
-				return $group;
-			}
 		}
-		$group = $groupService->getNewDocumentInstance();
+		
 		if ($website !== null)
 		{
-			$group->setWebsiteid($website->getId());
+			$group = $groupService->getDefaultByWebsite($website);
+			return $group;
 		}
-		return $group;
+		else 
+		{
+			throw new Exception("No website specified");
+		}
 	}
 }
