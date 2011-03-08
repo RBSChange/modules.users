@@ -916,12 +916,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		return true;
 	}
-	
-	
-	//DEPRECATED
+		
+	// Deprecated.
 	
 	/**
-	 * @deprecated use getIdentifiedBackendUser or getIdentifiedFrontendUser
+	 * @deprecated (will be removed in 4.0) use getIdentifiedBackendUser or getIdentifiedFrontendUser
 	 */
 	public final function checkIdentityByLogin($login, $password)
 	{
@@ -936,7 +935,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @deprecated use getGroupsByUser
+	 * @deprecated (will be removed in 4.0) use getGroupsByUser
 	 */
 	public final function getGroupsForUser($login)
 	{
@@ -949,7 +948,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
+	 * @deprecated (will be removed in 4.0) use getBackEndUserByLogin or getFrontendUserByLogin
 	 */
 	public final function getUserByLogin($login)
 	{
@@ -979,7 +978,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @deprecated use getBackEndUserByLogin or getFrontendUserByLogin
+	 * @deprecated (will be removed in 4.0) use getBackEndUserByLogin or getFrontendUserByLogin
 	 */
 	public final function loginExist($login)
 	{
@@ -987,7 +986,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @deprecated use resetPassword
+	 * @deprecated (will be removed in 4.0) use resetPassword
 	 */
 	public final function resetPasswordForLogin($login, $password = null)
 	{

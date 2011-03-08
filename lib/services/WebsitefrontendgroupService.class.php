@@ -67,6 +67,17 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 	}
 	
 	/**
+	 * @param website_persistentdocument_website $website
+	 * @return users_persistentdocument_websitefrontendgroup
+	 */
+	public function getDefaultByUser($user)
+	{
+		$query = $this->createQuery()->add(Restrictions::eq('isdefault', true));
+		$query->createCriteria('websitefrontenduser')->add(Restrictions::eq('id', $user->getId()));
+		return $query->findUnique();
+	}
+		
+	/**
 	 * Get the default frontend Group
 	 * @param website_persistentdocument_website $website
 	 * @return users_persistentdocument_websitefrontendgroup
