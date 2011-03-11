@@ -39,15 +39,20 @@ class users_BlockChangepasswordAction extends website_BlockAction
 		        $us = users_UserService::getInstance();
 		        if ($us->checkIdentity($currentUser, $oldpassword))
 		        {
+			    $tm = f_persistentdocument_TransactionManager::getInstance();
+
 		            try
 		            {
+                                $tm->beginTransaction();
 		                $currentUser->setPassword($password);
 		                $currentUser->save();
+                                $tm->commit();
 		                return  website_BlockView::SUCCESS; 
 		            }
 		            catch (Exception $e)
 		            {
 		                Framework::exception($e);
+                                $tm->rollBack($e);
 		                $errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.exception;');  
 		            }
 		        }
