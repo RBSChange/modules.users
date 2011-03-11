@@ -95,49 +95,52 @@ class users_FrontenduserService extends users_UserService
 	 */
 	public function prepareNewPassword($login, $websiteId)
 	{
-		$user = $this->getFrontendUserByLogin($login, $websiteId);
-		if ($user === null)
-		{
-			throw new BaseException('Invalid-login', 'modules.users.errors.Invalid-login');
-		}
-		$newPassword = $this->generatePassword();
-		try 
-		{
-			$user->setChangepasswordkey(md5($newPassword));
-			$user->save();
-			
-			$notificationService = notification_NotificationService::getInstance();
-			$notification = $notificationService->getNotificationByCodeName('modules_users/resetFrontendUserPassword');
-			if ($websiteId > 0)
-			{
-				$accessLink = DocumentHelper::getDocumentInstance($websiteId)->getUrl();
-			}
-			else
-			{
-				$accessLink = Framework::getBaseUrl();
-			}
-			
-			$replacementArray = array(
-				'login' => $user->getLogin(),
-				'password' => $newPassword,
-				'accesslink' => $accessLink,
-				'fullname' => $user->getFullname(),
-				'ip' => $_SERVER["REMOTE_ADDR"],
-				'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now()))
-			);
-			
-			$recipients = new mail_MessageRecipients();
-			$recipients->setTo($user->getEmail());
-			$notificationService->send($notification, $recipients, $replacementArray, 'users');
-			return $user;		
-		}
-		catch (Exception $e)
-		{
-			Framework::exception($e);
-			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
-		}
-		return null;
-	}
+                $tm = $this->getTransactionManager();
+                try
+                {
+                        $tm->beginTransaction();
+                        $user = $this->getFrontendUserByLogin($login, $websiteId);
+                        if ($user === null)
+                        {
+                                throw new BaseException('Invalid-login', 'modules.users.errors.Invalid-login');
+                        }
+                        $newPassword = $this->generatePassword();
+                        $user->setChangepasswordkey(md5($newPassword));
+                        $user->save();
+
+                        $notificationService = notification_NotificationService::getInstance();
+                        $notification = $notificationService->getNotificationByCodeName('modules_users/resetFrontendUserPassword');
+                        if ($websiteId > 0)
+                        {
+                                $accessLink = DocumentHelper::getDocumentInstance($websiteId)->getUrl();
+                        }
+                        else
+                        {
+                                $accessLink = Framework::getBaseUrl();
+                        }
+
+                        $replacementArray = array(
+                                'login' => $user->getLogin(),
+                                'password' => $newPassword,
+                                'accesslink' => $accessLink,
+                                'fullname' => $user->getFullname(),
+                                'ip' => $_SERVER["REMOTE_ADDR"],
+                                'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now()))
+                        );
+
+                        $recipients = new mail_MessageRecipients();
+                        $recipients->setTo($user->getEmail());
+                        $notificationService->send($notification, $recipients, $replacementArray, 'users');
+                        $tm->commit();
+                        return $user;
+                }
+                catch (Exception $e)
+                {
+                        $tm->rollBack($e);
+                        throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
+                }
+                return null;
+        }
 	
 		/**
 	 * @return Integer
