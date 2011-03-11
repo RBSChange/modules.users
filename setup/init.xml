@@ -11,11 +11,12 @@
 	<binding fileName="modules/users/setup/notifications.xml" />
 	
 	<systemfolder module="list" relatedmodule="users">
-		<staticlist listid="modules_users/securitylevel"
-			label="Niveau de sécurité pour mot de passe" description="Niveau de sécurité pour les mots de passe des utilisateurs (Basse, moyenne(defaut), élevé)">
-				<staticitem label="&amp;modules.users.list.securitylevel.low;" value="low"/>
-				<staticitem label="&amp;modules.users.list.securitylevel.medium;" value="medium"/>
-				<staticitem label="&amp;modules.users.list.securitylevel.high;" value="high"/>
+		<staticlist listid="modules_users/securitylevel" label="Niveau de sécurité pour mot de passe"
+			description="Niveau de sécurité pour les mots de passe des utilisateurs (minimale, basse, moyenne(defaut), élevée)">
+			<staticitem label="&amp;modules.users.list.securitylevel.minimal;" value="minimal" />
+			<staticitem label="&amp;modules.users.list.securitylevel.low;" value="low" />
+			<staticitem label="&amp;modules.users.list.securitylevel.medium;" value="medium" />
+			<staticitem label="&amp;modules.users.list.securitylevel.high;" value="high" />
 		</staticlist>
 		
 		<editablelist listid="modules_users/title" order="false"
