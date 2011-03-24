@@ -116,7 +116,7 @@ class users_FrontenduserService extends users_UserService
 			$user->save();
 			
 			$notificationService = notification_NotificationService::getInstance();
-			$notification = $notificationService->getNotificationByCodeName('modules_users/resetFrontendUserPassword');
+			$notification = $notificationService->getByCodeName('modules_users/resetFrontendUserPassword');
 			if ($websiteId > 0)
 			{
 				$accessLink = DocumentHelper::getDocumentInstance($websiteId)->getUrl();
@@ -204,7 +204,7 @@ class users_FrontenduserService extends users_UserService
 		{
 			$ns = notification_NotificationService::getInstance();
 			$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
-			$notification = notification_NotificationService::getInstance()->getNotificationByCodeName($notificationCode);
+			$notification = $ns->getByCodeName($notificationCode);
 			$emailConfirmUrl = LinkHelper::getActionUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $userKey));
 			$replacements = array(
 				'email' => $user->getEmail(), 

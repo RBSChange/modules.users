@@ -147,7 +147,7 @@ class users_BackenduserService extends users_UserService
 			$user->save();
 				
 			$notificationService = notification_NotificationService::getInstance();
-			$notification = $notificationService->getNotificationByCodeName('modules_users/resetBackendUserPassword');
+			$notification = $notificationService->getByCodeName('modules_users/resetBackendUserPassword');
 			$accessLink = Framework::getUIBaseUrl();
 				
 			$replacementArray = array(
