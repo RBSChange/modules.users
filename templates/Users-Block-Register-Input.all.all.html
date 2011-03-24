@@ -1,28 +1,28 @@
-<h2 change:h="" change:translate="modules.users.frontoffice.Already-registered"></h2>
+<h2 change:h="">${trans: m.users.frontoffice.already-registered,ucf}</h2>
 <form id="login-form" change:form="" class="cmxform">
 	<ul change:errors="relKey login-form"></ul>
 	<ol>
 		<li>
-			<label for="users_register_login-form_login"><tal:block change:translate="modules.users.frontoffice.authentication.LoginLabel" /> *</label>
+			<label for="users_register_login-form_login">${trans: m.users.frontoffice.authentication.login,ucf,lab} *</label>
 			<input change:textinput="name login" />
 		</li>
 		<li>
-			<label for="users_register_login-form_password"><tal:block change:translate="modules.users.frontoffice.authentication.PasswordLabel" /> *</label>
+			<label for="users_register_login-form_password">${trans: m.users.frontoffice.authentication.password,ucf,lab} *</label>
 			<input change:passwordinput="name password" />
 		</li>
 		<li tal:condition="allowAutoLogin">
-			<label for="users_register_login-form_autoLogin_" change:translate="modules.users.frontoffice.authentication.Auto-login-meLabel"></label>
+			<label for="users_register_login-form_autoLogin_">${trans: m.users.frontoffice.authentication.auto-login-me,ucf,lab}</label>
 			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
-			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
+			${trans: m.users.frontoffice.authentication.auto-login-me-help}
 		</li>
 	</ol>
 	<p class="buttons">
-		<input change:submit="label &modules.users.frontoffice.Login-button;" class="button" name="login" />
-		<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button" change:translate="modules.users.frontoffice.authentication.Resetpasswordlink"></a>
+		<input change:submit="" label="${trans: m.users.frontoffice.login-button,ucf}" class="button" name="login" />
+		<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button">${trans: m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
 	</p>
 </form>
 
-<h2 change:h="" change:translate="modules.users.frontoffice.Registration"></h2>
+<h2 change:h="">${trans: m.users.frontoffice.registration,ucf}</h2>
 <form id="registration-form" change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user" class="cmxform">
 	<ul change:errors="relKey registration-form"></ul>
 	<div><input change:field="name beanId" /></div>
@@ -30,7 +30,7 @@
 		<li><input change:field="name email" /></li>
 		<li>
 			<input change:field="name login" required="false" />
-			<p class="help-text" change:translate="modules.users.frontoffice.Registration-login-help" />	
+			<p class="help-text">${trans: m.users.frontoffice.registration-login-help,ucf}</p>	
 		</li>
 		<tal:block tal:condition="configuration/getShowPersonalFields">
 			<li><input change:field="name titleid" /></li>
@@ -44,11 +44,11 @@
 			</tal:block>
 		</tal:block>
 		<tal:block tal:condition="configuration/getShowPasswordFields">
-			<li><input change:passwordinput="" required="true" name="password" label="&modules.users.frontoffice.authentication.PasswordLabel;" /></li>
-			<li><input change:passwordinput="" required="true" name="password_confirm" label="&modules.users.frontoffice.authentication.ConfirmPasswordLabel;" /></li>
+			<li><input change:passwordinput="" required="true" name="password" label="${trans: m.users.frontoffice.authentication.password,ucf,lab}" /></li>
+			<li><input change:passwordinput="" required="true" name="password_confirm" label="${trans: m.users.frontoffice.authentication.confirmpassword,ucf,lab}" /></li>
 		</tal:block>
 	</ol>
 	<p class="buttons">
-		<input change:submit="label &modules.users.frontoffice.Create-my-account;" class="button" name="save" />
+		<input change:submit="" label="${trans: m.users.frontoffice.create-my-account,ucf}" class="button" name="save" />
 	</p>
 </form>
