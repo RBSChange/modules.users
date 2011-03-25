@@ -92,6 +92,7 @@ class users_FrontenduserService extends users_UserService
 	 * @param String $login
 	 * @param Integer $websiteId
 	 * @return users_persistentdocument_frontenduser
+	 * @throws BaseException on error
 	 */
 	public function prepareNewPassword($login, $websiteId)
 	{
@@ -127,22 +128,30 @@ class users_FrontenduserService extends users_UserService
                                 'ip' => $_SERVER["REMOTE_ADDR"],
                                 'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now()))
                         );
-
+                        
                         $recipients = new mail_MessageRecipients();
-                        $recipients->setTo($user->getEmail());
-                        $notificationService->send($notification, $recipients, $replacementArray, 'users');
-                        $tm->commit();
-                        return $user;
-                }
-                catch (Exception $e)
-                {
-                        $tm->rollBack($e);
-                        throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
-                }
-                return null;
-        }
-	
-		/**
+ 						$recipients->setTo($user->getEmail());
+ 						if (!$notificationService->send($notification, $recipients, $replacementArray, 'users'))
+ 						{
+ 							throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
+ 						}
+ 						$tm->commit();
+ 						return $user;
+		}
+		catch (BaseException $e)
+		{
+			$tm->rollBack($e);
+			throw $e;
+		}
+		catch (Exception $e)
+		{
+			$tm->rollBack($e);
+			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
+		}
+		return null;
+	}
+
+	/**
 	 * @return Integer
 	 */
 	public function getCount()

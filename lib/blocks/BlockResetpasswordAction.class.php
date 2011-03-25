@@ -1,12 +1,6 @@
 <?php
 class users_BlockResetpasswordAction extends block_BlockAction
 {
-
-	private function getUserService()
-	{
-		return users_UserService::getInstance();
-	}
-
 	/**
 	 * @param block_BlockContext $context
 	 * @param block_BlockRequest $request
@@ -27,22 +21,10 @@ class users_BlockResetpasswordAction extends block_BlockAction
                 {
                 	$us->prepareNewPassword($login, $website->getId());
                 }
-                catch (BaseException $e)
-                {
-                	if ($e->getKey())
-                	{	
-                		 $errors[] = f_Locale::translate('&' . $e->getKey() . ';', $e->getAttributes()); 		
-                	}
-                	else
-                	{
-                		$errors[] = $e->getMessage();
-                	}         
-                }
-                catch (Exception $e)
-                {
-					Framework::exception($e);
-                    $errors[] = f_Locale::translate('&modules.users.frontoffice.resetpassword.Exception;');                	
-                }
+            	catch (BaseException $e)
+				{
+					$errors[] = $e->getLocaleMessage();
+				}
             }
             else
             {

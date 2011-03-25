@@ -35,4 +35,7 @@
     <locale lang="en">Invalid login or password</locale>
     <locale lang="de">Benutzername oder Passwort ungültig</locale>
   </entity>
+  <entity id="unable-to-send-password">
+  	<locale lang="fr">impossible d'envoyer le nouveau mot de passe</locale>
+  </entity>
 </localization>
