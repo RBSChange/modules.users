@@ -137,9 +137,17 @@ class users_FrontenduserService extends users_UserService
 
 			$recipients = new mail_MessageRecipients();
 			$recipients->setTo($user->getEmail());
-			$notificationService->send($notification, $recipients, $replacementArray, 'users');
+			if (!$notificationService->send($notification, $recipients, $replacementArray, 'users'))
+			{
+				throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
+			}
 			$tm->commit();
 			return $user;
+		}
+		catch (BaseException $e)
+		{
+			$tm->rollBack($e);
+			throw $e;
 		}
 		catch (Exception $e)
 		{
