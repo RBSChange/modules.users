@@ -9,12 +9,11 @@ class users_FrontendLogoutAction extends f_action_BaseAction
 	public function _execute($context, $request)
 	{
 		users_UserService::getInstance()->authenticateFrontEndUser(null);
-
+		users_ModuleService::getInstance()->unsetAutoLogin();
 		$url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl();
 		HttpController::getInstance()->redirectToUrl($url);
-
 		return View::NONE;
-    }
+	}
     
 	/**
 	 * @return Boolean true
