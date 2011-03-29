@@ -75,7 +75,7 @@ class users_ModuleService extends ModuleBaseService
 		if ($this->allowAutoLogin())
 		{
 			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
-      		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
+			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
 		}
 	}
 }

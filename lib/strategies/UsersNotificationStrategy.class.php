@@ -70,6 +70,8 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 			'login' => $user->getLogin(),
 			'password' => $user->getClearPassword(),
 			'accesslink' => $accessLink,
+			'firstname' => $user->getFirstname(),
+			'lastname' => $user->getLastname(),
 			'fullname' => $user->getFullname(),
 			'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
 		);
