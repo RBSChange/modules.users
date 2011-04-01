@@ -92,6 +92,24 @@ class validation_LoginValidator extends validation_UniqueValidator
 		if ($this->parentId === null && $this->document !== null)
 		{
 			$this->parentId = $this->document->getParentNodeId();
+			if ($this->parentId === null && $this->document instanceof users_persistentdocument_user)
+			{
+				if ($this->document instanceof users_persistentdocument_websitefrontenduser)
+				{
+					foreach ($this->document->getGroupsArray() as $group)
+					{
+						if ($group instanceof users_persistentdocument_websitefrontendgroup)
+						{
+							$this->parentId = $group->getId();
+							break;
+						}
+					}
+				}
+				else if ($this->document->getGroupsCount() > 0)
+				{
+					$this->parentId = $this->document->getGroups(0)->getId();
+				}
+			}
 		}
 		
 		$group = DocumentHelper::getDocumentInstance($this->parentId);
