@@ -147,8 +147,11 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		}
 		else 
 		{
-			$this->setDefaultLabel($group, $website);
-			$this->save($group);
+			if ($group->getWebsiteid() == $website->getId())
+			{
+				$this->setDefaultLabel($group, $website);
+				$this->save($group);
+			}
 		}
 	}
 	
