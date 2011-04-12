@@ -879,31 +879,91 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
+	 * @param notification_persistentdocument_notification $notification
 	 * @param users_persistentdocument_user $user
-	 * @param string $notificationCode
-	 * @param string[] $replacements
+	 * @param string $callback
+	 * @param mixed $callbackParameter
 	 * @return boolean
 	 */
-	public function sendNotificationToUser($user, $notificationCode, $replacements, $senderModuleName)
+	public function sendNotificationToUserCallback($notification, $user, $callback = null, $callbackParameter = null)
 	{
-		$notification = notification_NotificationService::getInstance()->getByCodeName($notificationCode);
 		if ($notification === null)
 		{
-			if (Framework::isDebugEnabled())
+			if (Framework::isInfoEnabled())
 			{
-				Framework::debug(__METHOD__ . ' No published notification for code "' . $notificationCode . '"');
+				Framework::info(__METHOD__ . ' No notification to send.');
+			}
+			return false;
+		}
+		else if ($user === null)
+		{
+			if (Framework::isInfoEnabled())
+			{
+				Framework::info(__METHOD__ . ' No user to send notification.');
 			}
 			return false;
 		}
 		
-		$userReplacements = array(
+		$recipients = new mail_MessageRecipients();
+		$recipients->setTo($user->getEmail());
+		$cb = array($this, 'getNotificationParametersCallback');
+		$cbParams = array(
+			'user' => $user,
+			'callback' => $callback,
+			'callbackParameter' => $callbackParameter
+		);
+		return $notification->getDocumentService()->sendNotificationCallback($notification, $recipients, $cb, $cbParams);
+	}
+	
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @param string $callback
+	 * @param mixed $callbackParameter with keys 'user', 'callback' and 'callbackParameter'
+	 * @return array
+	 */
+	public function getNotificationParametersCallback($params)
+	{
+		$replacements = $this->getNotificationParameters($params['user']);		
+		if (isset($params['callback']) && $params['callback'])
+		{
+			$replacements = array_merge($replacements, call_user_func($params['callback'], $params['callbackParameter']));
+		}			
+		return $replacements;
+	}
+	
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @return array
+	 */
+	public function getNotificationParameters($user)
+	{
+		return array(
 			'receiverFirstName' => $user->getFirstnameAsHtml(),
 			'receiverLastName' => $user->getLastnameAsHtml(),
 			'receiverFullName' => $user->getFullnameAsHtml(),
 			'receiverTitle' => ($user->getTitleid()) ? $user->getTitleidLabelAsHtml() : '',
 			'receiverEmail' => $user->getEmailAsHtml()
 		);
-		$replacements = array_merge($userReplacements, $replacements);
+	}
+		
+	// Deprecated.
+	
+	/**
+	 * @deprecated (will be removed in 4.0) use sendNotificationToUserCallback
+	 */
+	public function sendNotificationToUser($user, $notificationCode, $replacements, $senderModuleName)
+	{
+		$notification = notification_NotificationService::getInstance()->getByCodeName($notificationCode);
+		if ($notification === null)
+		{
+			if (Framework::isInfoEnabled())
+			{
+				Framework::info(__METHOD__ . ' No published notification for code "' . $notificationCode . '"');
+			}
+			return false;
+		}		
+		
+		$replacements = array_merge($this->getNotificationParameters($user), $replacements);
 		$receiverEmail = $user->getEmail();
 		
 		$ns = $notification->getDocumentService();
@@ -916,8 +976,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		return true;
 	}
-		
-	// Deprecated.
 	
 	/**
 	 * @deprecated (will be removed in 4.0) use getIdentifiedBackendUser or getIdentifiedFrontendUser
