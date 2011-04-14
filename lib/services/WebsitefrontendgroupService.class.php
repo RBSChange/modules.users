@@ -155,17 +155,16 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		}
 	}
 	
-		/**
+	/**
 	 * @param users_persistentdocument_websitefrontendgroup $group
 	 * @param website_persistentdocument_website $website
 	 */
 	private function setDefaultLabel($group, $website)
 	{
-		$group->setLabel(f_Locale::translate('&modules.users.document.websitefrontendgroup.Label-format;', array('website' => $website->getVoLabel())));
+		$ls = LocaleService::getInstance();
+		$group->setLabel($ls->transBO('m.users.document.websitefrontendgroup.label-format', array('ucf'), array('website' => $website->getVoLabel())));
 	}
 	
-	
-
 	/**
 	 * @param users_persistentdocument_websitefrontendgroup $document
 	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
@@ -272,15 +271,12 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		}
 	}
 	
-	
-	
 	/**
 	 * @see users_GroupService::getByLabel()
 	 */
 	public function getByLabel($label)
 	{
 		// TODO Auto-generated method stub
-		
 	}
 
 	/**
