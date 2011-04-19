@@ -926,7 +926,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$replacements = $this->getNotificationParameters($params['user']);		
 		if (isset($params['callback']) && $params['callback'])
 		{
-			$replacements = array_merge($replacements, call_user_func($params['callback'], $params['callbackParameter']));
+			$callbackReplacements = call_user_func($params['callback'], $params['callbackParameter']);
+			if (is_array($callbackReplacements))
+			{
+				$replacements = array_merge($replacements, $callbackReplacements);
+			}
 		}			
 		return $replacements;
 	}
