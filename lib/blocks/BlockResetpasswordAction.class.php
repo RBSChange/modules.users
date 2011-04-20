@@ -25,17 +25,18 @@ class users_BlockResetpasswordAction extends block_BlockAction
 				{
 					$errors[] = $e->getLocaleMessage();
 				}
+				$this->setParameter("loginAsHtml", f_util_HtmlUtils::textToHtml($login));
             }
             else
             {
                 $errors[] = f_Locale::translate('&modules.users.frontoffice.resetpassword.emptylogin;');
             }
             
-            if (count($errors) > 0)
+            if (count($errors) == 0)
             {
-                $this->setParameter('errors', $errors);
+                return block_BlockView::SUCCESS;
             }
-            return block_BlockView::SUCCESS;
+            $this->setParameter('errors', $errors);
         }
         return block_BlockView::INPUT;
 	}

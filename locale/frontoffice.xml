@@ -116,7 +116,7 @@
 		<locale lang="de">senden</locale>
 	</entity>
 	<entity id="resetpassword.emptylogin">
-		<locale lang="fr">le login ne peux pas etre vide.</locale>
+		<locale lang="fr">L'identifiant ne peut pas être vide.</locale>
 		<locale lang="en">login can not be empty.</locale>
 		<locale lang="de">Das Login kann nicht leer sein.</locale>
 	</entity>
