@@ -131,7 +131,7 @@ class users_FrontenduserService extends users_UserService
 				'password' => $newPassword,
 				'accesslink' => $accessLink,
 				'fullname' => $user->getFullname(),
-				'ip' => $_SERVER["REMOTE_ADDR"],
+				'ip' => RequestContext::getInstance()->getClientIp(),
 				'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now()))
 			);
 
