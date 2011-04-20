@@ -4,5 +4,5 @@
   <key id="exception">une erreur est survenu pendant la sauvegarde de votre mot passe.</key>
   <key id="invalidlogin">le login n'existe pas.</key>
   <key id="submitbutton">envoyer</key>
-  <key id="emptylogin">le login ne peux pas etre vide.</key>
+  <key id="emptylogin">L'identifiant ne peut pas être vide.</key>
 </i18n>
