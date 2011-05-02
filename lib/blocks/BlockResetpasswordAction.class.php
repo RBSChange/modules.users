@@ -28,7 +28,7 @@ class users_BlockResetpasswordAction extends website_BlockAction
 				{
 					$errors[] = $e->getLocaleMessage();
 				}
-				$this->setParameter("loginAsHtml", f_util_HtmlUtils::textToHtml($login));
+				$request->setAttribute('loginAsHtml', f_util_HtmlUtils::textToHtml($login));
 			}
 			else
 			{
