@@ -559,29 +559,39 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 *
 	 * @param users_persistentdocument_user $user
 	 * @param boolean $newAccount
-	 *
 	 * @return boolean
 	 */
 	public function sendUserInformations($user, $newAccount = true)
 	{
-		$ns = notification_NotificationService::getInstance();
-		
-		$websiteId = null;
 		$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', "users_DefaultUsersNotificationStrategy");
 		$strategy =  new $strategyClassName();
-		// This will return the desired notification only if it is publicated.
 		$code = $newAccount ? $strategy->getNewAccountNotificationCodeByUser($user) : $strategy->getPasswordChangeNotificationCodeByUser($user);
-		$websiteId = $strategy->getNotificationWebsiteIdByUser($user);
-		$replacementArray = $strategy->getNotificationSubstitutions($user, $code);
-		$recipients = new mail_MessageRecipients();
-		$recipients->setTo($user->getEmail());
-		if ($code !== null)
+		if ($code === null)
 		{
-			return $ns->send($ns->getByCodeName($code, $websiteId), $recipients, $replacementArray, 'users');
+			return true;
+		}
+		
+		$websiteId = $strategy->getNotificationWebsiteIdByUser($user);
+		$configuredNotif = notification_NotificationService::getInstance()->getConfiguredByCodeName($code, $websiteId);
+		if ($configuredNotif instanceof notification_persistentdocument_notification)
+		{
+			$configuredNotif->setSendingModuleName('users');
+			$callback = array($this, 'getUserInformationNotifParameters');
+			$params = array('user' => $user, 'code' => $code, 'strategy' => $strategy);
+			$recipients = new mail_MessageRecipients($user->getEmail());
+			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
 		}
 		return true;
 	}
-
+	
+	/**
+	 * @param array $params
+	 * @return $params
+	 */
+	public function getUserInformationNotifParameters($params)
+	{
+		return $params['strategy']->getNotificationSubstitutions($params['user'], $params['code']);
+	}
 
 	/**
 	 * @return FrameworkSecurityUser or null
@@ -947,6 +957,31 @@ class users_UserService extends f_persistentdocument_DocumentService
 			'receiverFullName' => $user->getFullnameAsHtml(),
 			'receiverTitle' => ($user->getTitleid()) ? $user->getTitleidLabelAsHtml() : '',
 			'receiverEmail' => $user->getEmailAsHtml()
+		);
+	}
+	
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getNewPasswordNotifParamters($params)
+	{
+		if (isset($params['websiteId']) && $params['websiteId'] > 0)
+		{
+			$accessLink = DocumentHelper::getDocumentInstance($params['websiteId'])->getUrl();
+		}
+		else
+		{
+			$accessLink = Framework::getBaseUrl();
+		}		
+		$user = $params['user'];
+		return array(
+			'login' => $user->getLoginAsHtml(),
+			'password' => $params['password'],
+			'accesslink' => $accessLink,
+			'fullname' => $user->getFullnameAsHtml(),
+			'ip' => RequestContext::getInstance()->getClientIp(),
+			'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now())) 
 		);
 	}
 		

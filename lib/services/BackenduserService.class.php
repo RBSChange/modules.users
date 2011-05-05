@@ -1,7 +1,6 @@
 <?php
 class users_BackenduserService extends users_UserService
 {
-
 	/**
 	 * @var users_BackenduserService
 	 */
@@ -36,8 +35,6 @@ class users_BackenduserService extends users_UserService
 	{
 		return $this->pp->createQuery('modules_users/backenduser');
 	}
-
-
 
 	/**
 	 * @param users_persistentdocument_backenduser $document
@@ -142,26 +139,26 @@ class users_BackenduserService extends users_UserService
 			}
 
 			$newPassword = $this->generatePassword();
-
 			$user->setChangepasswordkey(md5($newPassword));
 			$user->save();
-				
-			$notificationService = notification_NotificationService::getInstance();
-			$notification = $notificationService->getByCodeName('modules_users/resetBackendUserPassword');
-			$accessLink = Framework::getUIBaseUrl();
-				
-			$replacementArray = array(
-				'login' => $user->getLogin(),
-				'password' => $newPassword,
-				'accesslink' => $accessLink,
-				'fullname' => $user->getFullname(),
-				'ip' => $_SERVER["REMOTE_ADDR"],
-				'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now())) 
-			);
-				
-			$recipients = new mail_MessageRecipients();
-			$recipients->setTo($user->getEmail());
-			$notificationService->send($notification, $recipients, $replacementArray, 'users');
+			
+			$ns = notification_NotificationService::getInstance();
+			$configuredNotif = $ns->getConfiguredByCodeName('modules_users/resetBackendUserPassword');
+			if ($configuredNotif instanceof notification_persistentdocument_notification)
+			{
+				$configuredNotif->setSendingModuleName('users');
+				$callback = array($this, 'getNewPasswordNotifParamters');
+				$params = array('user' => $user, 'password' => $newPassword);
+				$recipients = new mail_MessageRecipients($user->getEmail());
+				if (!$user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params))
+				{
+					throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
+				}	
+			}
+			else 
+			{
+				throw new Exception('No published notification for code "modules_users/resetBackendUserPassword"');
+			}
 			$this->tm->commit();
 			return $user;
 		}

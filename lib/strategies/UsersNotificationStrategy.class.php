@@ -1,5 +1,4 @@
 <?php
-
 interface users_UsersNotificationStrategy
 {
 	public function getPasswordChangeNotificationCodeByUser($user);
@@ -13,10 +12,9 @@ interface users_UsersNotificationStrategy
 
 class users_DefaultUsersNotificationStrategy implements users_UsersNotificationStrategy
 {
-	
-
-	/* (non-PHPdoc)
-	 * @see users_UsersNotificationStrategy::getNewAccountNotificationCodeByUser()
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @return string
 	 */
 	public function getNewAccountNotificationCodeByUser($user)
 	{
@@ -33,8 +31,9 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 		
 	}
 
-	/* (non-PHPdoc)
-	 * @see users_UsersNotificationStrategy::getPasswordChangeNotificationCodeByUser()
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @return string
 	 */
 	public function getPasswordChangeNotificationCodeByUser($user)
 	{
@@ -49,8 +48,10 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 		return null;
 	}
 
-	/* (non-PHPdoc)
-	 * @see users_UsersNotificationStrategy::getNotificationSubstitutions()
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @param string $code
+	 * @return array
 	 */
 	public function getNotificationSubstitutions($user, $code)
 	{
@@ -78,8 +79,9 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 		
 	}
 
-	/* (non-PHPdoc)
-	 * @see users_UsersNotificationStrategy::getNotificationWebsiteByUser()
+	/**
+	 * @param users_persistentdocument_user
+	 * @return integer
 	 */
 	public function getNotificationWebsiteIdByUser($user)
 	{
@@ -89,6 +91,4 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 		}
 		return null;
 	}
-
-	
 }

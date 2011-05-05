@@ -102,10 +102,9 @@ class users_FrontenduserService extends users_UserService
 	 */
 	public function prepareNewPassword($login, $websiteId)
 	{
-		$tm = $this->getTransactionManager();
 		try
 		{
-			$tm->beginTransaction();
+			$this->tm->beginTransaction();
 			$user = $this->getFrontendUserByLogin($login, $websiteId);
 			if ($user === null)
 			{
@@ -115,46 +114,56 @@ class users_FrontenduserService extends users_UserService
 			$user->setChangepasswordkey(md5($newPassword));
 			$user->save();
 
-			$notificationService = notification_NotificationService::getInstance();
-			$notification = $notificationService->getByCodeName('modules_users/resetFrontendUserPassword');
-			if ($websiteId > 0)
+			$ns = notification_NotificationService::getInstance();
+			$configuredNotif = $ns->getConfiguredByCodeName('modules_users/resetFrontendUserPassword', $websiteId);
+			if ($configuredNotif instanceof notification_persistentdocument_notification)
 			{
-				$accessLink = DocumentHelper::getDocumentInstance($websiteId)->getUrl();
+				$configuredNotif->setSendingModuleName('users');
+				$callback = array($this, 'getNewPasswordNotifParamters');
+				$params = array('user' => $user, 'password' => $newPassword, 'websiteId' => $websiteId);
+				$recipients = new mail_MessageRecipients($user->getEmail());
+				if (!$user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params))
+				{
+					throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
+				}	
 			}
-			else
+			else 
 			{
-				$accessLink = Framework::getBaseUrl();
+				throw new Exception('No published notification for code "modules_users/resetBackendUserPassword"');
 			}
-
-			$replacementArray = array(
-				'login' => $user->getLogin(),
-				'password' => $newPassword,
-				'accesslink' => $accessLink,
-				'fullname' => $user->getFullname(),
-				'ip' => RequestContext::getInstance()->getClientIp(),
-				'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now()))
-			);
-
-			$recipients = new mail_MessageRecipients();
-			$recipients->setTo($user->getEmail());
-			if (!$notificationService->send($notification, $recipients, $replacementArray, 'users'))
-			{
-				throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
-			}
-			$tm->commit();
+			
+			$this->tm->commit();
 			return $user;
 		}
 		catch (BaseException $e)
 		{
-			$tm->rollBack($e);
+			$this->tm->rollBack($e);
 			throw $e;
 		}
 		catch (Exception $e)
 		{
-			$tm->rollBack($e);
+			$this->tm->rollBack($e);
 			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
 		}
 		return null;
+	}
+	
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getNewpasswordNotifParamters($params)
+	{
+		$user = $params['user'];
+	
+		return array(
+			'login' => $user->getLogin(),
+			'password' => $params['password'],
+			'accesslink' => Framework::getUIBaseUrl(),
+			'fullname' => $user->getFullname(),
+			'ip' => $_SERVER["REMOTE_ADDR"],
+			'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now())) 
+		);
 	}
 
 	/**
@@ -209,29 +218,37 @@ class users_FrontenduserService extends users_UserService
 		$userKey = f_util_StringUtils::randomString();		
 		$user->setMeta(self::EMAIL_CONFIRMATION_META_KEY, $userKey);
 		$user->saveMeta();
-		try
+				
+		$ns = notification_NotificationService::getInstance();
+		$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
+		$configuredNotif = $ns->getConfiguredByCodeName($notificationCode);
+		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
-			$ns = notification_NotificationService::getInstance();
-			$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
-			$notification = $ns->getByCodeName($notificationCode);
-			$emailConfirmUrl = LinkHelper::getActionUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $userKey));
-			$replacements = array(
-				'email' => $user->getEmail(), 
-				'emailConfirmUrl' => $emailConfirmUrl,
-				'login' => $user->getLogin(),
-				'password' => $password,
-				'fullname' => $user->getFullname(),
-				'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
-			);
-			$recipients = new mail_MessageRecipients();
-			$recipients->setTo($user->getEmail());
-			return $ns->send($notification, $recipients, $replacements, 'users');
-		}
-		catch (Exception $e)
-		{
-			Framework::exception($e);
+			$configuredNotif->setSendingModuleName('customer');
+			$callback = array($this, 'getEmailConfirmationParameters');
+			$params = array('user' => $user, 'key' => $userKey, 'password' => $password);
+			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
 		}
 		return false;
+	}
+	
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getEmailConfirmationParameters($params)
+	{
+		$user = $params['user'];
+		$emailConfirmUrl = LinkHelper::getActionUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $params['key']));
+		$replacements = array(
+			'email' => $user->getEmailAsHtml(), 
+			'emailConfirmUrl' => $emailConfirmUrl,
+			'login' => $user->getLoginAsHtml(),
+			'password' => $params['password'],
+			'fullname' => $user->getFullnameAsHtml(),
+			'title' => ($user->getTitleId()) ? $user->getTitleidLabelAsHtml() : ''
+		);
+		return $replacements;
 	}
 	
 	/**
