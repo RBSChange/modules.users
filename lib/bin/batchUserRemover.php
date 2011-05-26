@@ -1,8 +1,5 @@
 <?php
-Controller::newInstance("controller_ChangeController");
-
 $group = DocumentHelper::getDocumentInstance($_POST['argv'][0], 'modules_users/dynamicfrontendgroup');
-
 $userIdArray = array_slice($_POST['argv'], 1);
 foreach ($userIdArray as $userId) 
 {
@@ -15,5 +12,7 @@ foreach ($userIdArray as $userId)
 	catch (Exception $e)
 	{
 		Framework::exception($e);
+		die($e->getMessage());
 	}
 }
+echo 'OK';

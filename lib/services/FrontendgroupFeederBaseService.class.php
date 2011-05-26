@@ -22,10 +22,10 @@ abstract class users_FrontendgroupFeederBaseService extends BaseService
 			// Create the planed task.
 			$refreshListTask = task_PlannedtaskService::getInstance()->getNewDocumentInstance();
 			$refreshListTask->setSystemtaskclassname('users_RefreshDynamicfrontendgroupTask');
-			$refreshListTask->setUniqueExecutiondate(date_Calendar::getInstance());
 			$refreshListTask->setLabel(__METHOD__);
 			$refreshListTask->setParameters(serialize(array('groupId' => $group->getId())));
-			$refreshListTask->save(ModuleService::getInstance()->getSystemFolderId('task', 'users'));
+			$refreshListTask->setUniqueExecutiondate(date_Calendar::getInstance());
+			$refreshListTask->save();
 			$tm->commit();
 		}
 		catch (Exception $e)
