@@ -85,14 +85,6 @@ class users_BlockRegisterAction extends website_BlockAction
 	{
 		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
 		$group = users_WebsitefrontendgroupService::getInstance()->getDefaultByWebsite($website);
-		if ($user->getFirstname() === null)
-		{
-			$user->setFirstname('Anonymous');
-		}
-		if ($user->getLastname() === null)
-		{
-			$user->setLastname('Anonymous');
-		}
 		if ($user->getLogin() === null)
 		{
 			$user->setLogin($user->getEmail());
