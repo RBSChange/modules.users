@@ -6,5 +6,5 @@
 	</tal:block>
 </ul>
 
-<h3 change:h="">${currentPanel/label}</h3>
+<h3 change:h="">${php: ucfirst(currentPanel['label'])}</h3>
 <tal:block change:block="" module="${currentPanel/module}" name ="${currentPanel/blockName}" />
