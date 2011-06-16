@@ -12,8 +12,12 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	 */
 	public function execute($request, $response)
 	{
-		$this->setUserList($request);
-		return website_BlockView::SUCCESS;
+            if ($this->isInBackoffice())
+            {
+                return website_BlockView::NONE;
+            }
+            $this->setUserList($request);
+            return website_BlockView::SUCCESS;
 	}
 
 	/**

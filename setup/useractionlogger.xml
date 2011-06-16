@@ -34,4 +34,5 @@
   <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
   <actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser"/>
   <actiondef modulename="users" actionname="refreshdynamicfrontendgroup.dynamicfrontendgroup" label="m.users.bo.useractionlogger.refreshdynamicfrontendgroup-dynamicfrontendgroup"/>
+  <actiondef modulename="users" actionname="reactivate.websitefrontenduser" label="m.users.bo.useractionlogger.reactivate-websitefrontenduser"/>
 </script>

@@ -60,4 +60,6 @@
   <key id="log-login">log-Login</key>
   <key id="refreshdynamicfrontendgroup-dynamicfrontendgroup">refreshdynamicfrontendgroup.dynamicfrontendgroup {documentlabel}</key>
   <key id="log-refreshdynamicfrontendgroup-dynamicfrontendgroup">log refreshdynamicfrontendgroup dynamicfrontendgroup</key>
+  <key id="reactivate-websitefrontenduser">reactivate.websitefrontenduser {documentlabel}</key>
+  <key id="log-reactivate-websitefrontenduser">log reactivate websitefrontenduser</key>
 </i18n>
