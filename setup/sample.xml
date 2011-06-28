@@ -3,10 +3,9 @@
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
 
-
 	<websitefrontendgroup for-default-website="true" id="websitefrontendgroup"/>
 
-	<website byTag="default_modules_website_default-website" template="webfactory/tplTwo">
+	<website byTag="default_modules_website_default-website">
 		<topic label="Pages spéciales" navigationVisibility="hidden" byLabel="Pages spéciales">
 			<page label="Authentification">
 				<tag name="contextual_website_website_error401-1" />

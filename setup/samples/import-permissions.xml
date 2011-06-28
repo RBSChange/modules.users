@@ -3,7 +3,7 @@
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
 
-	<website tagname="default_modules_website_default-website" template="webfactory/tplTwo">
+	<website tagname="default_modules_website_default-website">
 		<topic byLabel="Test permissions">
 			<permissions>
 				<backendpermission module="website" role="Admin" user="wwwadmin" group="Utilisateurs Change" />
