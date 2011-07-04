@@ -102,9 +102,10 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	 */
 	public function execute($request, $response)
 	{
+		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		if ($this->isInBackoffice())
 		{
-			return website_BlockView::NONE;
+			return website_BlockView::INPUT;
 		}
 
 		if ($this->currentUser !== null)
@@ -118,7 +119,6 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		{
 			$request->setAttribute('hideRegistrationLinks', true);
 		}
-		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		return website_BlockView::INPUT;
 	}
 }

@@ -15,7 +15,7 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
     {
 		if ($this->isInBackoffice())
 		{
-			return website_BlockView::NONE;
+			return website_BlockView::INPUT;
 		}
 		
 		$user = users_UserService::getInstance()->getCurrentFrontEndUser();

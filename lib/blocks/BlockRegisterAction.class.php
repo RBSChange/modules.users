@@ -14,9 +14,10 @@ class users_BlockRegisterAction extends website_BlockAction
 	 */
 	function execute($request, $response)
 	{
+		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		if ($this->isInBackoffice())
 		{
-			return website_BlockView::NONE;
+			return website_BlockView::INPUT;
 		}
 		
 		// If there is already a user, redirect to profile edition.
@@ -26,8 +27,6 @@ class users_BlockRegisterAction extends website_BlockAction
 			$request->setAttribute('user', $user);
 			return 'Logged';
 		}
-
-		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		return website_BlockView::INPUT;
 	}
 	
