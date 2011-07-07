@@ -19,7 +19,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		$this->setUserList($request);
 		return website_BlockView::SUCCESS;
 	}
-	
+
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -30,7 +30,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		$this->setUserList($request);
 		return website_BlockView::SUCCESS;
 	}
-	
+
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -38,6 +38,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	 */
 	public function executeSwitch($request, $response)
 	{
+		$ls = LocaleService::getInstance();
 		if ($request->hasParameter('userId'))
 		{
 			$user = DocumentHelper::getDocumentInstance($request->getParameter('userId'));
@@ -48,22 +49,16 @@ class users_BlockSuAction extends website_TaggerBlockAction
 			}
 			else
 			{
-				$this->addError(
-						f_Locale::translate(
-								'&modules.users.frontoffice.su.Switched-error-do-not-have-permission;', 
-								array('fullName' => $user->getFullName(), 
-										'login' => $user->getLogin())));
+				$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-do-not-have-permission', array('ucf'), array('fullName' => $user->getFullName(), 'login' => $user->getLogin())));
 			}
 		}
 		else
 		{
-			$this->addError(
-					f_Locale::translate(
-							'&modules.users.frontoffice.su.Switched-error-bad-arguments;'));
+			$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-bad-arguments', array('ucf')));
 		}
 		return 'SwitchError';
 	}
-	
+
 	/**
 	 * Called when the block is inserted into a page content:
 	 * hide page From Menus And SiteMap and call website_TaggerBlockAction::onPageInsertion()
@@ -80,9 +75,8 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		}
 		parent::onPageInsertion($page, $absolute);
 	}
-	
+
 	// Private methods.
-	
 
 	/**
 	 * @param f_mvc_Request $request
@@ -91,13 +85,13 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	{
 		$words = $request->getParameter('userWords', '');
 		$pageIndex = $request->getParameter('page', 1);
-		
+
 		$itemsPerPage = $this->findParameterValue('itemsperpage');
 		if ($itemsPerPage < 1)
 		{
 			$itemsPerPage = 10;
 		}
-		
+
 		if ($this->getConfiguration()->getMasknonfiltered() && $words == '')
 		{
 			$documents = array();
@@ -106,15 +100,13 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		else
 		{
 			$currentUser = users_WebsitefrontenduserService::getInstance()->getCurrentFrontEndUser();
-			$totalHitsCount = users_WebsitefrontenduserService::getInstance()->getSuableCountByUser(
-					$currentUser, $words);
-			$documents = users_WebsitefrontenduserService::getInstance()->getSuableByUser(
-					$currentUser, $words, $itemsPerPage * ($pageIndex - 1), $itemsPerPage);
+			$totalHitsCount = users_WebsitefrontenduserService::getInstance()->getSuableCountByUser($currentUser, $words);
+			$documents = users_WebsitefrontenduserService::getInstance()->getSuableByUser($currentUser, $words, $itemsPerPage * ($pageIndex - 1), $itemsPerPage);
 		}
-		
+
 		$paginator = new paginator_Paginator('users', $pageIndex, $documents, $itemsPerPage);
 		$paginator->setPageCount((int)ceil($totalHitsCount / $itemsPerPage));
-		
+
 		$request->setAttribute('usersCount', $totalHitsCount);
 		$request->setAttribute('users', $paginator);
 	}

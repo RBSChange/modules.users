@@ -1,2 +1,2 @@
-<div class="showuserinfo" tal:condition="anonymousUser" i18n:translate="&modules.users.frontoffice.authentication.anonymousUser;"></div>
-<div class="showuserinfo" tal:condition="not: anonymousUser">${currentUser/getFullname}</div>
+<div class="showuserinfo" tal:condition="anonymousUser">${trans:m.users.frontoffice.authentication.anonymoususer,ucf}</div>
+<div class="showuserinfo" tal:condition="not: anonymousUser">${currentUser/getFullnameAsHtml}</div>

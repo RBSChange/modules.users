@@ -1,4 +1,4 @@
-<h2 change:h="" change:translate="modules.users.frontoffice.Edit-profile"></h2>
+<h1 change:h="" change:translate="modules.users.frontoffice.Edit-profile"></h1>
 <ul class="normal panels">
 	<tal:block tal:repeat="panel panels">
 		<li tal:condition="panel/isCurrent" class="current">${panel/label}</li>
@@ -6,5 +6,4 @@
 	</tal:block>
 </ul>
 
-<h3 change:h="">${php: ucfirst(currentPanel['label'])}</h3>
-<tal:block change:block="" module="${currentPanel/module}" name ="${currentPanel/blockName}" />
+<tal:block change:block="" module="${currentPanel/module}" name ="${currentPanel/blockName}" title="${php: ucfirst(currentPanel['label'])}" />

@@ -1,11 +1,15 @@
-<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
-<span>${currentUser/getFullname}</span>
-<a class="link" tal:attributes="href logoutUrl" i18n:translate="&modules.users.frontoffice.authentication.Logout;"></a>
-<p>
-	<a change:link="tag contextual_website_website_modules_users_edit-profil" change:translate="&modules.users.frontoffice.Edit-profile;"></a>
-</p>
-<tal:block tal:condition="php: customerRegistrationPage && !customer_CustomerService::getInstance().getCurrentCustomer()">
-	<p>
-		<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;"></a>
-	</p>
-</tal:block>
+<ul class="menu-list">
+	<li>
+		<span>${currentUser/getFullname}</span>
+		<a class="link" tal:attributes="href logoutUrl">${trans:m.users.frontoffice.authentication.logout}</a>
+	</li>
+	<li>
+		<a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a>
+	</li>
+	<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
+	<tal:block tal:condition="php: customerRegistrationPage && !customer_CustomerService::getInstance().getCurrentCustomer()">
+		<li>
+			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
+		</li>
+	</tal:block>
+</ul>

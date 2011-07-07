@@ -1,6 +1,5 @@
-<h2 change:h="" change:translate="modules.users.frontoffice.Already-logged-in"></h2>
-<p class="normal" change:translate="modules.users.frontoffice.You-are-logged-as; fullName user/getFullName"></p>
-<p class="buttons">
-	<a class="button" change:link="tag contextual_website_website_modules_users_edit-profil" change:translate="&modules.users.frontoffice.Edit-profile;"></a>
-	<a class="button" change:actionlink="" action="logout" change:translate="&modules.users.frontoffice.adminauthentication.Logout;"></a>
-</p>
+<p class="normal">${trans:m.users.frontoffice.you-are-logged-as,ucf,fullName=user/getFullName}</p>
+<ul class="menu-list">
+	<li><a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a></li>
+	<li><a change:actionlink="" action="logout">${trans:m.users.frontoffice.adminauthentication.logout,ucf}</a></li>
+</ul>

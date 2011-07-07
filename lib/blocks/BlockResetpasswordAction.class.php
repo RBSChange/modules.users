@@ -6,15 +6,15 @@ class users_BlockResetpasswordAction extends website_BlockAction
 	 * @param f_mvc_Response $response
 	 * @return String
 	 */
-	function execute($request, $response)
+	public function execute($request, $response)
 	{
 		if ($this->isInBackoffice())
 		{
 			return website_BlockView::INPUT;
 		}
+		
 		if ($request->hasParameter('submit'))
 		{
-			$errors = array();
 			$login = trim($request->getParameter('login'));
 			if (!empty($login))
 			{
@@ -23,23 +23,21 @@ class users_BlockResetpasswordAction extends website_BlockAction
 				try
 				{
 					$us->prepareNewPassword($login, $website->getId());
+					$request->setAttribute('loginAsHtml', f_util_HtmlUtils::textToHtml($login));
+					return website_BlockView::SUCCESS;
 				}
 				catch (BaseException $e)
 				{
-					$errors[] = $e->getLocaleMessage();
+					$this->addError($e->getLocaleMessage());
+					$request->setAttribute('errors', array($e->getLocaleMessage())); // For compatibility. Will be removed in 4.0.
 				}
-				$request->setAttribute('loginAsHtml', f_util_HtmlUtils::textToHtml($login));
 			}
 			else
 			{
-				$errors[] = LocaleService::getInstance()->transFO('m.users.frontoffice.resetpassword.emptylogin', array('ucf'));
+				$error = LocaleService::getInstance()->transFO('m.users.frontoffice.resetpassword.emptylogin', array('ucf'));
+				$this->addError($error);
+				$request->setAttribute('errors', array($error)); // For compatibility. Will be removed in 4.0.
 			}
-
-			if (count($errors) == 0)
-			{
-				return website_BlockView::SUCCESS;
-			}
-			$request->setAttribute('errors', $errors);
 		}
 		return website_BlockView::INPUT;
 	}

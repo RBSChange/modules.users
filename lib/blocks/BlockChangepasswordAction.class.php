@@ -1,11 +1,6 @@
 <?php
 class users_BlockChangepasswordAction extends website_BlockAction
 {
-	private function getUserService()
-	{
-		return users_UserService::getInstance();
-	}
-
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -19,13 +14,13 @@ class users_BlockChangepasswordAction extends website_BlockAction
 		}
 		
 		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
-		if ($currentUser === NULL)
+		if ($currentUser === null)
 		{
 			return website_BlockView::NONE;
 		}
 		$request->setAttribute('currentUser', $currentUser);
 
-		$errors = array();
+		$ls = LocaleService::getInstance();
 		if ($request->hasParameter('submit'))
 		{
 			$oldpassword = trim($request->getParameter('oldpassword'));
@@ -52,27 +47,35 @@ class users_BlockChangepasswordAction extends website_BlockAction
 						{
 							Framework::exception($e);
 							$tm->rollBack($e);
-							$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.exception;');
+							$error = $ls->transFO('m.users.frontoffice.changepassword.exception');
+							$this->addError($error);
+							// For compatibility. Will be removed in 4.0.
+							$request->setAttribute('errors', array($error));
 						}
 					}
 					else
 					{
-						$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.invalidoldpassword;');
+						$error = $ls->transFO('m.users.frontoffice.changepassword.invalidoldpassword');
+						$this->addError($error);
+						// For compatibility. Will be removed in 4.0.
+						$request->setAttribute('errors', array($error));
 					}
 				}
 				else
 				{
-					$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.notconfirmpassword;');
+					$error = $ls->transFO('m.users.frontoffice.changepassword.notconfirmpassword');
+					$this->addError($error);
+					// For compatibility. Will be removed in 4.0.
+					$request->setAttribute('errors', array($error));
 				}
 			}
 			else
 			{
-				$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.emptypassword;');
+				$error = $ls->transFO('m.users.frontoffice.changepassword.emptypassword');
+				$this->addError($error);
+				// For compatibility. Will be removed in 4.0.
+				$request->setAttribute('errors', array($error));
 			}
-		}
-		if (count($errors) > 0)
-		{
-			$request->setAttribute('errors', $errors);
 		}
 		return website_BlockView::INPUT;
 	}

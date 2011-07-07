@@ -9,5 +9,5 @@
   <key id="login-button">login</key>
   <key id="already-registered">already registered?</key>
   <key id="already-logged-in">you're logged in</key>
-  <key id="you-are-logged-as">You're logged in as {fullName}</key>
+  <key id="you-are-logged-as">you're logged in as {fullName}</key>
 </i18n>

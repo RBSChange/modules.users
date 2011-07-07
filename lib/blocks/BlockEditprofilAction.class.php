@@ -6,8 +6,6 @@
 class users_BlockEditprofilAction extends website_BlockAction
 {
 	/**
-	 * @see website_BlockAction::execute()
-	 *
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @return String
@@ -15,7 +13,7 @@ class users_BlockEditprofilAction extends website_BlockAction
 	function execute($request, $response)
 	{
 		$user = users_UserService::getInstance()->getCurrentFrontEndUser();
-		if ($user === NULL)
+		if ($user === null)
 		{
 			return website_BlockView::NONE;
 		}

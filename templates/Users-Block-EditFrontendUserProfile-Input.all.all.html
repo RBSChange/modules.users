@@ -1,26 +1,29 @@
-<form change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user" class="cmxform">
-	<ul change:errors=""></ul>
-	<ul change:messages=""></ul>
-	<input change:field="name beanId" hidden="true" />	
-	<ol>
-		<li>
-			<input change:field="name login" />
-			<a change:link="tag contextual_website_website_modules_users_change-password" change:translate="&modules.users.frontoffice.editprofil.changepassword;"></a>
-		</li>
-		<li>
-			<input change:field="name titleid" />
-		</li>
-		<li>
-			<input change:field="name firstname" />
-		</li>
-		<li>
-			<input change:field="name lastname" />
-		</li>
-		<li>
-			<input change:field="name email" />
-		</li>		
-	</ol>
-	<p class="buttons">
-		<input change:submit="label &modules.users.frontoffice.editprofil.SubmitButton;" class="button" name="save" />
-	</p>
+<form change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user">
+	<fieldset>
+		<legend>${title}</legend>
+		<ul change:errors=""></ul>
+		<ul change:messages=""></ul>
+		<input change:field="name beanId" hidden="true" />	
+		<ol>
+			<li>
+				<input change:field="name login" />
+				<a change:link="tag contextual_website_website_modules_users_change-password">${trans:m.users.frontoffice.editprofil.changepassword}</a>
+			</li>
+			<li>
+				<input change:field="name titleid" />
+			</li>
+			<li>
+				<input change:field="name firstname" />
+			</li>
+			<li>
+				<input change:field="name lastname" />
+			</li>
+			<li>
+				<input change:field="name email" />
+			</li>		
+		</ol>
+		<p class="buttons">
+			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" class="button" name="save" />
+		</p>
+	</fieldset>
 </form>

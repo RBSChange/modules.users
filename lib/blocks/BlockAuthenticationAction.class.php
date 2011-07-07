@@ -85,17 +85,16 @@ class users_BlockAuthenticationAction extends website_BlockAction
 				}
 				else
 				{
-					$errors = array();
-					$errors[] = f_Locale::translate('&modules.users.frontoffice.authentication.BadAuthentication;');
-					$request->setAttribute('errors', $errors);
+					$message = LocaleService::getInstance()->transFO('m.users.frontoffice.authentication.badauthentication', array('ucf'));
+					$this->addError($message);
+					// For compatibility. Will be removed in 4.0.
+					$request->setAttribute('errors', array($message));
 				}
 			}
 		}
 	}
 
 	/**
-	 * @see f_mvc_Action::execute()
-	 *
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @return String

@@ -1,34 +1,37 @@
-<form change:form="" class="cmxform">
-	<ul class="errors" tal:condition="errors">
-		<li tal:repeat="error errors" tal:content="error" />
-	</ul>
-	<ol class="modules-users-login-form">
-		<li>
-			<input change:textinput="name login" label="&modules.users.frontoffice.authentication.Login;" />
-		</li>
-		<li>
-			<input change:passwordinput="name password" label="&modules.users.frontoffice.authentication.Password;" />
-		</li>
-		<li tal:condition="allowAutoLogin">
-			<label for="users_authentication_autoLogin_yes" change:translate="modules.users.frontoffice.authentication.Auto-login-me"></label>
-			<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
-			<tal:block change:translate="modules.users.frontoffice.authentication.auto-login-me-help" />
-		</li>
-		<li class="button">
-			<input name="usersParam[submit]" type="submit" class="button" change:i18nattr="value &modules.users.frontoffice.authentication.SubmitButton;" />
-		</li>
-		<li>
-			<a change:link="tag contextual_website_website_modules_users_reset-password" change:translate="&modules.users.frontoffice.authentication.Resetpasswordlink;"></a>
-		</li>
-		<tal:block tal:condition="not: hideRegistrationLinks">
-			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
-			<li tal:condition="registrationPage">
-				<a change:link="document registrationPage; formParam[usebacklink] 'true'" change:translate="&modules.users.frontoffice.Register-link;"></a>
+<form change:form="">
+	<fieldset>
+		<legend>${trans:m.users.frontoffice.authentication.title,ucf}</legend>
+		<ul change:errors=""></ul>
+		<ol>
+			<li>
+				<input change:textinput="name login" labeli18n="m.users.frontoffice.authentication.login" />
 			</li>
-			<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
-			<li tal:condition="customerRegistrationPage">
-				<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'" change:translate="&modules.customer.frontoffice.New-account-link;"></a>
+			<li>
+				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
-		</tal:block>
-	</ol>
+			<li tal:condition="allowAutoLogin">
+				<label for="users_authentication_autoLogin_yes">${trans:m.users.frontoffice.authentication.auto-login-me,ucf}</label>
+				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
+				${trans:m.users.frontoffice.authentication.auto-login-me-help}
+			</li>
+		</ol>
+		<p class="buttons">
+			<input name="usersParam[submit]" type="submit" class="button" value="${trans:m.users.frontoffice.authentication.submitbutton,ucf}" />
+		</p>
+	</fieldset>	
 </form>
+<ul class="menu-list">
+	<li>
+		<a change:link="tag contextual_website_website_modules_users_reset-password">${trans:m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
+	</li>
+	<tal:block tal:condition="not: hideRegistrationLinks">
+		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
+		<li tal:condition="registrationPage">
+			<a change:link="document registrationPage; formParam[usebacklink] 'true'">${trans:m.users.frontoffice.register-link,ucf}</a>
+		</li>
+		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
+		<li tal:condition="customerRegistrationPage">
+			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
+		</li>
+	</tal:block>
+</ul>
