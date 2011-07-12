@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd" 
 	model-version="1.0" icon="user1" has-url="false">
 	<properties>
-		<add name="titleid" from-list="modules_users/title" type="Integer"/>
+		<add name="titleid" from-list="modules_users/title" type="Integer" />
 		<add name="firstname" type="String" />
 		<add name="lastname" type="String" />
 		<add name="email" type="String" min-occurs="1" >

@@ -6,5 +6,4 @@
 		<add name="groups" type="modules_users/frontendgroup" max-occurs="-1" inverse="true" tree-node="true" />
 		<add name="websiteid" type="Integer" min-occurs="1" />
 	</properties>
-
 </document>
