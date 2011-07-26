@@ -31,7 +31,7 @@ class users_WebsitefrontenduserScriptDocumentElement extends import_ScriptDocume
 	protected function getDocumentProperties()
 	{
 		$props = parent::getDocumentProperties();
-		$parentDocument = $this->getParentByClassName("users_WebsitefrontendgroupScriptDocumentElement");
+		$parentDocument = $this->getAncestorByClassName("users_WebsitefrontendgroupScriptDocumentElement");
 		if ($parentDocument !== null)
 		{
 			$props['websiteid'] = $parentDocument->getPersistentDocument()->getWebsiteId();
