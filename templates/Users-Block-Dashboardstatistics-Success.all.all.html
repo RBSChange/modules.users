@@ -1,18 +1,18 @@
 <div class="dashboard-widget" tal:omit-tag="refresh" refreshURL="${refreshURL}" title="${title}" icon="${icon}">
 	<tal:block tal:condition="forEdition">
 		<div class="title-bar" ><img src="${icon}" /> ${title}</div>
-		<div class="content-block"><div class="content" change:translate="&modules.dashboard.dashboard.DummyContent;">...</div></div>
+		<div class="content-block"><div class="content" tal:content="trans:m.dashboard.dashboard.dummycontent,ucf">...</div></div>
 	</tal:block>
 	<tal:block tal:condition="not:forEdition">
 		<table class="users-statistics">
 			<thead>
 				<tr>
 					<th />
-					<th change:translate="&modules.users.bo.dashboard.Backendusers;" />
+					<th tal:content="trans:m.users.bo.dashboard.backendusers,ucf" />
 					<th>
-						<tal:block change:translate="&modules.users.bo.dashboard.Frontendusers;" />
+						<tal:block tal:content="trans:m.users.bo.dashboard.frontendusers,ucf" />
 						<select onchange="var widget = Dashboard.getWidgetByNode(this.parentNode.parentNode.parentNode); widget.parameters['usersParam[website]'] = this.options[this.selectedIndex].value; widget.refresh();">
-							<option change:translate="&modules.users.bo.dashboard.All-websites;" value="all" />
+							<option tal:content="trans:m.users.bo.dashboard.all-websites,ucf" value="all" />
 							<tal:block tal:repeat="website websites">
 								<option tal:condition="website/selected" selected="selected" value="${website/getId}">${website/getLabel}</option>
 								<option tal:condition="not: website/selected" value="${website/getId}">${website/getLabel}</option>
@@ -23,27 +23,27 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td change:translate="&modules.users.bo.dashboard.CountLabel;" />
+					<td tal:content="trans:m.users.bo.dashboard.count,ucf,lab" />
 					<td>${backendUserCount}</td>
 					<td>${frontendUserCount}</td>
 				</tr>
 				<tr>
-					<td change:translate="&modules.users.bo.dashboard.Published-countLabel;" />
+					<td tal:content="trans:m.users.bo.dashboard.published-count,ucf,lab" />
 					<td>${backendUserPublishedCount}</td>
 					<td>${frontendUserPublishedCount}</td>
 				</tr>
 				<tr>
-					<td change:translate="&modules.users.bo.dashboard.Weekinactive-countLabel;" />
+					<td tal:content="trans:m.users.bo.dashboard.weekinactive-count,ucf,lab" />
 					<td>${backendInactiveWeekCount}</td>
 					<td>${frontendInactiveWeekCount}</td>
 				</tr>
 				<tr>
-					<td change:translate="&modules.users.bo.dashboard.Monthinactive-countLabel;" />
+					<td tal:content="trans:m.users.bo.dashboard.monthinactive-count,ucf,lab" />
 					<td>${backendInactiveMonthCount}</td>
 					<td>${frontendInactiveMonthCount}</td>
 				</tr>		
 				<tr>
-					<td change:translate="&modules.users.bo.dashboard.Inactive-countLabel;" />
+					<td tal:content="trans:m.users.bo.dashboard.inactive-count,ucf,lab" />
 					<td>${backendInactiveCount}</td>
 					<td>${frontendInactiveMonthCount}</td>
 				</tr>
