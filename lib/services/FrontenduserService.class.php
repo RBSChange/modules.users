@@ -162,7 +162,7 @@ class users_FrontenduserService extends users_UserService
 			'accesslink' => Framework::getUIBaseUrl(),
 			'fullname' => $user->getFullname(),
 			'ip' => $_SERVER["REMOTE_ADDR"],
-			'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now())) 
+			'date' => date_Formatter::toDefaultDateTime(date_Calendar::getUIInstance()) 
 		);
 	}
 

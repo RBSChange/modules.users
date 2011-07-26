@@ -22,9 +22,10 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 			->add(Restrictions::ge('lastping', $latestMinutes->toString()))
 			->find();
 
+		$ls = LocaleService::getInstance();
 		foreach ($users as $user)
 		{
-			$localeSuffix = ($user->getTitle() && preg_match('/(mme|mlle)/i', $user->getTitle()->getLabel())) ? 'Female' : '';
+			$localeSuffix = ($user->getTitle() && preg_match('/(mme|mlle)/i', $user->getTitle()->getLabel())) ? 'female' : '';
 
 			$userName = $user->getFirstname() . ' ' . $user->getLastname();
 			
@@ -38,22 +39,21 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 				$usersRedundantCountArray[$userName] = 1;
 			}
 
-			$lastLogin = date_Calendar::getInstance($user->getLastlogin());
-			$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 6);
-
+			$lastLogin = date_Calendar::getInstance($user->getUILastlogin());
+			$latestMinutes = date_Converter::convertDateToLocal(date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 6));
 			if ($lastLogin->isAfter($latestMinutes))
 			{
-				$status = f_Locale::translateUI('&modules.users.bo.general.Dashboard-StatusNew;');
+				$status = $ls->transBO('m.users.bo.general.dashboard-statusnew', array('ucf'));
 			}
 			else if ($lastLogin->isToday())
 			{
-				$status = f_Locale::translateUI("&modules.users.bo.general.Dashboard-StatusSince$localeSuffix;") . ' ';
-				$status .= f_Locale::translateUI('&modules.uixul.bo.datePicker.Calendar.today;') . date_DateFormat::format(date_Converter::convertDateToLocal($lastLogin), ', H:i');
+				$status = $ls->transBO("m.users.bo.general.dashboard-statussince$localeSuffix", array('ucf')) . ' ';
+				$status .= $ls->transBO('m.uixul.bo.datePicker.calendar.today') . date_Formatter::format($lastLogin, ', H:i');
 			}
 			else
 			{
-				$status = f_Locale::translateUI("&modules.users.bo.general.Dashboard-StatusSince$localeSuffix;");
-				$status .= date_DateFormat::format(date_Converter::convertDateToLocal($lastLogin), ' l j F Y, H:i');
+				$status = $ls->transBO("m.users.bo.general.dashboard-statussince$localeSuffix", array('ucf')) . ' ';
+				$status .= date_Formatter::toDefaultDateTimeBO($lastLogin);
 			}
 
 			$currentUser = users_BackenduserService::getInstance()->getCurrentBackEndUser();
