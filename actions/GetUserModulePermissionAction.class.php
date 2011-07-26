@@ -15,31 +15,31 @@ class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 	 */
 	public function _execute($context, $request)
 	{
+		$ls = LocaleService::getInstance();
 		$currentUser = users_BackenduserService::getInstance()->getCurrentBackEndUser();
 		
 		$accessor = $this->getDocumentInstanceFromRequest($request);
 		if ($accessor instanceof users_persistentdocument_group)
 		{
 			$type = 'group';
-			$label = f_Locale::translateUI('&modules.users.bo.dialog.Group-title;', array('name' => $accessor->getLabel()));
+			$label = $ls->transBO('m.users.bo.dialog.group-title', array('ucf'), array('name' => $accessor->getLabel()));
 		}
 		else
 		{
 			$type = 'user';
-			$label = f_Locale::translateUI('&modules.users.bo.dialog.User-title;', array('name' => $accessor->getFullName()));
+			$label = $ls->transBO('m.users.bo.dialog.user-title', array('ucf'), array('name' => $accessor->getFullName()));
 		}
 		$documentIds = array();
 		$result = array();
 		$result['user'] = array('id' => $accessor->getId(), 'type' => $type, 'label' => $label);
 		$result['roles'] = array();
 		
-		$modules = ModuleService::getInstance()->getModules();
+		$modules = ModuleService::getInstance()->getPackageNames();
 		foreach ($modules as $packageName) 
 		{
-			
 			$moduleName = str_replace('modules_', '', $packageName);
 			
-			//Check si des roles sont defini sur ce module
+			// Check si des roles sont defini sur ce module
 			$rs = f_permission_PermissionService::getRoleServiceByModuleName($moduleName);
 			if ($rs === null) 
 			{
@@ -49,15 +49,14 @@ class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 			$rootfolderid = ModuleService::getInstance()->getRootFolderId($moduleName);
 			
 			$addRolesDefinition = false;
-			//Permission d'affecter les rôle
+			// Permission d'affecter les rôle
 			if (f_permission_PermissionService::getInstance()->hasPermission($currentUser, $packageName . '.LoadPermissions.rootfolder', $rootfolderid))
 			{
 				$addRolesDefinition = true;
 				$documentIds[$rootfolderid] = $moduleName;
 				
 				$result['modules'][$moduleName]['rootfolderid'] = ModuleService::getInstance()->getRootFolderId($moduleName);
-				$result['modules'][$moduleName]['name'] = f_Locale::translateUI('&modules.'. $moduleName.'.bo.general.Module-name;');
-
+				$result['modules'][$moduleName]['name'] = $ls->transBO('m.'. $moduleName.'.bo.general.module-name', array('ucf'));
 			}
 			
 			$roles = array();
@@ -79,7 +78,7 @@ class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 					list(, $roleName) = explode('.', $qualifiefRoleName);
 					if (!isset($result['roles'][$roleName]))
 					{
-						$result['roles'][$roleName]  = array('name' => f_Locale::translateUI('&modules.users.bo.dialog.'.$roleName.';'), 'nbperm' => count($permissions), 'used' => 1);
+						$result['roles'][$roleName]  = array('name' => $ls->trasnBO('m.users.bo.dialog.'.$roleName, array('ucf')), 'nbperm' => count($permissions), 'used' => 1);
 					} 
 					else if ($result['roles'][$roleName]['nbperm'] < count($permissions))
 					{
@@ -105,11 +104,13 @@ class users_GetUserModulePermissionAction extends f_action_BaseJSONAction
 		
 		if ($type == 'group')
 		{
-			$query = $this->getPersistentProvider()->createQuery('modules_generic/groupAcl')->add(Restrictions::eq('group.id', $accessor->getId()));
+			$query = $this->getPersistentProvider()->createQuery('modules_generic/groupAcl')
+				->add(Restrictions::eq('group.id', $accessor->getId()));
 		}
 		else
 		{
-			$query = $this->getPersistentProvider()->createQuery('modules_generic/userAcl')->add(Restrictions::eq('user.id', $accessor->getId()));
+			$query = $this->getPersistentProvider()->createQuery('modules_generic/userAcl')
+				->add(Restrictions::eq('user.id', $accessor->getId()));
 		}
 		$query->add(Restrictions::in('documentId', array_keys($documentIds)));
 		foreach ($query->find() as $acl) 
