@@ -303,35 +303,4 @@ class users_WebsitefrontendgroupService extends users_FrontendgroupService
 		}
 		return $data;
 	}
-
-	// Deprecated methods.
-	
-	/**
-	 * @param website_persistentdocument_website $website
-	 * @return users_persistentdocument_websitefrontendgroup
-	 * @deprecated use getDefaultByWebsite()
-	 */
-	public function getByWebsite($website)
-	{
-		return $this->getDefaultByWebsite($website);
-	}
-	
-	/**
-	 * @param website_persistentdocument_website $website
-	 * @deprecated use createDefaultFromWebsite()
-	 */
-	public function createFromWebsite($website)
-	{
-		$this->createDefaultFromWebsite($website);
-	}
-	
-	/**
-	 * @param users_persistentdocument_websitefrontendgroup $group
-	 * @param website_persistentdocument_website $website
-	 * @deprecated use updateDefaultFromWebsite()
-	 */
-	public function updateFromWebsite($group, $website)
-	{
-		return $this->updateDefaultFromWebsite($website);
-	}
 }
