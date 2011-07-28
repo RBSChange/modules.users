@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <blocks>
-	<block type="modules_users_register" icon="add" label="&amp;modules.users.bo.blocks.register.Title;">
+	<block type="modules_users_register" icon="add">
 		<parameters>
 			<parameter name="showPersonalFields" type="Boolean" default-value="false" />
 			<parameter name="requireNameFields" type="Boolean" default-value="false" />
@@ -23,19 +23,19 @@
 			</javascript>
 		</xul>
 	</block>
-	<block type="modules_users_authentication" display="" icon="user-frontoffice" label="&amp;modules.users.bo.layout.authentication;" />
-	<block type="modules_users_showinfo" display="" icon="user-frontoffice" label="&amp;modules.users.bo.layout.showinfo;" />
-	<block type="modules_users_resetpassword" display="" icon="change-password" label="&amp;modules.users.bo.layout.resetpassword;" />
-	<block type="modules_users_changepassword" display="" icon="change-password" label="&amp;modules.users.bo.layout.changepassword;" />
-	<block type="modules_users_editprofil" icon="edit" label="&amp;modules.users.bo.layout.editprofil;" />
-	<block type="modules_users_Su" display="" icon="user-frontoffice" label="&amp;modules.users.bo.blocks.Su;">
+	<block type="modules_users_authentication" icon="user-frontoffice" labeli18n="m.users.bo.layout.authentication" />
+	<block type="modules_users_showinfo" icon="user-frontoffice" labeli18n="m.users.bo.layout.showinfo" />
+	<block type="modules_users_resetpassword" icon="change-password" labeli18n="m.users.bo.layout.resetpassword" />
+	<block type="modules_users_changepassword" icon="change-password" labeli18n="m.users.bo.layout.changepassword" />
+	<block type="modules_users_editprofil" icon="edit" labeli18n="m.users.bo.layout.editprofil" />
+	<block type="modules_users_Su" icon="user-frontoffice" labeli18n="m.users.bo.blocks.su">
 		<parameters>
 			<parameter name="itemsperpage" type="Integer" default-value="10" />
 			<parameter name="masknonfiltered" type="Boolean" default-value="false" />
 		</parameters>
 	</block>
-	<block type="modules_users_adminauthentication" display="" icon="user-backoffice" label="&amp;modules.users.bo.layout.adminauthentication;" />
+	<block type="modules_users_adminauthentication" icon="user-backoffice" labeli18n="m.users.bo.layout.adminauthentication" />
 	<!-- Dashboard blocks -->
-	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" label="&amp;modules.users.bo.dashboard.Statistics;" />
-	<block type="modules_users_DashboardConnectedUsers" display="" icon="users" dashboard="true" label="&amp;modules.users.bo.blocks.DashboardConnectedUsers.Title;" />
+	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" labeli18n="m.users.bo.dashboard.statistics" />
+	<block type="modules_users_DashboardConnectedUsers" icon="users" dashboard="true" />
 </blocks>

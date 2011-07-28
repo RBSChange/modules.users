@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <tags extends="generic">
-	<tag label="&amp;modules.users.bo.tags.Reset-password;" icon="change-password">contextual_website_website_modules_users_reset-password</tag>
-	<tag label="&amp;modules.users.bo.tags.Change-password;" icon="change-password">contextual_website_website_modules_users_change-password</tag>
-	<tag label="&amp;modules.users.bo.tags.Edit-profil;" icon="edit">contextual_website_website_modules_users_edit-profil</tag>
-	<tag label="&amp;modules.users.bo.tags.Secure-homepage;" icon="page-home">contextual_website_website_modules_users_secure-homepage</tag>
-	<tag label="&amp;modules.users.bo.tags.register-block;" icon="add">contextual_website_website_modules_users_register</tag>
+	<tag labeli18n="m.users.bo.tags.reset-password" icon="change-password">contextual_website_website_modules_users_reset-password</tag>
+	<tag labeli18n="m.users.bo.tags.change-password" icon="change-password">contextual_website_website_modules_users_change-password</tag>
+	<tag labeli18n="m.users.bo.tags.edit-profil" icon="edit">contextual_website_website_modules_users_edit-profil</tag>
+	<tag labeli18n="m.users.bo.tags.secure-homepage" icon="page-home">contextual_website_website_modules_users_secure-homepage</tag>
+	<tag labeli18n="m.users.bo.tags.register-block" icon="add">contextual_website_website_modules_users_register</tag>
 </tags>
