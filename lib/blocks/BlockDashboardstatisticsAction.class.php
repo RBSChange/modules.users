@@ -11,7 +11,7 @@ class users_BlockDashboardstatisticsAction extends dashboard_BlockDashboardActio
 	{
 		if ($forEdition) {return;}
 	
-		StyleService::getInstance()->registerStyle('modules.users.dashboard');
+		website_StyleService::getInstance()->registerStyle('modules.users.dashboard');
 		
 		$request->setAttribute('backendUserCount', users_BackenduserService::getInstance()->getCount());
 		$request->setAttribute('backendUserPublishedCount', users_BackenduserService::getInstance()->getPublishedCount());
