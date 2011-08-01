@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <panel>
-	<section labeli18n="modules.uixul.bo.doceditor.fieldsgroup.Title">
+	<section labeli18n="m.uixul.bo.doceditor.fieldsgroup.title">
 		<field name="titleid" hidehelp="true" />
 		<field name="firstname" hidehelp="true" />
 		<field name="lastname" hidehelp="true" />
@@ -8,14 +8,14 @@
 		<field name="login" />
 	</section>
 
-	<section labeli18n="modules.users.bo.doceditor.fieldsgroup.Updatepassword">
+	<section labeli18n="m.users.bo.doceditor.fieldsgroup.updatepassword">
 		<field name="password" anonid="field_password" id="users_backenduser_create_password" type="text"
-			labeli18n="modules.users.document.backenduser.PasswordUpdate" shorthelp="&amp;modules.users.document.backenduser.Password-help;">
+			labeli18n="m.users.document.backenduser.passwordupdate" shorthelpi18n="m.users.document.backenduser.password-help">
 			<constraint name="password" parameter="auto" />
 		</field>
 	</section>
 
-	<section labeli18n="modules.users.bo.doceditor.fieldsgroup.Validityperiod">
+	<section labeli18n="m.users.bo.doceditor.fieldsgroup.validityperiod">
 		<field name="startpublicationdate" />
 		<field name="endpublicationdate" />
 	</section>
