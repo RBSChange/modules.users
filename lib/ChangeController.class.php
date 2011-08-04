@@ -2,7 +2,7 @@
 /**
  * @package modules.users.lib.aop
  */
-class users_ChangeController extends controller_ChangeController 
+class users_ChangeController extends change_Controller 
 {
 	const AUTO_LOGIN_COOKIE = 'autologin';
 	

@@ -1,9 +1,9 @@
 <?php
-class users_FrontendLogoutAction extends f_action_BaseAction
+class users_FrontendLogoutAction extends change_Action
 {
     /**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 * @return String
 	 */
 	public function _execute($context, $request)
@@ -11,8 +11,8 @@ class users_FrontendLogoutAction extends f_action_BaseAction
 		users_UserService::getInstance()->authenticateFrontEndUser(null);
 		users_ModuleService::getInstance()->unsetAutoLogin();
 		$url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl();
-		HttpController::getInstance()->redirectToUrl($url);
-		return View::NONE;
+		change_Controller::getInstance()->redirectToUrl($url);
+		return change_View::NONE;
 	}
     
 	/**

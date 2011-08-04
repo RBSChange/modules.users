@@ -223,7 +223,7 @@ class users_BackenduserService extends users_UserService
 			$agaviUser = $this->getAgaviUser();
 			if ($agaviUser !== null)
 			{
-				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
+				$oldNameSpace = $agaviUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
 				$id = $agaviUser->getId();
 				$agaviUser->setUserNamespace($oldNameSpace);
 				$this->currentUser = $this->getUserFromSessionId($id);

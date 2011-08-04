@@ -594,13 +594,13 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @return FrameworkSecurityUser or null
+	 * @return change_User or null
 	 */
 	protected function getAgaviUser()
 	{
 		try
 		{
-			return Controller::getInstance()->getContext()->getUser();
+			return change_Controller::getInstance()->getContext()->getUser();
 		}
 		catch (Exception $e)
 		{
@@ -714,7 +714,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$agaviUser = $this->getAgaviUser();
 		if ($agaviUser === null) {return;}
 
-		$agaviUser->setUserNamespace(FrameworkSecurityUser::BACKEND_NAMESPACE);
+		$agaviUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
 		$this->authenticate($user);
 	}
 
@@ -726,7 +726,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$agaviUser = $this->getAgaviUser();
 		if ($agaviUser === null) {return;}
 
-		$agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
+		$agaviUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
 		$this->authenticate($user);
 	}
 	

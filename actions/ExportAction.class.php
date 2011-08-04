@@ -1,10 +1,10 @@
 <?php
 
-class users_ExportAction extends f_action_BaseAction
+class users_ExportAction extends change_Action
 {	
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
     {

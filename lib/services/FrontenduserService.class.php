@@ -298,7 +298,7 @@ class users_FrontenduserService extends users_UserService
 			$agaviUser = $this->getAgaviUser();
 			if ($agaviUser !== null)
 			{
-				$oldNameSpace = $agaviUser->setUserNamespace(FrameworkSecurityUser::FRONTEND_NAMESPACE);
+				$oldNameSpace = $agaviUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
 				$id = $agaviUser->getId();
 
 				$agaviUser->setUserNamespace($oldNameSpace);

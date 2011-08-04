@@ -1,18 +1,18 @@
 <?php
-class users_LoginAction extends f_action_BaseAction
+class users_LoginAction extends change_Action
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
 		if (!RequestContext::getInstance()->inHTTPS() && DEFAULT_UI_PROTOCOL === 'https')
 		{
-			Controller::getInstance()->redirectToUrl(LinkHelper::getUIActionLink('users', 'Login')->getUrl());
+			change_Controller::getInstance()->redirectToUrl(LinkHelper::getUIActionLink('users', 'Login')->getUrl());
 			return null;
 		}
-		return View::INPUT;
+		return change_View::INPUT;
 	}
 	
 	/**
@@ -20,7 +20,7 @@ class users_LoginAction extends f_action_BaseAction
 	 */
 	public function getDefaultView()
 	{
-		return View::INPUT;
+		return change_View::INPUT;
 	}
 	
 	/**
@@ -28,7 +28,7 @@ class users_LoginAction extends f_action_BaseAction
 	 */
 	public function handleError()
 	{
-		return View::INPUT;
+		return change_View::INPUT;
 	}
 	
 	/**
@@ -108,7 +108,7 @@ class users_LoginAction extends f_action_BaseAction
 	 */
 	public function getRequestMethods()
 	{
-		return Request::POST;
+		return change_Request::POST;
 	}
 	
 	/**

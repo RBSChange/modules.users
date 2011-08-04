@@ -53,7 +53,8 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 			$user->setLogin($user->getEmail());
 		}
 		$user->save();
-
+		$request->setAttribute('user', $user);
+	
 		//TODO: Email confirmation.
 		//$user->getDocumentService()->sendEmailConfirmationMessage($user, false);
 

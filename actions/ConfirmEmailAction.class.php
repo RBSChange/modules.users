@@ -3,13 +3,13 @@
  * users_ConfirmEmailAction
  * @package modules.users.actions
  */
-class users_ConfirmEmailAction extends f_action_BaseAction
+class users_ConfirmEmailAction extends change_Action
 {
 	/**
 	 * @see f_action_BaseAction::_execute()
 	 *
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	protected function _execute($context, $request)
 	{	
@@ -17,7 +17,7 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 		$key = $request->getParameter('key');
 		if ($key === null || $user === null)
 		{
-			Controller::getInstance()->redirect('website', 'Error500');
+			change_Controller::getInstance()->redirect('website', 'Error500');
 		}
 		try
 		{
@@ -27,9 +27,9 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 				$page = $this->getEditProfilePage();
 				if ($page == null)
 				{
-					Controller::getInstance()->redirect('website', 'Error404');
+					change_Controller::getInstance()->redirect('website', 'Error404');
 				}
-				HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($page));
+				change_Controller::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($page));
 			}
 			else if (Framework::isInfoEnabled())
 			{
@@ -40,7 +40,7 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 		{
 			Framework::exception($e);
 		}
-		Controller::getInstance()->redirect('website', 'Error500');
+		change_Controller::getInstance()->redirect('website', 'Error500');
 	}
 	
 	/**
@@ -53,7 +53,7 @@ class users_ConfirmEmailAction extends f_action_BaseAction
 	}
 	
 	/**
-	 * @param Request $request
+	 * @param change_Request $request
 	 * @return users_persistentdocument_frontenduser
 	 */
 	private function getUserFromRequest($request)

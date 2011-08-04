@@ -1,9 +1,9 @@
 <?php
-class users_ChromeLoginAction extends f_action_BaseAction
+class users_ChromeLoginAction extends change_Action
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
@@ -55,7 +55,7 @@ class users_ChromeLoginAction extends f_action_BaseAction
 						$result['error'] = $e->getMessage();
 					}
 					echo JsonService::getInstance()->encode($result);
-					return View::NONE;
+					return change_View::NONE;
 				}
 			}
 			
@@ -86,7 +86,7 @@ class users_ChromeLoginAction extends f_action_BaseAction
 			}
 		}
 		echo JsonService::getInstance()->encode($result);
-		return View::NONE;
+		return change_View::NONE;
 	}
 
 	/**
@@ -94,8 +94,8 @@ class users_ChromeLoginAction extends f_action_BaseAction
 	 */
 	private function getOAuthParams()
 	{
-		list($consumerKey, $consumerValue) = explode('#', file_get_contents(WEBEDIT_HOME . '/build/config/oauth/script/consumer.txt'));
-		list($tokenKey, $tokenValue) = explode('#', file_get_contents(WEBEDIT_HOME . '/build/config/oauth/script/token.txt'));
+		list($consumerKey, $consumerValue) = explode('#', file_get_contents(PROJECT_HOME . '/build/config/oauth/script/consumer.txt'));
+		list($tokenKey, $tokenValue) = explode('#', file_get_contents(PROJECT_HOME . '/build/config/oauth/script/token.txt'));
 		return array('consumerKey' => $consumerKey, 'consumerSecret' => $consumerValue,
 		'token' => $tokenKey, 'tokenSecret' => $tokenValue);
 	}

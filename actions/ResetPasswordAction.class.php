@@ -1,9 +1,9 @@
 <?php
-class users_ResetPasswordAction extends f_action_BaseJSONAction
+class users_ResetPasswordAction extends change_JSONAction
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
@@ -42,7 +42,7 @@ class users_ResetPasswordAction extends f_action_BaseJSONAction
 	
 	public function getRequestMethods()
 	{
-		return Request::POST;
+		return change_Request::POST;
 	}
 	
 	public function isSecure()

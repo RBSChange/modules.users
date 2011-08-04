@@ -1,10 +1,10 @@
 <?php
 
-class users_SaveUserPreferencesAction extends f_action_BaseJSONAction
+class users_SaveUserPreferencesAction extends change_JSONAction
 {
 	/**
-	 * @param Context $context
-	 * @param Request $request
+	 * @param change_Context $context
+	 * @param change_Request $request
 	 */
 	public function _execute($context, $request)
 	{
