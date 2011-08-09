@@ -18,7 +18,6 @@
 			<permission name="SavePermissions.*" />
 			<permission name="GetUserModulePermission" />
 			<permission name="Enabled" />
-			<permission name="EditLocale" />
 			<permission name="Order" />
 			<permission name="Move.*" />
 			<permission name="Load.*" />

@@ -78,7 +78,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 					list(, $roleName) = explode('.', $qualifiefRoleName);
 					if (!isset($result['roles'][$roleName]))
 					{
-						$result['roles'][$roleName]  = array('name' => $ls->trasnBO('m.users.bo.dialog.'.$roleName, array('ucf')), 'nbperm' => count($permissions), 'used' => 1);
+						$result['roles'][$roleName]  = array('name' => $ls->transBO('m.users.bo.dialog.'.$roleName, array('ucf')), 'nbperm' => count($permissions), 'used' => 1);
 					} 
 					else if ($result['roles'][$roleName]['nbperm'] < count($permissions))
 					{
