@@ -121,7 +121,6 @@ class users_FrontenduserService extends users_UserService
 				$configuredNotif->setSendingModuleName('users');
 				$callback = array($this, 'getNewPasswordNotifParamters');
 				$params = array('user' => $user, 'password' => $newPassword, 'websiteId' => $websiteId);
-				$recipients = new mail_MessageRecipients($user->getEmail());
 				if (!$user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params))
 				{
 					throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');

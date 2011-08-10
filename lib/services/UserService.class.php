@@ -578,7 +578,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$configuredNotif->setSendingModuleName('users');
 			$callback = array($this, 'getUserInformationNotifParameters');
 			$params = array('user' => $user, 'code' => $code, 'strategy' => $strategy);
-			$recipients = new mail_MessageRecipients($user->getEmail());
+			$recipients = change_MailService::getInstance()->getRecipientsArray(array($user->getEmail()));
 			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
 		}
 		return true;
@@ -895,7 +895,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 * @param mixed $callbackParameter
 	 * @return boolean
 	 */
-	public function sendNotificationToUserCallback($notification, $user, $callback = null, $callbackParameter = null)
+	public function sendNotificationToUserCallback($notification, $user, $callback = null, $callbackParameter = array())
 	{
 		if ($notification === null)
 		{
@@ -914,8 +914,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return false;
 		}
 		
-		$recipients = new mail_MessageRecipients();
-		$recipients->setTo($user->getEmail());
+		$recipients = change_MailService::getInstance()->getRecipientsArray(array($user->getFullname() => $user->getEmail()));
 		$cb = array($this, 'getNotificationParametersCallback');
 		$cbParams = array(
 			'user' => $user,
@@ -1006,8 +1005,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$receiverEmail = $user->getEmail();
 		
 		$ns = $notification->getDocumentService();
-		$recipients = new mail_MessageRecipients();
-		$recipients->setTo($receiverEmail);
+		$recipients = change_MailService::getInstance()->getRecipientsArray(array($receiverEmail));
 		if (!$ns->send($notification, $recipients, $replacements, $senderModuleName))
 		{
 			Framework::warn(__METHOD__ . ' Can\'t send notification to ' . $receiverEmail);
