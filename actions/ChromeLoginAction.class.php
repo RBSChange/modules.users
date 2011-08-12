@@ -72,7 +72,7 @@ class users_ChromeLoginAction extends change_Action
 					}
 				}
 				
-				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : PROFILE;
+				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : Framework::getProfile();
 				if ($user->getIsroot())
 				{
 					$result['OAuth'] = $this->getOAuthParams();

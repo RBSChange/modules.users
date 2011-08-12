@@ -21,7 +21,7 @@ class users_PortalLoginAction extends users_ChromeLoginAction
 			if ($user !== null)
 			{
 				$us->authenticateBackEndUser($user);
-				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : PROFILE;
+				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : Framework::getProfile();
 				$_SESSION['ChromeBaseUri'] = "rbschange/content/ext/" . $result['ok'];	
 				$this->logAction($user);	
 			}
