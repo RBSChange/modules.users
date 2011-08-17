@@ -7,7 +7,7 @@ class users_RemoveUsersAction extends change_JSONAction
 	 */
 	public function _execute($context, $request)
 	{
-		$parentId = $request->getParameter(K::PARENT_ID_ACCESSOR);
+		$parentId = $request->getParameter('parentref');
 		$parentDoc = DocumentHelper::getDocumentInstance($parentId, 'modules_users/group');
 		if ($parentDoc->getIsdefault())
 		{

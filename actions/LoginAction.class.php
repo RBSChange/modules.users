@@ -56,7 +56,7 @@ class users_LoginAction extends change_Action
 				$us->authenticateBackEndUser($user);
 				
 				// Clears the request parameters: 1) keep the ones we need
-				$pageRef = $request->getParameter(K::PAGE_REF_ACCESSOR);
+				$pageRef = $request->getParameter('pageref');
 				$module = $request->getParameter('module');
 				$action = $request->getParameter('action');
 				$access = $request->getParameter('access');
@@ -79,7 +79,7 @@ class users_LoginAction extends change_Action
 				{
 					$request->setParameter('access', $access);
 				}
-				$request->setParameter(K::PAGE_REF_ACCESSOR, $pageRef);
+				$request->setParameter('pageref', $pageRef);
 				$request->setParameter('module', $module);
 				$request->setParameter('action', $action);
 				if ($popup)

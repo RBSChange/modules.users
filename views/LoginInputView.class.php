@@ -19,7 +19,7 @@ class users_LoginInputView extends change_View
         	{
         		$templateName = 'Users-Login-en';
         	}
-			$this->setTemplateName($templateName, K::HTML);
+			$this->setTemplateName($templateName, 'html');
 			if (!$request->hasParameter('access'))
 			{
 				Framework::warn(__METHOD__ . " No informations to display an authentication in front office");
