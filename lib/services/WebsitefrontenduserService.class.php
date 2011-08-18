@@ -136,8 +136,9 @@ class users_WebsitefrontenduserService extends users_FrontenduserService
 		// Store the current user id in order to set it back on logout.
 		// Here we need to store the stack and set it after authentication 
 		// because it clears the session.
-		$agaviUser = change_Controller::getInstance()->getContext()->getUser();
-		$sudoerStack = $agaviUser->getAttribute('sudoerStack', change_User::FRONTEND_NAMESPACE);
+		$changeUser = change_Controller::getInstance()->getUser();
+		$changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
+		$sudoerStack = change_Controller::getInstance()->getStorage()->readForUser('users_sudoerStack');
 		if (!is_array($sudoerStack))
 		{
 			$sudoerStack = array();
@@ -148,8 +149,7 @@ class users_WebsitefrontenduserService extends users_FrontenduserService
 		$this->authenticateFrontEndUser($user);
 		
 		// Set back the sudoer stack.
-		$agaviUser->setAttribute('sudoerStack', $sudoerStack, change_User::FRONTEND_NAMESPACE);
-		
+		change_Controller::getInstance()->getStorage()->writeForUser('users_sudoerStack', $sudoerStack);
 		return true;
 	}
 	

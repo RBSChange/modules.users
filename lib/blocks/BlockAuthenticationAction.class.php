@@ -58,15 +58,14 @@ class users_BlockAuthenticationAction extends website_BlockAction
 					}
 					
 					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter("illegalAccessPage");
-					$agaviUser = change_Controller::getInstance()->getContext()->getUser();
 					if (f_util_StringUtils::isEmpty($illegalAccessPage))
 					{
-						$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
+						$illegalAccessPage = change_Controller::getInstance()->getStorage()->readForUser('users_illegalAccessPage');
 					}
 					
 					if ($illegalAccessPage)
 					{
-						$agaviUser->setAttribute('illegalAccessPage', null);
+						change_Controller::getInstance()->getStorage()->removeForUser('users_illegalAccessPage');
 						$this->redirectToUrl($illegalAccessPage);
 					}
 					else

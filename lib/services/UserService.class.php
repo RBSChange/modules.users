@@ -594,22 +594,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @return change_User or null
+	 * @return change_User
 	 */
-	protected function getAgaviUser()
+	protected function getChangeUser()
 	{
-		try
-		{
-			return change_Controller::getInstance()->getContext()->getUser();
-		}
-		catch (Exception $e)
-		{
-			if (Framework::isInfoEnabled())
-			{
-				Framework::info(__METHOD__ . $e->getMessage());
-			}
-		}
-		return null;
+		return change_Controller::getInstance()->getUser();
 	}
 
 	private function invalidateCache($user)
@@ -711,10 +700,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function authenticateBackEndUser($user)
 	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser === null) {return;}
+		$changeUser = $this->getChangeUser();
+		if ($changeUser === null) {return;}
 
-		$agaviUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
+		$changeUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
 		$this->authenticate($user);
 	}
 
@@ -723,10 +712,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function authenticateFrontEndUser($user)
 	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser === null) {return;}
+		$changeUser = $this->getChangeUser();
+		if ($changeUser === null) {return;}
 
-		$agaviUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
+		$changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
 		$this->authenticate($user);
 	}
 	
@@ -735,18 +724,16 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function authenticate($user)
 	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser === NULL) {return;}
-
-		$sudoerStack = $agaviUser->getAttribute('sudoerStack');
+		$sudoerStack = change_Controller::getInstance()->getStorage()->readForUser('users_sudoerStack'); 
+		$changeUser = $this->getChangeUser();
 		$oldUser = $this->getCurrentUser();
 		if ($oldUser !== null)
 		{
 			$this->logoutUser($oldUser);
-			$agaviUser->setAuthenticated(false);
+			$changeUser->setAuthenticated(false);
 			if (!DocumentHelper::equals($oldUser, $user))
 			{
-				$agaviUser->clearAttributes();
+				change_Controller::getInstance()->getStorage()->clearForUser();
 			}
 		}
 
@@ -763,10 +750,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 		if ($user instanceof users_persistentdocument_user)
 		{
-			$agaviUser->setAuthenticated(true);
-			$agaviUser->setUser($user);
+			$changeUser->setAuthenticated(true);
+			$changeUser->setUser($user);
 			$this->loginUser($user);
-			$agaviUser->setAttribute('sudoerStack', $sudoerStack);
+			change_Controller::getInstance()->getStorage()->writeForUser('users_sudoerStack', $sudoerStack);
 		}
 	}
 
@@ -778,23 +765,23 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$id = intval($id);
 		if ($id > 0)
 		{
-			return $this->createQuery()->add(Restrictions::eq('id', $id))->findUnique();
+			$user = $this->createQuery()->add(Restrictions::eq('id', $id))->findUnique();
+			if ($user === null)
+			{
+				change_Controller::getInstance()->getStorage()->clearForUser();
+			}
+			return $user;
 		}
 		return null;
 	}
 
 	/**
-	 * Retrieves the current FrameworkSecurityUser from the context.
 	 * @return users_persistentdocument_user frontendUser or backendUser or null, depending on the controller (ChangeController or XULController)
 	 */
 	public function getCurrentUser()
 	{
-		$agaviUser = $this->getAgaviUser();
-		if ($agaviUser !== null)
-		{
-			return $this->getUserFromSessionId($agaviUser->getId());
-		}
-		return null;
+		return $this->getUserFromSessionId($this->getChangeUser()->getId());
+		
 	}
 	
 	/**
@@ -1012,5 +999,32 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * @param String $name
+	 * @param array $arguments
+	 */
+	final function __call($name, $arguments)
+	{
+		switch ($name)
+		{
+			case 'getAgaviUser': 
+				Framework::error('Call to deleted ' . get_class($this) . '->getAgaviUser method');
+				try
+				{
+					return change_Controller::getInstance()->getContext()->getUser();
+				}
+				catch (Exception $e)
+				{
+					if (Framework::isInfoEnabled())
+					{
+						Framework::info(__METHOD__ . $e->getMessage());
+					}
+				}
+				return null;
+			default: 
+				throw new Exception('No method ' . get_class($this) . '->' . $name);
+		}
 	}
 }

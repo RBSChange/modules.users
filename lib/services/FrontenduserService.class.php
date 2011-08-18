@@ -294,19 +294,11 @@ class users_FrontenduserService extends users_UserService
 	{
 		if ($this->currentUser === false)
 		{
-			$agaviUser = $this->getAgaviUser();
-			if ($agaviUser !== null)
-			{
-				$oldNameSpace = $agaviUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
-				$id = $agaviUser->getId();
-
-				$agaviUser->setUserNamespace($oldNameSpace);
-				$this->currentUser = $this->getUserFromSessionId($id);
-			}
-			else
-			{
-				$this->currentUser = null;
-			}
+			$changeUser = $this->getChangeUser();
+			$oldNameSpace = $changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
+			$id = $changeUser->getId();
+			$this->currentUser = $this->getUserFromSessionId($id);
+			$changeUser->setUserNamespace($oldNameSpace);
 		}
 		return $this->currentUser;
 	}

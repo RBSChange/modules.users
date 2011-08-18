@@ -68,7 +68,7 @@ class users_ChromeLoginAction extends change_Action
 					$uilang = $request->getParameter('uilang');
 					if (in_array($uilang, RequestContext::getInstance()->getUISupportedLanguages()))
 					{
-						$_SESSION['uilang']	= $uilang;
+						change_Controller::getInstance()->getStorage()->write('uixul_uilang', $uilang);
 					}
 				}
 				
@@ -77,7 +77,8 @@ class users_ChromeLoginAction extends change_Action
 				{
 					$result['OAuth'] = $this->getOAuthParams();
 				}
-				$_SESSION['ChromeBaseUri'] = "rbschange/content/ext/" . $result['ok'];	
+				$uri =  "rbschange/content/ext/" . $result['ok'];
+				change_Controller::getInstance()->getStorage()->write('uixul_ChromeBaseUri', $uri);
 				$this->logAction($user);	
 			}
 			else
