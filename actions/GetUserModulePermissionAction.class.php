@@ -40,7 +40,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 			$moduleName = str_replace('modules_', '', $packageName);
 			
 			// Check si des roles sont defini sur ce module
-			$rs = f_permission_PermissionService::getRoleServiceByModuleName($moduleName);
+			$rs = change_PermissionService::getRoleServiceByModuleName($moduleName);
 			if ($rs === null) 
 			{
 				continue;
@@ -50,7 +50,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 			
 			$addRolesDefinition = false;
 			// Permission d'affecter les rôle
-			if (f_permission_PermissionService::getInstance()->hasPermission($currentUser, $packageName . '.LoadPermissions.rootfolder', $rootfolderid))
+			if (change_PermissionService::getInstance()->hasPermission($currentUser, $packageName . '.LoadPermissions.rootfolder', $rootfolderid))
 			{
 				$addRolesDefinition = true;
 				$documentIds[$rootfolderid] = $moduleName;

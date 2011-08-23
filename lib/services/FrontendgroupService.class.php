@@ -13,7 +13,7 @@ class users_FrontendgroupService extends users_GroupService
 	{
 		if (self::$instance === null)
 		{
-			self::$instance = self::getServiceClassInstance(get_class());
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}

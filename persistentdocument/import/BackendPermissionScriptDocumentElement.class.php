@@ -19,7 +19,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				$group = users_BackendgroupService::getInstance()->getByLabel($this->attributes['group']);
 				if ($group instanceof users_persistentdocument_backendgroup)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -31,7 +31,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				$group = $this->script->getElementById($this->attributes['group-refid'], 'import_ScriptObjectElement')->getObject();
 				if ($group instanceof users_persistentdocument_backendgroup)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -45,7 +45,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				$user = users_BackenduserService::getInstance()->getBackEndUserByLogin($this->attributes['user']);
 				if ($user instanceof users_persistentdocument_backenduser)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -57,7 +57,7 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				$user = $this->script->getElementById($this->attributes['user-refid'], 'import_ScriptObjectElement')->getObject();
 				if ($user instanceof users_persistentdocument_backenduser)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
 				else 
 				{

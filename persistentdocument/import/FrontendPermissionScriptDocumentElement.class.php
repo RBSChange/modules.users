@@ -20,7 +20,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				$group = users_WebsitefrontendgroupService::getInstance()->getByLabel($this->attributes['group']);
 				if ($group instanceof users_persistentdocument_frontendgroup)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -32,7 +32,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				$group = $this->script->getElementById($this->attributes['group-refid'], 'import_ScriptObjectElement')->getObject();
 				if ($group instanceof users_persistentdocument_frontendgroup)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -52,7 +52,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				$user = users_WebsitefrontenduserService::getInstance()->getFrontendUserByLogin($this->attributes['user'], $website->getId());
 				if ($user instanceof users_persistentdocument_frontenduser)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
 				else 
 				{
@@ -64,7 +64,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				$user = $this->script->getElementById($this->attributes['user-refid'], 'import_ScriptObjectElement')->getObject();
 				if ($user instanceof users_persistentdocument_frontenduser)
 				{
-					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
 				else 
 				{

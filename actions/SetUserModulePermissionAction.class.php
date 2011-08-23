@@ -20,7 +20,7 @@ class users_SetUserModulePermissionAction extends change_JSONAction
 		// 0 => 'ads,Admin,1547,2'
 		$acl = $request->getParameter('acl', array());
 		
-		$ps = f_permission_PermissionService::getInstance();
+		$ps = change_PermissionService::getInstance();
 		$tm = $this->getTransactionManager();
 		$modifiedRoles = array();
 		foreach ($acl as $data) 

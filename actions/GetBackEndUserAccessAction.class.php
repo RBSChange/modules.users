@@ -34,13 +34,13 @@ class users_GetBackEndUserAccessAction extends change_JSONAction
 				if ($visible)
 				{
 					$menu = $cModule->getCategory();
-					$access = $fullAccess || f_permission_PermissionService::getInstance()->hasPermission($user, $packageName . '.Enabled', $rootFolderId);
-					$list = $fullAccess || f_permission_PermissionService::getInstance()->hasPermission($user, $packageName . '.List.rootfolder', $rootFolderId);	
+					$access = $fullAccess || change_PermissionService::getInstance()->hasPermission($user, $packageName . '.Enabled', $rootFolderId);
+					$list = $fullAccess || change_PermissionService::getInstance()->hasPermission($user, $packageName . '.List.rootfolder', $rootFolderId);	
 				}
 				else
 				{
 					$access = false;
-					$list = $fullAccess || f_permission_PermissionService::getInstance()->hasPermission($user, $packageName . '.List.rootfolder', $rootFolderId);
+					$list = $fullAccess || change_PermissionService::getInstance()->hasPermission($user, $packageName . '.List.rootfolder', $rootFolderId);
 					$menu = '';
 				}
 
