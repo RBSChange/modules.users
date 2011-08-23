@@ -127,7 +127,7 @@ class users_BlockRegisterAction extends website_BlockAction
 		
 		// Login validation.
 		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
-		$login = ($request->hasParameter('login')) ? $request->getParameter('login') : $request->getParameter('email');
+		$login = ($request->hasNonEmptyParameter('login')) ? $request->getParameter('login') : $request->getParameter('email');
 		if (in_array($login, users_ModuleService::getInstance()->getDisallowedLogins()))
 		{
 			$this->addError(f_Locale::translate('&modules.users.frontoffice.Login-disallowed;'), 'registration-form');
