@@ -285,21 +285,17 @@ class users_FrontenduserService extends users_UserService
 		return false;
 	}
 	
-	private $currentUser = false;
 	
 	/**
 	 * @return users_persistentdocument_frontenduser or null
 	 */
 	public function getCurrentUser()
 	{
-		if ($this->currentUser === false)
-		{
-			$changeUser = $this->getChangeUser();
-			$oldNameSpace = $changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
-			$id = $changeUser->getId();
-			$this->currentUser = $this->getUserFromSessionId($id);
-			$changeUser->setUserNamespace($oldNameSpace);
-		}
-		return $this->currentUser;
+		$changeUser = $this->getChangeUser();
+		$oldNameSpace = $changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
+		$id = $changeUser->getId();
+		$currentUser = $this->getUserFromSessionId($id);
+		$changeUser->setUserNamespace($oldNameSpace);
+		return $currentUser;
 	}
 }

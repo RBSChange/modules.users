@@ -209,22 +209,17 @@ class users_BackenduserService extends users_UserService
 		$rows = $this->createQuery()->add(Restrictions::published())->add(Restrictions::orExp(Restrictions::isNull('lastping'), Restrictions::le('lastping', $dateCalendarInstance->toString())))->setProjection(Projections::rowCount("count"))->find();
 		return $rows[0]['count'];
 	}
-
-	private $currentUser = false;
 	
 	/**
 	 * @return users_persistentdocument_backenduser or null
 	 */
 	public function getCurrentUser()
 	{
-		if ($this->currentUser === false)
-		{
-			$changeUser = $this->getChangeUser();
-			$oldNameSpace = $changeUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
-			$id = $changeUser->getId();
-			$this->currentUser = $this->getUserFromSessionId($id);
-			$changeUser->setUserNamespace($oldNameSpace);
-		}
-		return $this->currentUser;
+		$changeUser = $this->getChangeUser();
+		$oldNameSpace = $changeUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
+		$id = $changeUser->getId();
+		$currentUser = $this->getUserFromSessionId($id);
+		$changeUser->setUserNamespace($oldNameSpace);
+		return $currentUser;
 	}
 }

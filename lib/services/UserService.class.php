@@ -765,12 +765,15 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$id = intval($id);
 		if ($id > 0)
 		{
-			$user = $this->createQuery()->add(Restrictions::eq('id', $id))->findUnique();
-			if ($user === null)
+			try 
 			{
+				return DocumentHelper::getDocumentInstance($id, 'modules_users/user');
+			}
+			catch (Exception $e)
+			{
+				Framework::error($e->getMessage());
 				change_Controller::getInstance()->getStorage()->clearForUser();
 			}
-			return $user;
 		}
 		return null;
 	}
@@ -780,8 +783,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function getCurrentUser()
 	{
-		return $this->getUserFromSessionId($this->getChangeUser()->getId());
-		
+		return $this->getUserFromSessionId($this->getChangeUser()->getId());	
 	}
 	
 	/**
