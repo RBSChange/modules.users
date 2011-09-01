@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install type="modules" name="users" version="4.0.0">
+  <package type="modules" name="list"/>
+  <package type="modules" name="uixul"/>
+  <package type="modules" name="notification"/>
+  <package type="modules" name="preferences"/>
+</install>
