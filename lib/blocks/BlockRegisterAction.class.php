@@ -72,6 +72,7 @@ class users_BlockRegisterAction extends website_BlockAction
 		users_UserService::getInstance()->authenticateFrontEndUser(null);
 		users_ModuleService::getInstance()->unsetAutoLogin();
 		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
+		HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($this->getContext()->getPersistentPage()));
 		return website_BlockView::INPUT;
 	}
 	
