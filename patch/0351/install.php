@@ -21,20 +21,29 @@ class users_patch_0351 extends patch_BasePatch
 		
 		$this->log("Login is not case sensitive => trying to migrate data");
 		
-		//$stmt = $this->executeSQLSelect("SELECT count(*) as `logincount`, lower(`login`) as `llogin` FROM `m_users_doc_user` group by `llogin`");
-		$stmt = $this->executeSQLSelect("SELECT count(*) as `logincount`, lower(`login`) as `llogin` FROM `m_users_doc_user`  group by `llogin` having `logincount` > 1");
-		
-		$rows = $stmt->fetchAll();
-		if (count($rows) > 0)
+		foreach (array('frontenduser', 'backenduser') as $docName)
 		{
-			$this->logError("Can not migrate user logins: there are ".count($rows)." duplicates. See below for details: ");
-			foreach ($rows as $row)
+			$model = f_persistentdocument_PersistentDocumentModel::getInstance('users', $docName);
+			$modelNames = array($model->getName());
+			if (is_array($model->getChildrenNames()))
 			{
-				$this->log($row["llogin"].", used ".$row["logincount"]." times");
+				$modelNames = array_merge($modelNames, $model->getChildrenNames());
 			}
-			throw new Exception("\nYou should:\n- activate login case sensitivity turning to true modules/users/loginCaseSensitive, or\n- Fix your database");
+			$sqlIn = "document_model IN ('" . implode("', '", $modelNames) . "')";
+			$stmt = $this->executeSQLSelect("SELECT count(*) as `logincount`, lower(`login`) as `llogin` FROM `m_users_doc_user` WHERE $sqlIn group by `llogin` having `logincount` > 1");
+			
+			$rows = $stmt->fetchAll();
+			if (count($rows) > 0)
+			{
+				$this->logError("Can not migrate $docName user logins: there are ".count($rows)." duplicates. See below for details: ");
+				foreach ($rows as $row)
+				{
+					$this->log($row["llogin"].", used ".$row["logincount"]." times");
+				}
+				throw new Exception("\nYou should:\n- activate login case sensitivity turning to true modules/users/loginCaseSensitive, or\n- Fix your database");
+			}
 		}
-		
+
 		$scriptPath = "modules/users/patch/0351/migrateUsersLogins.php";
 		$ids = users_UserService::getInstance()->createQuery()
 			->setProjection(Projections::property("id", "i"))
