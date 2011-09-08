@@ -27,7 +27,6 @@ class users_GetBackEndUserAccessAction extends change_JSONAction
 				$packageName = $cModule->getFullName();
 				$moduleName = $cModule->getName();
 				$version = $cModule->getVersion();
-				$enabled = $cModule->isEnabled();
 				$rootFolderId = $cModule->getRootFolderId();
 				$visible = $cModule->isVisible();
 	
@@ -45,7 +44,7 @@ class users_GetBackEndUserAccessAction extends change_JSONAction
 				}
 
 				$result[$moduleName] = array('rootfolderid' => $rootFolderId, 
-											 'enabled' => $enabled, 'visible' => $visible, 'menu' => $menu,
+											 'enabled' => true, 'visible' => $visible, 'menu' => $menu,
 											 'access' => $access, 'list' => $list, 'version' => $version);	
 			}
 		}
