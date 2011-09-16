@@ -39,7 +39,8 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			users_ModuleService::getInstance()->unsetAutoLogin();
 			$this->redirectToUrl(website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl());
 		}
-		else 
+		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
+        elseif (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Authentication')
 		{
 			$login = $this->findParameterValue('login');
 			$password = $this->findParameterValue('password');
