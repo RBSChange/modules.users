@@ -20,7 +20,7 @@ class users_ChromeLoginAction extends change_Action
 			$us = users_UserService::getInstance();
 			$user = $us->getBackEndUserByLogin($login);
 			
-			if ($user !== null && $user->getEmail() == null && $user->getPasswordmd5() == null)
+			if ($user !== null && $user->getEmail() == null && $user->getPasswordmd5() == null && !empty($adminemail))
 			{
 				try 
 				{
