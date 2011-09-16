@@ -13,8 +13,9 @@ class users_BlockResetpasswordAction extends website_BlockAction
 			return website_BlockView::INPUT;
 		}
 		
-		if ($request->hasParameter('submit'))
-		{
+		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
+        if ($request->hasParameter('submit') && (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Resetpassword'))
+        {
 			$login = trim($request->getParameter('login'));
 			if (!empty($login))
 			{
