@@ -8,7 +8,8 @@ class users_BlockResetpasswordAction extends block_BlockAction
 	 */
 	public function execute($context, $request)
 	{		
-        if ($request->hasParameter('submit'))
+		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
+        if ($request->hasParameter('submit') && (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Resetpassword'))
         {
             $errors = array();
             $login = trim($request->getParameter('login'));
