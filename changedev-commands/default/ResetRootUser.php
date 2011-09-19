@@ -1,5 +1,5 @@
 <?php
-class commands_ResetRootUser extends commands_AbstractChangedevCommand
+class commands_ResetRootUser extends c_ChangescriptCommand
 {
 	/**
 	 * @return String
