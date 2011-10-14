@@ -97,6 +97,7 @@ class users_BlockRegisterAction extends website_BlockAction
 		{
 			$password = $user->getDocumentService()->generatePassword();
 		}
+		$user->setPassword(null);
 		$user->setPasswordmd5(md5($password));
 		$user->save($group->getId());
 		
