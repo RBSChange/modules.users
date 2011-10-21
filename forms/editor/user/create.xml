@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="m.uixul.bo.doceditor.fieldsgroup.title">
+		<field name="label" />
+		<field name="email" />
+		<field name="login">
+			<constraint name="login" parameter="new" />
+		</field>
+		
+		<field name="generatepassword" id="users_user_create_generatepassword" anonid="field_generatepassword"
+			type="boolean" labeli18n="m.users.document.user.generatepassword" />
+			
+		<field name="password" id="users_user_create_password" anonid="field_password" type="text" required="true"
+			labeli18n="m.users.document.user.password" shorthelpi18n="m.users.document.user.password-help">
+			<constraint name="password" parameter="auto"/>
+		</field>
+	</section>
+	<xul>
+		<javascript>
+			<constructor><![CDATA[
+				var me = this
+				this.fields.generatepassword.addEventListener('fieldChanged', function (event) {me.onGeneratepassword(event);}, true);
+				
+				this.addEventListener('panelInitializeComplete', function (event) {me.onPanelInitializeComplete(event);}, true);
+			]]></constructor>
+			
+			<method name="onGeneratepassword">
+				<parameter name="event" />
+				<body><![CDATA[
+					var genPassword = (this.fields.generatepassword.value === 'true');
+					this.fields['password'].disabled = genPassword;
+				]]></body>
+			</method>	
+			
+			<method name="onPanelInitializeComplete">
+				<parameter name="event" />
+				<body><![CDATA[
+					try
+					{
+						wCore.debug('create.onPanelInitializeComplete');
+						var nodes = this.fields.password.childNodes;
+						for (var i = 0; i < nodes.length; i++)
+						{
+							if (nodes[i].localName == 'cconstraint' && nodes[i].name == 'password')
+							{
+								nodes[i].setAttribute('parameter', this.documentEditor.parentid);
+							}
+						}
+					}
+					catch (e)
+					{
+						wCore.debug('ERR: create.onPanelInitializeComplete');
+					}
+				]]></body>
+			</method>
+		</javascript>
+	</xul>
+</panel>

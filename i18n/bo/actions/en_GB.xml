@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.actions" lcid="en_GB">
-  <key id="create-frontenduser">create user</key>
-  <key id="create-backenduser">create Change user</key>
-  <key id="create-frontendgroup">create frontend group</key>
-  <key id="create-backendgroup">create Change users group</key>
-  <key id="createonrootfolder_">create</key>
-  <key id="createbackend_">create</key>
-  <key id="createfrontend_">create</key>
-  <key id="remove-user">remove from group</key>
-  <key id="export-users">Export published users</key>
-  <key id="createwebsitefrontend_">create</key>
-  <key id="create-websitefrontenduser">Create user site</key>
+  <key id="createuser">create user</key>
+  <key id="creategroup">create group</key>
+  <key id="removeuser">remove from group</key>
+  <key id="exportusers">Export published users</key>
 </i18n>

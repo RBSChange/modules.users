@@ -8,13 +8,21 @@ class users_ResetPasswordAction extends change_JSONAction
 	public function _execute($context, $request)
 	{
 		$login = $request->getParameter('login');
-		if (! f_util_StringUtils::isEmpty($login))
+		if (!f_util_StringUtils::isEmpty($login))
 		{
-			$us = users_BackenduserService::getInstance();
+			$us = users_userService::getInstance();
 			try
 			{
-				$user = $us->prepareNewPassword($login);
-				$result = array('message' => f_Locale::translate('&modules.users.bo.general.ResetPassword.SuccessText;', array('email' => $user->getEmail())));
+				$users = $us->getUsersByLoginAndGroup($login, users_BackendgroupService::getInstance()->getBackendGroup());
+				if (count($users) != 1)
+				{
+					return $this->sendJSONError(LocaleService::getInstance()->transBO('m.users.messages.error.logindoesnotexist', array('ucf')), false);
+				}
+				$user = $users[0];
+				$us->prepareNewPassword($user);
+				$result = array('message' => LocaleService::getInstance()->transBO('m.users.bo.general.resetpassword.successtext', 
+					array('ucf'), array('email' => $user->getEmail())));
+					
 				return $this->sendJSON($result);
 			}
 			catch (BaseException $e)

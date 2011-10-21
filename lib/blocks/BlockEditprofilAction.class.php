@@ -12,7 +12,7 @@ class users_BlockEditprofilAction extends website_BlockAction
 	 */
 	function execute($request, $response)
 	{
-		$user = users_UserService::getInstance()->getCurrentFrontEndUser();
+		$user = users_UserService::getInstance()->getCurrentUser();
 		if ($user === null)
 		{
 			return website_BlockView::NONE;

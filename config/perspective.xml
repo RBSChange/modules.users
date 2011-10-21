@@ -3,31 +3,45 @@
 	<models>
 		<model name="modules_generic/rootfolder">
 			<children>
-				<child model="modules_users/frontendgroup" />
-				<child model="modules_users/dynamicfrontendgroup" />
-				<child model="modules_users/websitefrontendgroup" />
+				<child model="modules_users/group" />
+				<child model="modules_users/nogroupuserfolder" />
+				<child model="modules_users/dynamicgroup" />
 				<child model="modules_users/backendgroup" />
 				<child model="modules_generic/systemfolder" />
 			</children>
+			
 			<drops>
-				<drop model="modules_users/frontendgroup" action="move" />
-				<drop model="modules_users/dynamicfrontendgroup" action="move" />
-				<drop model="modules_users/websitefrontendgroup" action="move" />
-				<drop model="modules_users/backendgroup" action="move" />
-				<drop model="modules_generic/systemfolder" action="move" />
 			</drops>
+			
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="openTreeNodeOrder" />
-				<groupactions name="createOnRootFolder_">
-					<contextaction name="createFrontendgroup" />
-					<contextaction name="createBackendgroup" />
-				</groupactions>
+				<contextaction name="createGroup" />
 			</contextactions>
 		</model>
+		
+		<model name="modules_users/user">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="removeUser" />
+				<contextaction name="delete" />
+				<contextaction name="activate" />
+				<contextaction name="reactivate" />
+				<contextaction name="deactivated" />
+				<toolbarbutton name="setRolesForModule" />
+			</contextactions>
+		</model>
+		
+		<model name="modules_users/anonymoususer">
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="setRolesForModule" />
+			</contextactions>
+		</model>
+		
 		<model name="modules_generic/systemfolder">
 			<children>
-				<child model="modules_users/dynamicfrontendgroup" />
+				<child model="modules_users/dynamicgroup" />
 			</children>	
 			<columns>
 				<column name="refreshing" />
@@ -40,113 +54,76 @@
 				<contextaction name="openFolder" />
 			</contextactions>
 		</model>
-		<model name="modules_users/frontenduser">
-			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="removeUser" />
-				<contextaction name="delete" />
-				<contextaction name="activate" />
-				<contextaction name="reactivate" />
-				<contextaction name="deactivated" />
-			</contextactions>
-		</model>
-		<model name="modules_users/backenduser">
-			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="removeUser" />
-				<contextaction name="delete" />
-				<contextaction name="activate" />
-				<contextaction name="reactivate" />
-				<contextaction name="deactivated" />
-				<contextaction name="setRolesForModule" />
-			</contextactions>
-		</model>
-		<model name="modules_users/websitefrontenduser">
-			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="removeUser" />
-				<contextaction name="delete" />
-				<contextaction name="activate" />
-				<contextaction name="reactivate" />
-				<contextaction name="deactivated" />
-			</contextactions>
-		</model>
-		<model name="modules_users/frontendgroup">
+		
+		<model name="modules_users/dynamicgroup">
 			<children>
-				<child model="modules_users/frontenduser" from="function" />
+				<child model="modules_users/user" from="function" />
 			</children>
-			<drops>
-				<drop model="modules_users/frontenduser" action="move" />
-				<drop model="modules_users/websitefrontenduser" action="move" />
-			</drops>
-			<styles properties="block actualtype" />
 			<columns>
 				<column name="login" flex="1" />
-			</columns>
-			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="delete" />
-				<contextaction name="exportUsers" />
-				<groupactions name="createFrontend_">
-					<contextaction name="createFrontenduser" />
-				</groupactions>
-			</contextactions>
-		</model>
-		<model name="modules_users/dynamicfrontendgroup">
-			<children>
-				<child model="modules_users/frontenduser" from="function" />
-			</children>
-			<drops>
-				<drop model="modules_users/frontenduser" action="move" />
-				<drop model="modules_users/websitefrontenduser" action="move" />
-			</drops>
-			<styles properties="block actualtype" />
-			<columns>
-				<column name="login" flex="1" />
+				<column name="email" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="delete" />
 				<contextaction name="exportUsers" />
 				<contextaction name="setRolesForModule" />
-				<contextaction name="refreshDynamicfrontendgroup" />
+				<contextaction name="refreshDynamicgroup" />
+			</contextactions>
+		</model>		
+				
+		<model name="modules_users/group">
+			<children>
+				<child model="modules_users/user" from="function" />
+			</children>
+			<drops>
+				<drop model="modules_users/user" action="move" />
+			</drops>
+			<columns>
+				<column name="login" flex="1" />
+				<column name="email" flex="1" />
+			</columns>
+			<contextactions>
+				<contextaction name="edit" />
+				<contextaction name="delete" />
+				<contextaction name="exportUsers" />
+				<contextaction name="setRolesForModule" />
+				<contextaction name="createUser" />
 			</contextactions>
 		</model>
+
 		<model name="modules_users/backendgroup">
 			<children>
-				<child model="modules_users/backenduser" from="function"/>
+				<child model="modules_users/user" from="function"/>
 			</children>
 			<drops>
-				<drop model="modules_users/backenduser" action="move" />
+				<drop model="modules_users/user" action="move" />
 			</drops>
-			<styles properties="block actualtype" />
 			<columns>
 				<column name="login" flex="1" />
+				<column name="email" flex="1" />
 			</columns>
 			<contextactions>
 				<contextaction name="edit" />
-				<contextaction name="delete" />
 				<contextaction name="exportUsers" />
 				<contextaction name="setRolesForModule" />
-				<groupactions name="createBackend_">
-					<contextaction name="createBackenduser" />
-				</groupactions>
+				<contextaction name="createUser" />
 			</contextactions>
 		</model>
-		<model name="modules_users/websitefrontendgroup">
+		
+		<model name="modules_users/nogroupuserfolder">
 			<children>
-				<child model="modules_users/websitefrontenduser" from="function"/>
+				<child model="modules_users/user" from="function"/>
+				<child model="modules_users/anonymoususer" from="function"/>
 			</children>
-			<styles properties="block actualtype" />
+			<drops>
+				<drop model="modules_users/user" action="move" />
+			</drops>
 			<columns>
 				<column name="login" flex="1" />
+				<column name="email" flex="1" />
 			</columns>
 			<contextactions>
-				<contextaction name="edit" />
-				<contextaction name="exportUsers" />
-				<groupactions name="createWebsiteFrontend_">
-					<contextaction name="createWebsitefrontenduser" />
-				</groupactions>
 			</contextactions>
 		</model>
 	</models>
@@ -161,26 +138,18 @@
 	<actions>
 		<action name="refresh" single="true" icon="refresh" labeli18n="m.uixul.bo.actions.refresh" />
 		<action name="edit" single="true" permission="Load" icon="edit" labeli18n="m.uixul.bo.actions.edit" />
-		<action name="removeUser" icon="remove" labeli18n="m.users.bo.actions.remove-user" />
+		<action name="removeUser" icon="remove" />
 		<action name="activate" permission="Activate" icon="activate" labeli18n="m.uixul.bo.actions.activate" />
 		<action name="reactivate" permission="ReActivate" icon="reactivate" labeli18n="m.uixul.bo.actions.reactivate" />
 		<action name="deactivated" permission="Deactivated" icon="deactivated" labeli18n="m.uixul.bo.actions.deactivate" />
-		<action name="setRolesForModule" permission="GetUserModulePermission" icon="roles-for-module" labeli18n="m.users.bo.actions.setrolesformodule" />
+		<action name="setRolesForModule" permission="GetUserModulePermission" icon="roles-for-module" />
 		<action name="delete" permission="Delete" icon="delete" labeli18n="m.uixul.bo.actions.delete" />
-		<action name="exportUsers" icon="download" labeli18n="m.users.bo.actions.export-users" />
+		<action name="exportUsers" icon="download" />
 		<action name="openTreeNodeOrder" single="true" permission="Order" icon="sort" labeli18n="m.uixul.bo.actions.set-children-order" />
-		<action name="createFrontend_" actions="createFrontenduser" icon="add" />
-		<action name="createFrontenduser" permission="Insert_frontenduser" group="createFrontend_" labeli18n="m.users.bo.actions.create-frontenduser" />
+		<action name="createUser" icon="add" single="true" permission="Insert_user" />
 		<action name="move" permission="Move" icon="up_down" labeli18n="m.uixul.bo.actions.move" />
-		<action name="createBackend_" actions="createBackenduser" icon="add" />
-		<action name="createBackenduser" permission="Insert_backenduser" group="createBackend_" labeli18n="m.users.bo.actions.create-backenduser" />
-		<action name="createWebsiteFrontend_" actions="createWebsitefrontenduser" icon="add" />
-		<action name="createWebsitefrontenduser" permission="Insert_websitefrontenduser" group="createWebsiteFrontend_" labeli18n="m.users.bo.actions.create-websitefrontenduser" />
-		<action name="createOnRootFolder_" actions="createFrontendgroup,createBackendgroup" icon="add" />
-		<action name="createFrontendgroup" permission="Insert_frontendgroup" group="createOnRootFolder_" labeli18n="m.users.bo.actions.create-frontendgroup" />
-		<action name="createBackendgroup" permission="Insert_backendgroup" group="createOnRootFolder_" labeli18n="m.users.bo.actions.create-backendgroup" />
-		<action name="createFolder" single="true" icon="create-folder" labeli18n="m.uixul.bo.actions.create-folder" />
+		<action name="createGroup" icon="add" single="true" permission="Insert_group" />
 		<action name="openFolder" icon="open-folder" labeli18n="m.uixul.bo.actions.openfolder" />
-		<action name="refreshDynamicfrontendgroup" single="true" icon="users-frontoffice-refresh" />
+		<action name="refreshDynamicgroup" single="true" icon="users-frontoffice-refresh" />
 	</actions>
 </perspective>

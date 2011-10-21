@@ -1,4 +1,4 @@
-<form change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user">
+<form change:form="beanClass users_persistentdocument_user; beanName user">
 	<fieldset>
 		<legend>${title}</legend>
 		<ul change:errors=""></ul>
@@ -6,17 +6,11 @@
 		<input change:field="name beanId" hidden="true" />	
 		<ol>
 			<li>
+				<input change:field="name label" />
+			</li>	
+			<li>
 				<input change:field="name login" />
 				<a change:link="tag contextual_website_website_modules_users_change-password">${trans:m.users.frontoffice.editprofil.changepassword}</a>
-			</li>
-			<li>
-				<input change:field="name titleid" />
-			</li>
-			<li>
-				<input change:field="name firstname" />
-			</li>
-			<li>
-				<input change:field="name lastname" />
 			</li>
 			<li>
 				<input change:field="name email" />

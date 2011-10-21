@@ -3,4 +3,6 @@
   <key id="label">label</key>
   <key id="description">description</key>
   <key id="users">users</key>
+  <key id="securitylevel">security level for password</key>
+  <key id="securitylevel-help">security level for password</key>
 </i18n>

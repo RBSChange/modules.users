@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.user" lcid="de_DE">
-  <key id="lastname">Name</key>
-  <key id="lastname-help">Benutzername</key>
   <key id="startpublicationdate">Gültigkeitsanfang des Kontos</key>
   <key id="startpublicationdate-help">das Konto kann nur ab diesem Datum genutzt werden</key>
   <key id="endpublicationdate">Gültigkeitsende des Kontos</key>
   <key id="endpublicationdate-help">das Konto wird ab diesem Datum nicht mehr verfügbar sein</key>
-  <key id="title">Anrede</key>
-  <key id="title-help">Anrede des Benutzers</key>
-  <key id="titleid">Anrede</key>
-  <key id="titleid-help">Anrede des Benutzers</key>
-  <key id="firstname">Vorname</key>
-  <key id="firstname-help">Vorname des Benutzers</key>
   <key id="email">E-mail Adresse</key>
   <key id="email-help">E-mail Adresse des Benutzers</key>
   <key id="login">Benutzername</key>
@@ -26,4 +18,8 @@
   <key id="publicationstatus">Status</key>
   <key id="lastlogin">Letzte Anmeldung</key>
   <key id="lastping">Letzter Besuch</key>
+  
+  <key id="issudoer">sudoer</key>
+  <key id="issudoer-help">die selektierten Benutzer werden die möglichkeit haben die Identität jedes beliebigen Mitglieds dieser Gruppe	einzunehmen.</key>
+
 </i18n>

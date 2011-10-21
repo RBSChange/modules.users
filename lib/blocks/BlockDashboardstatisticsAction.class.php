@@ -12,12 +12,13 @@ class users_BlockDashboardstatisticsAction extends dashboard_BlockDashboardActio
 		if ($forEdition) {return;}
 	
 		website_StyleService::getInstance()->registerStyle('modules.users.dashboard');
+		$groupId = users_BackendgroupService::getInstance()->getBackendGroupId();
 		
-		$request->setAttribute('backendUserCount', users_BackenduserService::getInstance()->getCount());
-		$request->setAttribute('backendUserPublishedCount', users_BackenduserService::getInstance()->getPublishedCount());
-		$request->setAttribute('backendInactiveCount', users_BackenduserService::getInstance()->getInactiveCount());
-		$request->setAttribute('backendInactiveWeekCount', users_BackenduserService::getInstance()->getInactiveSinceDateCount(date_Calendar::now()->sub(date_Calendar::DAY, 7)));
-		$request->setAttribute('backendInactiveMonthCount', users_BackenduserService::getInstance()->getInactiveSinceDateCount(date_Calendar::now()->sub(date_Calendar::MONTH, 1)));	
+		$request->setAttribute('backendUserCount', users_UserService::getInstance()->getCountByGroupId($groupId));
+		$request->setAttribute('backendUserPublishedCount', users_UserService::getInstance()->getPublishedCountByGroupId($groupId));
+		$request->setAttribute('backendInactiveCount', users_UserService::getInstance()->getInactiveCountByGroupId($groupId));
+		$request->setAttribute('backendInactiveWeekCount', users_UserService::getInstance()->getInactiveSinceDateCountByGroupId($groupId, date_Calendar::now()->sub(date_Calendar::DAY, 7)));
+		$request->setAttribute('backendInactiveMonthCount', users_UserService::getInstance()->getInactiveSinceDateCountByGroupId($groupId, date_Calendar::now()->sub(date_Calendar::MONTH, 1)));	
 		$websiteParam = intval($request->getParameter('website'));
 		
 		if ($websiteParam <= 0)
@@ -25,17 +26,21 @@ class users_BlockDashboardstatisticsAction extends dashboard_BlockDashboardActio
 			$websiteParam = null;
 		}
 		
-		$request->setAttribute('frontendUserCount', users_WebsitefrontenduserService::getInstance()->getCount($websiteParam));
-		$request->setAttribute('frontendUserPublishedCount', users_WebsitefrontenduserService::getInstance()->getPublishedCount($websiteParam));
-		$request->setAttribute('frontendInactiveCount', users_WebsitefrontenduserService::getInstance()->getInactiveCount($websiteParam));
-		$request->setAttribute('frontendInactiveWeekCount', users_WebsitefrontenduserService::getInstance()->getInactiveSinceDateCount(date_Calendar::now()->sub(date_Calendar::DAY, 7),$websiteParam));
-		$request->setAttribute('frontendInactiveMonthCount', users_WebsitefrontenduserService::getInstance()->getInactiveSinceDateCount(date_Calendar::now()->sub(date_Calendar::MONTH, 1), $websiteParam));
 	
 		$websites = website_WebsiteService::getInstance()->createQuery()->find();
 		$request->setAttribute('websites', $websites);
 		foreach ($websites as $website)
 		{
-			$website->selected = ($website->getId() == $websiteParam);
+			if ($website->getId() != $websiteParam) {continue;}
+			
+			$website->selected = true;
+			$groupId = $website->getGroup()->getId();
+			$request->setAttribute('frontendUserCount', users_UserService::getInstance()->getCountByGroupId($groupId));
+			$request->setAttribute('frontendUserPublishedCount', users_UserService::getInstance()->getPublishedCountByGroupId($groupId));
+			$request->setAttribute('frontendInactiveCount', users_UserService::getInstance()->getInactiveCountByGroupId($groupId));
+			$request->setAttribute('frontendInactiveWeekCount', users_UserService::getInstance()->getInactiveSinceDateCountByGroupId($groupId, date_Calendar::now()->sub(date_Calendar::DAY, 7)));
+			$request->setAttribute('frontendInactiveMonthCount', users_UserService::getInstance()->getInactiveSinceDateCountByGroupId($groupId, date_Calendar::now()->sub(date_Calendar::MONTH, 1)));
+			
 		}		
 	}
 }

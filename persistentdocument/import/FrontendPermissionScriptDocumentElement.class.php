@@ -8,7 +8,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 	 * @param f_persistentdocument_PersistentDocument $document
 	 * @param website_persistentdicument_website $document
 	 */
-    public function setPermission($document, $website)
+    public function setPermission($document)
 	{
 		if (isset($this->attributes['module']) && isset($this->attributes['role']))
 		{
@@ -17,8 +17,8 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 			// Handle groups.
 			if (isset($this->attributes['group']))
 			{
-				$group = users_WebsitefrontendgroupService::getInstance()->getByLabel($this->attributes['group']);
-				if ($group instanceof users_persistentdocument_frontendgroup)
+				$group = users_GroupService::getInstance()->getByLabel($this->attributes['group']);
+				if ($group instanceof users_persistentdocument_group)
 				{
 					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
@@ -30,7 +30,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 			else if (isset($this->attributes['group-refid']))
 			{
 				$group = $this->script->getElementById($this->attributes['group-refid'], 'import_ScriptObjectElement')->getObject();
-				if ($group instanceof users_persistentdocument_frontendgroup)
+				if ($group instanceof users_persistentdocument_group)
 				{
 					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
@@ -43,26 +43,22 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 			// Handle users.
 			if (isset($this->attributes['user']))
 			{
-				if (!($website instanceof website_persistentdocument_website))
+				$group = website_WebsiteService::getInstance()->getDefaultWebsite()->getGroup();
+				$login = $this->attributes['user'];
+				$users = users_UserService::getInstance()->getUsersByLoginAndGroup($login, $group);
+				if (count($users) === 1)
 				{
-					Framework::warn(__METHOD__ . ' user identified by login can\'t be found outside from the context of a website! Permission on "'.$this->attributes['user'].'" skipped.');
-					return;
-				}
-				
-				$user = users_WebsitefrontenduserService::getInstance()->getFrontendUserByLogin($this->attributes['user'], $website->getId());
-				if ($user instanceof users_persistentdocument_frontenduser)
-				{
-					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					change_PermissionService::getInstance()->addRoleToUser($users[0], $roleName, array($document->getId()));
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['user'].'".');
+					Framework::warn(__METHOD__ . ' invalid user '.$login.'".');
 				}
 			}
 			else if (isset($this->attributes['user-refid']))
 			{
 				$user = $this->script->getElementById($this->attributes['user-refid'], 'import_ScriptObjectElement')->getObject();
-				if ($user instanceof users_persistentdocument_frontenduser)
+				if ($user instanceof users_persistentdocument_user)
 				{
 					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}

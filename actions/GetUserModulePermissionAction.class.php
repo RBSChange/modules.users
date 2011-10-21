@@ -16,8 +16,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 	public function _execute($context, $request)
 	{
 		$ls = LocaleService::getInstance();
-		$currentUser = users_BackenduserService::getInstance()->getCurrentBackEndUser();
-		
+		$currentUser = users_UserService::getInstance()->getAutenticatedUser();
 		$accessor = $this->getDocumentInstanceFromRequest($request);
 		if ($accessor instanceof users_persistentdocument_group)
 		{
@@ -27,17 +26,24 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 		else
 		{
 			$type = 'user';
-			$label = $ls->transBO('m.users.bo.dialog.user-title', array('ucf'), array('name' => $accessor->getFullName()));
+			$label = $ls->transBO('m.users.bo.dialog.user-title', array('ucf'), array('name' => $accessor->getLabel()));
 		}
 		$documentIds = array();
 		$result = array();
 		$result['user'] = array('id' => $accessor->getId(), 'type' => $type, 'label' => $label);
 		$result['roles'] = array();
 		
+		$allowedRoles = explode(',' , Framework::getConfigurationValue('modules/users/allowedRoles', 'Admin,Writer,Validator,Translator,Guest,User'));
+		foreach ($allowedRoles as $roleName) 
+		{
+			$result['roles'][$roleName]  = array(
+				'name' => $ls->transBO('m.users.document.permission.'. strtolower($roleName), array('ucf')), 
+				'used' => 0);
+		}	
 		$modules = ModuleService::getInstance()->getPackageNames();
 		foreach ($modules as $packageName) 
 		{
-			$moduleName = str_replace('modules_', '', $packageName);
+			$moduleName = ModuleService::getInstance()->getShortModuleName($packageName);
 			
 			// Check si des roles sont defini sur ce module
 			$rs = change_PermissionService::getRoleServiceByModuleName($moduleName);
@@ -49,6 +55,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 			$rootfolderid = ModuleService::getInstance()->getRootFolderId($moduleName);
 			
 			$addRolesDefinition = false;
+			
 			// Permission d'affecter les rôle
 			if (change_PermissionService::getInstance()->hasPermission($currentUser, $packageName . '.LoadPermissions.rootfolder', $rootfolderid))
 			{
@@ -60,37 +67,13 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 			}
 			
 			$roles = array();
-			
+					
 			foreach ($rs->getRoles() as $qualifiefRoleName) 
 			{
-				$backEndRole = false;
-				$permissions = $rs->getPermissionsByRole($qualifiefRoleName);
-				foreach ($permissions as $permission)
-				{
-					if (!$rs->isFrontEndPermission($permission))
-					{
-						$backEndRole = true;
-						break;
-					}
-				}
-				if ($backEndRole)
-				{
-					list(, $roleName) = explode('.', $qualifiefRoleName);
-					if (!isset($result['roles'][$roleName]))
-					{
-						$result['roles'][$roleName]  = array('name' => $ls->transBO('m.users.bo.dialog.'.$roleName, array('ucf')), 'nbperm' => count($permissions), 'used' => 1);
-					} 
-					else if ($result['roles'][$roleName]['nbperm'] < count($permissions))
-					{
-						$result['roles'][$roleName]['nbperm'] = count($permissions);
-						$result['roles'][$roleName]['used'] += 1;
-					}
-					else
-					{
-						$result['roles'][$roleName]['used'] += 1;
-					}
-					$roles[$roleName] = 1;
-				}			
+				list(, $roleName) = explode('.', $qualifiefRoleName);
+				if (!in_array($roleName, $allowedRoles)) {continue;}
+				$result['roles'][$roleName]['used'] += 1;
+				$roles[$roleName] = 1;
 			}
 			
 			if ($addRolesDefinition)
@@ -100,7 +83,6 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 		}
 		
 		uasort($result['modules'], array(__CLASS__, "sortModule"));
-		uasort($result['roles'], array(__CLASS__, "sortRole"));
 		
 		if ($type == 'group')
 		{
@@ -131,15 +113,5 @@ class users_GetUserModulePermissionAction extends change_JSONAction
             return 0;
         }
         return ($al > $bl) ? +1 : -1;	
-	}
-	
-	public static function sortRole($a, $b)
-	{
-		$al = $a['nbperm'];
-        $bl = $b['nbperm'];
-        if ($al == $bl) {
-            return 0;
-        }
-        return ($al < $bl) ? +1 : -1;	
 	}
 }

@@ -8,12 +8,13 @@ class users_SaveUserPreferencesAction extends change_JSONAction
 	 */
 	public function _execute($context, $request)
 	{
-		$user = users_UserService::getInstance()->getCurrentBackEndUser();
-		if ($user)
+		$user = users_UserService::getInstance()->getCurrentUser();
+		$userPreferences = $request->getParameter('userPreferences');
+		$p = users_ProfileService::getInstance()->createByAccessorAndName($user, 'dashboard');
+		if ($p instanceof dashboard_persistentdocument_dashboardprofile) 
 		{
-			$userPreferences = $request->getParameter('userPreferences');
-			$user->setMeta('userPreferences', $userPreferences);
-			$user->saveMeta();
+			$p->setUserPreferences($userPreferences);
+			$p->save();
 		}
 		return $userPreferences;
 	}

@@ -1,0 +1,40 @@
+<form change:form="beanClass users_persistentdocument_usersprofile; beanName profile">
+	<fieldset>
+		<legend>${title}</legend>
+		<ul change:errors=""></ul>
+		<ul change:messages=""></ul>
+		<input change:field="name beanId" hidden="true" />	
+		<ol>
+			<li>
+				<input change:field="name titleid" />
+			</li>
+			<li>
+				<input change:field="name firstname" />
+			</li>
+			<li>
+				<input change:field="name lastname" />
+			</li>	
+			<li>
+				<input change:field="name timezone" />
+			</li>
+			<li>
+				<input change:field="name dateformat" />
+			</li>
+			<li>
+				<input change:field="name datetimeformat" />
+			</li>
+			<li>
+				<input change:field="name lcid" />
+			</li>
+			<li>
+				<input change:field="name location" />
+			</li>
+			<li>
+				<input change:dateinput="name birthday"  labeli18n="m.users.document.usersprofile.birthday"  />
+			</li>
+		</ol>
+		<p class="buttons">
+			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" class="button" name="save" />
+		</p>
+	</fieldset>
+</form>

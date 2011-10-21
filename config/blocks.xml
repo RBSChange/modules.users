@@ -2,32 +2,19 @@
 <blocks>
 	<block type="modules_users_register" icon="add">
 		<parameters>
-			<parameter name="showPersonalFields" type="Boolean" default-value="false" />
-			<parameter name="requireNameFields" type="Boolean" default-value="false" />
+			<parameter name="showLoginField" type="Boolean" default-value="true" />
+			<parameter name="showNameField" type="Boolean" default-value="false" />
 			<parameter name="showPasswordFields" type="Boolean" default-value="false" />
 		</parameters>
-		<xul>
-			<javascript>
-				<constructor><![CDATA[
-					var fields = this.getFields();
-					var me = this;
-					fields['showPersonalFields'].addEventListener('fieldChanged', function(event) {me.onShowPersonalFieldsChange(event)}, true);
-				]]></constructor>
-				<method name="onShowPersonalFieldsChange">
-					<body><![CDATA[
-						var fields = this.getFields();
-						var value = !(fields['showPersonalFields'].value == 'true');
-						this.getElementByAnonId('requireNameFields_cnt').collapsed = value;
-					]]></body>
-				</method>
-			</javascript>
-		</xul>
 	</block>
 	<block type="modules_users_authentication" icon="user-frontoffice" labeli18n="m.users.bo.layout.authentication" />
 	<block type="modules_users_showinfo" icon="user-frontoffice" labeli18n="m.users.bo.layout.showinfo" />
 	<block type="modules_users_resetpassword" icon="change-password" labeli18n="m.users.bo.layout.resetpassword" />
 	<block type="modules_users_changepassword" icon="change-password" labeli18n="m.users.bo.layout.changepassword" />
 	<block type="modules_users_editprofil" icon="edit" labeli18n="m.users.bo.layout.editprofil" />
+	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
+	<block type="modules_users_EditGeneralUserProfile" hidden="true" />
+	
 	<block type="modules_users_Su" icon="user-frontoffice" labeli18n="m.users.bo.blocks.su">
 		<parameters>
 			<parameter name="itemsperpage" type="Integer" default-value="10" />

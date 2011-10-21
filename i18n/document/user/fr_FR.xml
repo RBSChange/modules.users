@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.user" lcid="fr_FR">
-  <key id="lastname">nom</key>
-  <key id="lastname-help">nom de l'utilisateur</key>
+  <key id="label">Nom / Pseudonyme</key>
+  <key id="label-help">Nom / Pseudonyme visible par tous le monde</key>
+
   <key id="startpublicationdate">début de validité du compte</key>
   <key id="startpublicationdate-help">le compte ne pourra être utilisé qu'à partir de cette date</key>
   <key id="endpublicationdate">fin de validité du compte</key>
   <key id="endpublicationdate-help">le compte ne pourra plus être utilisé à partir de cette date</key>
-  <key id="title">civilité</key>
-  <key id="title-help">civilité de l'utilisateur</key>
-  <key id="titleid">civilité</key>
-  <key id="titleid-help">civilité de l'utilisateur</key>
-  <key id="firstname">prénom</key>
-  <key id="firstname-help">prénom de l'utilisateur</key>
+
   <key id="email">adresse e-mail</key>
   <key id="email-help">e-mail de l'utilisateur</key>
   <key id="login">identifiant</key>
@@ -21,11 +17,17 @@
   <key id="passwordupdate">nouveau mot de passe</key>
   <key id="generatepassword">générer le mot de passe automatiquement</key>
   <key id="id">Identifiant Change</key>
-  <key id="label">Compte</key>
   <key id="author">Créé par</key>
   <key id="creationdate">Créé le</key>
   <key id="modificationdate">Modifié le</key>
   <key id="publicationstatus">Status</key>
   <key id="lastlogin">Dernière connexion</key>
   <key id="lastping">Dernière activité</key>
+  
+  <key id="isroot">Super administrateur</key>
+  <key id="issudoer">sudoers</key>
+  <key id="issudoer-help">l'utilisateur est autorisé à prendre l'identités de n'importe quel utilisateur.</key>
+  
+  <key id="groups">groupes</key>
+  <key id="groups-help">listes des groupes auquel appartient l'utilisateur</key>
 </i18n>

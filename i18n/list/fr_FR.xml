@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.list" lcid="fr_FR">
+  <key id="timezone-label">Fuseaux horaire</key>
+  <key id="timezone-description">liste des fuseaux horaire</key>
+  <key id="dateformat-label">Formats des dates</key>
+  <key id="dateformat-description">liste des formats des dates</key>
+  <key id="datetimeformat-label">Formats des dates / heures</key>
+  <key id="datetimeformat-description">liste des formats des dates  / heures</key>
+  <key id="lcid-label">Language preferé</key>
+  <key id="lcid-description">Language preferé</key>
+</i18n>

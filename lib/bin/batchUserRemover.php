@@ -1,11 +1,11 @@
 <?php
-$group = DocumentHelper::getDocumentInstance($arguments[0], 'modules_users/dynamicfrontendgroup');
+$group = users_persistentdocument_dynamicgroup::getInstanceById($arguments[0]);
 $userIdArray = array_slice($arguments, 1);
 foreach ($userIdArray as $userId) 
 {
 	try 
 	{
-		$user = DocumentHelper::getDocumentInstance($userId, 'modules_usersFrontenduser');
+		$user = users_persistentdocument_user::getInstanceById($userId);
 		$user->removeGroups($group);
 		$user->save();
 	} 

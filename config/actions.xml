@@ -1,36 +1,19 @@
 <?xml version="1.0"?>
 <actions>
-	<action name="createFrontenduser">
+	<action name="createUser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-			this.createDocumentEditor('modules_users_frontenduser', listWidget.getSelectedItems()[0].id);
-		]]></body>
-	</action>
-	<action name="createBackenduser">
-		<parameter name="listWidget" />
-		<body><![CDATA[
-			this.createDocumentEditor('modules_users_backenduser', listWidget.getSelectedItems()[0].id);
-		]]></body>
-	</action>
-	<action name="createFrontendgroup">
-		<parameter name="listWidget" />
-		<body><![CDATA[
-			this.createDocumentEditor('modules_users_frontendgroup', listWidget.getSelectedItems()[0].id);
-    	]]></body>
-	</action>
-	<action name="createBackendgroup">
-		<parameter name="listWidget" />
-		<body><![CDATA[
-			this.createDocumentEditor('modules_users_backendgroup', listWidget.getSelectedItems()[0].id);
-    	]]></body>
-	</action>
-	<action name="createWebsitefrontenduser">
-		<parameter name="listWidget" />
-		<body><![CDATA[
-			this.createDocumentEditor('modules_users_websitefrontenduser', listWidget.getSelectedItems()[0].id);
+			this.createDocumentEditor('modules_users_user', listWidget.getSelectedItems()[0].id);
 		]]></body>
 	</action>
 
+	<action name="createGroup">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			this.createDocumentEditor('modules_users_group', listWidget.getSelectedItems()[0].id);
+    	]]></body>
+	</action>
+	
 	<action name="removeUser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -51,6 +34,7 @@
 			}
 		]]></body>
 	</action>
+	
 	<action name="setRolesForModule">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -60,11 +44,11 @@
 		]]></body>
 	</action>
 	
-	<action name="refreshDynamicfrontendgroup">
+	<action name="refreshDynamicgroup">
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			var id = listWidget.getSelectedIds()[0];
-			this.executeJSON("RefreshDynamicfrontendgroup", { cmpref: id });
+			this.executeJSON("RefreshDynamicgroup", { cmpref: id });
 		]]></body>
 	</action>
 </actions>

@@ -64,12 +64,25 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	protected function preDelete($document)
 	{
-		$userQuery = $this->pp->createQuery('modules_generic/userAcl')->add(Restrictions::eq('user', $document->getId()));
-		$userResults = $userQuery->find();
-		foreach ($userResults as $acl)
+		$currentUser = $this->getCurrentUser();
+		if (DocumentHelper::equals($currentUser, $document))
 		{
-			$acl->delete();
+			throw new Exception('Can not delete current user');
 		}
+
+		if ($document->getIsroot())
+		{
+			if ($currentUser !== null && !$currentUser->getIsroot())
+			{
+				throw new Exception('Can not delete root user');
+			}
+		}
+			
+		$userQuery = generic_UserAclService::getInstance()->createQuery()
+			->add(Restrictions::eq('user', $document))
+			->delete();
+			
+		users_ProfileService::getInstance()->deleteProfilesByAccessorId($document->getId());
 	}
 
 	/**
@@ -80,13 +93,25 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	protected function preSave($document, $parentNodeId)
 	{
+		$document->setInsertInTree(false);
+		
+		$email = $document->getEmail();
+		if ($document->getLogin() == null)
+		{
+			$document->setLogin($email);
+		}
+		
 		// The label is auto generated with login, first and last name.
-		$document->setLabel( $document->getLogin() . ' - ' . ucfirst($document->getFirstname()) . ' ' . ucfirst($document->getLastname()) );
+		if ($document->getLabel() == null)
+		{
+			$document->setLabel($document->getLogin());
+		}
+		
 		if ($document->getGeneratepassword() === "true")
 		{
 			$generatedPassword = $this->generatePassword();
 			$document->setPassword($generatedPassword);
-			$document->setPasswordmd5(md5($generatedPassword));
+			$document->setPasswordmd5($this->encodePassword($generatedPassword));
 			$document->setGeneratepassword(false);
 		}
 		else 
@@ -94,7 +119,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$password = $document->getClearPassword();
 			if (f_util_StringUtils::isNotEmpty($password))
 			{
-				$document->setPasswordmd5(md5($password));
+				$document->setPasswordmd5($this->encodePassword($password));
 			}
 		}
 		
@@ -103,7 +128,82 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$document->setLogin(f_util_StringUtils::strtolower($document->getLogin()));
 		}
 	}
+	
+	
+	
+	/**
+	 * @param string $newLogin
+	 * @param users_persistentdocument_user $user
+	 * @param integer[] $groupIds
+	 */
+	public function validateUserLogin($newLogin, $user = null , $groupIds = array())
+	{
+		if (f_util_StringUtils::isEmpty($newLogin)) {return false;}
+		
+		if (!$this->isLoginCaseSensitive())
+		{
+			$newLogin = f_util_StringUtils::strtolower($newLogin);
+		}
+		
+		$query = $this->createQuery()->add(Restrictions::eq('login', $newLogin));
+		if ($user instanceof users_persistentdocument_user) 
+		{
+			$query->add(Restrictions::ne('id', $user->getId()));
+		}
+		if (count($groupIds))
+		{
+			$query->createCriteria('groups')->add(Restrictions::in('id', $groupIds));
+		}
+		$result = $query->setProjection(Projections::rowCount('count'))->find();
+		if (is_array($result) && intval($result[0]['count']) > 0)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * @param string $newLabel
+	 * @param users_persistentdocument_user $user
+	 * @param integer[] $groupIds
+	 */
+	public function validateUserLabel($newLabel, $user = null , $groupIds = array())
+	{
+		if (f_util_StringUtils::isEmpty($newLabel)) {return false;}		
+		$query = $this->createQuery()->add(Restrictions::eq('label', $newLabel));
+		if ($user instanceof users_persistentdocument_user) 
+		{
+			$query->add(Restrictions::ne('id', $user->getId()));
+		}
+		if (count($groupIds))
+		{
+			$query->createCriteria('groups')->add(Restrictions::in('id', $groupIds));
+		}
+		$result = $query->setProjection(Projections::rowCount('count'))->find();
+		if (is_array($result) && intval($result[0]['count']) > 0)
+		{
+			return false;
+		}
+		return true;
+	}
 
+	/**
+	 * @param users_persistentdocument_user $document
+	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @return void
+	 */
+	protected function preUpdate($document, $parentNodeId = null)
+	{
+		if ($document->getIsroot())
+		{
+			$currentUser = $this->getCurrentBackEndUser();
+			if ($currentUser !== null && !$currentUser->getIsroot())
+			{
+				throw new Exception('Can not update root user');
+			}
+		}
+	}
+	
 	/**
 	 * @param users_persistentdocument_user $document
 	 * @param Integer $parentNodeId
@@ -122,7 +222,23 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$document->resetClearPassword();
 		}
 	}
-
+	
+	/**
+	 * @param users_persistentdocument_user $document
+	 * @param integer $parentNodeId
+	 */	
+	protected function preInsert($document, $parentNodeId)
+	{
+		if ($parentNodeId > 0)
+		{
+			$parent = DocumentHelper::getDocumentInstance($parentNodeId);
+			if ($parent instanceof users_persistentdocument_group) 
+			{
+				$document->addGroups($parent);
+			}
+		}
+	}
+	
 	/**
 	 * @param users_persistentdocument_user $document
 	 * @param Integer $parentNodeId
@@ -143,6 +259,44 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
+	 * @param users_persistentdocument_user $document
+	 * @param String $oldPublicationStatus
+	 * @param array $params
+	 * @return void
+	 */
+	protected function publicationStatusChanged($document, $oldPublicationStatus, $params)
+	{
+		if ($document->getIsroot() && $document->getPublicationstatus() == 'DEACTIVATED')
+		{
+			$this->activate($document->getId());
+		}
+	}
+	
+	/**
+	 * Moves $document into the destination node identified by $destId.
+	 *
+	 * @param users_persistentdocument_user $document The document to move.
+	 * @param integer $destId ID of the destination node.
+	 * @param integer $beforeId
+	 * @param integer $afterId
+	 */
+	public function moveTo($document, $destId, $beforeId = null, $afterId = null)
+	{
+		$destDoc = DocumentHelper::getDocumentInstance($destId);
+		if ($destDoc instanceof users_persistentdocument_group)
+		{
+			$document->addGroups($destDoc);
+			$this->save($document);
+		}
+		elseif ($destDoc instanceof users_persistentdocument_nogroupuserfolder)
+		{
+			$document->removeAllGroups();
+			$this->save($document);
+		}
+	}
+
+
+	/**
 	 * @param Integer[] $accessorIds
 	 * @return Integer[]
 	 */
@@ -153,7 +307,9 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return array();
 		}
 		
-		$ids1 = $this->createQuery()->add(Restrictions::in('id', $accessorIds))->setProjection(Projections::property('id'))->findColumn('id');
+		$ids1 = $this->createQuery()->add(Restrictions::in('id', $accessorIds))
+			->setProjection(Projections::property('id'))
+			->findColumn('id');
 		if (count($accessorIds) === count($ids1))
 		{
 			return $ids1;
@@ -174,28 +330,144 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return array();
 		}
 		
-		$ids1 = $this->createQuery()->add(Restrictions::published())->add(Restrictions::in('id', $accessorIds))->setProjection(Projections::property('id'))->findColumn('id');
+		$ids1 = $this->createQuery()->add(Restrictions::published())
+			->add(Restrictions::in('id', $accessorIds))
+			->setProjection(Projections::property('id'))->findColumn('id');
 		if (count($accessorIds) === count($ids1))
 		{
 			return $ids1;
 		}
 		
-		$ids2 = $this->createQuery()->add(Restrictions::published())->add(Restrictions::in('groups.id', $accessorIds))->setProjection(Projections::groupProperty('id'))->findColumn('id');
+		$ids2 = $this->createQuery()->add(Restrictions::published())
+			->add(Restrictions::in('groups.id', $accessorIds))
+			->setProjection(Projections::groupProperty('id'))->findColumn('id');
 		return array_unique(array_merge($ids1, $ids2));
 	}
 
+	
+	/**
+	 * @param string $login
+	 * @param users_persistentdocument_group $group
+	 * @return users_persistentdocument_user[]
+	 */
+	public function getUsersByLoginAndGroup($login, $group = null)
+	{
+		if (f_util_StringUtils::isEmpty($login))
+		{
+			return array();
+		}
+		if (!$this->isLoginCaseSensitive())
+		{
+			$login = f_util_StringUtils::strtolower($login);
+		}
+		
+		$query = $this->createQuery()->add(Restrictions::published())
+					->add(Restrictions::eq('login', $login));
+					
+		if ($group instanceof users_persistentdocument_group)
+		{
+			$query->add(Restrictions::eq('groups', $group));
+		}
+		return $query->find();				
+	}
+	
+	/**
+	 * @param string $password
+	 * @return string
+	 */
+	public function encodePassword($password)
+	{
+		return md5($password);
+	}
+	
+	/**
+	 * @param users_persistentdocument_user $document
+	 * @return boolean true if the document is publishable, false if it is not.
+	 */
+	public function isPublishable($document)
+	{
+		return $document->getGroupsCount() > 0 && parent::isPublishable($document);
+	}
+	
+	/**
+	 * @param string $login
+	 * @param string $password
+	 * @param string $groupId
+	 * @return users_persistentdocument_user || null
+	 */
+	public function getIdentifiedUser($login, $password, $groupId)
+	{
+		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password) || intval($groupId) <= 0)
+		{
+			return null;
+		}
+		
+		if (!$this->isLoginCaseSensitive())
+		{
+			$login = f_util_StringUtils::strtolower($login);
+		}
+		
+		$group = DocumentHelper::getDocumentInstance($groupId);
+		users_GroupService::getInstance()->setDefaultGroup($group);
+		
+		$passwordMD5 = $this->encodePassword($password);
+		$user = $this->createQuery()
+			->add(Restrictions::eq('groups', $group))
+			->add(Restrictions::eq('login', $login))
+			->add(Restrictions::orExp(Restrictions::eq('passwordmd5', $passwordMD5), Restrictions::eq('changepasswordkey', $passwordMD5)))
+			->add(Restrictions::published())
+			->findUnique();
+			
+		if ($user instanceof users_persistentdocument_user)
+		{
+			$this->checkChangepasswordkey($user, $passwordMD5);	
+		}
+		return $user;
+	}
+	
 	/**
 	 * @param users_persistentdocument_user $user
+	 * @param string $passwordMD5
+	 * @return boolean
 	 */
-	public function getGroupsByUser($user)
+	protected function checkChangepasswordkey($user, $passwordMD5)
 	{
-		if ($user !== null)
+		if ($user->getChangepasswordkey() === $passwordMD5)
 		{
-			return $user->getGroupsArray();
+			$user->setPasswordmd5($passwordMD5);
+			$user->setChangepasswordkey(null);
+			$user->save();
+			return true;
 		}
-		return array();
+		elseif ($user->getChangepasswordkey() !== null)
+		{
+			$user->setChangepasswordkey(null);
+			$user->save();
+			return true;
+		}	
+		return false;	
 	}
-
+	
+	/**
+	 * @param integer $groupId
+	 * @return users_persistentdocument_user[]
+	 */
+	public function getRootUsersByGroupId($groupId)
+	{
+		return $this->createQuery()
+			->add(Restrictions::eq('groups.id', $groupId))
+			->add(Restrictions::eq('isroot', true))
+			->find();
+	}
+	
+	/**
+	 * @return users_persistentdocument_user[]
+	 */
+	public function getRootUsers()
+	{
+		return $this->createQuery()->add(Restrictions::published())->add(Restrictions::eq('isroot', 1))->find();
+	}
+		
 	/**
 	 * Check if a given password match the password of a given user
 	 * @param users_persistentdocument_user $user
@@ -204,232 +476,31 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function checkIdentity($user, $password)
 	{
-		if ($user instanceof users_persistentdocument_user)
+		if ($user instanceof users_persistentdocument_user && f_util_StringUtils::isNotEmpty($password))
 		{
-			return $user->isPublished() && $user->getPasswordmd5() == md5($password);
+			$passwordMD5 = $this->encodePassword($password);
+			return $user->isPublished() && $user->getPasswordmd5() === $passwordMD5;
 		}
 		return false;
 	}
-
+	
 	/**
-	 * @param String $login
-	 * @param String $password
-	 * @return users_persistentdocument_backenduser
+	 * @param users_persistentdocument_user $user
 	 */
-	public function getIdentifiedBackendUser($login, $password)
+	public function anonymize($user)
 	{
-		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
-		{
-			return null;
-		}
+		$userId = $user->getId();
+		$user->setEmail(Framework::getConfigurationValue('modules/users/anonymousEmailAddress'));
+		$user->setLogin('anonymous-'.$userId);
+		$user->setPasswordmd5('anonymous');
+		$user->removeAllGroups();
+		$user->save();
 		
-		$isPasswordOk = false;
-		try
-		{
-			$this->tm->beginTransaction();
-			$user = $this->getBackEndUserByLogin($login);
-			if ($user !== null && $user->isPublished())
-			{
-				$passwordMD5 = md5($password);
-				if ($user->getPasswordmd5() === $passwordMD5)
-				{
-					if ($user->getChangepasswordkey() !== null)
-					{
-						$user->setChangepasswordkey(null);
-						$user->save();
-					}
-					$isPasswordOk = true;
-				}
-				else if ($user->getChangepasswordkey() === $passwordMD5)
-				{
-					$user->setPasswordmd5($passwordMD5);
-					$user->setChangepasswordkey(null);
-					$user->save();
-					$isPasswordOk = true;
-				}
-			}
-			$this->tm->commit();
-		}
-		catch (Exception $e)
-		{
-			throw $this->tm->rollBack($e);
-		}
-
-		if ($isPasswordOk)
-		{
-			return $user;
-		}
-		else 
-		{
-			Framework::warn(__METHOD__ . " (2) LOGIN: " . $login . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
-			return null;
-		}
+		users_ProfileService::getInstance()->deleteProfilesByAccessorId($userId);
+		
+		$user->getDocumentService()->file($userId);
 	}
-
-	/**
-	 * @param String $login
-	 * @param String $password
-	 * @param Integer $websiteId
-	 * @return users_persistentdocument_frontenduser
-	 */
-	public function getIdentifiedFrontendUser($login, $password, $websiteId = null)
-	{
-		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
-		{
-			Framework::warn(__METHOD__ . " (1) WEBSITEID: " . $websiteId . " LOGIN: " . $login . " PASSWORD: " . $password . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
-			return null;
-		}
-		$isPasswordOk = false;
-		try
-		{
-			$this->tm->beginTransaction();
-			$user = $this->getFrontendUserByLogin($login, $websiteId);
-			if ($user !== null && $user->isPublished())
-			{
-				$passwordMD5 = md5($password);
-				if ($user->getPasswordmd5() === $passwordMD5)
-				{
-					if ($user->getChangepasswordkey() !== null)
-					{
-						$user->setChangepasswordkey(null);
-						$user->save();
-					}
-					$isPasswordOk = true;
-				}
-				else if ($user->getChangepasswordkey() === $passwordMD5)
-				{
-	
-					$user->setPasswordmd5($passwordMD5);
-					$user->setChangepasswordkey(null);
-					$user->save();
-					$isPasswordOk = true;
-				}
-			}
-			$this->tm->commit();
-		}
-		catch (Exception $e)
-		{
-			throw $this->tm->rollBack($e);
-		}
-		if ($isPasswordOk)
-		{
-			return $user;
-		}
-		else 
-		{
-			Framework::warn(__METHOD__ . " (2) WEBSITEID: " . $websiteId . " LOGIN: " . $login . " PASSWORD: " . $password . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
-			return null;
-		}
-	}
-
-	/**
-	 * @param String $login
-	 * @param String $passwordmd5
-	 * @return users_persistentdocument_backenduser
-	 */
-	public function getIdentifiedBackendPortalUser($login, $passwordmd5)
-	{
-		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($passwordmd5))
-		{
-			Framework::warn(__METHOD__ . " LOGIN: " . $login . " PASSWORDMD5: " . $passwordmd5 . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
-			return null;
-		}
-		$user = $this->getBackEndUserByLogin($login);
-		if ($user !== null && $user->isPublished())
-		{
-			if ($user->getPasswordmd5() === $passwordmd5)
-			{
-				return $user;
-			}
-		}
-
-		Framework::warn(__METHOD__ . " LOGIN: " . $login . " PASSWORDMD5: " . $passwordmd5 . " REMOTE_ADDR:" . $_SERVER["REMOTE_ADDR"]);
-		return null;
-	}
-
-	/**
-	 * Search in database a user with his login. If no user found return null.
-	 *
-	 * @param string $login
-	 * @return users_persistentdocument_backenduser
-	 */
-	public function getBackEndUserByLogin($login)
-	{
-		// Check if User exist in database
-		if (!empty($login))
-		{
-			if (!$this->isLoginCaseSensitive())
-			{
-				$login = f_util_StringUtils::strtolower($login);
-			}
-			return users_BackenduserService::getInstance()->createQuery()
-				->add(Restrictions::eq('login', $login))->findUnique();
-		}
-
-		return null;
-	}
-
-	/**
-	 * Search in database a user with his login. If no user found returns empty array.
-	 *
-	 * @param string $email
-	 * @return users_persistentdocument_backenduser[]
-	 */
-	public function getBackEndUserByEmail($email)
-	{
-		// Check if User exist in database
-		if (!empty($email))
-		{
-			return users_BackenduserService::getInstance()->createQuery()
-					->add(Restrictions::eq('email', $email))->find();
-		}
-		return array();
-	}
-
-	/**
-	 * Search in database for a user with his login. If no user found return null.
-	 *
-	 * @param string $login
-	 * @param Integer $websiteId
-	 * @return users_persistentdocument_frontenduser
-	 */
-	public function getFrontendUserByLogin($login, $websiteId = null)
-	{
-		if (!empty($login))
-		{
-			if (!$this->isLoginCaseSensitive())
-			{
-				$login = f_util_StringUtils::strtolower($login);
-			}
-			if (intval($websiteId) > 0)
-			{
-				$websiteIds = users_WebsitefrontendgroupService::getInstance()->getLinkedWebsiteIds($websiteId);
-				foreach ($websiteIds as $websiteId) 
-				{
-					$user = users_WebsitefrontenduserService::getInstance()->createQuery()
-						->add(Restrictions::eq('websiteid', $websiteId))
-						->add(Restrictions::eq('login', $login))
-						->findUnique();
-					if ($user !== null)
-					{
-						return $user;
-					}
-				}
-			}
-
-			$users = users_FrontenduserService::getInstance()->createQuery()
-				->add(Restrictions::eq('login', $login))
-				->find();
-			foreach ($users as $user)
-			{
-				if ($user instanceof users_persistentdocument_websitefrontenduser) {continue;}
-				return $user;
-			}
-		}
-
-		return null;
-	}
-	
+		
 	/**
 	 * Generate a password to respond of a high security level define in change. Ex: hS2I7GF0r - number, letter in upper and lower case.
 	 *
@@ -499,8 +570,114 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 	}
 
+	/**
+	 * @param users_persistentdocument_user $user
+	 */
+	public function prepareNewPassword($user)
+	{			
+		try
+		{
+			$this->getTransactionManager()->beginTransaction();
 
+			$newPassword = $this->generatePassword();
+			$user->setChangepasswordkey($this->encodePassword($newPassword));
+			$user->save();
+			
+			$ns = notification_NotificationService::getInstance();
+			
+			if ($this->getChangeUser()->getUserNamespace() == change_User::BACKEND_NAMESPACE)
+			{
+				$notifCode = 'modules_users/resetBackendUserPassword';
+				$websiteId = null;
+			}
+			else
+			{
+				$notifCode = 'modules_users/resetFrontendUserPassword';
+				$websiteId = website_WebsiteService::getInstance()->getCurrentWebsite()->getId();
+			}
+			
+			$configuredNotif = $ns->getConfiguredByCodeName($notifCode, $websiteId);
+			if ($configuredNotif instanceof notification_persistentdocument_notification)
+			{
+				$configuredNotif->setSendingModuleName('users');
+				$callback = array($this, 'getNewPasswordNotifParamters');
+				$params = array('user' => $user, 'password' => $newPassword, 'websiteId' => $websiteId);
+				if (!$this->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params))
+				{
+					throw new BaseException('Unable-to-send-password', 'modules.users.errors.Unable-to-send-password');
+				}	
+			}
+			else 
+			{
+				throw new Exception('No published notification for code: ' . $notifCode);
+			}
+			
+			$this->getTransactionManager()->commit();
+			return $user;
+		}
+		catch (BaseException $e)
+		{
+			throw $e;
+		}
+		catch (Exception $e)
+		{
+			$this->getTransactionManager()->rollBack($e);
+			throw new BaseException('Unable-to-generate-password', 'modules.users.errors.Unable-to-generate-password');
+		}
+		return null;
+	}
 
+	/**
+	 * @param integer $groupId
+	 * @return integer
+	 */
+	public function getCountByGroupId($groupId)
+	{
+		$rows = $this->createQuery()
+			->add(Restrictions::eq('groups.id', $groupId))
+			->setProjection(Projections::rowCount("count"))->find();
+		return $rows[0]['count'];
+	}
+
+	/**
+	 * @param integer $groupId
+	 * @return integer
+	 */	
+	public function getPublishedCountByGroupId($groupId)
+	{
+		$rows = $this->createQuery()->add(Restrictions::published())
+			->add(Restrictions::eq('groups.id', $groupId))
+			->setProjection(Projections::rowCount("count"))->find();
+		return $rows[0]['count'];
+	}
+	
+	/**
+	 * @param integer $groupId
+	 * @return integer
+	 */	
+	public function getInactiveCountByGroupId($groupId)
+	{
+		$rows = $this->createQuery()->add(Restrictions::published())
+			->add(Restrictions::eq('groups.id', $groupId))
+			->add(Restrictions::isNull('lastping'))
+			->setProjection(Projections::rowCount("count"))->find();
+		return $rows[0]['count'];
+	}
+	
+	
+	/**
+	 * @param date_Calendar $dateCalendarInstance
+	 * @return Integer
+	 */
+	public function getInactiveSinceDateCountByGroupId($groupId, $dateCalendarInstance)
+	{
+		$rows = $this->createQuery()->add(Restrictions::published())
+			->add(Restrictions::eq('groups.id', $groupId))
+			->add(Restrictions::orExp(Restrictions::isNull('lastping'), Restrictions::le('lastping', $dateCalendarInstance->toString())))
+			->setProjection(Projections::rowCount("count"))->find();
+		return $rows[0]['count'];
+	}
+	
 	/**
 	 * Reset a password for an user. If you pass the password, it's will be used else it's will be generated.
 	 *
@@ -520,38 +697,87 @@ class users_UserService extends f_persistentdocument_DocumentService
 		// Set the password on user and save modification
 		$user->setPassword($password);
 		$this->save($user);
-
 	}
-
+	
 	/**
-	 * Check if a string password is valid. Use informations of preference document if it exist.
-	 *
-	 * @param string $password
-	 * @return boolean
-	 *
-	 * @throws IllegalArgumentException
+	 * @param integer $groupId
+	 * @param string $words
+	 * @return f_persistentdocument_criteria_Query
 	 */
-	public function checkPassword($password)
+	private function createSuableQuery($groupId, $words)
 	{
-		// Init validator
-		$passwordValidator = new validation_PasswordValidator();
-		$errors = new validation_Errors();
-		if ($passwordValidator->validate($password , $errors))
+		$query = $this->createQuery();
+		$query->add(Restrictions::published());
+		$query->add(Restrictions::eq('groups.id', $groupId));
+		if ($words != '')
 		{
-			return true;
+			foreach (explode(' ', $words) as $word)
+			{
+				$query->add(Restrictions::orExp(Restrictions::ilike('label', $word), Restrictions::ilike('email', $word)));
+			}
 		}
-		return false;
+		return $query;
 	}
-
+	
 	/**
-	 * Check if a user is a backend user
-	 *
+	 * @param integer $groupId
+	 * @param string $words
+	 * @return integer
+	 */
+	public function getSuableCountByGroupId($groupId, $words = '')
+	{
+		$rows = $this->createSuableQuery($groupId, $words)->setProjection(Projections::rowCount('count'))->find();
+		return $rows[0]['count'];
+	}
+	
+	
+	/**
+	 * @param integer $groupId
+	 * @param string $words
+	 * @return users_persistentdocument_user[]
+	 */
+	public function getSuableByGroupId($groupId, $words = '', $firstResult = 0, $maxResult = -1)
+	{
+		return $this->createSuableQuery($groupId, $words)
+			->setFirstResult($firstResult)
+			->setMaxResults($maxResult)
+			->addOrder(Order::iasc('label'))->find();
+	}
+	
+	/**
 	 * @param users_persistentdocument_user $user
 	 * @return boolean
 	 */
-	public function isBackenduser($user)
+	public function su($user)
 	{
-		return $user instanceof users_persistentdocument_backenduser;
+		// Check the current user.
+		$oldUser = $this->getCurrentUser();
+		if ($oldUser === null)
+		{
+			throw new Exception('Su can only be used by autenticated users!');
+		}
+		$sudoerStack = change_Controller::getInstance()->getStorage()->readForUser('users_sudoerStack'); 
+		
+		if (!is_array($sudoerStack) || count($sudoerStack) == 0)
+		{
+			if (!$oldUser->getIssudoer())
+			{
+				return false;
+			}
+			$sudoerStack = array();
+		}
+		
+		// Store the current user id in order to set it back on logout.
+		// Here we need to store the stack and set it after authentication 
+		// because it clears the session.
+		$sudoerStack[] = $oldUser->getId();
+		
+		// Authenticate as the user.
+		$this->authenticate($user);
+		
+		// Set back the sudoer stack.
+		change_Controller::getInstance()->getStorage()->writeForUser('users_sudoerStack', $sudoerStack);
+		return true;
 	}
 
 	/**
@@ -579,7 +805,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$callback = array($this, 'getUserInformationNotifParameters');
 			$params = array('user' => $user, 'code' => $code, 'strategy' => $strategy);
 			$recipients = change_MailService::getInstance()->getRecipientsArray(array($user->getEmail()));
-			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
+			return $this->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
 		}
 		return true;
 	}
@@ -601,52 +827,40 @@ class users_UserService extends f_persistentdocument_DocumentService
 		return change_Controller::getInstance()->getUser();
 	}
 
-	private function invalidateCache($user)
-	{
-		// invalidate cache
-		if ($this->isBackenduser($user))
-		{
-			$this->currentBackendUser = false;
-		}
-		else
-		{
-			$this->currentFrontendUser = false;
-		}
-	}
-
 	/**
 	 * @param users_persistentdocument_user $user
 	 */
 	private function loginUser($user)
 	{
-		$this->invalidateCache($user);
-		$now = date_Calendar::now()->toString();
+		$now = date_Calendar::getInstance()->toString();
 		$user->setLastlogin($now);
 		$user->setLastping($now);
 		$user->setMeta('modules.users.last-user-agent', $this->getUserAgent());
-		$user->applyMetas();		
+		$user->applyMetas();
+				
 		if ($user->isModified())
 		{
 			try
 			{
-				$this->tm->beginTransaction();
-				$this->pp->updateDocument($user);
-				$this->tm->commit();
+				$this->getTransactionManager()->beginTransaction();
+				$this->getPersistentProvider()->updateDocument($user);
+				$this->getTransactionManager()->commit();
 			}
 			catch (Exception $e)
 			{
-				$this->tm->rollBack($e);
+				$this->getTransactionManager()->rollBack($e);
 			}
 		}
 		
-		if ($user instanceof users_persistentdocument_frontenduser)
-		{
-			$action = 'login.frontend';	
-		}
-		else 
+		if ($this->getChangeUser()->getUserNamespace() == change_User::BACKEND_NAMESPACE)
 		{
 			$action = 'login.backend';	
 		}
+		else 
+		{
+			$action = 'login.frontend';
+		}
+		
 		$rq = RequestContext::getInstance();
 		$params = array(
 			'browsername' => f_Locale::translate('&modules.generic.browsers.' . $rq->getUserAgentType() . '_' . $rq->getUserAgentTypeVersion() . ';')
@@ -677,26 +891,25 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	private function logoutUser($user)
 	{
-		$this->invalidateCache($user);
 		$user->setLastping(null);
 		if ($user->isModified())
 		{
 			try
 			{
-				$this->tm->beginTransaction();
-				$this->pp->updateDocument($user);
-				$this->tm->commit();
+				$this->getTransactionManager()->beginTransaction();
+				$this->getPersistentProvider()->updateDocument($user);
+				$this->getTransactionManager()->commit();
 			}
 			catch (Exception $e)
 			{
-				$this->tm->rollBack($e);
+				$this->getTransactionManager()->rollBack($e);
 			}
 		}
 		f_event_EventManager::dispatchEvent(self::USER_LOGOUT_EVENT, $this, array('user' => $user));
 	}
 
 	/**
-	 * @param users_persistentdocument_backenduser $user
+	 * @param users_persistentdocument_user $user
 	 */
 	public function authenticateBackEndUser($user)
 	{
@@ -708,7 +921,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param users_persistentdocument_frontenduser $user
+	 * @param users_persistentdocument_user $user
 	 */
 	public function authenticateFrontEndUser($user)
 	{
@@ -720,32 +933,33 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
+	 * set $user param to null for logout
 	 * @param users_persistentdocument_user $user
 	 */
 	public function authenticate($user)
 	{
-		$sudoerStack = change_Controller::getInstance()->getStorage()->readForUser('users_sudoerStack'); 
 		$changeUser = $this->getChangeUser();
 		$oldUser = $this->getCurrentUser();
+		
 		if ($oldUser !== null)
-		{
+		{		
 			$this->logoutUser($oldUser);
 			$changeUser->setAuthenticated(false);
 			if (!DocumentHelper::equals($oldUser, $user))
 			{
-				change_Controller::getInstance()->getStorage()->clearForUser();
+				$storage = change_Controller::getInstance()->getStorage();
+				$sudoerStack = $storage->readForUser('users_sudoerStack'); 
+				$defaultGroup = users_GroupService::getInstance()->getDefaultGroup();
+			
+				$storage->clearForUser();
+				
+				users_GroupService::getInstance()->setDefaultGroup($defaultGroup);				
+				if ($user === null && is_array($sudoerStack) && count($sudoerStack) > 0)
+				{
+					$user = DocumentHelper::getDocumentInstance(array_pop($sudoerStack));
+					$storage->writeForUser('users_sudoerStack', $sudoerStack);
+				}
 			}
-		}
-
-		// If there is no specified user take it from the sudoer stack.
-		if ($user === null && is_array($sudoerStack) && count($sudoerStack) > 0)
-		{
-			$user = DocumentHelper::getDocumentInstance(array_pop($sudoerStack));
-		}
-		// Else clear the sudoer stack.
-		else
-		{
-			$sudoerStack = array();
 		}
 
 		if ($user instanceof users_persistentdocument_user)
@@ -753,8 +967,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$changeUser->setAuthenticated(true);
 			$changeUser->setUser($user);
 			$this->loginUser($user);
-			change_Controller::getInstance()->getStorage()->writeForUser('users_sudoerStack', $sudoerStack);
 		}
+		users_ProfileService::getInstance()->initCurrent(false);
 	}
 
 	/**
@@ -765,21 +979,22 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$id = intval($id);
 		if ($id > 0)
 		{
-			try 
+			$modelName = $this->getPersistentProvider()->getDocumentModelName($id);
+			if ($modelName !== null)
 			{
-				return DocumentHelper::getDocumentInstance($id, 'modules_users/user');
+				$user = $this->getDocumentInstance($id, $modelName);
+				if ($user instanceof users_persistentdocument_user) 
+				{
+					return $user;
+				}
 			}
-			catch (Exception $e)
-			{
-				Framework::error($e->getMessage());
-				change_Controller::getInstance()->getStorage()->clearForUser();
-			}
+			change_Controller::getInstance()->getStorage()->clearForUser();
 		}
 		return null;
 	}
 
 	/**
-	 * @return users_persistentdocument_user frontendUser or backendUser or null, depending on the controller (ChangeController or XULController)
+	 * @return users_persistentdocument_user depending on the controller (ChangeController or XULController)
 	 */
 	public function getCurrentUser()
 	{
@@ -787,41 +1002,82 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @return users_persistentdocument_backenduser or null
+	 * @return integer 
+	 */
+	public function getAutenticatedUserId()
+	{
+		$id = intval($this->getChangeUser()->getId());
+		return $id > 0 ? $id : users_AnonymoususerService::getInstance()->getAnonymousUserId();	
+	}	
+	
+	/**
+	 * @return users_persistentdocument_user 
+	 */
+	public function getAutenticatedUser()
+	{
+		$user = $this->getUserFromSessionId($this->getChangeUser()->getId());	
+		return $user !== null ? $user : users_AnonymoususerService::getInstance()->getAnonymousUser();	
+	}
+	
+	
+	/**
+	 * @return users_persistentdocument_user or null
 	 */
 	public function getCurrentBackEndUser()
 	{
-		return users_BackenduserService::getInstance()->getCurrentUser();
+		$changeUser = $this->getChangeUser();
+		$oldNameSpace = $changeUser->setUserNamespace(change_User::BACKEND_NAMESPACE);
+		$id = $changeUser->getId();
+		$currentUser = $this->getUserFromSessionId($id);
+		$changeUser->setUserNamespace($oldNameSpace);
+		return $currentUser;
 	}
 
 	/**
-	 * @return users_persistentdocument_frontenduser or null
+	 * @return users_persistentdocument_user or null
 	 */
 	public function getCurrentFrontEndUser()
 	{
-		return users_FrontenduserService::getInstance()->getCurrentUser();
+		$changeUser = $this->getChangeUser();
+		$oldNameSpace = $changeUser->setUserNamespace(change_User::FRONTEND_NAMESPACE);
+		$id = $changeUser->getId();
+		$currentUser = $this->getUserFromSessionId($id);
+		$changeUser->setUserNamespace($oldNameSpace);
+		return $currentUser;
 	}
 
-	public function pingBackEndUser()
+	/**
+	 * @param users_persistentdocument_user $user
+	 */
+	public function pingUser($user)
 	{
-		$user = $this->getCurrentBackEndUser();
-		if ($user !== null)
+		if ($user instanceof users_persistentdocument_user && 
+			!($user instanceof users_persistentdocument_anonymoususer))
 		{
-			$user->setLastping(date_Calendar::now()->toString());
+			$user->setLastping(date_Calendar::getInstance()->toString());
 			if ($user->isModified())
 			{
 				try
 				{
-					$this->tm->beginTransaction();
-					$this->pp->updateDocument($user);
-					$this->tm->commit();
+					$this->getTransactionManager()->beginTransaction();
+					$this->getPersistentProvider()->updateDocument($user);
+					$this->getTransactionManager()->commit();
 				}
 				catch (Exception $e)
 				{
-					$this->tm->rollBack($e);
+					$this->getTransactionManager()->rollBack($e);
 				}
 			}
-		}
+		}		
+	}
+	
+	
+	/**
+	 * Ping current backend connected user
+	 */
+	public function pingBackEndUser()
+	{
+		$this->pingUser($this->getCurrentBackEndUser());
 	}
 
 	/**
@@ -874,6 +1130,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 			$lastLogin = f_Locale::translateUI("&modules.users.bo.doceditor.property.Lastlogin-empty;");
 		}
 		$data['history']['lastlogin'] = $lastLogin;
+		$lastping = $document->getUILastping();
+		if ($lastping !== null)
+		{
+			$data['history']['lastping'] = $lastping;
+		}
 		return $data;
 	}
 	
@@ -902,8 +1163,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 			}
 			return false;
 		}
-		
-		$recipients = change_MailService::getInstance()->getRecipientsArray(array($user->getFullname() => $user->getEmail()));
+
+		$recipients = change_MailService::getInstance()->getRecipientsArray(array($user->getLabel() => $user->getEmail()));
 		$cb = array($this, 'getNotificationParametersCallback');
 		$cbParams = array(
 			'user' => $user,
@@ -939,11 +1200,12 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function getNotificationParameters($user)
 	{
+		$t = $user->getTitle();
 		return array(
 			'receiverFirstName' => $user->getFirstnameAsHtml(),
 			'receiverLastName' => $user->getLastnameAsHtml(),
-			'receiverFullName' => $user->getFullnameAsHtml(),
-			'receiverTitle' => ($user->getTitleid()) ? $user->getTitleidLabelAsHtml() : '',
+			'receiverFullName' => $user->getLabelAsHtml(),
+			'receiverTitle' => ($t) ? $t->getLabelAsHtml() : '',
 			'receiverEmail' => $user->getEmailAsHtml()
 		);
 	}
@@ -960,7 +1222,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		else
 		{
-			$accessLink = Framework::getBaseUrl();
+			$accessLink = Framework::getUIBaseUrl();
 		}		
 		$user = $params['user'];
 		return array(
@@ -972,13 +1234,188 @@ class users_UserService extends f_persistentdocument_DocumentService
 			'date' => date_Formatter::toDefaultDateTime(date_Calendar::getUIInstance()) 
 		);
 	}
+	
+	/**
+	 * @param users_persistentdocument_user $document
+	 * @return integer | null
+	 */
+	public function getWebsiteId($document)
+	{
+		$profile = users_UsersprofileService::getInstance()->getByAccessorId($document->getId());
+		if ($profile !== null)
+		{
+			$websiteId = $profile->getRegisteredwebsiteid();
+			if ($websiteId && in_array($websiteId, $this->getWebsiteIds($document)))
+			{
+				return $websiteId;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param users_persistentdocument_user $document
+	 * @return integer[] | null
+	 */
+	public function getWebsiteIds($document)
+	{
+		return website_WebsiteService::getInstance()->createQuery()
+			->setProjection(Projections::groupProperty('id', 'id'))
+			->add(Restrictions::eq('group.user', $document))
+		->findColumn('id');
+	}
+
+	
+	
+	// Email confirmation.
+	
+	const EMAIL_CONFIRMATION_META_KEY = 'modules.users.email-confirmation-key';
+	
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @param boolean $isNew
+	 * @param string $password
+	 * @return boolean
+	 */
+	public function sendEmailConfirmationMessage($user, $isNew, $password = null)
+	{
+
+		$userKey = f_util_StringUtils::randomString();		
+		$user->setMeta(self::EMAIL_CONFIRMATION_META_KEY, $userKey);
+		$user->saveMeta();
+
+		$ns = notification_NotificationService::getInstance();
+		$notificationCode = 'modules_users/emailConfirmation' . ($isNew ? 'New' : 'Update');
+	
+		$configuredNotif = $ns->getConfiguredByCodeName($notificationCode);
+		if ($configuredNotif instanceof notification_persistentdocument_notification)
+		{
+
+			$configuredNotif->setSendingModuleName('users');
+			$callback = array($this, 'getEmailConfirmationParameters');
+			$params = array('user' => $user, 'key' => $userKey, 'password' => $password);
+			return $this->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
+		}
+		return false;
+	}
+	
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getEmailConfirmationParameters($params)
+	{
+		$user = $params['user'];
+		/* @var $user users_persistentdocument_user */
+		$emailConfirmUrl = LinkHelper::getActionUrl('users', 'ConfirmEmail', array('cmpref' => $user->getId(), 'key' => $params['key']));
+		$t = $user->getTitle();
+		$replacements = array(
+			'email' => $user->getEmailAsHtml(), 
+			'emailConfirmUrl' => $emailConfirmUrl,
+			'login' => $user->getLoginAsHtml(),
+			'password' => $params['password'],
+			'fullname' => $user->getLabelAsHtml(),
+			'title' => ($t) ? $t->getLabelAsHtml() : ''
+		);
+		return $replacements;
+	}
+	
+	/**
+	 * @param users_persistentdocument_user $user
+	 * @param string $key
+	 * @return Boolean
+	 */
+	public function confirmEmail($user, $key)
+	{
+		if ($user instanceof users_persistentdocument_user && $key == $user->getMeta(self::EMAIL_CONFIRMATION_META_KEY))
+		{
+			$status = $user->getPublicationstatus();
+			if ($status === 'DRAFT' || $status === 'DEACTIVATED')
+			{
+				$user->setStartpublicationdate(date_Calendar::getInstance()->toString());
+				$user->save();
+				$user->activate();
+				return $user->isPublished();
+			}
+		}
+		return false;
+	}
+	
+	
 		
 	// Deprecated.
 	
 	/**
-	 * @deprecated (will be removed in 4.0) use sendNotificationToUserCallback
+	 * @param String $name
+	 * @param array $arguments
 	 */
-	public function sendNotificationToUser($user, $notificationCode, $replacements, $senderModuleName)
+	public function __call($name, $arguments)
+	{
+		switch ($name)
+		{
+			case 'getAgaviUser': 
+				Framework::error('Call to deleted ' . get_class($this) . '->getAgaviUser method');
+				try
+				{
+					return change_Controller::getInstance()->getContext()->getUser();
+				}
+				catch (Exception $e)
+				{
+					if (Framework::isInfoEnabled())
+					{
+						Framework::info(__METHOD__ . $e->getMessage());
+					}
+				}
+				return null;
+				
+			case 'getGroupsByUser': 
+				Framework::error('Call to deleted ' . get_class($this) . '->getGroupsByUser method');				
+				if ($arguments[0] instanceof users_persistentdocument_user)
+				{
+					return $arguments[0]->getGroupsArray();
+				}
+				return array();
+				
+			case 'getFrontendUserByLogin':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedGetFrontendUserByLogin($arguments[0], isset($arguments[1]) ? $arguments[1] : null);
+				
+			case 'getBackEndUserByEmail':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedGetBackEndUserByEmail($arguments[0]);
+
+			case 'getBackEndUserByLogin':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedGetBackEndUserByLogin($arguments[0]);
+
+			case 'getIdentifiedFrontendUser':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedGetIdentifiedFrontendUser($arguments[0], $arguments[1], isset($arguments[2]) ? $arguments[2] : null);
+			
+			case 'getIdentifiedBackendUser':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedGetIdentifiedBackendUser($arguments[0], $arguments[1]);
+
+			case 'isBackenduser':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedIsBackenduser($arguments[0]);
+				
+			case 'checkPassword':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return true;
+
+			case 'sendNotificationToUser':
+				Framework::error('Call to deleted ' . get_class($this) . '->' . $name . ' method');		
+				return $this->deprecatedSendNotificationToUser($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
+			default: 
+				return parent::__call($name, $arguments);
+		}
+	}
+	
+	/**
+	 * @deprecated use sendNotificationToUserCallback
+	 */
+	public function deprecatedSendNotificationToUser($user, $notificationCode, $replacements, $senderModuleName)
 	{
 		$notification = notification_NotificationService::getInstance()->getByCodeName($notificationCode);
 		if ($notification === null)
@@ -1004,29 +1441,141 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @param String $name
-	 * @param array $arguments
+	 * @deprecated
 	 */
-	final function __call($name, $arguments)
+	private function deprecatedIsBackenduser($user)
 	{
-		switch ($name)
+		if ($user instanceof users_persistentdocument_user)
 		{
-			case 'getAgaviUser': 
-				Framework::error('Call to deleted ' . get_class($this) . '->getAgaviUser method');
-				try
-				{
-					return change_Controller::getInstance()->getContext()->getUser();
-				}
-				catch (Exception $e)
-				{
-					if (Framework::isInfoEnabled())
-					{
-						Framework::info(__METHOD__ . $e->getMessage());
-					}
-				}
-				return null;
-			default: 
-				throw new Exception('No method ' . get_class($this) . '->' . $name);
+			return $user->getIndexofGroups(users_BackendgroupService::getInstance()->getBackendGroup()) != -1;
 		}
+		return false;
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	private function deprecatedGetIdentifiedBackendUser($login, $password)
+	{
+		return $this->getIdentifiedUser($login, $password, users_BackendgroupService::getInstance()->getBackendGroupId());
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	private function deprecatedGetIdentifiedFrontendUser($login, $password, $websiteId = null)
+	{
+		if (f_util_StringUtils::isEmpty($login) || f_util_StringUtils::isEmpty($password))
+		{
+			return null;
+		}
+		
+		if (intval($websiteId) > 0)
+		{
+			$website = website_persistentdocument_website::getInstanceById(intval($websiteId));
+			$groupId = $website->getGroup()->getId();
+			$user =  $this->getIdentifiedUser($login, $password, $groupId);
+			if ($user)
+			{
+				return $user;
+			}
+		}
+		
+		if (!$this->isLoginCaseSensitive())
+		{
+			$login = f_util_StringUtils::strtolower($login);
+		}
+		$passwordMD5 = $this->encodePassword($password);
+		
+		$backEndGroup = users_BackendgroupService::getInstance()->getBackendGroup();
+		$users = $this->createQuery()
+			->add(Restrictions::eq('login', $login))
+			->add(Restrictions::orExp(Restrictions::eq('passwordmd5', $passwordMD5), Restrictions::eq('changepasswordkey', $passwordMD5)))
+			->add(Restrictions::published())->find();
+			
+		foreach ($users as $user) 
+		{
+			/* @var $user users_persistentdocument_user  */
+			if ($user->getGroupsCount() && $user->getIndexofGroups($backEndGroup) == -1)
+			{
+				$this->checkChangepasswordkey($user, $passwordMD5);
+				return $user;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	private function deprecatedGetBackEndUserByLogin($login)
+	{
+		if (f_util_StringUtils::isNotEmpty($login))
+		{
+			if (!$this->isLoginCaseSensitive())
+			{
+				$login = f_util_StringUtils::strtolower($login);
+			}
+			return $this->createQuery()
+			->add(Restrictions::eq('groups.id', users_BackendgroupService::getInstance()->getBackendGroupId()))
+			->add(Restrictions::eq('login', $login))
+			->findUnique();
+		}
+		return null;
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	private function deprecatedGetBackEndUserByEmail($email)
+	{
+		if (f_util_StringUtils::isNotEmpty($email))
+		{
+			return $this->createQuery()
+				->add(Restrictions::eq('groups.id', users_BackendgroupService::getInstance()->getBackendGroupId()))
+				->add(Restrictions::eq('email', $email))->find();
+		}
+		return array();
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	private function deprecatedGetFrontendUserByLogin($login, $websiteId = null)
+	{
+		if (f_util_StringUtils::isNotEmpty($login))
+		{
+			if (!$this->isLoginCaseSensitive())
+			{
+				$login = f_util_StringUtils::strtolower($login);
+			}
+			
+			if (intval($websiteId) > 0)
+			{
+				$website = website_persistentdocument_website::getInstanceById(intval($websiteId));
+				$group = $website->getGroup();
+				$user = $this->createQuery()
+					->add(Restrictions::eq('groups', $group))
+					->add(Restrictions::eq('login', $login))
+					->findUnique();
+					
+				if ($user)
+				{
+					return $user;
+				}
+			}
+			
+			$backEndGroup = users_BackendgroupService::getInstance()->getBackendGroup();
+				
+			$users = $this->createQuery()->add(Restrictions::eq('login', $login))->find();
+			foreach ($users as $user)
+			{
+				if ($user->getGroupsCount() && $user->getIndexofGroups($backEndGroup) == -1)
+				{
+					return $user;
+				}
+			}
+		}
+		return null;
 	}
 }

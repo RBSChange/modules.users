@@ -10,82 +10,89 @@ class users_ChromeLoginAction extends change_Action
 		$login = trim($request->getParameter('login'));
 		$password = trim($request->getParameter('password'));
 		$adminemail = trim($request->getParameter('adminemail'));
+		$backEndGroupID = users_BackendgroupService::getInstance()->getBackendGroupId(); 
+		$us = users_UserService::getInstance();
+		$authenticateUser = null;
+		
 		$result = array();
 		if (empty($login) || empty($password))
 		{		
 			$result['error'] = f_Locale::translate('&modules.users.errors.Invalid-login-or-password;');
 		}
-		else
-		{			
-			$us = users_UserService::getInstance();
-			$user = $us->getBackEndUserByLogin($login);
-			
-			if ($user !== null && $user->getEmail() == null && $user->getPasswordmd5() == null && !empty($adminemail))
+		elseif (!empty($adminemail))
+		{
+			$users = $us->getRootUsersByGroupId($backEndGroupID);
+			foreach ($users as $user) 
 			{
-				try 
+				/* @var $user users_persistentdocument_user */
+				if ($user->getLogin() == $login && $user->getEmail() == null && $user->getPasswordmd5() == null)
 				{
-					$this->getTransactionManager()->beginTransaction();
-					$user->setEmail($adminemail);
-					$user->setPassword($password);
-					$user->save();
-					$this->getTransactionManager()->commit();
-				}
-				catch (Exception $e)
-				{
-					$this->getTransactionManager()->rollBack($e);
-					if ($e instanceof TransactionCancelledException) 
+					try 
 					{
-						$e = $e->getSourceException();
+						$this->getTransactionManager()->beginTransaction();
+						$user->setEmail($adminemail);
+						$user->setPassword($password);
+						$user->save();
+						
+						$authenticateUser = $user;
+						$this->getTransactionManager()->commit();
 					}
-					
-					if ($e instanceof ValidationException)
+					catch (Exception $e)
 					{
-						$pos = strpos($e->getMessage(), ':');
-						if ($pos)
+						$this->getTransactionManager()->rollBack($e);
+						if ($e instanceof ValidationException)
 						{
-							$result['error'] = substr($e->getMessage(), $pos + 1);
+							$pos = strpos($e->getMessage(), ':');
+							if ($pos)
+							{
+								$result['error'] = substr($e->getMessage(), $pos + 1);
+							}
+							else
+							{
+								$result['error'] = $e->getMessage();
+							}
 						}
 						else
 						{
 							$result['error'] = $e->getMessage();
 						}
+						echo JsonService::getInstance()->encode($result);
+						return change_View::NONE;
 					}
-					else
-					{
-						$result['error'] = $e->getMessage();
-					}
-					echo JsonService::getInstance()->encode($result);
-					return change_View::NONE;
+				}
+			}	
+		}
+		else
+		{			
+			$authenticateUser = $us->getIdentifiedUser($login, $password, $backEndGroupID);
+		}
+		
+		if ($authenticateUser !== null)
+		{
+			$us->authenticateBackEndUser($authenticateUser);
+			if ($request->hasParameter('uilang'))
+			{
+				$uilang = $request->getParameter('uilang');
+				if (in_array($uilang, RequestContext::getInstance()->getUISupportedLanguages()))
+				{
+					change_Controller::getInstance()->getStorage()->write('uixul_uilang', $uilang);
 				}
 			}
 			
-			$user = $us->getIdentifiedBackendUser($login, $password);
-			if ($user !== null)
+			$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : Framework::getProfile();
+			if ($authenticateUser->getIsroot())
 			{
-				$us->authenticateBackEndUser($user);
-				if ($request->hasParameter('uilang'))
-				{
-					$uilang = $request->getParameter('uilang');
-					if (in_array($uilang, RequestContext::getInstance()->getUISupportedLanguages()))
-					{
-						change_Controller::getInstance()->getStorage()->write('uixul_uilang', $uilang);
-					}
-				}
-				
-				$result['ok'] = defined("PROJECT_ID") ? PROJECT_ID : Framework::getProfile();
-				if ($user->getIsroot())
-				{
-					$result['OAuth'] = $this->getOAuthParams();
-				}
-				$uri =  "rbschange/content/ext/" . $result['ok'];
-				change_Controller::getInstance()->getStorage()->write('uixul_ChromeBaseUri', $uri);
-				$this->logAction($user);	
+				$result['OAuth'] = $this->getOAuthParams();
 			}
-			else
-			{
-				$result['error'] = f_Locale::translate('&modules.users.errors.Invalid-authentification;');
-			}
+			$uri =  "rbschange/content/ext/" . $result['ok'];
+			change_Controller::getInstance()->getStorage()->write('uixul_ChromeBaseUri', $uri);
+			$this->logAction($authenticateUser);	
 		}
+		else
+		{
+			$result['error'] = f_Locale::translate('&modules.users.errors.Invalid-authentification;');
+		}
+
 		echo JsonService::getInstance()->encode($result);
 		return change_View::NONE;
 	}

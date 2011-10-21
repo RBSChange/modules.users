@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.group" lcid="fr_FR">
   <key id="label">libellé</key>
+  <key id="label-help">libellé du groupe</key>
   <key id="description">description</key>
+  <key id="description-help">description interne du groupe</key>
   <key id="users">utilisateurs</key>
+  <key id="securitylevel">niveau de sécurité des mots de passe</key>
+  <key id="securitylevel-help">Il existe trois niveaux de sécurité, chaque niveau de sécurité hérite des conditions des niveaux précédénts :
+   1) basse, les mots de passe doivent contenir au moins 6 caractères et 12 au maximum ; 
+   2) moyenne, les mots de passe doivent contenir des lettres et des chiffres ; 
+   3) les mots de passe doivent contenir des lettres minuscules et majuscules.</key>
 </i18n>

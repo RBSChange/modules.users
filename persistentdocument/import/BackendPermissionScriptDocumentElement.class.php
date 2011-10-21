@@ -42,20 +42,24 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 			// handle users.
 			if (isset($this->attributes['user']))
 			{
-				$user = users_BackenduserService::getInstance()->getBackEndUserByLogin($this->attributes['user']);
-				if ($user instanceof users_persistentdocument_backenduser)
+				$login = $this->attributes['user'];
+				$users = users_UserService::getInstance()->getUsersByLoginAndGroup($login, users_BackendgroupService::getInstance()->getBackendGroup());
+				if (count($users))
 				{
-					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					foreach ($users as $user) 
+					{
+						change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
+					}
 				}
 				else 
 				{
-					Framework::warn(__METHOD__ . ' invalid user "'.$this->attributes['user'].'".');
+					Framework::warn(__METHOD__ . ' invalid bagend user "'.$login.'".');
 				}
 			}
 			else if (isset($this->attributes['user-refid']))
 			{
 				$user = $this->script->getElementById($this->attributes['user-refid'], 'import_ScriptObjectElement')->getObject();
-				if ($user instanceof users_persistentdocument_backenduser)
+				if ($user instanceof users_persistentdocument_user)
 				{
 					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}

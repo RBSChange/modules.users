@@ -3,50 +3,49 @@
 	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
 	<binding fileName="modules/task/persistentdocument/import/task_binding.xml" />
-
-	<rootfolder module="preferences">
-		<userspreferences />
-	</rootfolder>
 	
 	<binding fileName="modules/users/setup/notifications.xml" />
 	
 	<systemfolder module="list" relatedmodule="users">
 		<staticlist listid="modules_users/securitylevel" label="Niveau de sécurité pour mot de passe"
 			description="Niveau de sécurité pour les mots de passe des utilisateurs (minimale, basse, moyenne(defaut), élevée)">
-			<staticitem label="&amp;modules.users.list.securitylevel.minimal;" value="minimal" />
-			<staticitem label="&amp;modules.users.list.securitylevel.low;" value="low" />
-			<staticitem label="&amp;modules.users.list.securitylevel.medium;" value="medium" />
-			<staticitem label="&amp;modules.users.list.securitylevel.high;" value="high" />
+			<staticitem label="m.users.list.securitylevel.minimal" value="minimal" />
+			<staticitem label="m.users.list.securitylevel.low" value="low" />
+			<staticitem label="m.users.list.securitylevel.medium" value="medium" />
+			<staticitem label="m.users.list.securitylevel.high" value="high" />
 		</staticlist>
 		
 		<editablelist listid="modules_users/title" order="false"
 			description="Civilités pour le module utilisateur"
 			label="Civilités pour le module utilisateur">	
-			<item byLabel="M" />
+			<item byLabel="M" id="mr"/>
 			<item byLabel="Mlle" />
 			<item byLabel="Mme" />
 		</editablelist>
 		
 		<staticlist listid="modules_users/editprofilepanels"
 			label="Panneaux d'édition du profil" description="Liste des panneaux du bloc d'édition du profil d'un utilisateur front">
-			<staticitem label="&amp;modules.users.frontoffice.User-informations;" value="users/EditFrontendUserProfile" />
+			<staticitem label="m.users.frontoffice.user-informations" value="users/EditFrontendUserProfile" />
 		</staticlist>
 	</systemfolder>
 
 	<rootfolder module="users">
+		<nogroupuserfolder>
+			<anonymoususer />
+		</nogroupuserfolder>
+		
 		<backendgroup label="Utilisateurs Change" isdefault="true" 
 			description="Groupe de tous les utilisateurs pouvant accéder à Change. Ce groupe ne peut pas être supprimé.">
-			<backenduser firstname="Administrateur" lastname="Change" email="admin-webfactory@rbs.fr"
-				login="wwwadmin" isroot="true" passwordmd5="326379df03facd04daff1578132d2540"
-				publicationstatus="ACTIVE" />
+			<user email="admin-webfactory@rbs.fr" isroot="true"
+				login="wwwadmin"  passwordmd5="326379df03facd04daff1578132d2540"
+				publicationstatus="ACTIVE">
+				<usersprofile firstname="Administrateur" lastname="Change" titleid-refid="mr" />
+			</user>
 		</backendgroup>
-		
-		<frontendgroup label="Utilisateurs enregistrés sur tous les sites" isdefault="true" 
-			description="Groupe de tous les utilisateurs enregistrés sur tous les sites. Ce groupe ne peut pas être supprimé.">
-		</frontendgroup>
 	</rootfolder>
 		
 	<systemfolder module="task" relatedmodule="users">
-		<plannedtask label="Rafraichissement des groupes dynamiques" systemtaskclassname="users_RefreshDynamicfrontendgroupsTask" minute="0" hour="2" />
+		<plannedtask label="Rafraichissement des groupes dynamiques" systemtaskclassname="users_RefreshDynamicgroupsTask" minute="0" hour="2" />
 	</systemfolder>
+
 </script>

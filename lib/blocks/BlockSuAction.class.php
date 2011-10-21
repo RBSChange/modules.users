@@ -41,15 +41,15 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		$ls = LocaleService::getInstance();
 		if ($request->hasParameter('userId'))
 		{
-			$user = DocumentHelper::getDocumentInstance($request->getParameter('userId'));
+			$user = users_persistentdocument_user::getInstanceById($request->getParameter('userId'));
 			$request->setAttribute('user', $user);
-			if (users_WebsitefrontenduserService::getInstance()->su($user))
+			if (users_UserService::getInstance()->su($user))
 			{
 				return 'SwitchSuccess';
 			}
 			else
 			{
-				$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-do-not-have-permission', array('ucf'), array('fullName' => $user->getFullName(), 'login' => $user->getLogin())));
+				$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-do-not-have-permission', array('ucf'), array('fullName' => $user->getLabel(), 'login' => $user->getLogin())));
 			}
 		}
 		else
@@ -91,17 +91,18 @@ class users_BlockSuAction extends website_TaggerBlockAction
 		{
 			$itemsPerPage = 10;
 		}
-
-		if ($this->getConfiguration()->getMasknonfiltered() && $words == '')
+		$currentUser = users_UserService::getInstance()->getCurrentUser();
+		if (!$currentUser->getIssudoer() || ($this->getConfiguration()->getMasknonfiltered() && $words == ''))
 		{
 			$documents = array();
 			$totalHitsCount = 0;
 		}
 		else
 		{
-			$currentUser = users_WebsitefrontenduserService::getInstance()->getCurrentFrontEndUser();
-			$totalHitsCount = users_WebsitefrontenduserService::getInstance()->getSuableCountByUser($currentUser, $words);
-			$documents = users_WebsitefrontenduserService::getInstance()->getSuableByUser($currentUser, $words, $itemsPerPage * ($pageIndex - 1), $itemsPerPage);
+			$website = website_WebsiteService::getInstance()->getCurrentWebsite();
+			$groupId = $website->getGroup()->getId();
+			$totalHitsCount = users_UserService::getInstance()->getSuableCountByGroupId($groupId, $words);
+			$documents = users_UserService::getInstance()->getSuableByGroupId($groupId, $words, $itemsPerPage * ($pageIndex - 1), $itemsPerPage);
 		}
 
 		$paginator = new paginator_Paginator('users', $pageIndex, $documents, $itemsPerPage);

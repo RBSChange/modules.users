@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel>
+	<section labeli18n="m.uixul.bo.doceditor.fieldsgroup.title">
+		<field name="label"/>
+		<field name="email" hidehelp="true" />
+		<field name="login">
+			<constraint name="login" parameter="auto"/>
+		</field>
+		<field name="issudoer" />
+		<field name="groups" allow="[modules_users_group]"/>
+	</section>
+
+	<section labeli18n="m.users.bo.doceditor.fieldsgroup.updatepassword">
+		<field name="password" anonid="field_password" id="users_user_properties_password" type="text"
+			labeli18n="m.users.document.user.passwordupdate" shorthelpi18n="m.users.document.user.password-help">
+			<constraint name="password" parameter="auto"/>
+		</field>
+	</section>
+
+	<section labeli18n="m.users.bo.doceditor.fieldsgroup.validityperiod">
+		<field name="startpublicationdate" />
+		<field name="endpublicationdate" />
+	</section>
+	
+	<xul>
+		<javascript>
+			<constructor><![CDATA[
+				var me = this
+				this.addEventListener('panelInitializeComplete', function (event) {me.onPanelInitializeComplete(event);}, true);
+			]]></constructor>
+			
+			<method name="onPanelInitializeComplete">
+				<parameter name="event" />
+				<body><![CDATA[
+					try
+					{
+						wCore.debug('onPanelInitializeComplete');
+						var nodes = this.fields.password.childNodes;
+						for (var i = 0; i < nodes.length; i++)
+						{
+							if (nodes[i].localName == 'cconstraint' && nodes[i].name == 'password')
+							{
+								nodes[i].setAttribute('parameter', this.mDocumentId);
+							}
+						}
+						
+						nodes = this.fields.login.childNodes;
+						for (var i = 0; i < nodes.length; i++)
+						{
+							if (nodes[i].localName == 'cconstraint' && nodes[i].name == 'login')
+							{
+								nodes[i].setAttribute('parameter', this.mDocumentId);
+							}
+						}
+					}
+					catch (e)
+					{
+						wCore.debug('ERR: onPanelInitializeComplete');
+					}
+				]]></body>
+			</method>	
+		</javascript>
+	</xul>
+</panel>

@@ -2,7 +2,7 @@
 <ul class="normal panels">
 	<tal:block tal:repeat="panel panels">
 		<li tal:condition="panel/isCurrent" class="current">${panel/label}</li>
-		<li tal:condition="not:panel/isCurrent"><a change:link="tag contextual_website_website_modules_users_edit-profil; usersParam[blockModule] panel/module; usersParam[blockName] panel/blockName">${panel/label}</a></li>
+		<li tal:condition="not:panel/isCurrent"><a change:currentpagelink="usersParam[blockModule] panel/module; usersParam[blockName] panel/blockName">${panel/label}</a></li>
 	</tal:block>
 </ul>
 

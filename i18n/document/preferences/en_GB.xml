@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<i18n baseKey="m.users.document.preferences" lcid="en_GB">
-  <key id="edition-form-title">settings of the Users module</key>
-  <key id="securitylevel">security level for password</key>
-  <key id="securitylevel-help">security level for password</key>
-</i18n>

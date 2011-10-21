@@ -23,7 +23,7 @@ class users_ConfirmEmailAction extends change_Action
 		{
 			if ($user->getDocumentService()->confirmEmail($user, $key))
 			{
-				users_UserService::getInstance()->authenticateFrontEndUser($user);
+				users_UserService::getInstance()->authenticate($user);
 				$page = $this->getEditProfilePage();
 				if ($page == null)
 				{
@@ -54,7 +54,7 @@ class users_ConfirmEmailAction extends change_Action
 	
 	/**
 	 * @param change_Request $request
-	 * @return users_persistentdocument_frontenduser
+	 * @return users_persistentdocument_user
 	 */
 	private function getUserFromRequest($request)
 	{
@@ -66,7 +66,7 @@ class users_ConfirmEmailAction extends change_Action
 		try
 		{
 			$user = DocumentHelper::getDocumentInstance($userId);
-			if ($user instanceof users_persistentdocument_frontenduser)
+			if ($user instanceof users_persistentdocument_user)
 			{
 				return $user;
 			}
@@ -83,7 +83,7 @@ class users_ConfirmEmailAction extends change_Action
 	 */
 	private function getEditProfilePage()
 	{
-		$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
+		$website = website_WebsiteService::getInstance()->getCurrentWebsite();
  		return TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_edit-profil', $website, false);
 	}
 }

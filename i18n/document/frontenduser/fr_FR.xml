@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<i18n baseKey="m.users.document.frontenduser" lcid="fr_FR">
-  <include id="m.users.document.user"/>
-  <key id="document-name">utilisateur des sites</key>
-</i18n>

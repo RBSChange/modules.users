@@ -1,7 +1,7 @@
-<form change:form="">
+<form change:form="" class="cmxform" action="${authenticateUrl}">
 	<fieldset>
 		<legend>${trans:m.users.frontoffice.authentication.title,ucf}</legend>
-		<ul change:errors=""></ul>
+		<tal:block change:block="" module="website" name="messages" container="" />
 		<ol>
 			<li>
 				<input change:textinput="name login" labeli18n="m.users.frontoffice.authentication.login" />
@@ -10,29 +10,26 @@
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
 			<li tal:condition="allowAutoLogin">
-				<label for="users_authentication_autoLogin_yes">${trans:m.users.frontoffice.authentication.auto-login-me,ucf}</label>
-				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
-				${trans:m.users.frontoffice.authentication.auto-login-me-help}
+				<input change:checkboxinput="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" value="yes" />
+				<p class="help-text">${trans: m.users.frontoffice.authentication.auto-login-me-help}</p>
 			</li>
 		</ol>
 		<p class="buttons">
-			<input name="usersParam[forBlockName]" type="hidden" value="Authentication" />
-			<input name="usersParam[submit]" type="submit" class="button" value="${trans:m.users.frontoffice.authentication.submitbutton,ucf}" />
+			<input type="hidden" name="storageId" value="${storageId}" />
+			<input type="hidden" name="location" value="${location}" />
+			<input type="hidden" name="errorlocation" value="${errorlocation}" />
+			<input change:submit="" label="${trans: m.users.frontoffice.login-button,ucf}" class="button" name="login" />
+			<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button">${trans: m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
 		</p>
 	</fieldset>	
 </form>
-<ul class="menu-list">
-	<li>
-		<a change:link="tag contextual_website_website_modules_users_reset-password">${trans:m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
+<ul class="menu-list" tal:condition="not: hideRegistrationLinks">
+	<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
+	<li tal:condition="registrationPage">
+		<a change:link="document registrationPage; formParam[usebacklink] 'true'">${trans:m.users.frontoffice.register-link,ucf}</a>
 	</li>
-	<tal:block tal:condition="not: hideRegistrationLinks">
-		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
-		<li tal:condition="registrationPage">
-			<a change:link="document registrationPage; formParam[usebacklink] 'true'">${trans:m.users.frontoffice.register-link,ucf}</a>
-		</li>
-		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
-		<li tal:condition="customerRegistrationPage">
-			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
-		</li>
-	</tal:block>
+	<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
+	<li tal:condition="customerRegistrationPage">
+		<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
+	</li>
 </ul>

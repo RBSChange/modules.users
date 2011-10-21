@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
   <binding fileName="modules/generic/persistentdocument/import/generic_binding.xml"/>
-  <binding name="preferences" className="users_PreferencesScriptDocumentElement"/>
-  <binding name="userspreferences" className="users_PreferencesScriptDocumentElement"/>
+  
+  <binding name="nogroupuserfolder" className="users_NogroupuserfolderScriptDocumentElement"/>
+   
+  <binding name="group" className="users_GroupScriptDocumentElement"/>
   <binding name="backendgroup" className="users_BackendgroupScriptDocumentElement"/>
+  <binding name="dynamicgroup" className="users_DynamicgroupScriptDocumentElement"/>
+  
+  <binding name="user" className="users_UserScriptDocumentElement"/>
+  <binding name="anonymoususer" className="users_AnonymoususerScriptDocumentElement"/>
+   
+  <binding name="permissions" className="users_PermissionsScriptDocumentElement"/>
+  <binding name="permission" className="users_PermissionScriptDocumentElement"/>
+
+  <binding name="usersprofile" className="users_UsersprofileScriptDocumentElement"/>
+ 
+  <binding name="frontendgroup" className="users_FrontendgroupScriptDocumentElement"/>
+  <binding name="dynamicfrontendgroup" className="users_DynamicgroupScriptDocumentElement"/>
+  <binding name="websitefrontendgroup" className="users_WebsitefrontendgroupScriptDocumentElement"/>
+  
   <binding name="backenduser" className="users_BackenduserScriptDocumentElement"/>
   <binding name="frontenduser" className="users_FrontenduserScriptDocumentElement"/>
-  <binding name="frontendgroup" className="users_FrontendgroupScriptDocumentElement"/>
+ 
   <binding name="websitefrontenduser" className="users_WebsitefrontenduserScriptDocumentElement"/>
-  <binding name="websitefrontendgroup" className="users_WebsitefrontendgroupScriptDocumentElement"/>
-  <binding name="group" className="users_GroupScriptDocumentElement"/>
-  <binding name="user" className="users_UserScriptDocumentElement"/>
-  <binding name="permissions" className="users_PermissionsScriptDocumentElement"/>
+  
   <binding name="frontendpermission" className="users_FrontendPermissionScriptDocumentElement"/>
   <binding name="backendpermission" className="users_BackendPermissionScriptDocumentElement"/>
-  <binding name="dynamicfrontendgroup" className="users_DynamicfrontendgroupScriptDocumentElement"/>
+
 </script>

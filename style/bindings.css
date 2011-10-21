@@ -6,6 +6,6 @@ wdialog[template="changepassword"]{
 	-moz-binding: url(binding:modules.users.cChangePasswordDialog#cChangePasswordDialog);
 }
 
-cconstraint[name="login"]{
-	-moz-binding: url(binding:modules.users.cUsersModule#cLoginConstraint);
+profile[name="users"]{
+	-moz-binding: url(binding:modules.users.cUsersModule#cUsersProfile);
 }

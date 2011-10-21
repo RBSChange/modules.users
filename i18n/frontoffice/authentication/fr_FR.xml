@@ -4,6 +4,7 @@
   <key id="badauthentication">identifiant ou mot de passe incorrect</key>
   <key id="logout">Déconnexion</key>
   <key id="login">votre identifiant</key>
+  <key id="email">adresse e-mail</key>
   <key id="password">votre mot de passe</key>
   <key id="confirmpassword">confirmer votre mot de passe</key>
   <key id="submitbutton">valider</key>

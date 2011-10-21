@@ -1,19 +1,14 @@
 <?php
-class users_BackenduserScriptDocumentElement extends import_ScriptDocumentElement
+class users_BackenduserScriptDocumentElement extends users_UserScriptDocumentElement
 {
-    /**
-     * @return users_persistentdocument_backenduser
-     */
-    protected function initPersistentDocument()
-    {
-    	return users_BackenduserService::getInstance()->getNewDocumentInstance();
-    }
-    
+	
 	/**
-	 * @see import_ScriptDocumentElement::getParentInTree()
-	 */
-	protected function getParentInTree()
-	{
-		return null;
-	}
+	 * @return users_persistentdocument_user
+	 */    
+    public function getPersistentDocument()
+    {
+    	$pd = parent::getPersistentDocument();
+    	$pd->addGroups(users_BackendgroupService::getInstance()->getBackendGroup());
+    	return $pd;
+    }
 }

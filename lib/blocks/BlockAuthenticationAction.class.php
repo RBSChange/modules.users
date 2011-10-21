@@ -6,92 +6,16 @@
 class users_BlockAuthenticationAction extends website_BlockAction
 {
 	/**
-	 * @var users_persistentodcument_frontenduser
+	 * @var users_persistentodcument_user
 	 */
 	private $currentUser;
 	
 	/**
-	 * @return users_persistentodcument_frontenduser
+	 * @return users_persistentodcument_user
 	 */
 	protected final function getCurrentUser()
 	{
 		return $this->currentUser;
-	}
-
-	/**
-	 * @param f_mvc_Request $request
-	 * @param f_mvc_Response $response
-	 * @return String
-	 */
-	public function initialize($request, $response)
-	{
-		if ($this->isInBackoffice())
-		{
-			return;
-		}
-
-		$us = users_UserService::getInstance();
-		$this->currentUser = $us->getCurrentFrontEndUser();
-		if ($this->currentUser !== null && $this->findParameterValue('logout'))
-		{
-			$us->authenticateFrontEndUser(null);
-			$this->currentUser = null;
-			users_ModuleService::getInstance()->unsetAutoLogin();
-			$this->redirectToUrl(website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl());
-		}
-		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
-        elseif (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Authentication')
-		{
-			$login = $this->findParameterValue('login');
-			$password = $this->findParameterValue('password');
-			if ($login && $password && $this->findParameterValue('submit'))
-			{
-				$websiteId = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getId();
-				$user = $us->getIdentifiedFrontendUser($login, $password, $websiteId);
-				if ($user !== null)
-				{
-					$this->currentUser = $user;
-					$us->authenticateFrontEndUser($this->currentUser);
-					$autoLogin = $this->findParameterValue('autoLogin');
-					if ($autoLogin === 'yes')
-					{
-						users_ModuleService::getInstance()->setAutoLogin($user);
-					}
-					
-					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter("illegalAccessPage");
-					if (f_util_StringUtils::isEmpty($illegalAccessPage))
-					{
-						$illegalAccessPage = change_Controller::getInstance()->getStorage()->readForUser('users_illegalAccessPage');
-					}
-					
-					if ($illegalAccessPage)
-					{
-						change_Controller::getInstance()->getStorage()->removeForUser('users_illegalAccessPage');
-						$this->redirectToUrl($illegalAccessPage);
-					}
-					else
-					{
-					    try 
-					    {
-					        $page = TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_secure-homepage', 
-					            website_WebsiteModuleService::getInstance()->getCurrentWebsite());    
-					        $this->redirectToUrl(LinkHelper::getDocumentUrl($page));
-					    }
-					    catch (TagException $e)
-					    {
-					        Framework::info($e->getMessage());
-					    }
-					}
-				}
-				else
-				{
-					$message = LocaleService::getInstance()->transFO('m.users.frontoffice.authentication.badauthentication', array('ucf'));
-					$this->addError($message);
-					// For compatibility. Will be removed in 4.0.
-					$request->setAttribute('errors', array($message));
-				}
-			}
-		}
 	}
 
 	/**
@@ -106,14 +30,46 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		{
 			return website_BlockView::INPUT;
 		}
-
-		if ($this->currentUser !== null)
+		$errorlocation = LinkHelper::getDocumentUrl($this->getContext()->getPersistentPage());
+		$request->setAttribute('errorlocation', $errorlocation);
+		
+		$location = change_Controller::getInstance()->getStorage()->readForUser('users_illegalAccessPage');
+		if (f_util_StringUtils::isEmpty($location))
 		{
-			$request->setAttribute('currentUser', $this->currentUser);
-			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array($this->getModuleName().'Param[logout]' => 'logout')));
+			$location = $this->getConfiguration()->getConfigurationParameter("illegalAccessPage");
+			if (f_util_StringUtils::isEmpty($location))
+			{
+				$location = $errorlocation;
+			}
+		}
+		else
+		{
+			change_Controller::getInstance()->getStorage()->removeForUser('users_illegalAccessPage');
+		}
+		
+		$request->setAttribute('location', $location);
+		
+		$user = users_UserService::getInstance()->getCurrentUser();
+		if ($user !== null)
+		{
+			$request->setAttribute('user', $user);	
 			return website_BlockView::SUCCESS;
 		}
 		
+		$storageId = $this->getContext()->getId() . '_' . $this->getBlockId();
+		$request->setAttribute('storageId', $storageId);
+		
+		$data = change_Controller::getInstance()->getStorage()->read($storageId);
+		if (is_array($data))
+		{
+			foreach ($data as $name => $value) 
+			{
+				$request->setAttribute($name, $value);
+			}
+			change_Controller::getInstance()->getStorage()->remove($storageId);
+		}
+		
+		$request->setAttribute('authenticateUrl', LinkHelper::getActionUrl('users', 'Authenticate'));
 		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
 		{
 			$request->setAttribute('hideRegistrationLinks', true);

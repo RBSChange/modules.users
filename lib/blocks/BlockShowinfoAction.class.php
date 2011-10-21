@@ -8,7 +8,7 @@ class users_BlockShowinfoAction extends website_BlockAction
 	 */
 	public function execute($request, $response)
 	{
-		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
+		$currentUser = users_UserService::getInstance()->getCurrentUser();
 
 		$date = date_Calendar::getInstance();
 		$request->setAttribute('LastTime', $date->toString());

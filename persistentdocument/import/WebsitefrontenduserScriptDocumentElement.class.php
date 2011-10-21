@@ -3,26 +3,31 @@
  * users_WebsitefrontenduserScriptDocumentElement
  * @package modules.users.persistentdocument.import
  */
-class users_WebsitefrontenduserScriptDocumentElement extends import_ScriptDocumentElement
+class users_WebsitefrontenduserScriptDocumentElement extends users_UserScriptDocumentElement
 {
 	/**
-	 * @return users_persistentdocument_websitefrontenduser
+	 * @return users_persistentdocument_user
 	 */
 	protected function initPersistentDocument()
 	{
-		return users_WebsitefrontenduserService::getInstance()->getNewDocumentInstance();
+		return users_UserService::getInstance()->getNewDocumentInstance();
 	}
-
-	protected function saveDocument()
-	{
-		$website = DocumentHelper::getDocumentInstance($this->getPersistentDocument()->getWebsiteid(), "modules_website/website");
-		$document = $this->getPersistentDocument();
-		$parent = users_WebsitefrontendgroupService::getInstance()->getDefaultByWebsite($website);
-		$parentId = ($parent) ? $parent->getId() : null;
-		$document->save($parentId);
-		$document->getDocumentService()->activate($document->getId());
-	}
-
+	
+    public function getPersistentDocument()
+    {
+    	$pd = parent::getPersistentDocument();
+    	$parentDocument = $this->getAncestorByClassName("users_WebsitefrontendgroupScriptDocumentElement");
+		if ($parentDocument !== null)
+		{
+			if ($pd instanceof users_persistentdocument_user)
+	    	{
+	    		$pd->addGroups($parentDocument->getPersistentDocument());
+	    	}
+		}  
+		return  $pd; 	
+    }
+    
+    
 	/**
 	 * @see import_ScriptDocumentElement::getDocumentProperties()
 	 *
@@ -31,11 +36,7 @@ class users_WebsitefrontenduserScriptDocumentElement extends import_ScriptDocume
 	protected function getDocumentProperties()
 	{
 		$props = parent::getDocumentProperties();
-		$parentDocument = $this->getAncestorByClassName("users_WebsitefrontendgroupScriptDocumentElement");
-		if ($parentDocument !== null)
-		{
-			$props['websiteid'] = $parentDocument->getPersistentDocument()->getWebsiteId();
-		}
+		
 		return $props;
 	}
 	

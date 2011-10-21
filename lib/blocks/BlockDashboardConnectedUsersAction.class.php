@@ -56,7 +56,7 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 				$status .= date_Formatter::toDefaultDateTimeBO($lastLogin);
 			}
 
-			$currentUser = users_BackenduserService::getInstance()->getCurrentBackEndUser();
+			$currentUser = users_UserService::getInstance()->getCurrentBackEndUser();
 			$icon = MediaHelper::getIcon($user->getPersistentModel()->getIcon(), MediaHelper::SMALL);		
 			$self = ($currentUser === $user) ? 'text-decoration: underline;' : '';
 

@@ -9,7 +9,9 @@ class users_ExportAction extends change_Action
 	public function _execute($context, $request)
     {
 		$group = $this->getDocumentInstanceFromRequest($request);
-		$users = users_UserService::getInstance()->createQuery()->add(Restrictions::eq('groups.id', $group->getId()))->add(Restrictions::published())->find();
+		$users = users_UserService::getInstance()->createQuery()
+			->add(Restrictions::eq('groups.id', $group->getId()))
+			->add(Restrictions::published())->find();
     	
         if (count($users) == 0)
         {

@@ -32,7 +32,7 @@ class users_BackendgroupService extends users_GroupService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/backendgroup');
+		return $this->getPersistentProvider()->createQuery('modules_users/backendgroup');
 	}
 	
 	/**
@@ -43,17 +43,69 @@ class users_BackendgroupService extends users_GroupService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_users/backendgroup', false);
+		return $this->getPersistentProvider()->createQuery('modules_users/backendgroup', false);
 	}
-
+	
 	/**
-	 * Get the default backend Group
+	 * @var integer
+	 */
+	protected $backendGroupId;
+	
+	/**
+	 * @return integer
+	 */
+	public function getBackendGroupId()
+	{
+		if ($this->backendGroupId === null)
+		{
+			$row = $this->getPersistentProvider()
+				->createQuery('modules_users/backendgroup', false)
+				->setProjection(Projections::property('id', 'id'))
+				->findUnique();
+				
+			if ($row)
+			{
+				$this->backendGroupId = intval($row['id']);
+			}
+			else
+			{
+				$backendGroup = $this->getNewDocumentInstance();
+				$backendGroup->setLabel('Backoffice users');
+				$backendGroup->save(ModuleService::getInstance()->getRootFolderId('users'));
+				$this->backendGroupId = $backendGroup->getId();
+			}	
+		}
+		return $this->backendGroupId;
+	}
+	
+	/**
 	 * @return users_persistentdocument_backendgroup
 	 */
-	public function getDefaultGroup()
+	public function getBackendGroup()
 	{
-		$query = $this->createQuery()
-			->add(Restrictions::eq('isdefault', true));
-		return $query->findUnique();
+		return $this->getDocumentInstance($this->getBackendGroupId(), 'modules_users/backendgroup');
+	}
+	
+	/**
+	 * @param users_persistentdocument_backendgroup $document
+	 */
+	public function getWebsiteIds($document)
+	{
+		return array();
+	}
+	
+	/**
+	 * Used for deprecated call function
+	 */
+	public function __call($name, $args)
+	{
+		switch ($name) 
+		{
+			case 'getDefaultGroup':
+				Framework::error('Call to deleted ' . get_class($this) . "->$name method");
+				return $this->getBackendGroup();	
+			default: 
+				return parent::__call($name, $args);
+		}
 	}
 }

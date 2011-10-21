@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.document.usersprofile" lcid="de_DE">
+  <include id="m.generic.document.document"/>
+  
+  <key id="title">Anrede</key>
+  <key id="title-help">Anrede des Benutzers</key>
+  <key id="titleid">Anrede</key>
+  <key id="titleid-help">Anrede des Benutzers</key>
+  <key id="firstname">Vorname</key>
+  <key id="firstname-help">Vorname des Benutzers</key>
+  <key id="lastname">Name</key>
+  <key id="lastname-help">Benutzername</key>
+</i18n>

@@ -31,7 +31,11 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($document instanceof users_persistentdocument_user)
 		{
-			return f_util_ArrayUtils::firstElement($document->getGroupsArray());
+			if (count($document->getGroupsCount()))
+			{
+				return f_util_ArrayUtils::firstElement($document->getGroupsArray());
+			}
+			return users_NogroupuserfolderService::getInstance()->getNoGroupUserFolder();
 		}
 		return null;
 	}
@@ -42,7 +46,6 @@ class users_ModuleService extends ModuleBaseService
 	public function getDisallowedLogins()
 	{
 		return array('wwwadmin', 'www-admin', 'www.admin', 'root', 'admin', 'administrator', 'administrateur');
-		// TODO: Module preference? Websitefrontendgroup preference?
 	}
 	
 	// Auto-login handling.
@@ -52,7 +55,7 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function allowAutoLogin()
 	{
-		return (f_util_ClassUtils::methodExists(change_Controller::getInstance(), 'allowAutoLogin') && controller::getInstance()->allowAutoLogin() === true);
+		return (f_util_ClassUtils::methodExists(change_Controller::getInstance(), 'allowAutoLogin') && change_Controller::getInstance()->allowAutoLogin() === true);
 	}
 	
 	/**
@@ -74,8 +77,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
+			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time() - 3600, '/');
+			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
 		}
 	}
 }

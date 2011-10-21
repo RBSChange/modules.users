@@ -1,7 +1,7 @@
 <ul class="menu-list">
 	<li>
-		<span>${currentUser/getFullname}</span>
-		<a class="link" tal:attributes="href logoutUrl">${trans:m.users.frontoffice.authentication.logout}</a>
+		<span>${user/getLabel}</span>
+		<a change:link="module users;action Logout;location location">${trans:m.users.frontoffice.adminauthentication.logout,ucf}</a>
 	</li>
 	<li>
 		<a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a>

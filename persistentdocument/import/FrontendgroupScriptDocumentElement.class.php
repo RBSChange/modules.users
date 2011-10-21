@@ -1,11 +1,5 @@
 <?php
-class users_FrontendgroupScriptDocumentElement extends import_ScriptDocumentElement
+class users_FrontendgroupScriptDocumentElement extends users_GroupScriptDocumentElement
 {
-    /**
-     * @return users_persistentdocument_frontendgroup
-     */
-    protected function initPersistentDocument()
-    {
-    	return users_FrontendgroupService::getInstance()->getNewDocumentInstance();
-    }
+
 }

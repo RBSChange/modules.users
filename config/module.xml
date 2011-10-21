@@ -5,9 +5,14 @@
 		<icon>users</icon>
 		<category>admin</category>
 	</module>
-	<!-- Enable login case sentitivity ; default false starting with 3.5.0 version
 	<project>
-		<entry name="loginCaseSensitive">true</entry>
+
+		<!--
+		<entry name="loginCaseSensitive">false</entry>
+		<entry name="allowedRoles">Admin,Writer,Validator,Translator,Guest,User</entry>
+		<entry name="notificationStrategy">users_DefaultUsersNotificationStrategy</entry>
+		 -->
+		 
+		<entry name="anonymousEmailAddress">anonymous@localhost.localdomain</entry>
 	</project>
-	-->
 </config>

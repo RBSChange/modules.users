@@ -1,7 +1,4 @@
 <?php
-/**
- * @package modules.users.lib.aop
- */
 class users_ChangeController extends change_Controller 
 {
 	const AUTO_LOGIN_COOKIE = 'autologin';
@@ -13,28 +10,38 @@ class users_ChangeController extends change_Controller
 	{
 		// Handle auto-login.
 		$us = users_UserService::getInstance();
-		if (is_null($us->getCurrentFrontEndUser()) && isset($_COOKIE[self::AUTO_LOGIN_COOKIE]))
+		if (isset($_COOKIE[self::AUTO_LOGIN_COOKIE]) && $us->getCurrentUser() === null)
 		{
 		    $autoLoginInfos = $_COOKIE[self::AUTO_LOGIN_COOKIE];
 		    $login = $autoLoginInfos['login'];
 		    $passwd = $autoLoginInfos['passwd'];
 			
-		    $website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
-		    $user = $us->getFrontendUserByLogin($login, $website->getId());
-		    if ($user !== null && $user->isPublished() && sha1($user->getPasswordmd5()) == $passwd)
+		    $website = website_WebsiteService::getInstance()->getCurrentWebsite();
+		    $users = $us->getUsersByLoginAndGroup($login, $website->getGroup());
+		    $ok = false;
+		    foreach ($users as $user) 
 		    {
-				if (Framework::isDebugEnabled())
-				{
-		    		Framework::debug(__METHOD__ . ' auto-login with ' . $login);
-				}
-		    	$us->authenticateFrontEndUser($user);
+			    if (sha1($user->getPasswordmd5()) == $passwd)
+			    {
+					if (Framework::isInfoEnabled())
+					{
+			    		Framework::info(__METHOD__ . ' auto-login with ' . $login);
+					}
+			    	$us->authenticate($user);
+			    	$ok = true;
+			    	break;
+			    }
 		    }
-		    else if (Framework::isDebugEnabled())
+		    
+		    if (!$ok)
 			{
-	    		Framework::debug(__METHOD__ . ' auto-login skipped because the user with login ' . $login . ' doesn\'t exist, is not published or the password is wrong.');
+				if (Framework::isInfoEnabled())
+				{
+	    			Framework::info(__METHOD__ . ' auto-login skipped because the user with login ' . $login . ' doesn\'t exist, is not published or the password is wrong.');
+				}
+				users_ModuleService::getInstance()->unsetAutoLogin();
 			}
 		}
-		
 		parent::dispatch();
 	}
 	

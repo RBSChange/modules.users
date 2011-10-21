@@ -6,7 +6,7 @@ class commands_ResetRootUser extends c_ChangescriptCommand
 	 */
 	function getUsage()
 	{
-		return "";
+		return "[--login=wwwadmin]";
 	}
 
 	/**
@@ -15,6 +15,11 @@ class commands_ResetRootUser extends c_ChangescriptCommand
 	function getDescription()
 	{
 		return "reset email and password of root account";
+	}
+	
+	function getOptions()
+	{
+		return array('login');
 	}
 
 	/**
@@ -34,31 +39,49 @@ class commands_ResetRootUser extends c_ChangescriptCommand
 	function _execute($params, $options)
 	{
 		$this->message("== Reset Root User ==");
+		if (isset($options['login']) && is_string($options['login']) && !empty($options['login']))
+		{
+			$login = $options['login'];
+		}
+		else
+		{
+			$login = "wwwadmin";
+		}
+		$reseted = false;
 		$this->loadFramework();
 		$tm = f_persistentdocument_TransactionManager::getInstance();
 		$pp = $tm->getPersistentProvider();
        	try 
        	{
        		$tm->beginTransaction();
-       		$wwwadmin = users_UserService::getInstance()->getBackEndUserByLogin('wwwadmin');
-       		if ($wwwadmin instanceof users_persistentdocument_backenduser) 
+       		$backEndGroupID = users_BackendgroupService::getInstance()->getBackendGroupId(); 
+       		$users = users_UserService::getInstance()->getRootUsersByGroupId($backEndGroupID);
+       		foreach ($users as $user) 
        		{
-       			$wwwadmin->setPasswordmd5(null);
-       	 		$wwwadmin->setEmail(null);
-       		 	$pp->updateDocument($wwwadmin);
-       		}
-       		else
-       		{
-       			throw new Exception('Invalid root account');			
+       			/* @var $user users_persistentdocument_user */
+       			if ($user->getLogin() === $login)
+       			{
+       				$user->setPasswordmd5(null);
+       	 			$user->setEmail(null);
+       		 		$pp->updateDocument($user);
+       		 		$reseted = true;
+       		 		break;
+       			}
        		}
        		$tm->commit();
-       		
        	}
        	catch (Exception $e)
        	{
        		$tm->rollBack($e);
        		throw $e;
        	}
-		$this->quitOk("Root account reseted");
+       	if ($reseted)
+       	{
+			$this->quitOk("Root account reseted");
+       	}
+       	else
+       	{
+       		$this->quitError("Root account '$login' not found");
+       	}
 	}
 }

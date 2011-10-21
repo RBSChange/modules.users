@@ -1,10 +1,13 @@
-<form id="login-form" change:form="" class="cmxform">
+<form id="login-form" change:form="" class="cmxform" action="${authenticateUrl}">
 	<fieldset>
 		<legend>${trans: m.users.frontoffice.already-registered,ucf}</legend>
-		<ul change:errors="relKey login-form"></ul>
+		<tal:block change:block="" module="website" name="messages" container="" />
 		<ol>
-			<li>
+			<li tal:condition="configuration/getShowLoginField">
 				<input change:textinput="name login" labeli18n="m.users.frontoffice.authentication.login" required="true" />
+			</li>
+			<li tal:condition="not: configuration/getShowLoginField">
+				<input change:textinput="name login" labeli18n="m.users.frontoffice.authentication.email" required="true" />
 			</li>
 			<li>
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" required="true" />
@@ -15,33 +18,27 @@
 			</li>
 		</ol>
 		<p class="buttons">
+			<input type="hidden" name="storageId" value="${storageId}" />
 			<input change:submit="" label="${trans: m.users.frontoffice.login-button,ucf}" class="button" name="login" />
 			<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button">${trans: m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
 		</p>
 	</fieldset>
 </form>
 
-<form id="registration-form" change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user" class="cmxform">
+<form id="registration-form" change:form="beanClass users_persistentdocument_user; beanName user" class="cmxform">
 	<fieldset>
 		<legend>${trans: m.users.frontoffice.registration,ucf}</legend>
 		<ul change:errors="relKey registration-form"></ul>
 		<ol>
 			<li><input change:field="name email" /></li>
-			<li>
+			<li tal:condition="configuration/getShowLoginField">
 				<input change:field="name login" required="false" />
 				<p class="help-text">${trans: m.users.frontoffice.registration-login-help,ucf}</p>	
 			</li>
-			<tal:block tal:condition="configuration/getShowPersonalFields">
-				<li><input change:field="name titleid" /></li>
-				<tal:block tal:condition="configuration/getRequireNameFields">
-					<li><input change:field="name firstname" required="true" /></li>
-					<li><input change:field="name lastname" required="true" /></li>
-				</tal:block>
-				<tal:block tal:condition="not:configuration/getRequireNameFields">
-					<li><input change:field="name firstname" required="false" /></li>
-					<li><input change:field="name lastname" required="false" /></li>
-				</tal:block>
-			</tal:block>
+			<li tal:condition="configuration/getShowNameField">
+				<input change:field="name label" required="false" />
+				<p class="help-text">${trans: m.users.frontoffice.registration-label-help,ucf}</p>	
+			</li>			
 			<tal:block tal:condition="configuration/getShowPasswordFields">
 				<li><input change:passwordinput="" required="true" name="password" labeli18n="m.users.frontoffice.authentication.password" /></li>
 				<li><input change:passwordinput="" required="true" name="password_confirm" labeli18n="m.users.frontoffice.authentication.confirmpassword" /></li>

@@ -40,17 +40,9 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	 */
 	protected function preDelete($document)
 	{
-		if ($document->getIsdefault())
-		{
-			throw new Exception('Cannot_delete_default_group');
-		}
-		$groupQuery = $this->pp->createQuery('modules_generic/groupAcl')
-			->add(Restrictions::eq('group', $document->getId()));
-		$groupResults = $groupQuery->find();
-		foreach ($groupResults as $acl)
-		{
-			$acl->delete();
-		}
+		generic_GroupAclService::getInstance()->createQuery()
+			->add(Restrictions::eq('group', $document))
+			->delete();
 	}
 
 	/**
@@ -74,6 +66,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	{
 		$data = parent::getResume($document, $forModuleName, $allowedSections);
 		$data['properties']['cardinality'] = strval($document->getUserCountInverse());
+		
 		return $data;
 	}
 	
@@ -93,8 +86,8 @@ class users_GroupService extends f_persistentdocument_DocumentService
 			$startIndex = 0;
 			
 			$idsArray = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::eq('groups.id', $document->getId()))
-          			 ->addOrder(Order::asc('document_label'))
+          			 ->add(Restrictions::eq('groups', $document))
+          			 ->addOrder(Order::asc('label'))
            		 ->setProjection(Projections::property('id', 'id'))->find(); 
            		          		 
            	$totalCount = count($idsArray);
@@ -110,17 +103,88 @@ class users_GroupService extends f_persistentdocument_DocumentService
 		else
 		{
 			$countQuery = users_UserService::getInstance()->createQuery()
-				->add(Restrictions::eq('groups.id', $document->getId()))
+				->add(Restrictions::eq('groups', $document))
 				->setProjection(Projections::rowCount('countItems'));
       			$resultCount = $countQuery->find();
 			$totalCount = intval($resultCount[0]['countItems']);
-			Framework::info(__METHOD__  . "  $pageSize $startIndex $totalCount");
 		}
 		
 		$query = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::eq('groups.id', $document->getId()))
-          			 ->addOrder(Order::asc('document_label'))
+          			 ->add(Restrictions::eq('groups', $document))
+          			 ->addOrder(Order::asc('label'))
            		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
 		return $query->find();
 	}
+	
+	/**
+	 * @param users_persistentdocument_group $group
+	 */
+	public function setDefaultGroup($group)
+	{
+		if ($group instanceof users_persistentdocument_group)
+		{
+			$id = $group->getId();
+			change_Controller::getInstance()->getStorage()->writeForUser('defaultGroup', $id);
+		}
+		else
+		{
+			change_Controller::getInstance()->getStorage()->removeForUser('defaultGroup');
+		}
+	}
+	
+	/**
+	 * @return users_persistentdocument_group || null
+	 */
+	public function getDefaultGroup()
+	{
+		$id = change_Controller::getInstance()->getStorage()->readForUser('defaultGroup');
+		if (intval($id) > 0)
+		{
+			return DocumentHelper::getDocumentInstance(intval($id));
+		}
+		return null;
+	}
+	
+	/**
+	 * @param String $name
+	 * @param array $arguments
+	 */
+	public function __call($name, $arguments)
+	{
+		switch ($name)
+		{
+			case 'getDefaultByWebsite': 
+				Framework::error('Call to deleted ' . get_class($this) . '->getDefaultByWebsite method');
+				if ($arguments[0] instanceof website_persistentdocument_website) 
+				{
+					return $arguments[0]->getGroup();
+				}
+				return null;
+			default: 
+				return parent::__call($name, $arguments);
+		}
+	}
+	
+	/**
+	 * @param users_persistentdocument_backendgroup $document
+	 * @return null
+	 */
+	public function getWebsiteId($document)
+	{
+		return null;
+	}
+
+	/**
+	 * @param users_persistentdocument_backendgroup $document
+	 * @return integer[] or null
+	 */
+	public function getWebsiteIds($document)
+	{
+		return website_WebsiteService::getInstance()->createQuery()
+			->setProjection(Projections::groupProperty('id', 'id'))
+			->add(Restrictions::eq('group', $document))
+		->findColumn('id');
+	}
+	//thod users_GroupService->getDefaultByWebsite
+	
 }

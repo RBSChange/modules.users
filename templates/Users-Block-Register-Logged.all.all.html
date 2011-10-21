@@ -1,5 +1,5 @@
-<p class="normal">${trans:m.users.frontoffice.you-are-logged-as,ucf,fullName=user/getFullName}</p>
+<p class="normal">${trans:m.users.frontoffice.you-are-logged-as,ucf,fullName=user/getLabel}</p>
 <ul class="menu-list">
 	<li><a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a></li>
-	<li><a change:actionlink="" action="logout">${trans:m.users.frontoffice.adminauthentication.logout,ucf}</a></li>
-</ul>
+	<li><a change:link="module users;action Logout;location backUrl">${trans:m.users.frontoffice.adminauthentication.logout,ucf}</a></li>
+</ul> 

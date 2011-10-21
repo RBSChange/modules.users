@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.general.column" lcid="fr_FR">
   <key id="login">identifiant</key>
+  <key id="email">e-mail</key>
   <key id="refreshing">rafraichissement en cours</key>
   <key id="autorefresh">rafraichir automatiquement</key>
 </i18n>

@@ -12,15 +12,20 @@ class users_GetBackEndUserAccessAction extends change_JSONAction
 		$user = users_UserService::getInstance()->getCurrentBackEndUser();
 		if ($user)
 		{
+			$fullAccess = $user->getIsroot();
+			
 			$result['userinfos'] = array('fullname' => $user->getFullname(),
 										 'login' => $user->getLogin(),
 										 'email' => $user->getEmail(),
 									     'id' => $user->getId(),
-										 'root' => $user->getIsroot());
-
-			$result['userPreferences'] = ($user->hasMeta('userPreferences')) ? JsonService::getInstance()->decode($user->getMeta('userPreferences')) : null;
+										 'root' => $fullAccess,
+										 'userPreferences' => null);
 			
-			$fullAccess = $user->getIsroot();
+			$profile = dashboard_DashboardprofileService::getInstance()->getByAccessorId($user->getId());
+			if ($profile !== null && $profile->getUserPreferences() != null)
+			{
+				$result['userPreferences'] = JsonService::getInstance()->decode($profile->getUserPreferences());
+			}
 			
 			foreach (ModuleService::getInstance()->getModulesObj() as $cModule)
 			{

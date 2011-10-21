@@ -23,7 +23,7 @@
 	
 			<method name="onInitialize">
 				<body><![CDATA[
-					this.autoResize(840, 500);
+					this.autoResize(960, 500);
 					try
 					{
 						var accessorId = this.parameters.id;
@@ -58,12 +58,10 @@
 					var headerColumnDef2 = this.getElementById('headerColumnDef2');
 					var rowHeader = this.getElementById('rowHeader');
 					var roles = this.roleData.roles;
-					
-					
-					
+									
 					for (var roleName in roles)
 					{
-						if (roles[roleName].used > 1)
+						if (roles[roleName].used > 0)
 						{
 							var column1 = document.createElement('column');
 							column1.setAttribute('style', 'width:105px');

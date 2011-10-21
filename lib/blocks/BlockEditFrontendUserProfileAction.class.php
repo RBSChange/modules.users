@@ -18,7 +18,7 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 			return website_BlockView::INPUT;
 		}
 
-		$user = users_UserService::getInstance()->getCurrentFrontEndUser();
+		$user = users_UserService::getInstance()->getCurrentUser();
 		$request->setAttribute('user', $user);
 
 		return website_BlockView::INPUT;
@@ -31,22 +31,14 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	{
 		return true;
 	}
-	
-	/**
-	 * @return string[]
-	 */
-	public function getUserBeanExclude()
-	{
-		return array('title');
-	}
 
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @param users_persistentdocument_websitefrontenduser $user
+	 * @param users_persistentdocument_user $user
 	 * @return String
 	 */
-	public function executeSave($request, $response, users_persistentdocument_websitefrontenduser $user)
+	public function executeSave($request, $response, users_persistentdocument_user $user)
 	{
 		if ($user->getLogin() === null)
 		{
@@ -65,25 +57,24 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 
 	/**
 	 * @param f_mvc_Request $request
-	 * @param users_persistentdocument_websitefrontenduser $user
+	 * @param users_persistentdocument_user $user
 	 */
 	public function validateSaveInput($request, $user)
 	{
-		$includedFields = array('email', 'titleid', 'firstname', 'lastname');
-		$validationRules = BeanUtils::getBeanValidationRules('users_persistentdocument_websitefrontenduser', $includedFields);
+		$includedFields = array('email');
+		$validationRules = BeanUtils::getBeanValidationRules('users_persistentdocument_user', $includedFields);
 		$isOk = $this->processValidationRules($validationRules, $request, $user);
 
 		// Login validation.
 		if ($user->isPropertyModified('login'))
 		{
-			$website = website_WebsiteModuleService::getInstance()->getCurrentWebsite();
 			$login = ($request->hasParameter('login')) ? $request->getParameter('login') : $request->getParameter('email');
 			if (in_array($login, users_ModuleService::getInstance()->getDisallowedLogins()))
 			{
 				$this->addError(LocaleService::getInstance()->transFO('m.users.frontoffice.login-disallowed', array('ucf', 'html')));
 				$isOk = false;
 			}
-			else if (users_UserService::getInstance()->getFrontendUserByLogin($login, $website->getId()))
+			else if (!users_UserService::getInstance()->validateUserLogin($login, $user))
 			{
 				$this->addError(LocaleService::getInstance()->transFO('m.users.frontoffice.login-used', array('ucf', 'html')));
 				$isOk = false;

@@ -13,7 +13,7 @@ class users_BlockChangepasswordAction extends website_BlockAction
 			return website_BlockView::INPUT;
 		}
 		
-		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
+		$currentUser = users_UserService::getInstance()->getCurrentUser();
 		if ($currentUser === null)
 		{
 			return website_BlockView::NONE;

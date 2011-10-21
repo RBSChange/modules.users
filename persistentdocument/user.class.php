@@ -53,7 +53,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 			if (f_util_StringUtils::isNotEmpty($this->password))
 			{
 				$property = new validation_Property("password", $this->password);
-				$passwordValidator = new validation_PasswordValidator();
+				$passwordValidator = new validation_PasswordValidator($this);
 				if (!$passwordValidator->validate($property, $this->validationErrors))
 				{
 					return false;
@@ -110,17 +110,6 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 		return $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
 	}
 	
-	/**
-	 * @return array<string, string>
-	 */
-	public function getTreeViewAttributeArray()
-	{
-		return array(
-			'publicationstatus' => $this->getPublicationstatus(),
-			'login' => $this->getLogin(),
-			'label' => $this->getFullname()
-		);
-	}
 	
 	/**
 	 * @return string[]
@@ -144,5 +133,110 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	public function setGeneratepassword($generatepassword)
 	{
 		$this->generatepassword = ($generatepassword == "true");
+	}
+	
+	/**
+	 * @return users_persistentdocument_usersprofile || null
+	 */
+	public function getUsersProfile()
+	{
+		return users_UsersprofileService::getInstance()->getByAccessorId($this->getId());
+	}
+	
+	/**
+	 * @return users_persistentdocument_usersprofile
+	 */
+	protected function getRequiredUsersProfile()
+	{
+		$profile = $this->getUsersProfile();
+		if ($profile === null)
+		{
+			$profile = users_UsersprofileService::getInstance()->getNewDocumentInstance();
+			$profile->setAccessor($this);
+			$profile->save();
+		}
+		return $profile;
+	}
+	
+	/**
+	 * @return integer
+	 */
+	public function getTitleid()
+	{
+		$profile = $this->getUsersProfile();
+		return ($profile !== null) ? $profile->getTitleid() : null;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFirstname()
+	{
+		$profile = $this->getUsersProfile();
+		return ($profile !== null) ? $profile->getFirstname() : null;	
+	}
+
+	public function getFirstnameAsHtml()
+	{
+		return f_util_HtmlUtils::textToHtml($this->getFirstname());
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getLastname()
+	{
+		$profile = $this->getUsersProfile();
+		return ($profile !== null) ? $profile->getLastname() : null;		
+	}
+	
+	public function getLastnameAsHtml()
+	{
+		return f_util_HtmlUtils::textToHtml($this->getLastname());
+	}
+		
+	/**
+	 * @param String $name
+	 * @param array $arguments
+	 */
+	final function __call($name, $arguments)
+	{
+		switch ($name)
+		{
+			case 'getDashboardcontent': 
+				Framework::error('Call to deprecated ' . get_class($this) . '->'.$name.' function');
+				$profile = dashboard_DashboardprofileService::getInstance()->getByAccessorId($this->getId());
+				return ($profile !== null) ? $profile->getDashboardcontent() : null;		
+			case 'setTitleid': 
+				Framework::error('Call to Removed ' . get_class($this) . '->'.$name.' function');
+				$this->getRequiredUsersProfile()->setTitleid($arguments[0]);
+				return;
+			case 'setFirstname': 
+				Framework::error('Call to Removed ' . get_class($this) . '->'.$name.' function');
+				$this->getRequiredUsersProfile()->setFirstname($arguments[0]);
+				return;
+			case 'setLastname': 
+				Framework::error('Call to Removed ' . get_class($this) . '->'.$name.' function');
+				$this->getRequiredUsersProfile()->setLastname($arguments[0]);
+				return;
+			case 'getWebsiteid': 
+				Framework::error('Call to Removed ' . get_class($this) . '->'.$name.' function');
+				$profile = $this->getUsersProfile();
+				return ($profile !== null) ? $profile->getRegisteredwebsiteid() : website_WebsiteService::getInstance()->getCurrentWebsite()->getId();
+			case 'setWebsiteid': 
+				Framework::error('Call to Removed ' . get_class($this) . '->'.$name.' function');
+				$this->getRequiredUsersProfile()->setRegisteredwebsiteid($arguments[0]);
+				return;				
+				
+			case 'getTreeViewAttributeArray':
+				Framework::error('Call to deprecated ' . get_class($this) . '->getTreeViewAttributeArray function');
+				return array(
+					'publicationstatus' => $this->getPublicationstatus(),
+					'login' => $this->getLogin(),
+					'label' => $this->getLabel()
+				);				
+			default: 
+				throw new Exception('No method ' . get_class($this) . '->' . $name);
+		}
 	}
 }

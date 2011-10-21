@@ -18,14 +18,17 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 	 */
 	public function getNewAccountNotificationCodeByUser($user)
 	{
-		// TODO Auto-generated method stub
-		if ($user instanceof users_persistentdocument_frontenduser)
+		if ($user->getGroupsCount())
 		{
-			return 'modules_users/newFrontendUser';
-		}
-		if ($user instanceof users_persistentdocument_backenduser)
-		{
-			return 'modules_users/newBackendUser';
+			if ($user->getGroups(0) instanceof users_persistentdocument_backendgroup)
+			{
+				return 'modules_users/newBackendUser';
+			}
+			else
+			{
+				return 'modules_users/newFrontendUser';
+				
+			}
 		}
 		return null;
 		
@@ -37,13 +40,16 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 	 */
 	public function getPasswordChangeNotificationCodeByUser($user)
 	{
-		if ($user instanceof users_persistentdocument_frontenduser)
+		if ($user->getGroupsCount())
 		{
-			 return 'modules_users/changeFrontendUserPassword';
-		}
-		if ($user instanceof users_persistentdocument_backenduser)
-		{
-			 return 'modules_users/changeBackendUserPassword';
+			if ($user->getGroups(0) instanceof users_persistentdocument_backendgroup)
+			{
+				 return 'modules_users/changeBackendUserPassword';
+			}
+			else
+			{
+				 return 'modules_users/changeFrontendUserPassword';
+			}	
 		}
 		return null;
 	}
@@ -55,39 +61,40 @@ class users_DefaultUsersNotificationStrategy implements users_UsersNotificationS
 	 */
 	public function getNotificationSubstitutions($user, $code)
 	{
-		if ($user instanceof users_persistentdocument_websitefrontenduser)
-		{
-			$accessLink = DocumentHelper::getDocumentInstance($user->getWebsiteid())->getUrl();
-		}
-		else if ($user instanceof users_persistentdocument_user)
-		{
-			$accessLink = Framework::getUIBaseUrl();
-		}
-		else
-		{
-			$accessLink = Framework::getUIBaseUrl();
-		}
+		$accessLink = website_WebsiteService::getInstance()->getCurrentWebsite()->getUrl();
+		
+		$t = $user->getTitle();
 		return array(
 			'login' => $user->getLogin(),
 			'password' => $user->getClearPassword(),
 			'accesslink' => $accessLink,
 			'firstname' => $user->getFirstname(),
 			'lastname' => $user->getLastname(),
-			'fullname' => $user->getFullname(),
-			'title' => $user->getTitle() ? $user->getTitle()->getLabel() : ''
+			'fullname' => $user->getLabel(),
+			'title' => $t ? $t->getLabel() : ''
 		);
 		
 	}
 
 	/**
-	 * @param users_persistentdocument_user
+	 * @param users_persistentdocument_user $user
 	 * @return integer
 	 */
 	public function getNotificationWebsiteIdByUser($user)
 	{
-		if ($user instanceof users_persistentdocument_websitefrontenduser)
+		foreach ($user->getGroupsArray() as $grp) 
 		{
-			return $user->getWebsiteid();
+			if (!($grp instanceof users_persistentdocument_backendgroup)) 
+			{
+				$websites = website_WebsiteService::getInstance()->createQuery()
+					->add(Restrictions::eq('group', $grp))
+					->setProjection(Projections::property('id', 'id'))
+					->findColumn('id');
+				if (count($websites))
+				{
+					return $websites[0];
+				}
+			}
 		}
 		return null;
 	}
