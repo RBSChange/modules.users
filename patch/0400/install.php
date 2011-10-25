@@ -168,6 +168,7 @@ class users_patch_0400 extends change_Patch
 		$query = "SELECT * FROM `m_users_doc_group` WHERE `document_id` = $groupId";
 		$rows = $this->executeSQLSelect($query)->fetchAll(PDO::FETCH_ASSOC);
 		$groupInfo = $rows[0];
+		$updateRelations = true;
 		if ($groupInfo['document_model'] === 'modules_users/dynamicfrontendgroup')
 		{
 			$groupInfo['document_model'] = 'modules_users/dynamicgroup';
@@ -219,9 +220,14 @@ class users_patch_0400 extends change_Patch
 		{
 			$groupInfo['document_model'] = 'modules_users/group';
 		}
+		elseif ($groupInfo['document_model'] === 'modules_users/backendgroup' && (intval($groupInfo['isdefault']) == 1))
+		{
+			$updateRelations = false;
+		}
 		else
 		{
-			return;
+			$updateRelations = false;
+			$this->logWarning('Unknow model ' . $groupInfo['document_model'] . ' for group ' . $groupId);
 		}
 		
 		
@@ -232,6 +238,10 @@ class users_patch_0400 extends change_Patch
 			WHERE `document_id` = $groupId";
 		$this->executeSQLQ($sql);
 		
+		if (!$updateRelations)
+		{
+			return;
+		}
 		
 		//Mise à jour des models
 		$sql = "UPDATE `f_relation` SET `document_model_id1` = '".$groupInfo['document_model']."' WHERE `relation_id1` = $groupId";
