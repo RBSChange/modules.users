@@ -75,7 +75,7 @@ class users_ChromeLoginAction extends change_Action
 				$uilang = $request->getParameter('uilang');
 				if (in_array($uilang, RequestContext::getInstance()->getUISupportedLanguages()))
 				{
-					change_Controller::getInstance()->getStorage()->write('uixul_uilang', $uilang);
+					change_Controller::getInstance()->getStorage()->writeForUser('uilang', $uilang);
 				}
 			}
 			
