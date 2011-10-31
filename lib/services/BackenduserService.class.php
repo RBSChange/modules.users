@@ -235,4 +235,12 @@ class users_BackenduserService extends users_UserService
 		}
 		return $this->currentUser;
 	}
+	
+	/**
+	 * Clear local current user cache.
+	 */
+	public function clearCache()
+	{
+		$this->currentUser = false;
+	}
 }

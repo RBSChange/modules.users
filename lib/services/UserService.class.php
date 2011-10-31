@@ -612,17 +612,28 @@ class users_UserService extends f_persistentdocument_DocumentService
 		return null;
 	}
 
+	/**
+	 * @param users_persistentdocument_user $user
+	 */
 	private function invalidateCache($user)
 	{
-		// invalidate cache
 		if ($this->isBackenduser($user))
 		{
-			$this->currentBackendUser = false;
+			users_BackenduserService::getInstance()->clearCache();
 		}
 		else
 		{
-			$this->currentFrontendUser = false;
+			users_FrontenduserService::getInstance()->clearCache();
 		}
+	}
+	
+	/**
+	 * Clear current user caches.
+	 */
+	public function clearAllCache()
+	{
+		users_BackenduserService::getInstance()->clearCache();
+		users_FrontenduserService::getInstance()->clearCache();
 	}
 
 	/**

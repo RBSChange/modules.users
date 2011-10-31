@@ -10,7 +10,7 @@
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" required="true" />
 			</li>
 			<li tal:condition="allowAutoLogin">
-				<input change:checkboxinput="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" value="yes" />
+				<input class="textfield" change:checkboxinput="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" value="yes" />
 				<p class="help-text">${trans: m.users.frontoffice.authentication.auto-login-me-help}</p>
 			</li>
 		</ol>
