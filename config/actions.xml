@@ -6,14 +6,12 @@
 			this.createDocumentEditor('modules_users_user', listWidget.getSelectedItems()[0].id);
 		]]></body>
 	</action>
-
 	<action name="createGroup">
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			this.createDocumentEditor('modules_users_group', listWidget.getSelectedItems()[0].id);
     	]]></body>
-	</action>
-	
+	</action>	
 	<action name="removeUser">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -21,8 +19,7 @@
 			var parentItem = listWidget.getSelectedParentItem();
 			this.executeJSON("RemoveUsers", {cmpref: ids, parentref: parentItem.id});
 		]]></body>
-	</action>
-	
+	</action>	
 	<action name="exportUsers">
 		<parameter name="listWidget" />
 		<body><![CDATA[			
@@ -33,8 +30,7 @@
 				wToolkit.openlink('users', 'Export', { cmpref: docId, lang : lang});
 			}
 		]]></body>
-	</action>
-	
+	</action>	
 	<action name="setRolesForModule">
 		<parameter name="listWidget" />
 		<body><![CDATA[
@@ -42,13 +38,33 @@
 	    	var lang = this.getContextLang(listWidget);
 	    	this.getController().openModalDialog(this, "setrolesformodule", {id: ids[0], lang: lang});
 		]]></body>
-	</action>
-	
+	</action>	
 	<action name="refreshDynamicgroup">
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			var id = listWidget.getSelectedIds()[0];
 			this.executeJSON("RefreshDynamicgroup", { cmpref: id });
+		]]></body>
+	</action>
+	<action name="initDefaultStructure">
+		<parameter name="listWidget" />
+		<body><![CDATA[
+			try
+			{
+				var params = { 
+					module: 'website', 
+					allow: 'modules_website_website,modules_website_topic,modules_website_systemtopic', 
+					single: true, 
+					originalModule: this, 
+					scriptModuleName: 'users', 
+					scriptName: 'memberDefaultStructure'
+				};
+				getController().openModalDialog(this, 'selectStructureRoot', params);
+			}
+			catch (e)
+			{
+				wCore.error('users.initDefaultStructure', [], e);
+			}
 		]]></body>
 	</action>
 </actions>

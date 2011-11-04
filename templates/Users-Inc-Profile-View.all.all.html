@@ -1,0 +1,19 @@
+<img change:avatar="user user" size="64" />
+<dl class="document-infos">
+	<tal:block tal:condition="profile/getDisplayName">
+		<dt>${trans:m.users.document.usersprofile.firstname,ucf}</dt>
+		<dd>${user/getFirstname}</dd>
+		<dt>${trans:m.users.document.usersprofile.lastname,ucf}</dt>
+		<dd>${user/getLastname}</dd>
+	</tal:block>
+	<dt>${trans:m.users.fo.member-since,ucf}</dt>
+	<dd>${date:user/getCreationdate}</dd>
+	<tal:block tal:condition="profile/getPersonnalwebsiteurl">
+		<dt>${trans:m.users.fo.web-site,ucf}</dt>
+		<dd><a class="link" tal:attributes="href profile/getPersonnalwebsiteurl" target="_blank">${profile/getShortPersonnalwebsiteurl}</a></dd>
+	</tal:block>
+	<tal:block tal:condition="profile/getLocation">
+		<dt>${trans:m.users.document.usersprofile.location,ucf}</dt>
+		<dd>${profile/getLocation}</dd>
+	</tal:block>
+</dl>

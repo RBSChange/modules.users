@@ -1,0 +1,26 @@
+.users-list td,
+.users-list .column-avatar img
+{
+	vertical-align: middle;
+}
+.users-list .column-avatar
+{
+	min-width: 40px;
+	text-align: center;
+}
+.users-list .column-label
+{
+	width: 100%;
+}
+.users-list .column-date
+{
+	white-space: nowrap;
+	min-width: 100px;
+	text-align: center;
+}
+.users-list .column-website
+{
+	white-space: nowrap;
+	min-width: 75px;
+	text-align: center;
+}

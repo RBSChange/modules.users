@@ -5,4 +5,6 @@
 	<tag labeli18n="m.users.bo.tags.edit-profil" icon="edit">contextual_website_website_modules_users_edit-profil</tag>
 	<tag labeli18n="m.users.bo.tags.secure-homepage" icon="page-home">contextual_website_website_modules_users_secure-homepage</tag>
 	<tag labeli18n="m.users.bo.tags.register-block" icon="add">contextual_website_website_modules_users_register</tag>
+	<tag labeli18n="m.users.bo.blocks.userslist.title" icon="list-block">contextual_website_website_modules_users_userslist</tag>
+	<tag labeli18n="m.users.bo.blocks.user.title" icon="user">contextual_website_website_modules_users_user</tag>
 </tags>

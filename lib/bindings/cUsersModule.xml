@@ -168,80 +168,112 @@
 					<xul:rows>
 						<xul:row anonid="row_titleid">
 							<xul:clabel id="users_usersprofile_titleid_label" control="users_usersprofile_titleid" 
-								value="${transui:m.users.document.usersprofile.titleid,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.titleid,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="titleid" id="users_usersprofile_titleid" anonid="field_titleid" 
 								fieldtype="dropdownlist" listid="modules_users/title"
-								shorthelp="${transui:m.users.document.usersprofile.titleid-help}">
+								shorthelp="${transui:m.users.document.usersprofile.titleid-help,attr}">
 							</xul:cfield>
 						</xul:row>
 						
 						<xul:row anonid="row_firstname">
 							<xul:clabel id="users_usersprofile_firstname_label" control="users_usersprofile_firstname" 
-								value="${transui:m.users.document.usersprofile.firstname,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.firstname,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="firstname" id="users_usersprofile_firstname" anonid="field_firstname" fieldtype="text" 
-								shorthelp="${transui:m.users.document.usersprofile.firstname-help}">
+								shorthelp="${transui:m.users.document.usersprofile.firstname-help,attr}">
 							</xul:cfield>
 						</xul:row>	
 						
 						<xul:row anonid="row_lastname">
 							<xul:clabel id="users_usersprofile_lastname_label" control="users_usersprofile_lastname" 
-								value="${transui:m.users.document.usersprofile.lastname,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.lastname,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="lastname" id="users_usersprofile_lastname" anonid="field_lastname" fieldtype="text" 
-								shorthelp="${transui:m.users.document.usersprofile.lastname-help}">
+								shorthelp="${transui:m.users.document.usersprofile.lastname-help,attr}">
 							</xul:cfield>
 						</xul:row>	
 						
+						<xul:row anonid="row_displayname">
+							<xul:clabel id="users_usersprofile_displayname_label" control="users_usersprofile_displayname" 
+								value="${transui:m.users.document.usersprofile.displayname,attr,ucf}">
+							</xul:clabel>
+							<xul:cfield name="displayname" id="users_usersprofile_displayname" anonid="field_displayname" fieldtype="boolean" 
+								shorthelp="${transui:m.users.document.usersprofile.displayname-help,attr}">
+							</xul:cfield>
+						</xul:row>
+						
 						<xul:row anonid="row_lcid">
 							<xul:clabel id="users_usersprofile_lcid_label" control="users_usersprofile_lcid" 
-								value="${transui:m.users.document.usersprofile.lcid,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.lcid,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="lcid" id="users_usersprofile_lcid" anonid="field_lcid" 
-								fieldtype="dropdownlist"  listid="modules_users/lcid"
-								shorthelp="${transui:m.users.document.usersprofile.lcid-help}">
+								fieldtype="dropdownlist" listid="modules_users/lcid"
+								shorthelp="${transui:m.users.document.usersprofile.lcid-help,attr}">
 							</xul:cfield>
 						</xul:row>	
 												
 						<xul:row anonid="row_timezone">
 							<xul:clabel id="users_usersprofile_timezone_label" control="users_usersprofile_timezone" 
-								value="${transui:m.users.document.usersprofile.timezone,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.timezone,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="timezone" id="users_usersprofile_timezone" anonid="field_timezone" 
-								fieldtype="dropdownlist"  listid="modules_users/timezone"
-								shorthelp="${transui:m.users.document.usersprofile.timezone-help}">
+								fieldtype="dropdownlist" listid="modules_users/timezone"
+								shorthelp="${transui:m.users.document.usersprofile.timezone-help,attr}">
 							</xul:cfield>
 						</xul:row>	
 						
 						<xul:row anonid="row_dateformat">
 							<xul:clabel id="users_usersprofile_dateformat_label" control="users_usersprofile_dateformat" 
-								value="${transui:m.users.document.usersprofile.dateformat,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.dateformat,attr,ucf}">
 							</xul:clabel>
-							<xul:cfield name="dateformat" id="users_usersprofile_dateformat" anonid="field_dateformat" 
-								fieldtype="dropdownlist"  listid="modules_users/dateformat"
-								shorthelp="${transui:m.users.document.usersprofile.dateformat-help}">
-							</xul:cfield>
+							<xul:hbox>
+								<xul:cfield name="dateformat" id="users_usersprofile_dateformat" anonid="field_dateformat" 
+									fieldtype="text" shorthelp="${transui:m.users.document.usersprofile.dateformat-help,attr}" />
+								<xul:cfield anonid="dateformat-list" fieldtype="dropdownlist" listid="modules_users/dateformat"
+									hidehelp="true" />
+							</xul:hbox>							
 						</xul:row>	
 						
 						<xul:row anonid="row_datetimeformat">
 							<xul:clabel id="users_usersprofile_datetimeformat_label" control="users_usersprofile_datetimeformat" 
-								value="${transui:m.users.document.usersprofile.datetimeformat,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.datetimeformat,attr,ucf}">
 							</xul:clabel>
-							<xul:cfield name="datetimeformat" id="users_usersprofile_datetimeformat" anonid="field_datetimeformat" 
-								fieldtype="dropdownlist"  listid="modules_users/datetimeformat"
-								shorthelp="${transui:m.users.document.usersprofile.datetimeformat-help}">
-							</xul:cfield>
+							<xul:hbox>
+								<xul:cfield name="datetimeformat" id="users_usersprofile_datetimeformat" anonid="field_datetimeformat" 
+									fieldtype="text" shorthelp="${transui:m.users.document.usersprofile.datetimeformat-help,attr}" />
+								<xul:cfield anonid="datetimeformat-list" fieldtype="dropdownlist" listid="modules_users/datetimeformat"
+									hidehelp="true" />
+							</xul:hbox>		
 						</xul:row>
 						
 						<xul:row anonid="row_birthday">
 							<xul:clabel id="users_usersprofile_birthday_label" control="users_usersprofile_birthday" 
-								value="${transui:m.users.document.usersprofile.birthday,attr,lab,ucf}">
+								value="${transui:m.users.document.usersprofile.birthday,attr,ucf}">
 							</xul:clabel>
 							<xul:cfield name="birthday" id="users_usersprofile_birthday" anonid="field_birthday" 
 								fieldtype="datetime" hidetime="true" hidehelp="true" >
 							</xul:cfield>
 						</xul:row>					
+						
+						<xul:row anonid="row_location">
+							<xul:clabel id="users_usersprofile_location_label" control="users_usersprofile_location" 
+								value="${transui:m.users.document.usersprofile.location,attr,ucf}">
+							</xul:clabel>
+							<xul:cfield name="location" id="users_usersprofile_location" anonid="field_location" fieldtype="text" 
+								shorthelp="${transui:m.users.document.usersprofile.location-help,attr}">
+							</xul:cfield>
+						</xul:row>
+						
+						<xul:row anonid="row_personnalwebsiteurl">
+							<xul:clabel id="users_usersprofile_personnalwebsiteurl_label" control="users_usersprofile_personnalwebsiteurl" 
+								value="${transui:m.users.document.usersprofile.personnalwebsiteurl,attr,ucf}">
+							</xul:clabel>
+							<xul:cfield name="personnalwebsiteurl" id="users_usersprofile_personnalwebsiteurl" anonid="field_personnalwebsiteurl"
+								fieldtype="text" hidehelp="true">
+								<xul:cconstraint name="url" parameter="true" />
+							</xul:cfield>
+						</xul:row>
 					</xul:rows>
 				</xul:grid>
 				<children />
@@ -257,6 +289,12 @@
 				this.mId = null;
 				wCore.debug('cUsersProfile.constructor');
 				this.parentNode.registerProfile(this);
+				
+				var me = this;
+				var dlist = this.getElementByAnonId('dateformat-list');
+				dlist.addEventListener('fieldChanged', function (e) { me.fields.dateformat.value = dlist.value; }, true);
+				var dtlist = this.getElementByAnonId('datetimeformat-list');
+				dtlist.addEventListener('fieldChanged', function (e) { me.fields.datetimeformat.value = dtlist.value; }, true);
 			]]></constructor>
 			
 			<method name="getElementByAnonId">
@@ -270,7 +308,7 @@
 				<getter><![CDATA[
 					if (this.mFields == null)
 					{
-						var fieldsNames = ["titleid", "firstname", "lastname", "timezone", "dateformat", "datetimeformat", "lcid", "birthday"];
+						var fieldsNames = ["titleid", "firstname", "lastname", "displayname", "timezone", "dateformat", "datetimeformat", "lcid", "birthday", "location", "personnalwebsiteurl"];
 						this.mFields = {};
 						var field = null;
 						var name = null;
@@ -288,6 +326,9 @@
 			<method name="setValues">
 				<parameter name="values" />
 				<body><![CDATA[
+					this.getElementByAnonId('dateformat-list').reset();
+					this.getElementByAnonId('datetimeformat-list').reset();
+				
 					this.mId = values.id;
 					var fields = this.fields;
 					var field = null;				
@@ -314,7 +355,7 @@
 					}
 					return values;
 				]]></body>
-			</method>							
+			</method>						
 		</implementation>
 	</binding>
 </bindings>

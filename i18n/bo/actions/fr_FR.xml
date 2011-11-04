@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.actions" lcid="fr_FR">
-  <key id="createuser">Créer un utilisateur</key>
-  <key id="creategroup">Créer un groupe d'utilisateurs</key>
-  <key id="removeuser">Retirer du groupe</key>
-  <key id="exportusers">Exporter les utilisateurs publié</key>
-  <key id="setrolesformodule">Définir les rôles de base pour tous les modules</key>
-  <key id="refreshdynamicgroup">Rafraichir la liste des utilisateurs</key>
+	<key id="createuser">Créer un utilisateur</key>
+	<key id="creategroup">Créer un groupe d'utilisateurs</key>
+	<key id="removeuser">Retirer du groupe</key>
+	<key id="exportusers">Exporter les utilisateurs publié</key>
+	<key id="setrolesformodule">Définir les rôles de base pour tous les modules</key>
+	<key id="refreshdynamicgroup">Rafraichir la liste des utilisateurs</key>
+	<key id="initdefaultstructure">initialiser la rubrique membres</key>
 </i18n>

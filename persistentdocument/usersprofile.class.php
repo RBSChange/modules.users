@@ -34,4 +34,70 @@ class users_persistentdocument_usersprofile extends users_persistentdocument_use
 			$this->setBirthmonthandday(null);
 		}
 	}
+	
+	/**
+	 * @return string
+	 */
+	public function getFOBirthday()
+	{
+		if (f_util_StringUtils::isNotEmpty($this->getBirthyear()) && f_util_StringUtils::isNotEmpty($this->getBirthmonthandday()))
+		{
+			list ($month, $day) = explode('-', $this->getBirthmonthandday());
+			return $day . '/' . $month . '/' . $this->getBirthyear();
+		}	
+		return null;	
+	}
+	
+	/**
+	 * @param string $string
+	 */
+	public function setFOBirthday($string)
+	{
+		if (f_util_StringUtils::isNotEmpty($string))
+		{
+			$matches = array();
+			if (preg_match('#^([0-9]{2})/([0-9]{2})/([0-9]{4})$#', $string, $matches))
+			{
+				$this->setBirthyear($matches[3]);
+				$this->setBirthmonthandday($matches[2] . '-' . $matches[1]);
+				return;
+			}
+		}
+		$this->setBirthyear(null);
+		$this->setBirthmonthandday(null);
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getShortPersonnalwebsiteurl()
+	{
+		$shortUrl = $this->getPersonnalwebsiteurl();
+		if (f_util_StringUtils::strlen($shortUrl) > 33)
+		{
+			$shortUrl = f_util_StringUtils::substr($shortUrl, 0, 13) . '.....' . f_util_StringUtils::substr($shortUrl, -13);
+		}
+		return $shortUrl;
+	}
+	
+	/**
+	 * @param integer $size
+	 * @param string $defaultImageUrl
+	 * @param string $rating
+	 * @return string
+	 */
+	public function getGravatarUrl($size = '32', $defaultImageUrl = '', $rating = 'g')
+	{
+		$accessor = $this->getAccessorIdInstance();
+		if (!($accessor instanceof users_persistentdocument_user))
+		{
+			return null;
+		}
+		$url = 'http://www.gravatar.com/avatar/' . md5($this->getAccessorIdInstance()->getEmail()) . '?s=' . $size . '&amp;r=' . $rating;
+		if ($defaultImageUrl)
+		{
+			$url .= '&amp;d=' . urlencode($defaultImageUrl);
+		}
+		return $url;
+	}
 }

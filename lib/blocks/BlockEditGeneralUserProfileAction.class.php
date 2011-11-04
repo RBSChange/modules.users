@@ -6,6 +6,18 @@
 class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 {
 	/**
+	 * @param f_mvc_Request $request
+	 * @return String
+	 */
+	protected function initRequest($request)
+	{
+		$rc = RequestContext::getInstance();
+		$lang = $rc->getLang();
+		$request->setAttribute('currentDateFormat', $rc->getDateFormat($lang));
+		$request->setAttribute('currentDatetimeFormat', $rc->getDateTimeFormat($lang));
+	}
+	
+	/**
 	 * @see website_BlockAction::execute()
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -27,6 +39,7 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 			$profile->setTimezone(DEFAULT_TIMEZONE);
 		}
 		$request->setAttribute('profile', $profile);
+		$this->initRequest($request);
 		return website_BlockView::INPUT;
 	}
 
@@ -47,12 +60,20 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 	public function executeSave($request, $response, users_persistentdocument_usersprofile $profile)
 	{
 		$user = users_UserService::getInstance()->getCurrentUser();
-		$profile->setAccessor($user);
+		if ($profile->isNew())
+		{
+			$profile->setAccessor($user);
+		}
+		elseif ($user->getId() != $profile->getAccessorId()) 
+		{
+			throw new BaseException('Not your profile!', 'm.users.fo.not-your-profile');
+		}
 		$profile->save();
 		$request->setAttribute('profile', $profile);
 		RequestContext::getInstance()->resetProfile();
 		users_ProfileService::getInstance()->initCurrent(false);
 		$this->addMessage(LocaleService::getInstance()->transFO('m.users.frontoffice.informations-updated', array('ucf', 'html')));
+		$this->initRequest($request);
 		return website_BlockView::INPUT;
 	}
 
@@ -66,7 +87,14 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 		$profile->setAccessor($user);
 		
 		$validationRules = BeanUtils::getBeanValidationRules('users_persistentdocument_usersprofile');
-		$isOk = $this->processValidationRules($validationRules, $request, $profile);
-		return $isOk;
+		return $this->processValidationRules($validationRules, $request, $profile);
+	}
+	
+	/**
+	 * @param f_mvc_Request $request
+	 */
+	public function onValidateInputFailed($request)
+	{
+		$this->initRequest($request);
 	}
 }

@@ -11,6 +11,8 @@
 		<entry name="loginCaseSensitive">false</entry>
 		<entry name="allowedRoles">Admin,Writer,Validator,Translator,Guest,User</entry>
 		<entry name="notificationStrategy">users_DefaultUsersNotificationStrategy</entry>
+		<entry name="profileNamesViewOrder">users</entry>
+		<entry name="profileNamesEditOrder">users,dashboard</entry>
 		 -->
 		 
 		<entry name="anonymousEmailAddress">anonymous@domain.net</entry>

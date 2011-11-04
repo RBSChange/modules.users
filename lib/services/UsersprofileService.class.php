@@ -55,11 +55,12 @@ class users_UsersprofileService extends users_ProfileService
 	
 	/**
 	 * @param integer $accessorId
+	 * @param boolean $required
 	 * @return users_persistentdocument_usersprofile || null
 	 */
-	public function getByAccessorId($accessorId)
+	public function getByAccessorId($accessorId, $required = false)
 	{
-		return parent::getByAccessorId($accessorId);
+		return parent::getByAccessorId($accessorId, $required);
 	}
 	
 	/**
@@ -83,6 +84,7 @@ class users_UsersprofileService extends users_ProfileService
 		if ($document->getFirstname()) {$datas['firstname'] = $document->getFirstname();}
 		if ($document->getLastname()) {$datas['lastname'] = $document->getLastname();}
 
+		$datas['displayname'] = ($document->getDisplayname() === true) ? 'true' : 'false';
 		$datas['timezone'] = $document->getTimezone() === null ? DEFAULT_TIMEZONE : $document->getTimezone();
 		
 		if ($document->getDateformat()) {$datas['dateformat'] = $document->getDateformat();}
@@ -90,6 +92,7 @@ class users_UsersprofileService extends users_ProfileService
 		if ($document->getLcid()) {$datas['lcid'] = $document->getLcid();}
 		if ($document->getLocation()) {$datas['location'] = $document->getLocation();}
 		if ($document->getBirthday()) {$datas['birthday'] = $document->getBirthday();}
+		if ($document->getPersonnalwebsiteurl()) {$datas['personnalwebsiteurl'] = $document->getPersonnalwebsiteurl();}
 	}
 	
 	/**

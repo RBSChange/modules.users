@@ -151,6 +151,15 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
+	 * @param string $profilename
+	 * @return users_persistentdocument_usersprofile || null
+	 */
+	public function getProfile($profilename = 'users')
+	{
+		return users_ProfileService::getInstance()->getByAccessorIdAndName($this->getId(), $profilename);
+	}
+	
+	/**
 	 * @return users_persistentdocument_usersprofile
 	 */
 	protected function getRequiredUsersProfile()

@@ -14,12 +14,22 @@
 	<block type="modules_users_editprofil" icon="edit" labeli18n="m.users.bo.layout.editprofil" />
 	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
 	<block type="modules_users_EditGeneralUserProfile" hidden="true" />
-	
 	<block type="modules_users_Su" icon="user-frontoffice" labeli18n="m.users.bo.blocks.su">
 		<parameters>
 			<parameter name="itemsperpage" type="Integer" default-value="10" />
 			<parameter name="masknonfiltered" type="Boolean" default-value="false" />
 		</parameters>
+	</block>
+	<block type="modules_users_UsersList" icon="list-block" dropModels="[modules_users/user]">
+		<parameters>
+			<parameter name="itemsperpage" type="Integer" default-value="20" />
+		</parameters>
+	</block>
+	<block type="modules_users_User" icon="user">
+		<metas>
+			<meta name="label" allow="title,description,keywords" />
+			<meta name="registrationdate" allow="title,description" />
+		</metas>
 	</block>
 	<block type="modules_users_adminauthentication" icon="user-backoffice" labeli18n="m.users.bo.layout.adminauthentication" />
 	<!-- Dashboard blocks -->

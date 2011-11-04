@@ -64,7 +64,7 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 		{
 			throw new Exception($serviceClassName . ' Profile service class not found.');
 		}
-		return $serviceClassName::getInstance();
+		return f_util_ClassUtils::callMethod($serviceClassName, 'getInstance');
 	}
 	
 	/**
@@ -132,15 +132,32 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param integer $accessorId
+	 * @param string $profilename
 	 * @return users_persistentdocument_profile
 	 */
-	public function getByAccessorId($accessorId)
+	public function getRequiredByAccessorIdAndName($accessorId, $profilename)
+	{
+		return $this->getServiceInstanceByName($profilename)->getByAccessorId($accessorId, true);
+	}
+	
+	/**
+	 * @param integer $accessorId
+	 * @param boolean $required
+	 * @return users_persistentdocument_profile
+	 */
+	public function getByAccessorId($accessorId, $required = false)
 	{
 		if ($this === users_ProfileService::getInstance())
 		{
 			return null;
 		}
-		return $this->createQuery()->add(Restrictions::eq('accessorId', $accessorId))->findUnique();
+		$profile = $this->createQuery()->add(Restrictions::eq('accessorId', $accessorId))->findUnique();
+		if ($profile === null && $required)
+		{
+			$profile = $this->getNewDocumentInstance();
+			$profile->setAccessor(DocumentHelper::getDocumentInstance($accessorId));
+		}
+		return $profile;
 	}
 	
 	/**

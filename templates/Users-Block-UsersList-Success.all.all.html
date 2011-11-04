@@ -1,0 +1,27 @@
+<h1 change:h="">${trans:m.users.fo.member-list,ucf}</h1>
+<table class="normal users-list" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th class="column-avatar" />
+			<th class="column-label">${trans:m.users.document.user.label,ucf}</th>
+			<th class="column-date">${trans:m.users.fo.member-since,ucf}</th>
+			<th class="column-website">${trans:m.users.fo.web-site,ucf}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="user paginator" class="${php: repeat.user.odd ? 'odd' : 'even'}">
+			<tal:block tal:define="userprofile user/getUsersProfile">
+				<td class="column-avatar"><img change:avatar="user user" /></td>
+				<td class="column-label">
+					<a change:link="document user">${user/getLabel}</a>
+					<p tal:condition="userprofile/getLocation">${trans:m.users.document.usersprofile.location,ucf,lab} ${userprofile/getLocation}</p>
+				</td>
+				<td class="column-date">${date:user/getCreationdate}</td>
+				<td class="column-website">
+					<a tal:condition="userprofile/getPersonnalwebsiteurl" class="link" url="${getUsersProfile/getPersonnalwebsiteurl}" title="${trans:m.users.fo.go-to-personnal-web-site,ucf,attr,name=user/getLabel}">${trans:m.users.fo.web-site,ucf}</a>
+				</td>
+			</tal:block>
+		</tr>
+	</tbody>
+</table>
+<tal:block change:paginator="paginator" />

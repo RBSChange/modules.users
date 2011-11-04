@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="4.0" icon="user-frontoffice" has-url="false">
-  <properties>
-    <property name="label">
-      <constraint name="pseudonym"/>
-    </property>
-    <property name="email" type="String" min-occurs="1">
-      <constraint name="email"/>
-    </property>
-    <property name="isroot" type="Boolean" default-value="false"/>
-    <property name="issudoer" type="Boolean" default-value="false"/>
-    <property name="login" type="String" min-occurs="1">
-      <constraint name="login"/>
-    </property>
-    <property name="passwordmd5" type="String" min-occurs="1" indexed="none" db-size="50"/>
-    <property name="groups" type="modules_users/group" max-occurs="-1" inverse="true"/>
-    <property name="lastlogin" type="DateTime"/>
-    <property name="lastping" type="DateTime"/>
-    <property name="changepasswordkey" type="String" db-size="50" indexed="none"/>
-  </properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd"
+	model-version="4.0" icon="user-frontoffice" has-url="true">
+	<properties>
+		<property name="label">
+			<constraint name="pseudonym" />
+		</property>
+		<property name="email" type="String" min-occurs="1">
+			<constraint name="email" />
+		</property>
+		<property name="isroot" type="Boolean" default-value="false" />
+		<property name="issudoer" type="Boolean" default-value="false" />
+		<property name="login" type="String" min-occurs="1">
+			<constraint name="login" />
+		</property>
+		<property name="passwordmd5" type="String" min-occurs="1" indexed="none" db-size="50" />
+		<property name="groups" type="modules_users/group" max-occurs="-1" inverse="true" />
+		<property name="lastlogin" type="DateTime" />
+		<property name="lastping" type="DateTime" />
+		<property name="changepasswordkey" type="String" db-size="50" indexed="none" />
+	</properties>
 </document>

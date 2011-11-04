@@ -81,4 +81,61 @@ class users_ModuleService extends ModuleBaseService
 			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
 		}
 	}
+	
+	// Default structure importation.
+	
+	/**
+	 * @param f_peristentdocument_PersistentDocument $container
+	 * @param array $attributes
+	 * @param string $script
+	 * @return array
+	 */
+	public function getStructureInitializationAttributes($container, $attributes, $script)
+	{
+		switch ($script)
+		{
+			case 'memberDefaultStructure' :
+				return $this->getUsersStructureInitializationAttributes($container, $attributes, $script);
+			
+			default:
+				throw new BaseException('Unknown structure initialization script: '.$script, 'm.website.bo.actions.unknown-structure-initialization-script', array('script' => $script));
+		}
+	}
+	
+	/**
+	 * @param f_peristentdocument_PersistentDocument $container
+	 * @param array $attributes
+	 * @param string $script
+	 * @return array
+	 */
+	public function getUsersStructureInitializationAttributes($container, $attributes, $script)
+	{
+		// Check container.
+		if (!$container instanceof website_persistentdocument_website && !$container instanceof website_persistentdocument_topic)
+		{
+			throw new BaseException('Invalid website or topic', 'm.website.bo.general.invalid-website-or-topic');
+		}
+		
+		if ($container instanceof website_persistentdocument_website)
+		{
+			$websiteId = $container->getId();
+		}
+		else 
+		{
+			$websiteId = $container->getDocumentService()->getWebsiteId($container);
+		}
+		
+		$ts = TagService::getInstance();
+		$website = DocumentHelper::getDocumentInstance($websiteId, 'modules_website/website');
+		if ($ts->hasDocumentByContextualTag('contextual_website_website_modules_users_userlist', $website) || 
+			$ts->hasDocumentByContextualTag('contextual_website_website_modules_users_user', $website))
+		{
+			throw new BaseException('Some pages are already initialized', 'm.website.bo.actions.some-pages-already-initialized');
+		}
+		
+		// Set atrtibutes.
+		$attributes['byDocumentId'] = $container->getId();
+		$attributes['type'] = $container->getPersistentModel()->getName();
+		return $attributes;
+	}
 }

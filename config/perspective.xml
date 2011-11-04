@@ -9,17 +9,13 @@
 				<child model="modules_users/backendgroup" />
 				<child model="modules_generic/systemfolder" />
 			</children>
-			
-			<drops>
-			</drops>
-			
 			<contextactions>
 				<contextaction name="edit" />
+				<contextaction name="initDefaultStructure" />
 				<contextaction name="openTreeNodeOrder" />
 				<contextaction name="createGroup" />
 			</contextactions>
 		</model>
-		
 		<model name="modules_users/user">
 			<contextactions>
 				<contextaction name="edit" />
@@ -31,14 +27,12 @@
 				<toolbarbutton name="setRolesForModule" />
 			</contextactions>
 		</model>
-		
 		<model name="modules_users/anonymoususer">
 			<contextactions>
 				<contextaction name="edit" />
 				<contextaction name="setRolesForModule" />
 			</contextactions>
 		</model>
-		
 		<model name="modules_generic/systemfolder">
 			<children>
 				<child model="modules_users/dynamicgroup" />
@@ -54,7 +48,6 @@
 				<contextaction name="openFolder" />
 			</contextactions>
 		</model>
-		
 		<model name="modules_users/dynamicgroup">
 			<children>
 				<child model="modules_users/user" from="function" />
@@ -70,8 +63,7 @@
 				<contextaction name="setRolesForModule" />
 				<contextaction name="refreshDynamicgroup" />
 			</contextactions>
-		</model>		
-				
+		</model>
 		<model name="modules_users/group">
 			<children>
 				<child model="modules_users/user" from="function" />
@@ -91,7 +83,6 @@
 				<contextaction name="createUser" />
 			</contextactions>
 		</model>
-
 		<model name="modules_users/backendgroup">
 			<children>
 				<child model="modules_users/user" from="function"/>
@@ -109,8 +100,7 @@
 				<contextaction name="setRolesForModule" />
 				<contextaction name="createUser" />
 			</contextactions>
-		</model>
-		
+		</model>		
 		<model name="modules_users/nogroupuserfolder">
 			<children>
 				<child model="modules_users/user" from="function"/>
@@ -150,6 +140,7 @@
 		<action name="move" permission="Move" icon="up_down" labeli18n="m.uixul.bo.actions.move" />
 		<action name="createGroup" icon="add" single="true" permission="Insert_group" />
 		<action name="openFolder" icon="open-folder" labeli18n="m.uixul.bo.actions.openfolder" />
-		<action name="refreshDynamicgroup" single="true" icon="users-frontoffice-refresh" />
+		<action name="refreshDynamicgroup" single="true" icon="users-frontoffice-refresh" />.
+		<action name="initDefaultStructure" single="true" permission="InitDefaultStructure" icon="add" />
 	</actions>
 </perspective>

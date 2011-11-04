@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.fo" lcid="fr_FR">
+	<key id="current-value">valeur actuelle</key>
+	<key id="authdisplayname">(Afficher votre nom et votre prénom dans votre profil public)</key>
+	<key id="not-your-profile">Ce profil n'est pas le votre !</key>
+	<key id="member-since">membre depuis</key>
+	<key id="web-site">site web</key>
+	<key id="go-to-personnal-web-site">aller sur le site web de {name}</key>
+	<key id="member-list">liste des membres</key>
+	<key id="profile-of">profil de {login}</key>
+	<key id="edit">modifier</key>
+</i18n>

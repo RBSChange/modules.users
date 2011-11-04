@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.usersprofile" lcid="fr_FR">
-  <include id="m.generic.document.document"/>
-  <key id="document-name">profil utilisateur</key>
-  
-  <key id="title">civilité</key>
-  <key id="title-help">civilité de l'utilisateur</key>
-  <key id="titleid">civilité</key>
-  <key id="titleid-help">civilité de l'utilisateur</key>
-  <key id="firstname">prénom</key>
-  <key id="firstname-help">prénom de l'utilisateur</key>
-  <key id="lastname">nom</key>
-  <key id="lastname-help">nom de l'utilisateur</key>
-  
-  <key id="lcid">langue de communication</key>
-  <key id="lcid-help">langue de communication souhaité</key>
-  
-  <key id="timezone">Fuseau horaire</key>
-  <key id="timezone-help">Fuseau horaire pour l'affichage des dates</key>
-  
-  <key id="dateformat">formattage des dates</key>
-  
-  <key id="datetimeformat">formattage des dates / heures</key>
-  
-  <key id="birthmonthandday">Mois et jour de naissance</key>
-  <key id="birthyear">Année de naissance</key>
-  
-  <key id="birthday">Date de naissance</key>
-  
-  <key id="location">Localisation géographique</key>
-  <key id="location-help">Information de localisation géographique, tel que pays.</key>
+	<include id="m.generic.document.document" />
+	<key id="document-name">profil utilisateur</key>
+
+	<key id="title">civilité</key>
+	<key id="title-help">civilité de l'utilisateur</key>
+	<key id="titleid">civilité</key>
+	<key id="titleid-help">civilité de l'utilisateur</key>
+	<key id="firstname">prénom</key>
+	<key id="firstname-help">prénom de l'utilisateur</key>
+	<key id="lastname">nom</key>
+	<key id="lastname-help">nom de l'utilisateur</key>
+	<key id="displayname">afficher le nom</key>
+	<key id="displayname-help">Afficher le nom et le prénom dans le profil public</key>
+
+	<key id="lcid">langue de communication</key>
+	<key id="lcid-help">langue de communication souhaité</key>
+	<key id="timezone">Fuseau horaire</key>
+	<key id="timezone-help">Fuseau horaire pour l'affichage des dates</key>
+	<key id="dateformat">formattage des dates</key>
+	<key id="dateformat-help">Format de dates court. La syntaxe est celle utilisée par la fonction PHP date().</key>
+	<key id="datetimeformat">formattage des dates / heures</key>
+	<key id="datetimeformat-help">Format de dates long. La syntaxe est celle utilisée par la fonction PHP date().</key>
+
+	<key id="location">localisation géographique</key>
+	<key id="location-help">Information de localisation géographique, tel que pays.</key>	
+	<key id="personnalwebsiteurl">site web</key>
+	<key id="birthmonthandday">mois et jour de naissance</key>
+	<key id="birthyear">année de naissance</key>
+	<key id="birthday">date de naissance</key>
 </i18n>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
+	
+	<documentRef byDocumentId-attr="" type-attr="">
+		<topic byLabel="Membres">
+			<page byTag="contextual_website_website_modules_users_userslist" label="Liste des membres"
+				isIndexPage="true" navigationVisibility="hidden" indexingstatus="false">
+				<changecontent for="content-block">
+					<changeblock type="modules_users_UsersList" />
+				</changecontent>
+			</page>
+			
+			<page byTag="contextual_website_website_modules_users_user" label="Membre" navigationVisibility="hidden"
+				indexingstatus="false" metatitle="{users_User.label} - Profil du membre"
+				description="Profil de {users_User.label} - membre depuis {users_User.registrationdate}"
+				keywords="profil, membre, {users_User.label}">
+				<changecontent for="content-block">
+					<changeblock type="modules_users_User" />
+				</changecontent>
+			</page>
+		</topic>
+	</documentRef>
+</script>

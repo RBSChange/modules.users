@@ -78,10 +78,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			}
 		}
 			
-		$userQuery = generic_UserAclService::getInstance()->createQuery()
-			->add(Restrictions::eq('user', $document))
-			->delete();
-			
+		generic_UserAclService::getInstance()->createQuery()->add(Restrictions::eq('user', $document))->delete();
 		users_ProfileService::getInstance()->deleteProfilesByAccessorId($document->getId());
 	}
 
@@ -185,6 +182,19 @@ class users_UserService extends f_persistentdocument_DocumentService
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * @param string $label
+	 * @param integer $groupId
+	 * @return users_persistentdocument_user
+	 */
+	public function getPublishedByLabel($label, $groupId)
+	{
+		$query = $this->createQuery()->add(Restrictions::eq('label', $label));
+		$query->createCriteria('groups')->add(Restrictions::eq('id', $groupId));
+		$query->setMaxResults(1)->add(Restrictions::published());
+		return $query->findUnique();
 	}
 
 	/**
@@ -1341,7 +1351,35 @@ class users_UserService extends f_persistentdocument_DocumentService
 		return false;
 	}
 	
+	/**
+	 * @param website_persistentdocument_website $website
+	 * @return integer
+	 */
+	public function getPublishedCountByWebsite($website)
+	{
+		$query = $this->createQuery()->add(Restrictions::published());
+		$query->add(Restrictions::eq('groups', $website->getGroup()));
+		$query->setProjection(Projections::rowCount('count'));
+		return f_util_ArrayUtils::firstElement($query->findColumn('count'));
+	}
 	
+	/**
+	 * @param website_persistentdocument_website $website
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @return integer
+	 */
+	public function getPublishedByWebsite($website, $offset = null, $limit = null)
+	{
+		$query = $this->createQuery()->add(Restrictions::published());
+		$query->add(Restrictions::eq('groups', $website->getGroup()));
+		$query->addOrder(Order::iasc('label'));
+		if ($offset && $limit)
+		{
+			$query->setFirstResult($offset)->setMaxResults($limit);
+		}		
+		return $query->find();
+	}
 		
 	// Deprecated.
 	

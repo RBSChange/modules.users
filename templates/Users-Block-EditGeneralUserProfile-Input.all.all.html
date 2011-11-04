@@ -13,15 +13,43 @@
 			</li>
 			<li>
 				<input change:field="name lastname" />
+			</li>
+			<li>
+				<input change:field="name displayname" />
+				<p class="help-text">${trans:m.users.fo.authdisplayname,ucf}</p>
 			</li>	
 			<li>
 				<input change:field="name timezone" />
 			</li>
 			<li>
-				<input change:field="name dateformat" />
+				<input change:field="name dateformat" id="field_dateformat" /> <select change:selectinput="" listId="modules_users/dateformat" name="dateformatList" id="field_dateformatList" style="display: none;"></select>
+				<p class="help-text">
+					${trans:m.users.document.usersprofile.dateformat-help,ucf}
+					<br />
+					${trans:m.users.fo.current-value,ucf,lab} <strong>${currentDateFormat}</strong>
+				</p>
+				<script type="text/javascript">
+					jQuery(document).ready(function() {
+						jQuery('#field_dateformatList').show().change(function () {
+							jQuery('#field_dateformat').val(jQuery(this).val());
+						});
+					});
+				</script>
 			</li>
 			<li>
-				<input change:field="name datetimeformat" />
+				<input change:field="name datetimeformat" id="field_datetimeformat" /> <select change:selectinput="" listId="modules_users/datetimeformat" name="datetimeformatList" id="field_datetimeformatList" style="display: none;"></select>
+				<p class="help-text">
+					${trans:m.users.document.usersprofile.datetimeformat-help,ucf}
+					<br />
+					${trans:m.users.fo.current-value,ucf,lab} <strong>${currentDatetimeFormat}</strong>
+				</p>
+				<script type="text/javascript">
+					jQuery(document).ready(function() {
+						jQuery('#field_datetimeformatList').show().change(function () {
+							jQuery('#field_datetimeformat').val(jQuery(this).val());
+						});
+					});
+				</script>
 			</li>
 			<li>
 				<input change:field="name lcid" />
@@ -30,7 +58,10 @@
 				<input change:field="name location" />
 			</li>
 			<li>
-				<input change:dateinput="name birthday"  labeli18n="m.users.document.usersprofile.birthday"  />
+				<input change:field="name personnalwebsiteurl" />
+			</li>
+			<li>
+				<input change:dateinput="name FOBirthday" labeli18n="m.users.document.usersprofile.birthday" />
 			</li>
 		</ol>
 		<p class="buttons">

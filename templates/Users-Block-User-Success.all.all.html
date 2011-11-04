@@ -1,0 +1,12 @@
+<ul class="mini-navigation" tal:condition="itsMyProfile">
+	<li>
+		<a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.fo.edit,ucf}</a>
+	</li>
+</ul>
+
+<h1 change:h="">${trans:m.users.fo.profile-of,ucf,login=user/getLabel}</h1>
+
+<tal:block tal:repeat="profile profiles">
+	<tal:block change:include="user user; profile profile/instance; profiles profiles; itsMyProfile itsMyProfile" module="${profile/module}" template="${profile/template}" type="html" />
+	<div class="cleaner"></div>
+</tal:block>
