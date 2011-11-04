@@ -185,6 +185,39 @@ class users_GroupService extends f_persistentdocument_DocumentService
 			->add(Restrictions::eq('group', $document))
 		->findColumn('id');
 	}
+	
+	public function getSecurityLevelArray()
+	{
+		return array('minimal', 'low', 'medium', 'high');
+	}
+	
+	public function evaluateSecurityLevel($groups)
+	{
+		$_levelArray = $this->getSecurityLevelArray();
+		if (is_array($groups))
+		{
+			$lvlIndex = null;
+			foreach ($groups as $group) 
+			{
+				/* @var $group users_persistentdocument_group */
+				$lvl = $group->getSecuritylevel();
+				if (!empty($lvl))
+				{
+					$grpLvlIndex = array_search($lvl, $_levelArray);
+					if ($grpLvlIndex !== false && ($lvlIndex === null || $grpLvlIndex < $lvlIndex))
+					{
+						$lvlIndex = $grpLvlIndex;
+					}
+				}
+			}
+			
+			if ($lvlIndex !== null)
+			{
+				return $_levelArray[$lvlIndex];
+			}
+		}
+		return $_levelArray[0];
+	}
 	//thod users_GroupService->getDefaultByWebsite
 	
 }

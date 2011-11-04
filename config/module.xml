@@ -13,6 +13,6 @@
 		<entry name="notificationStrategy">users_DefaultUsersNotificationStrategy</entry>
 		 -->
 		 
-		<entry name="anonymousEmailAddress">anonymous@localhost.localdomain</entry>
+		<entry name="anonymousEmailAddress">anonymous@domain.net</entry>
 	</project>
 </config>

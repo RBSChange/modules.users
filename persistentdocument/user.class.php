@@ -48,20 +48,27 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	 */
 	public function isValid()
 	{
-		if (parent::isValid())
-		{				
-			if (f_util_StringUtils::isNotEmpty($this->password))
+		parent::isValid();
+		$this->isPasswordValid();
+		return !$this->hasPropertiesErrors();
+	}
+	
+	/**
+	 * @return boolean 
+	 */	
+	protected function isPasswordValid()
+	{
+		if (f_util_StringUtils::isNotEmpty($this->password))
+		{
+			$securityLevel = users_GroupService::getInstance()->evaluateSecurityLevel($this->getGroupsArray());			 
+			$c = change_Constraints::getByName('password', array('securityLevel' => $securityLevel));
+			if (!$c->isValid($this->password))
 			{
-				$property = new validation_Property("password", $this->password);
-				$passwordValidator = new validation_PasswordValidator($this);
-				if (!$passwordValidator->validate($property, $this->validationErrors))
-				{
-					return false;
-				}
+				$this->addPropertyErrors('password', change_Constraints::formatMessages($c));
+				return false;
 			}
-			return true;
-		}
-		return false;
+		}	
+		return true;
 	}
 	
 	/**

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="4.0" extend="modules_users/group" icon="users-frontoffice-dynamic">
-	<properties>
-		<add name="className" type="String" min-occurs="1" />
-		<add name="parameters" type="LongString" />
-		<add name="refreshing" type="Boolean" default-value="false" />
-		<add name="autoRefresh" type="Boolean" default-value="true" />
-	</properties>
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="4.0" extend="modules_users/group" icon="users-frontoffice-dynamic">
+  <properties>
+    <property name="className" type="String" min-occurs="1"/>
+    <property name="parameters" type="LongString"/>
+    <property name="refreshing" type="Boolean" default-value="false"/>
+    <property name="autoRefresh" type="Boolean" default-value="true"/>
+  </properties>
 </document>
