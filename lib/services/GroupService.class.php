@@ -115,7 +115,6 @@ class users_GroupService extends f_persistentdocument_DocumentService
 				->setProjection(Projections::rowCount('countItems'));
       			$resultCount = $countQuery->find();
 			$totalCount = intval($resultCount[0]['countItems']);
-			Framework::info(__METHOD__  . "  $pageSize $startIndex $totalCount");
 		}
 		
 		$query = users_UserService::getInstance()->createQuery()
