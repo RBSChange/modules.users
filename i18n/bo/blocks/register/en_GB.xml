@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.blocks.register" lcid="en_GB">
+  <key id="requirenamefields">names must be entered</key>
+  <key id="requirenamefields-help">Make it mandatory to enter first and last name</key>
+  <key id="showpasswordfields">password can be chosen</key>
+  <key id="showpasswordfields-help">Lets the user choose his/her password. In each case, the user will be able to change it afterwards.</key>
+  <key id="showpersonalfields">display personal information fields</key>
+  <key id="showpersonalfields-help">Displays the 'first name', 'last name', and 'title' fields.</key>
+  <key id="title">registration</key>
+</i18n>

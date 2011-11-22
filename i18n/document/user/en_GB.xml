@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.user" lcid="en_GB">
-  <key id="lastname">name</key>
-  <key id="lastname-help">user name</key>
-  <key id="startpublicationdate">beginning of validity of the account</key>
-  <key id="startpublicationdate-help">account will be available only starting from this date</key>
-  <key id="endpublicationdate">end of validity of the account</key>
-  <key id="endpublicationdate-help">account won't be available after this date</key>
+  <key id="lastname">last name</key>
+  <key id="lastname-help">user last name</key>
+  <key id="startpublicationdate">beginning of account validity</key>
+  <key id="startpublicationdate-help">the account will be available starting from this date</key>
+  <key id="endpublicationdate">end of account validity</key>
+  <key id="endpublicationdate-help">it will not be possible to use the account after this date</key>
   <key id="title">title</key>
-  <key id="title-help">user's title</key>
+  <key id="title-help">user title</key>
   <key id="titleid">title</key>
-  <key id="titleid-help">user's title</key>
+  <key id="titleid-help">user title</key>
   <key id="firstname">first name</key>
   <key id="firstname-help">user first name</key>
-  <key id="email">e-mail address</key>
-  <key id="email-help">user e-mail</key>
-  <key id="login">login</key>
-  <key id="login-help">connection name</key>
+  <key id="email">email address</key>
+  <key id="email-help">User's email address.</key>
+  <key id="login">username</key>
+  <key id="login-help">login name</key>
   <key id="password">password</key>
   <key id="password-help">User password. Note that the password cannot be changed here, it can only be reset.</key>
   <key id="passwordupdate">new password</key>
-  <key id="generatepassword">generate password automatically</key>
+  <key id="generatepassword">generate the password automatically</key>
   <key id="label">Account</key>
   <key id="author">Created by</key>
   <key id="creationdate">Created on</key>
@@ -27,4 +27,5 @@
   <key id="publicationstatus">Status</key>
   <key id="lastlogin">Last login</key>
   <key id="lastping">Last activity</key>
+  <key id="id">Change username</key>
 </i18n>

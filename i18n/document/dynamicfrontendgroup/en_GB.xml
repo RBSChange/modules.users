@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.dynamicfrontendgroup" lcid="en_GB">
   <include id="m.users.document.frontendgroup"/>
-  <key id="document-name">dynamic website users group</key>
+  <key id="document-name">website user dynamic group</key>
   <key id="autorefresh">refresh automatically</key>
+  <key id="autorefresh-help">If this option is enabled, the list of users in the group will be refreshed every day.</key>
 </i18n>

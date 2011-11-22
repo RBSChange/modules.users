@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.frontendgroup" lcid="en_GB">
   <include id="m.users.document.group"/>
-  <key id="document-name">website users group</key>
+  <key id="document-name">website user group</key>
   <key id="sudoer">sudoers</key>
-  <key id="sudoer-help">selected users will be able to connect as any member of this group</key>
+  <key id="sudoer-help">the selected users will be able to log in as any member of this group.</key>
 </i18n>

@@ -2,4 +2,5 @@
 <i18n baseKey="m.users.document.backenduser" lcid="en_GB">
   <include id="m.users.document.user"/>
   <key id="document-name">Change user</key>
+  <key id="isroot">Super administrator</key>
 </i18n>

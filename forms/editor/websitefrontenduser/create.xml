@@ -7,9 +7,9 @@
 		<field name="email" hidehelp="true" />
 		<field name="login" />
 		<field name="generatepassword" id="users_websitefrontenduser_create_generatepassword" anonid="field_generatepassword" type="boolean"
-			labeli18n="modules.users.document.websitefrontenduser.Generatepassword" shorthelp="&amp;modules.users.document.websitefrontenduser.Generatepassword-help;" />
+			labeli18n="modules.users.document.websitefrontenduser.Generatepassword" shorthelp="m.users.document.websitefrontenduser.generatepassword-help" />
 		<field name="password" id="users_websitefrontenduser_create_password" anonid="field_password" type="text" required="true"
-			labeli18n="modules.users.document.websitefrontenduser.Password" shorthelp="&amp;modules.users.document.websitefrontenduser.Password-help;">
+			labeli18n="modules.users.document.websitefrontenduser.Password" shorthelp="m.users.document.websitefrontenduser.password-help">
 			<constraint name="password" parameter="auto" />
 		</field>
 	</section>

@@ -9,7 +9,7 @@
 		<field name="generatepassword" id="users_backenduser_create_generatepassword" anonid="field_generatepassword"
 			type="boolean" labeli18n="modules.users.document.backenduser.Generatepassword" />
 		<field name="password" id="users_backenduser_create_password" anonid="field_password" type="text" required="true"
-			labeli18n="modules.users.document.backenduser.Password"	shorthelp="&amp;modules.users.document.backenduser.Password-help;">
+			labeli18n="modules.users.document.backenduser.Password"	shorthelp="m.users.document.backenduser.password-help">
 			<constraint name="password" parameter="auto" />
 		</field>
 	</section>

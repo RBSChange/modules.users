@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.blocks.su" lcid="en_GB">
   <key id="itemsperpage">users per page</key>
-  <key id="itemsperpage-help">users per page</key>
-  <key id="masknonfiltered">mask list without filter</key>
+  <key id="itemsperpage-help">This is the number of users displayed on each page in the users list.</key>
+  <key id="masknonfiltered">mask filter-less lists</key>
   <key id="masknonfiltered-help">Do not display the users' list if no keyword is given.</key>
 </i18n>

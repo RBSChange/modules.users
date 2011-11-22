@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.dashboard" lcid="en_GB">
-  <key id="statistics">users satistics</key>
+  <key id="statistics">user statistics</key>
   <key id="backendusers">Change users</key>
   <key id="count">total</key>
   <key id="published-count">published</key>
   <key id="inactive-count">inactive</key>
-  <key id="weekinactive-count">inactive this week</key>
-  <key id="monthinactive-count">inactive this month</key>
+  <key id="weekinactive-count">inactive for the past week</key>
+  <key id="monthinactive-count">inactive for the past month</key>
   <key id="frontendusers">users of</key>
   <key id="all-websites">all websites</key>
 </i18n>

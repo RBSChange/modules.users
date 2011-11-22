@@ -2,11 +2,12 @@
 <i18n baseKey="m.users.frontoffice.changepassword" lcid="en_GB">
   <key id="oldpassword">old password</key>
   <key id="newpassword">new password</key>
-  <key id="confirmnewpassword">confirm new password</key>
-  <key id="submitbutton">modify</key>
-  <key id="success">you are going to receive an e-mail confirming you password was successfuly changed.</key>
-  <key id="exception">an error occured while saving your password.</key>
+  <key id="confirmnewpassword">confirm the new password</key>
+  <key id="submitbutton">edit</key>
+  <key id="success">you are going to receive an email confirming that your password has been changed successfully.</key>
+  <key id="exception">an error occurred while saving your password</key>
   <key id="invalidoldpassword">your old password does not match.</key>
-  <key id="notconfirmpassword">your new password was not confirmed.</key>
-  <key id="emptypassword">all the fields are required.</key>
+  <key id="notconfirmpassword">your new password has not been confirmed.</key>
+  <key id="emptypassword">all form fields are mandatory.</key>
+  <key id="title">changing my password</key>
 </i18n>

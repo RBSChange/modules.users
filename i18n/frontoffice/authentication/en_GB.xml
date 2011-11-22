@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.frontoffice.authentication" lcid="en_GB">
-  <key id="badauthentication">login failed</key>
+  <key id="badauthentication">wrong username or password</key>
   <key id="logout">Logout</key>
   <key id="login">your login</key>
   <key id="password">your password</key>
@@ -8,5 +8,7 @@
   <key id="submitbutton">submit</key>
   <key id="anonymoususer">Anonymous</key>
   <key id="resetpasswordlink">I forgot my password</key>
-  <key id="auto-login-me">auto-login</key>
+  <key id="auto-login-me">automatic login</key>
+  <key id="auto-login-me-help">Check this box to be logged in automatically on your next visits to the website.</key>
+  <key id="title">authentication</key>
 </i18n>

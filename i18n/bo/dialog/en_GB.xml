@@ -7,4 +7,8 @@
   <key id="validator">Validator</key>
   <key id="guest">Guest</key>
   <key id="user">Integrator</key>
+  <key id="base-title">Role definition</key>
+  <key id="group-title">Role definition for group ″{name}″.</key>
+  <key id="module-role">Modules / roles</key>
+  <key id="user-title">Role definition for user ″{name}″.</key>
 </i18n>

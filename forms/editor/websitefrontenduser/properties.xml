@@ -10,7 +10,7 @@
 
 	<section labeli18n="modules.users.bo.doceditor.fieldsgroup.Updatepassword">
 		<field name="password" id="users_websitefrontenduser_create_password" anonid="field_password" type="text"
-			labeli18n="modules.users.document.websitefrontenduser.PasswordUpdate" shorthelp="&amp;modules.users.document.websitefrontenduser.Password-help;">
+			labeli18n="modules.users.document.websitefrontenduser.PasswordUpdate" shorthelp="m.users.document.websitefrontenduser.password-help">
 			<constraint name="password" parameter="auto" />
 		</field>
 	</section>

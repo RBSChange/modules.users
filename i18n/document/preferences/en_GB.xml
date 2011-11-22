@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.document.preferences" lcid="en_GB">
-  <key id="edition-form-title">settings of the Users module</key>
-  <key id="securitylevel">security level for password</key>
-  <key id="securitylevel-help">security level for password</key>
+  <key id="edition-form-title">"Users" module settings</key>
+  <key id="securitylevel">password security level</key>
+  <key id="securitylevel-help">There are three security levels. Each security level inherits the requirements of the lower levels: 1) low security: passwords must contain at least 6 characters and at most 12 characters; 2) average security: passwords must contain both letters and numbers; 3) high security: passwords must contain both lower and upper case letters.</key>
+  <key id="document-name">preferences</key>
 </i18n>

@@ -218,7 +218,7 @@
 			xmlns:html="http://www.w3.org/1999/xhtml"
 			xmlns:xbl="http://www.mozilla.org/xbl">
 			<vbox flex="1">
-				<label anonid="titleinfo" value="&amp;modules.users.bo.dialog.Base-title;" class="wizardTitle" />
+				<label anonid="titleinfo" value="${transui:m.users.bo.dialog.Base-title,ucf,attr}" class="wizardTitle" />
 				<spacer height="5px" />
 				<vbox flex="1" style="min-height:200px">
 					<grid style="height:20px;border-bottom : black solid 2px">
@@ -227,7 +227,7 @@
 					  	</columns>
 						<rows>
 							<row anonid="rowHeader">
-								<label value="&amp;modules.users.bo.dialog.Module-role;" style="font-weight: bolder" crop="end"/>
+								<label value="${transui:m.users.bo.dialog.Module-role,ucf,attr}" style="font-weight: bolder" crop="end"/>
 							</row>
 						</rows>
 					</grid>
@@ -241,9 +241,9 @@
 				</vbox>
 				<spacer height="5px" />
 				<hbox>
-					<button width="100px" image="{IconsBase}/small/check.png" oncommand="onOk();" label="&amp;modules.uixul.bo.dialog.Apply;" />
+					<button width="100px" image="{IconsBase}/small/check.png" oncommand="onOk();" label="${transui:m.uixul.bo.dialog.Apply,ucf,attr}" />
 					<spacer flex="1" />
-					<button width="100px" image="{IconsBase}/small/delete.png" oncommand="onCancel();" label="&amp;modules.uixul.bo.dialog.Cancel;" />
+					<button width="100px" image="{IconsBase}/small/delete.png" oncommand="onCancel();" label="${transui:m.uixul.bo.dialog.Cancel,ucf,attr}" />
 				</hbox>
 			</vbox>		
 		</xbl:content>
