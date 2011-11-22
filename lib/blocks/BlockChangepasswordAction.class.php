@@ -48,35 +48,27 @@ class users_BlockChangepasswordAction extends website_BlockAction
 							{
 								Framework::exception($e);
 								$tm->rollBack($e);
-								$error = $ls->transFO('m.users.frontoffice.changepassword.exception');
+								$error = $ls->trans('m.users.frontoffice.changepassword.exception');
 								$this->addError($error);
-								// For compatibility. Will be removed in 4.0.
-								$request->setAttribute('errors', array($error));
 							}
 						}
 					}
 					else
 					{
-						$error = $ls->transFO('m.users.frontoffice.changepassword.invalidoldpassword');
+						$error = $ls->trans('m.users.frontoffice.changepassword.invalidoldpassword');
 						$this->addError($error);
-						// For compatibility. Will be removed in 4.0.
-						$request->setAttribute('errors', array($error));
 					}
 				}
 				else
 				{
-					$error = $ls->transFO('m.users.frontoffice.changepassword.notconfirmpassword');
+					$error = $ls->trans('m.users.frontoffice.changepassword.notconfirmpassword');
 					$this->addError($error);
-					// For compatibility. Will be removed in 4.0.
-					$request->setAttribute('errors', array($error));
 				}
 			}
 			else
 			{
-				$error = $ls->transFO('m.users.frontoffice.changepassword.emptypassword');
+				$error = $ls->trans('m.users.frontoffice.changepassword.emptypassword');
 				$this->addError($error);
-				// For compatibility. Will be removed in 4.0.
-				$request->setAttribute('errors', array($error));
 			}
 		}
 		return website_BlockView::INPUT;
@@ -90,14 +82,12 @@ class users_BlockChangepasswordAction extends website_BlockAction
 	protected function validatePassword($password, $request)
 	{
 		$ls = LocaleService::getInstance();
-		$property = new validation_Property($ls->transFO('m.users.frontoffice.changepassword.newpassword', array('ucf')), $password);
+		$property = new validation_Property($ls->trans('m.users.frontoffice.changepassword.newpassword', array('ucf')), $password);
 		$validator = new validation_PasswordValidator();
 		$validationErrors = new validation_Errors();
 		if (!$validator->validate($property, $validationErrors))
 		{
 			foreach ($validationErrors as $error) { $this->addError($error); }
-			// For compatibility. Will be removed in 4.0.
-			$request->setAttribute('errors', $validationErrors->getArrayCopy());
 			return false;
 		}
 		return true;
