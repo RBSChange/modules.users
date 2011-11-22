@@ -20,58 +20,79 @@ class users_BlockChangepasswordAction extends block_BlockAction
 		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
 		if ($currentUser === NULL)
 		{
-		    return block_BlockView::NONE;
+			return block_BlockView::NONE;
 		}
 		$this->setParameter('currentUser', $currentUser);
-		
+
 		$errors = array();
 		if ($request->hasParameter('submit'))
 		{
-		   $oldpassword = trim($request->getParameter('oldpassword'));
-		   $password = trim($request->getParameter('password'));
-		   $confirmpassword = trim($request->getParameter('confirmpassword'));
-		   if (!empty($oldpassword) && !empty($password)  && !empty($confirmpassword))
-		   {
-		      if ($password == $confirmpassword)
-		      {	        
-			$us = users_UserService::getInstance();
-                        if ($us->checkIdentity($currentUser, $oldpassword))
-                        {
-                                $tm = f_persistentdocument_TransactionManager::getInstance();
-                            try
-                            {
-                                $tm->beginTransaction();
-                                $currentUser->setPassword($password);
-                                $currentUser->save();
-                                $tm->commit();
-                                return  block_BlockView::SUCCESS;
-                            }
-                            catch (Exception $e)
-                            {
-                                Framework::exception($e);
-                                $tm->rollBack($e);
-                                $errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.exception;');
-                            }
-                        }
-                else
-                {
-                    $errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.invalidoldpassword;');
-                }
-		      }
-		      else
-		      {
-		          $errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.notconfirmpassword;');
-		      }
-		   }
-		   else
-		   {
-		        $errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.emptypassword;');
-		   }
+			$oldpassword = trim($request->getParameter('oldpassword'));
+			$password = trim($request->getParameter('password'));
+			$confirmpassword = trim($request->getParameter('confirmpassword'));
+			if (!empty($oldpassword) && !empty($password)  && !empty($confirmpassword))
+			{
+				if ($password == $confirmpassword)
+				{
+					$us = users_UserService::getInstance();
+					if ($us->checkIdentity($currentUser, $oldpassword))
+					{
+						if ($this->validatePassword($password, &$errors))
+						{
+							$tm = f_persistentdocument_TransactionManager::getInstance();
+							try
+							{
+								$tm->beginTransaction();
+								$currentUser->setPassword($password);
+								$currentUser->save();
+								$tm->commit();
+								return  block_BlockView::SUCCESS;
+							}
+							catch (Exception $e)
+							{
+								Framework::exception($e);
+								$tm->rollBack($e);
+								$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.exception;');
+							}
+						}
+					}
+					else
+					{
+						$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.invalidoldpassword;');
+					}
+				}
+				else
+				{
+					$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.notconfirmpassword;');
+				}
+			}
+			else
+			{
+				$errors[] = f_Locale::translate('&modules.users.frontoffice.changepassword.emptypassword;');
+			}
 		}
 		if (count($errors) > 0)
 		{
-		     $this->setParameter('errors', $errors);
+			$this->setParameter('errors', $errors);
 		}
-		return block_BlockView::INPUT;  
+		return block_BlockView::INPUT;
+	}
+
+	/**
+	 * @param string $password
+	 * @param string[] $errors
+	 * @return boolean;
+	 */
+	protected function validatePassword($password, &$errors)
+	{
+		$property = new validation_Property(f_Locale::translate('&modules.users.frontoffice.changepassword.Newpassword;'), $password);
+		$validator = new validation_PasswordValidator();
+		$validationErrors = new validation_Errors();
+		if (!$validator->validate($property, $validationErrors))
+		{
+			$errors = array_merge($errors, $validationErrors->getArrayCopy());
+			return false;
+		}
+		return true;
 	}
 }
