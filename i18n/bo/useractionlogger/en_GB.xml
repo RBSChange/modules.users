@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.useractionlogger" lcid="en_GB">
+  <key id="chromelogin-backenduser">Administration interface login</key>
+  <key id="log-chromelogin-backenduser">Administration interface login</key>
+  <key id="log-login">log-Login</key>
+  <key id="log-login-backend">log-login-backend</key>
+  <key id="log-login-frontend">frontoffice interface login</key>
+  <key id="log-update-backendgroup">log-update-backendgroup</key>
+  <key id="login">Login {documentlabel}</key>
+  <key id="login-backend">login.backend {browsername} {documentlabel}</key>
+  <key id="login-frontend">Login from {documentlabel} with browser {browsername}</key>
+  <key id="update-backendgroup">update.backendgroup {documentlabel}</key>
+  <key id="removeusers-group"/>
+  <key id="log-removeusers-group"/>
+  <key id="refreshdynamicgroup-dynamicgroup"/>
+  <key id="log-refreshdynamicgroup-dynamicgroup"/>
+  <key id="chromelogin-user"/>
+  <key id="log-chromelogin-user"/>
+  <key id="insert-user"/>
+  <key id="log-insert-user"/>
+  <key id="delete-group"/>
+  <key id="log-delete-group"/>
+  <key id="changepassword-user"/>
+  <key id="log-changepassword-user"/>
+  <key id="move-user"/>
+  <key id="log-move-user"/>
+  <key id="update-user"/>
+  <key id="log-update-user"/>
+  <key id="activate-user"/>
+  <key id="log-activate-user"/>
+  <key id="update-group"/>
+  <key id="log-update-group"/>
+  <key id="saveprofiles-user"/>
+  <key id="log-saveprofiles-user"/>
+  <key id="saveprofiles-anonymoususer"/>
+  <key id="log-saveprofiles-anonymoususer"/>
+  <key id="saveprofiles-backendgroup"/>
+  <key id="log-saveprofiles-backendgroup"/>
+  <key id="saveprofiles-group"/>
+  <key id="log-saveprofiles-group"/>
+</i18n>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.blocks.register" lcid="en_GB">
+  <key id="showpasswordfields">password can be chosen</key>
+  <key id="showpasswordfields-help">Lets the user choose his/her password. In each case, the user will be able to change it afterwards.</key>
+  <key id="title">registration</key>
+  <key id="showloginfield"/>
+  <key id="showloginfield-help"/>
+  <key id="shownamefield"/>
+  <key id="shownamefield-help"/>
+</i18n>

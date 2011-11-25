@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.frontoffice.su" lcid="en_GB">
+  <key id="first-name">first name</key>
+  <key id="full-name">full name</key>
+  <key id="last-name">last name</key>
+  <key id="login">login</key>
+  <key id="result-users-count">{usersCount} users found.</key>
+  <key id="search">filter</key>
+  <key id="search-no-result">no users match your request.</key>
+  <key id="switch">log in</key>
+  <key id="switch-user">take the identity of another user</key>
+  <key id="switched-error-bad-arguments">incorrect parameters.</key>
+  <key id="switched-error-do-not-have-permission">you are not allowed to log in as {fullName} ({login}).</key>
+  <key id="switched-error-title">login failed</key>
+  <key id="switched-success">you are now logged in as {fullName} ({login}).</key>
+  <key id="switched-success-title">successful login</key>
+  <key id="users-list">user list</key>
+</i18n>

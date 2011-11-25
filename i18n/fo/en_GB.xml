@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n lcid="en_GB" baseKey="m.users.fo">
+  <key id="current-value"/>
+  <key id="authdisplayname"/>
+  <key id="not-your-profile"/>
+  <key id="member-since"/>
+  <key id="web-site"/>
+  <key id="go-to-personnal-web-site"/>
+  <key id="member-list"/>
+  <key id="profile-of"/>
+  <key id="edit"/>
+</i18n>
