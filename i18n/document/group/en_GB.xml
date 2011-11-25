@@ -5,4 +5,6 @@
   <key id="users">users</key>
   <key id="securitylevel">security level for password</key>
   <key id="securitylevel-help">security level for password</key>
+  <key id="label-help"/>
+  <key id="description-help"/>
 </i18n>

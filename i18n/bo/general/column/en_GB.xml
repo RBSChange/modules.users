@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.general.column" lcid="en_GB">
-  <key id="login">login</key>
-  <key id="refreshing">refreshing</key>
+  <key id="login">username</key>
+  <key id="refreshing">refresh in progress…</key>
   <key id="autorefresh">refresh automatically</key>
+  <key id="email"/>
 </i18n>

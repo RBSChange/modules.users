@@ -4,4 +4,7 @@
   <key id="creategroup">create group</key>
   <key id="removeuser">remove from group</key>
   <key id="exportusers">Export published users</key>
+  <key id="setrolesformodule">Define base roles for all modules</key>
+  <key id="refreshdynamicgroup"/>
+  <key id="initdefaultstructure"/>
 </i18n>

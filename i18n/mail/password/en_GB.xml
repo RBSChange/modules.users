@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.mail.password" lcid="en_GB">
-  <key id="title">login failed</key>
+  <key id="title">wrong username or password</key>
   <key id="greeting">Hello {title} {fullname},</key>
-  <key id="login">your login {login}</key>
-  <key id="password">your password {password}</key>
-  <key id="accesslink">to access to yout account: {url}</key>
-  <key id="salutation">best regards,</key>
+  <key id="login">your username is {login}</key>
+  <key id="password">your password is {password}</key>
+  <key id="accesslink">to access your account, click here: {url}</key>
+  <key id="salutation">regards,</key>
   <key id="administratorsignature">your Change administrator</key>
-  <key id="explanationnewaccountfrontenduser">you are receiving this e-mail because an account has just been created for you on our website.</key>
-  <key id="explanationchangepasswordfrontenduser">you are receiving this e-mail because your password has been changed.</key>
-  <key id="explanationnewaccountbackenduser">you are receiving this e-mail because an account has just been created for you in RBS Change.</key>
-  <key id="explanationchangepasswordbackenduser">you are receiving this e-mail because your RBS Change password has been modified.</key>
-  <key id="subject">User details</key>
+  <key id="explanationnewaccountfrontenduser">You are receiving this email because an account has just been created for you on our website.</key>
+  <key id="explanationchangepasswordfrontenduser">You are receiving this email because your password has been changed.</key>
+  <key id="explanationnewaccountbackenduser">You are receiving this email because an account has just been created for you in Change.</key>
+  <key id="explanationchangepasswordbackenduser">You are receiving this email because your Change password has been modified.</key>
+  <key id="subject">User information</key>
   <key id="sender">NoReply@{host}</key>
 </i18n>

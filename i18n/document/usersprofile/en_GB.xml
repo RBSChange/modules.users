@@ -2,7 +2,6 @@
 <i18n baseKey="m.users.document.usersprofile" lcid="en_GB">
   <include id="m.generic.document.document"/>
   <key id="document-name">user profil</key>
- 
   <key id="title">title</key>
   <key id="title-help">user's title</key>
   <key id="titleid">title</key>
@@ -11,4 +10,20 @@
   <key id="firstname-help">user first name</key>
   <key id="lastname">name</key>
   <key id="lastname-help">user name</key>
+  <key id="displayname"/>
+  <key id="displayname-help"/>
+  <key id="lcid"/>
+  <key id="lcid-help"/>
+  <key id="timezone"/>
+  <key id="timezone-help"/>
+  <key id="dateformat"/>
+  <key id="dateformat-help"/>
+  <key id="datetimeformat"/>
+  <key id="datetimeformat-help"/>
+  <key id="location"/>
+  <key id="location-help"/>
+  <key id="personnalwebsiteurl"/>
+  <key id="birthmonthandday"/>
+  <key id="birthyear"/>
+  <key id="birthday"/>
 </i18n>

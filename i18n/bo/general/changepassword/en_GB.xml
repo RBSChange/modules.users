@@ -4,8 +4,8 @@
   <key id="foruser">User: </key>
   <key id="oldpassword">Old password</key>
   <key id="newpassword">New password</key>
-  <key id="newpasswordconfirmation">Confirm new password</key>
+  <key id="newpasswordconfirmation">Password confirmation</key>
   <key id="submit">Change my password</key>
-  <key id="success">Password successfully change</key>
-  <key id="successtext">your new password has been emailed at the following address: {email}</key>
+  <key id="success">Password successfully changed</key>
+  <key id="successtext">your new password has just been emailed to you at the following address: {email}</key>
 </i18n>

@@ -2,6 +2,8 @@
 <i18n baseKey="m.users.bo.doceditor.property" lcid="en_GB">
   <key id="lastlogin-empty">never logged in</key>
   <key id="cardinality">number of users</key>
-  <key id="refreshing">refreshing</key>
+  <key id="refreshing">refresh in progress…</key>
   <key id="reference">reference</key>
+  <key id="linkedwebsites">related website for authentication purposes</key>
+  <key id="website">site user</key>
 </i18n>

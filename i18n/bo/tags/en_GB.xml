@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.tags" lcid="en_GB">
   <key id="register-block">registration</key>
+  <key id="change-password">Change the password</key>
+  <key id="edit-profil">Edit your profile</key>
+  <key id="reset-password">New password</key>
+  <key id="secure-homepage">Secure homepage</key>
 </i18n>

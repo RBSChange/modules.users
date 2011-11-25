@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.messages.error.passwordnotsecure" lcid="en_GB">
-  <key id="low"></key>
-  <key id="medium"></key>
+  <key id="low">your password must be 6 to 12 characters long</key>
+  <key id="medium">your password must be 6 to 12 characters long and contain both letters and numbers</key>
+  <key id="high">your password must be 6 to 12 characters long and contain both upper and lower case letters and numbers</key>
 </i18n>

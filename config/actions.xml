@@ -23,7 +23,7 @@
 	<action name="exportUsers">
 		<parameter name="listWidget" />
 		<body><![CDATA[			
-			if (confirm("&amp;modules.users.bo.general.ConfirmExportMessage;"))
+			if (confirm("${trans:m.users.bo.general.ConfirmExportMessage,ucf,js}"))
 			{
 				var docId = listWidget.getSelectedIds()[0];
 				var lang = this.getContextLang(listWidget);

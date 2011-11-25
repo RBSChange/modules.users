@@ -3,4 +3,5 @@
   <include id="m.users.document.group"/>
   <key id="document-name">dynamic users group</key>
   <key id="autorefresh">refresh automatically</key>
+  <key id="autorefresh-help"/>
 </i18n>
