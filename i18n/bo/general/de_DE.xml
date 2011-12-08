@@ -14,8 +14,6 @@
   <key id="dashboard-statusnullfemale">nie verbunden</key>
   <key id="dashboard-statusdisconnectedfemale">abgemeldet</key>
   <key id="dashboard-statusnew">hat sich eben angemeldet</key>
-  <key id="dashboard-statussince">angemeldet seit</key>
-  <key id="dashboard-statussincefemale">angemeldet seit</key>
   <key id="dashboard-statuslastconnection">letzte Anmeldung</key>
   <key id="generate-random-password">ein zufallsgeneriertes Passwort erhalten</key>
 </i18n>

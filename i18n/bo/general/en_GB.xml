@@ -14,8 +14,7 @@
   <key id="dashboard-statusnullfemale">never logged in</key>
   <key id="dashboard-statusdisconnectedfemale">not logged in</key>
   <key id="dashboard-statusnew">has just logged in</key>
-  <key id="dashboard-statussince">logged in since</key>
-  <key id="dashboard-statussincefemale">logged in since</key>
+  <key id="dashboard-statussince">since</key>
   <key id="dashboard-statuslastconnection">last login</key>
   <key id="generate-random-password">generate random password</key>
   <key id="confirmexportmessage">do you want to export the group in CSV format?</key>

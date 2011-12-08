@@ -14,8 +14,7 @@
   <key id="dashboard-statusnullfemale">jamais connectée</key>
   <key id="dashboard-statusdisconnectedfemale">déconnectée</key>
   <key id="dashboard-statusnew">vient de se connecter</key>
-  <key id="dashboard-statussince">connecté depuis</key>
-  <key id="dashboard-statussincefemale">connectée depuis</key>
+  <key id="dashboard-statussince">depuis</key>
   <key id="dashboard-statuslastconnection">dernière connexion</key>
   <key id="generate-random-password">générer un mot de passe aléatoire</key>
   <key id="confirmexportmessage">voulez-vous exporter le groupe au format CSV ?</key>

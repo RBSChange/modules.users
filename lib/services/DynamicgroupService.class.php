@@ -40,7 +40,7 @@ class users_DynamicgroupService extends users_GroupService
 	{
 		return $this->pp->createQuery('modules_users/dynamicgroup');
 	}
-	
+
 	/**
 	 * Create a query based on 'modules_users/dynamicgroup' model.
 	 * Only documents that are strictly instance of modules_users/dynamicgroup
@@ -61,11 +61,11 @@ class users_DynamicgroupService extends users_GroupService
 	public function getResume($document, $forModuleName, $allowedSections = null)
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
-		
+
 		$keyPart = $document->getRefreshing() ? 'Yes' : 'No';
 		$resume['properties']['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.$keyPart.';');
-		
-		try 
+
+		try
 		{
 			$reference = DocumentHelper::getDocumentInstance($document->getParameter('referenceId'));
 			if ($reference !== null)
@@ -78,7 +78,7 @@ class users_DynamicgroupService extends users_GroupService
 			Framework::exception($e);
 			$resume['properties']['reference'] = f_Locale::translateUI('&modules.users.bo.doceditor.UNexisting-reference;');
 		}
-		
+
 		return $resume;
 	}
 
@@ -92,7 +92,7 @@ class users_DynamicgroupService extends users_GroupService
 			$this->getFeeder($group)->refreshUsers($group);
 		}
 	}
-	
+
 	/**
 	 * @param users_persistentdocument_dynamicgroup $group
 	 */
@@ -109,7 +109,7 @@ class users_DynamicgroupService extends users_GroupService
 			throw new Exception('Invalid class: '.$className);
 		}
 	}
-	
+
 	/**
 	 * @param users_persistentdocument_dynamicgroup $group
 	 * @return Integer[]
@@ -121,7 +121,7 @@ class users_DynamicgroupService extends users_GroupService
 			->setProjection(Projections::property('id'))
 			->findColumn('id');
 	}
-	
+
 	/**
 	 * @return users_persistentdocument_dynamicgroup[]
 	 */
@@ -132,18 +132,21 @@ class users_DynamicgroupService extends users_GroupService
 			->add(Restrictions::eq('autoRefresh', true))
 			->find();
 	}
-	
-	/* (non-PHPdoc)
-	 * @see f_persistentdocument_DocumentService::addTreeAttributes()
-	 */
-	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
-	{
-		// TODO Auto-generated method stub
-	    parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
-	    $nodeAttributes['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getRefreshing() ? 'Yes' : 'No').';');
-	    $nodeAttributes['autoRefresh'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getAutoRefresh() ? 'Yes' : 'No').';');
-	}
 
-	
-	
+	/**
+	 * @param notification_persistentdocument_notification $document
+	 * @param array<string, string> $attributes
+	 * @param integer $mode
+	 * @param string $moduleName
+	 */
+	public function completeBOAttributes($document, &$attributes, $mode, $moduleName)
+	{
+		parent::completeBOAttributes($document, $attributes, $mode, $moduleName);
+		if ($mode & DocumentHelper::MODE_CUSTOM)
+		{
+			$ls = LocaleService::getInstance();
+			$attributes['refreshing'] = $ls->trans('m.generic.backoffice.'.($document->getRefreshing() ? 'yes' : 'no'), array('ucf'));
+			$attributes['autoRefresh'] = $ls->trans('m.generic.backoffice.'.($document->getAutoRefresh() ? 'yes' : 'no'), array('ucf'));
+		}
+	}
 }
