@@ -12,17 +12,28 @@ class users_RefreshDynamicfrontendgroupTask extends task_SimpleSystemTask
 	{
 		if (!$this->hasParameter('groupId'))
 		{
-			Framework::error(__METHOD__ . ': No group id to refresh!');	
+			Framework::error(__METHOD__ . ': No group id to refresh!');
 			return;
 		}
+		
 		$groupId = intval($this->getParameter('groupId'));
-		$group = DocumentHelper::getDocumentInstance($groupId);
-		if (!($group instanceof users_persistentdocument_dynamicfrontendgroup))
+		$pp = f_persistentdocument_PersistentProvider::getInstance();
+		$modelName = $pp->getDocumentModelName($groupId);
+		if (!$modelName)
 		{
-			Framework::error(__METHOD__ . ': The given document (id = '.$groupId.') is not a dynamic frontend group!');	
+			Framework::error(__METHOD__ . ': The given document (id = ' . $groupId . ') does not exist any more!');
 			return;
 		}
+		
+		$model = f_persistentdocument_PersistentDocumentModel::getInstanceFromDocumentModelName($modelName);
+		if (!$model->isModelCompatible('modules_users/dynamicfrontendgroup'))
+		{
+			Framework::error(__METHOD__ . ': The given document (id = ' . $groupId . ') is not a dynamic frontend group (modelName = ' . $modelName . '!');
+			return;
+		}
+		
 		$errors = array();
+		$group = users_persistentdocument_dynamicfrontendgroup::getInstanceById($groupId);
 		$service = $group->getDocumentService();
 		$feeder = $service->getFeeder($group);
 		
