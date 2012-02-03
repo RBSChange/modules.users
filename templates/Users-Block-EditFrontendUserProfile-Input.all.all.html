@@ -1,9 +1,8 @@
 <form change:form="beanClass users_persistentdocument_websitefrontenduser; beanName user">
 	<fieldset>
-		<legend>${title}</legend>
+		<legend class="h-2">${title}</legend>
 		<ul change:errors=""></ul>
 		<ul change:messages=""></ul>
-		<input change:field="name beanId" hidden="true" />	
 		<ol>
 			<li>
 				<input change:field="name login" />
@@ -23,7 +22,8 @@
 			</li>		
 		</ol>
 		<p class="buttons">
-			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" class="button" name="save" />
+			<input change:field="name beanId" hidden="true" />	
+			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" name="save" />
 		</p>
 	</fieldset>
 </form>

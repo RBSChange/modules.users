@@ -1,2 +1,15 @@
-<div class="showuserinfo" tal:condition="anonymousUser">${trans:m.users.frontoffice.authentication.anonymoususer,ucf}</div>
-<div class="showuserinfo" tal:condition="not: anonymousUser">${currentUser/getFullnameAsHtml}</div>
+<div class="scroll">
+	<h2 change:h="">${trans:m.customer.frontoffice.my-account,ucf}</h2>
+	<ul>
+		<li tal:condition="anonymousUser">${trans:m.users.frontoffice.authentication.anonymoususer,ucf}</li>
+		<li tal:condition="not: anonymousUser">${currentUser/getFullnameAsHtml}</li>
+		<li>
+			<a tal:condition="not: currentUser"change:link="tag ctx_users_register">${trans:m.users.frontoffice.registration,ucf}</a>
+			<a tal:condition="currentUser" change:link="tag ctx_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a>
+		</li>
+		<li>
+			<a tal:condition="not: currentUser" change:link="tag ctx_users_register">${trans:m.users.frontoffice.login,ucf}</a>
+			<a tal:condition="currentUser" change:link="module users; action FrontendLogout">${trans:m.users.frontoffice.logout,ucf}</a>
+		</li>
+	</ul>
+</div>

@@ -1,6 +1,6 @@
 <form change:form="">
 	<fieldset>
-		<legend>${trans:m.users.frontoffice.authentication.title,ucf}</legend>
+		<legend class="h-2">${trans:m.users.frontoffice.authentication.title,ucf}</legend>
 		<ul change:errors=""></ul>
 		<ol>
 			<li>
@@ -10,9 +10,9 @@
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
 			<li tal:condition="allowAutoLogin">
-				<label for="users_authentication_autoLogin_yes">${trans:m.users.frontoffice.authentication.auto-login-me,ucf}</label>
-				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" />
-				${trans:m.users.frontoffice.authentication.auto-login-me-help}
+				<label change:fieldlabel="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" class="textfield"></label>
+				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" standalone="true" />
+				<p class="help-text">${trans:m.users.frontoffice.authentication.auto-login-me-help}</p>
 			</li>
 		</ol>
 		<p class="buttons">
