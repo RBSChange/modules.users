@@ -576,10 +576,9 @@ class users_UserService extends f_persistentdocument_DocumentService
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
 			$configuredNotif->setSendingModuleName('users');
-			$callback = array($this, 'getUserInformationNotifParameters');
-			$params = array('user' => $user, 'code' => $code, 'strategy' => $strategy);
-			$recipients = new mail_MessageRecipients($user->getEmail());
-			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
+			$configuredNotif->registerCallback($this, 'getUserInformationNotifParameters', array('user' => $user, 'code' => $code, 'strategy' => $strategy));
+			$this->registerNotificationCallback($configuredNotif, $user);
+			return $configuredNotif->send($user->getEmail());
 		}
 		return true;
 	}
@@ -898,15 +897,13 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$data['history']['lastlogin'] = $lastLogin;
 		return $data;
 	}
-	
+		
 	/**
+	 * 
 	 * @param notification_persistentdocument_notification $notification
 	 * @param users_persistentdocument_user $user
-	 * @param string $callback
-	 * @param mixed $callbackParameter
-	 * @return boolean
 	 */
-	public function sendNotificationToUserCallback($notification, $user, $callback = null, $callbackParameter = null)
+	public function registerNotificationCallback($notification, $user)
 	{
 		if ($notification === null)
 		{
@@ -914,7 +911,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 			{
 				Framework::info(__METHOD__ . ' No notification to send.');
 			}
-			return false;
+			return;
 		}
 		else if ($user === null)
 		{
@@ -922,38 +919,10 @@ class users_UserService extends f_persistentdocument_DocumentService
 			{
 				Framework::info(__METHOD__ . ' No user to send notification.');
 			}
-			return false;
+			return;
 		}
 		
-		$recipients = new mail_MessageRecipients();
-		$recipients->setTo($user->getEmail());
-		$cb = array($this, 'getNotificationParametersCallback');
-		$cbParams = array(
-			'user' => $user,
-			'callback' => $callback,
-			'callbackParameter' => $callbackParameter
-		);
-		return $notification->getDocumentService()->sendNotificationCallback($notification, $recipients, $cb, $cbParams);
-	}
-	
-	/**
-	 * @param users_persistentdocument_user $user
-	 * @param string $callback
-	 * @param mixed $callbackParameter with keys 'user', 'callback' and 'callbackParameter'
-	 * @return array
-	 */
-	public function getNotificationParametersCallback($params)
-	{
-		$replacements = $this->getNotificationParameters($params['user']);		
-		if (isset($params['callback']) && $params['callback'])
-		{
-			$callbackReplacements = call_user_func($params['callback'], $params['callbackParameter']);
-			if (is_array($callbackReplacements))
-			{
-				$replacements = array_merge($replacements, $callbackReplacements);
-			}
-		}			
-		return $replacements;
+		$notification->registerCallback($this, 'getNotificationParameters', $user);
 	}
 	
 	/**
@@ -997,6 +966,41 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 		
 	// Deprecated.
+	/**
+	 * @deprecated (will be removed in 4.0) use $notification->registerCallback() and $notification->sendToUser()
+	 */
+	public function sendNotificationToUserCallback($notification, $user, $callback = null, $callbackParameter = null)
+	{
+		if ($notification === null)
+		{
+			if (Framework::isInfoEnabled())
+			{
+				Framework::info(__METHOD__ . ' No notification to send.');
+			}
+			return false;
+		}
+		else if ($user === null)
+		{
+			if (Framework::isInfoEnabled())
+			{
+				Framework::info(__METHOD__ . ' No user to send notification.');
+			}
+			return false;
+		}
+
+		if (is_array($callback))
+		{
+			$notification->registerCallback($callback[0], $callback[1], $callbackParameter);
+		}
+		return $notification->sendToUser($user);
+	}	
+	/**
+	 * @deprecated (will be removed in 4.0) with no replacement
+	 */
+	public function getNotificationParametersCallback($params)
+	{
+	
+	}
 	
 	/**
 	 * @deprecated (will be removed in 4.0) use sendNotificationToUserCallback
