@@ -35,6 +35,7 @@
 		</parameters>
 	</block>
 	<block type="modules_users_adminauthentication" display="" icon="user-backoffice" label="&amp;modules.users.bo.layout.adminauthentication;" />
+	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
 	<!-- Dashboard blocks -->
 	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" label="&amp;modules.users.bo.dashboard.Statistics;" />
 	<block type="modules_users_DashboardConnectedUsers" display="" icon="users" dashboard="true" label="&amp;modules.users.bo.blocks.DashboardConnectedUsers.Title;" />
