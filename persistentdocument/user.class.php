@@ -5,6 +5,20 @@
  */
 class users_persistentdocument_user extends users_persistentdocument_userbase
 {
+	
+	/**
+	 * @param String $email
+	 * @return Boolean
+	 */
+	protected function setEmailInternal($email)
+	{
+		if ($email != null)
+		{
+			$email = f_util_StringUtils::strtolower(strval($email));
+		}
+		return parent::setEmailInternal($email);
+	}
+	
 	private $password = null;
 	private $generatepassword = false;
 	
