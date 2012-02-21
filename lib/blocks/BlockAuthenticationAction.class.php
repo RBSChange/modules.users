@@ -58,7 +58,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 						users_ModuleService::getInstance()->setAutoLogin($user);
 					}
 					
-					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter("illegalAccessPage");
+					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter('illegalAccessPage');
 					$agaviUser = Controller::getInstance()->getContext()->getUser();
 					if (f_util_StringUtils::isEmpty($illegalAccessPage))
 					{
@@ -108,6 +108,11 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			return website_BlockView::INPUT;
 		}
 
+		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
+		{
+			$request->setAttribute('hideRegistrationLinks', true);
+		}
+		
 		if ($this->currentUser !== null)
 		{
 			$request->setAttribute('currentUser', $this->currentUser);
@@ -115,10 +120,6 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			return website_BlockView::SUCCESS;
 		}
 		
-		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
-		{
-			$request->setAttribute('hideRegistrationLinks', true);
-		}
 		return website_BlockView::INPUT;
 	}
 }
