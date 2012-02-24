@@ -110,6 +110,10 @@ class users_FrontenduserService extends users_UserService
 			{
 				throw new BaseException('Invalid-login', 'modules.users.errors.Invalid-login');
 			}
+			elseif (!$user->isPublished())
+			{
+				throw new BaseException('Inactive-login', 'modules.users.errors.Inactive-login');
+			}
 			$newPassword = $this->generatePassword();
 			$user->setChangepasswordkey(md5($newPassword));
 			$user->save();
