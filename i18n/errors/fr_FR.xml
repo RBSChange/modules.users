@@ -4,6 +4,7 @@
   <key id="modules-users-editlocale">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Editer une locale″</key>
   <key id="modules-users-order">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Modifier l'ordre des éléments″</key>
   <key id="invalid-login">identifiant non valide</key>
+  <key id="inactive-login">ce compte a été désactivé, veuillez contacter l'administrateur pour en savoir plus</key>
   <key id="unable-to-generate-password">impossible de generer un nouveau mot de passe</key>
   <key id="unable-to-send-password">impossible d'envoyer le nouveau mot de passe</key>
   <key id="invalid-authentification">erreur d'authentification</key>
