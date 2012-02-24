@@ -3,80 +3,92 @@
 	<binding fileName="modules/notification/persistentdocument/import/notification_binding.xml" />
 		
 	<systemfolder module="notification" relatedmodule="users">
-			<notification
-				label="Nouvel utilisateur backend"
-				codename="modules_users/newBackendUser"
-				availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="Vous recevez cet e-mail car un compte vient de vous être créé dans Change.&lt;br /&gt;
+		<notification
+			label="Nouvel utilisateur backend"
+			codename="modules_users/newBackendUser"
+			availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="Vous recevez cet e-mail car un compte vient de vous être créé dans Change.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à Change : {accesslink}&lt;br /&gt;" 
-				footer="Cordialement, votre administrateur Change" />	
+			footer="Cordialement, votre administrateur Change" />	
 
-			<notification
-				label="Changement de mot de passe d'un utilisateur backend"
-				codename="modules_users/changeBackendUserPassword"
-				availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="Vous recevez cet e-mail car votre mot de passe dans Change a été changé.&lt;br /&gt;
+		<notification
+			label="Changement de mot de passe d'un utilisateur backend"
+			codename="modules_users/changeBackendUserPassword"
+			availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="Vous recevez cet e-mail car votre mot de passe dans Change a été changé.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à Change : {accesslink}&lt;br /&gt;" 
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
-				
-			<notification
-				label="Nouvel utilisateur enregistré sur le site"
-				codename="modules_users/newFrontendUser"
-				availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="Vous recevez cet e-mail car un compte vient de vous être créé sur notre site Internet.&lt;br /&gt;
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte" />
+			
+		<notification
+			label="Nouvel utilisateur enregistré sur le site"
+			codename="modules_users/newFrontendUser"
+			availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="Vous recevez cet e-mail car un compte vient de vous être créé sur notre site Internet.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;" 
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="creation-compte" />
-				
-			<notification
-				label="Changement de mot de passe d'un utilisateur enregistré sur le site"
-				codename="modules_users/changeFrontendUserPassword"
-				availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="vous recevez cet e-mail car votre mot de passe a été changé.&lt;br /&gt;
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="creation-compte" />
+			
+		<notification
+			label="Changement de mot de passe d'un utilisateur enregistré sur le site"
+			codename="modules_users/changeFrontendUserPassword"
+			availableparameters="{login}, {password}, {accesslink}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="vous recevez cet e-mail car votre mot de passe a été changé.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;" 
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte" />
 
-			<notification
-				label="Demande de confirmation de l'adresse email d'un nouvel utilisateur enregistré sur le site"
-				codename="modules_users/emailConfirmationNew"
-				availableparameters="{email}, {emailConfirmUrl}, {login}, {password}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="vous recevez cet e-mail suite à votre inscription sur note site Internet.&lt;br /&gt;
+		<notification
+			label="Demande de confirmation de l'adresse email d'un nouvel utilisateur enregistré sur le site"
+			codename="modules_users/emailConfirmationNew"
+			availableparameters="{email}, {emailConfirmUrl}, {login}, {password}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="vous recevez cet e-mail suite à votre inscription sur note site Internet.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 Pour activer votre compte, veuillez suivre l'URL : {emailConfirmUrl}&lt;br /&gt;"
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte" />
 
-			<notification
-				label="Demande de confirmation de l'adresse email d'un utilisateur existant sur le site"
-				codename="modules_users/emailConfirmationUpdate"
-				availableparameters="{email}, {emailConfirmUrl}, {login}, {fullname}, {title}"
-				subject="Informations utilisateurs"
-				header="Cher(chère) {fullname},"
-				body="vous recevez cet e-mail suite à une modifiation de votre adresse e-mail.&lt;br /&gt;
+		<notification
+			label="Demande de confirmation de l'adresse email d'un utilisateur existant sur le site"
+			codename="modules_users/emailConfirmationUpdate"
+			availableparameters="{email}, {emailConfirmUrl}, {login}, {fullname}, {title}"
+			subject="Informations utilisateurs"
+			header="Cher(chère) {fullname},"
+			body="vous recevez cet e-mail suite à une modifiation de votre adresse e-mail.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Pour confirmer votre nouvelle adresse e-mail, veuillez suivre l'URL : {emailConfirmUrl}&lt;br /&gt;"
-				footer="Cordialement, votre administrateur Change"
-				senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte" />
+			
+		<attribute name="body"><![CDATA[Vous recevez cet e-mail suite à la désactivation de votre compte. Contactez-nous pour plus d'informations.]]></attribute>
+		<notification
+			label="Informer l'utilisateur que son compte est désactivé"
+			codename="modules_users/notifyDeactivation"
+			availableparameters="{receiverEmail}, {receiverTitle}, {receiverFullName}, {receiverLastName}, {receiverFirstName}, {receiverLogin}"
+			subject="Votre compte est désactivé"
+			header="Bonjour {receiverFullName},"
+			body-attr=""
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte"
+			publicationstatus="DEACTIVATED" />
 	</systemfolder>
 </script>

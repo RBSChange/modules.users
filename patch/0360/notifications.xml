@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	<binding fileName="modules/notification/persistentdocument/import/notification_binding.xml" />
+		
+	<systemfolder module="notification" relatedmodule="users">
+		<attribute name="body"><![CDATA[Vous recevez cet e-mail suite à la désactivation de votre compte. Contactez-nous pour plus d'informations.]]></attribute>
+		<notification
+			label="Informer l'utilisateur que son compte est désactivé"
+			codename="modules_users/notifyDeactivation"
+			availableparameters="{receiverEmail}, {receiverTitle}, {receiverFullName}, {receiverLastName}, {receiverFirstName}, {receiverLogin}"
+			subject="Votre compte est désactivé"
+			header="Bonjour {receiverFullName},"
+			body-attr=""
+			footer="Cordialement, votre administrateur Change"
+			senderUsername="info-compte"
+			publicationstatus="DEACTIVATED" />
+	</systemfolder>
+</script>

@@ -101,13 +101,16 @@ class users_BackenduserService extends users_UserService
 	 * @param users_persistentdocument_backenduser $document
 	 * @param String $oldPublicationStatus
 	 * @param array $params
-	 * @return void
 	 */
 	protected function publicationStatusChanged($document, $oldPublicationStatus, $params)
 	{
 		if ($document->getIsroot() && $document->getPublicationstatus() == 'DEACTIVATED')
 		{
 			$this->activate($document->getId());
+		}
+		else 
+		{
+			parent::publicationStatusChanged($document, $oldPublicationStatus, $params);
 		}
 	}
 

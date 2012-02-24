@@ -143,6 +143,31 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
+	 * @param users_persistentdocument_user $document
+	 * @param string $oldPublicationStatus
+	 * @param array $params
+	 */
+	protected function publicationStatusChanged($document, $oldPublicationStatus, $params)
+	{
+		if ($oldPublicationStatus == 'PUBLICATED')
+		{
+			$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', 'users_DefaultUsersNotificationStrategy');
+			/* @var $strategy users_UsersNotificationStrategy */
+			$strategy =  new $strategyClassName();
+			$code = 'modules_users/notifyDeactivation';
+			$websiteId = $strategy->getNotificationWebsiteIdByUser($document);
+			$notif = notification_NotificationService::getInstance()->getConfiguredByCodeName($code, $websiteId);
+			if ($notif instanceof notification_persistentdocument_notification)
+			{
+				$notif->setSendingModuleName('users');
+				// Here we can't use sentToUser method because the user isn't published any more.
+				$document->getDocumentService()->registerNotificationCallback($notif, $document);
+				$notif->send($document->getEmail());
+			}
+		}
+	}
+
+	/**
 	 * @param Integer[] $accessorIds
 	 * @return Integer[]
 	 */
@@ -936,7 +961,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 			'receiverLastName' => $user->getLastnameAsHtml(),
 			'receiverFullName' => $user->getFullnameAsHtml(),
 			'receiverTitle' => ($user->getTitleid()) ? $user->getTitleidLabelAsHtml() : '',
-			'receiverEmail' => $user->getEmailAsHtml()
+			'receiverEmail' => $user->getEmailAsHtml(),
+			'receiverLogin' => $user->getLogin()
 		);
 	}
 	
