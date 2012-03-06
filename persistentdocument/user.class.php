@@ -107,21 +107,31 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * Return the Fullname of the user composed by Name and Firstname.
+	 * Return the Fullname of the user composed by Name and Firstname (or email if both are empty).
 	 * @return string
 	 */
 	public function getFullname()
 	{
-		return $this->getFirstname() . ' ' . $this->getLastname();
+		$fullName = $this->getFirstname() . ' ' . $this->getLastname();
+		if (f_util_StringUtils::isEmpty(trim($fullName)))
+		{
+			return $this->getEmail();
+		}
+		return $fullName;
 	}
 	
 	/**
-	 * Return the Fullname of the user composed by Name and Firstname.
+	 * Return the Fullname of the user composed by Name and Firstname (or email if both are empty).
 	 * @return string
 	 */
 	public function getFullnameAsHtml()
 	{
-		return $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
+		$fullName = $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
+		if (f_util_StringUtils::isEmpty(trim($fullName)))
+		{
+			return $this->getEmailAsHtml();
+		}
+		return $fullName;
 	}
 	
 	/**
