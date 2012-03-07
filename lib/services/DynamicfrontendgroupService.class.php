@@ -62,8 +62,9 @@ class users_DynamicfrontendgroupService extends users_FrontendgroupService
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
 		
-		$keyPart = $document->getRefreshing() ? 'Yes' : 'No';
-		$resume['properties']['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.$keyPart.';');
+		$ls = LocaleService::getInstance();
+		$keyPart = $document->getRefreshing() ? 'yes' : 'no';
+		$resume['properties']['refreshing'] = $ls->transBO('m.generic.backoffice.'.$keyPart, array('ucf'));
 		
 		try 
 		{
@@ -76,7 +77,7 @@ class users_DynamicfrontendgroupService extends users_FrontendgroupService
 		catch (Exception $e)
 		{
 			Framework::exception($e);
-			$resume['properties']['reference'] = f_Locale::translateUI('&modules.users.bo.doceditor.UNexisting-reference;');
+			$resume['properties']['reference'] = $ls->transBO('m.users.bo.doceditor.unexisting-reference', array('uc'));
 		}
 		
 		return $resume;
@@ -132,17 +133,17 @@ class users_DynamicfrontendgroupService extends users_FrontendgroupService
 			->find();
 	}
 	
-	/* (non-PHPdoc)
-	 * @see f_persistentdocument_DocumentService::addTreeAttributes()
+	/**
+	 * @param users_persistentdocument_dynamicfrontendgroup $document
+	 * @param string $moduleName
+	 * @param string $treeType
+	 * @param array<string, string> $nodeAttributes
 	 */
 	public function addTreeAttributes($document, $moduleName, $treeType, &$nodeAttributes)
 	{
-		// TODO Auto-generated method stub
 	    parent::addTreeAttributes($document, $moduleName, $treeType, $nodeAttributes);
-	    $nodeAttributes['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getRefreshing() ? 'Yes' : 'No').';');
-	    $nodeAttributes['autoRefresh'] = f_Locale::translateUI('&modules.generic.backoffice.'.($document->getAutoRefresh() ? 'Yes' : 'No').';');
+	    $ls = LocaleService::getInstance();
+	    $nodeAttributes['refreshing'] = $ls->transBO('m.generic.backoffice.'.($document->getRefreshing() ? 'yes' : 'no'), array('ucf'));
+	    $nodeAttributes['autoRefresh'] = $ls->transBO('m.generic.backoffice.'.($document->getAutoRefresh() ? 'yes' : 'no'), array('ucf'));
 	}
-
-	
-	
 }
