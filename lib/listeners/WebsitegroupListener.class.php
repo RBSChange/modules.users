@@ -29,11 +29,14 @@ class users_WebsitegroupListener
 		if ($params['document'] instanceof website_persistentdocument_website)
 		{
 			$website = $params['document'];
-			$wfgs = users_WebsitefrontendgroupService::getInstance();
-			$groups = $wfgs->getAllByWebsite($website);
-			foreach ($groups as $group)
+			if ($website->isDeleted())
 			{
-				$wfgs->delete($group);
+				$wfgs = users_WebsitefrontendgroupService::getInstance();
+				$groups = $wfgs->getAllByWebsite($website);
+				foreach ($groups as $group)
+				{
+					$wfgs->delete($group);
+				}
 			}
 		}		
 	}
