@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <blocks>
-	<block type="modules_users_register" icon="add" label="&amp;modules.users.bo.blocks.register.Title;">
+	<block type="modules_users_register" icon="add" beforeAll="true">
 		<parameters>
 			<parameter name="showPersonalFields" type="Boolean" default-value="false" />
 			<parameter name="requireNameFields" type="Boolean" default-value="false" />
@@ -23,7 +23,7 @@
 			</javascript>
 		</xul>
 	</block>
-	<block type="modules_users_authentication" icon="user-frontoffice" label="&amp;modules.users.bo.layout.authentication;" />
+	<block type="modules_users_authentication" icon="user-frontoffice" beforeAll="true" label="&amp;modules.users.bo.layout.authentication;" />
 	<block type="modules_users_showinfo" icon="user-frontoffice" label="&amp;modules.users.bo.layout.showinfo;" />
 	<block type="modules_users_resetpassword" icon="change-password" label="&amp;modules.users.bo.layout.resetpassword;" />
 	<block type="modules_users_changepassword" icon="change-password" label="&amp;modules.users.bo.layout.changepassword;" />
@@ -37,5 +37,5 @@
 	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
 	<!-- Dashboard blocks -->
 	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" label="&amp;modules.users.bo.dashboard.Statistics;" />
-	<block type="modules_users_DashboardConnectedUsers" icon="users" dashboard="true" label="&amp;modules.users.bo.blocks.DashboardConnectedUsers.Title;" />
+	<block type="modules_users_DashboardConnectedUsers" icon="users" dashboard="true" />
 </blocks>
