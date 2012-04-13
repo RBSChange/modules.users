@@ -3,9 +3,9 @@
 		<legend class="h-1">${trans: m.users.frontoffice.registration,ucf}</legend>
 		<ul change:errors="relKey registration-form"></ul>
 		<ol>
-			<li><input change:field="name email" /></li>
+			<li><input change:field="name email" autocorrect="off" autocapitalize="off" /></li>
 			<li>
-				<input change:field="name login; required false" />
+				<input change:field="name login; required false" autocorrect="off" autocapitalize="off" />
 				<p class="help-text">${trans: m.users.frontoffice.registration-login-help,ucf}</p>	
 			</li>
 			<tal:block tal:condition="configuration/getShowPersonalFields">
@@ -37,7 +37,7 @@
 		<ul change:errors="relKey login-form"></ul>
 		<ol>
 			<li>
-				<input change:textinput="name login; required true" labeli18n="m.users.frontoffice.authentication.login" />
+				<input change:textinput="name login; required true" autocorrect="off" autocapitalize="off" labeli18n="m.users.frontoffice.authentication.login" />
 			</li>
 			<li>
 				<input change:passwordinput="name password; required true" labeli18n="m.users.frontoffice.authentication.password" />
