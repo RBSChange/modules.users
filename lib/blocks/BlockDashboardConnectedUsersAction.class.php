@@ -14,33 +14,17 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 		if ($forEdition) {return;}
 		
 		$usersArray = array();
-		$usersRedundantCountArray = array();
-
-		$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 6);		
 		$users = users_UserService::getInstance()->createQuery()
 			->add(Restrictions::published())
-			->add(Restrictions::ge('lastping', $latestMinutes->toString()))
+			->add(Restrictions::ge('lastping', date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 10)->toString()))
 			->find();
 
+		$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 1);
 		foreach ($users as $user)
 		{
 			$localeSuffix = ($user->getTitle() && preg_match('/(mme|mlle)/i', $user->getTitle()->getLabel())) ? 'Female' : '';
 
-			$userName = $user->getFirstname() . ' ' . $user->getLastname();
-			
-			if (isset($usersArray[$userName]))
-			{
-				$usersRedundantCountArray[$userName]++;
-				$userName = $userName . ' (' . $usersRedundantCountArray[$userName] . ')';
-			}
-			else
-			{
-				$usersRedundantCountArray[$userName] = 1;
-			}
-
 			$lastLogin = date_Calendar::getInstance($user->getLastlogin());
-			$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 6);
-
 			if ($lastLogin->isAfter($latestMinutes))
 			{
 				$status = f_Locale::translateUI('&modules.users.bo.general.Dashboard-StatusNew;');
@@ -60,10 +44,10 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 			$icon = MediaHelper::getIcon($user->getPersistentModel()->getIcon(), MediaHelper::SMALL);		
 			$self = ($currentUser === $user) ? 'text-decoration: underline;' : '';
 
-			$usersArray[$userName] = array(
+			$usersArray[] = array(
 				'self' => $self,
 				'icon' => $icon,
-				'name' => $userName,
+				'name' => $user->getLabel(),
 				'status' => $status
 			);
 		}

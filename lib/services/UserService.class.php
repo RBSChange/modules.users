@@ -81,7 +81,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	protected function preSave($document, $parentNodeId)
 	{
 		// The label is auto generated with login, first and last name.
-		$document->setLabel( $document->getLogin() . ' - ' . ucfirst($document->getFirstname()) . ' ' . ucfirst($document->getLastname()) );
+		$document->setLabel($document->getLogin() . ' - ' . ucfirst($document->getFirstname()) . ' ' . ucfirst($document->getLastname()));
 		if ($document->getGeneratepassword() === "true")
 		{
 			$generatedPassword = $this->generatePassword();
