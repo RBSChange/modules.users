@@ -1,5 +1,5 @@
 <div class="scroll">
-	<h2 change:h="">${trans:m.customer.frontoffice.my-account,ucf}</h2>
+	<h2 change:h="">${trans:m.users.frontoffice.my-account,ucf}</h2>
 	<ul>
 		<li tal:condition="anonymousUser">${trans:m.users.frontoffice.authentication.anonymoususer,ucf}</li>
 		<li tal:condition="not: anonymousUser">${currentUser/getFullnameAsHtml}</li>

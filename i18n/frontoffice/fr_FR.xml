@@ -24,4 +24,5 @@
 	<key id="register-link">je crée mon compte utilisateur</key>
 	<key id="registration-login-help">Laisser ce champ vide pour prendre votre adresse e-mail comme identifiant.</key>
 	<key id="password-not-confirmed">Les deux mots de passe sont différents.</key>
+	<key id="my-account">mon compte</key>
 </i18n>

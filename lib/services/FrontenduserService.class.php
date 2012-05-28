@@ -228,7 +228,7 @@ class users_FrontenduserService extends users_UserService
 		$configuredNotif = $ns->getConfiguredByCodeName($notificationCode);
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
-			$configuredNotif->setSendingModuleName('customer');
+			$configuredNotif->setSendingModuleName('users');
 			$callback = array($this, 'getEmailConfirmationParameters');
 			$params = array('user' => $user, 'key' => $userKey, 'password' => $password);
 			return $user->getDocumentService()->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
