@@ -25,8 +25,7 @@ URL d'accès à Change : {accesslink}&lt;br /&gt;"
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à Change : {accesslink}&lt;br /&gt;" 
-			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change" />
 			
 		<notification
 			label="Nouvel utilisateur enregistré sur le site"
@@ -38,8 +37,7 @@ URL d'accès à Change : {accesslink}&lt;br /&gt;"
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;" 
-			footer="Cordialement, votre administrateur Change"
-			senderUsername="creation-compte" />
+			footer="Cordialement, votre administrateur Change" />
 			
 		<notification
 			label="Changement de mot de passe d'un utilisateur enregistré sur le site"
@@ -51,8 +49,7 @@ URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;"
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;" 
-			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change" />
 
 		<notification
 			label="Demande de confirmation de l'adresse email d'un nouvel utilisateur enregistré sur le site"
@@ -64,8 +61,7 @@ URL d'accès à notre site Internet : {accesslink}&lt;br /&gt;"
 Nom de connexion : {login}&lt;br /&gt;
 Mot de passe : {password}&lt;br /&gt;
 Pour activer votre compte, veuillez suivre l'URL : {emailConfirmUrl}&lt;br /&gt;"
-			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change" />
 
 		<notification
 			label="Demande de confirmation de l'adresse email d'un utilisateur existant sur le site"
@@ -76,8 +72,7 @@ Pour activer votre compte, veuillez suivre l'URL : {emailConfirmUrl}&lt;br /&gt;
 			body="vous recevez cet e-mail suite à une modifiation de votre adresse e-mail.&lt;br /&gt;
 Nom de connexion : {login}&lt;br /&gt;
 Pour confirmer votre nouvelle adresse e-mail, veuillez suivre l'URL : {emailConfirmUrl}&lt;br /&gt;"
-			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte" />
+			footer="Cordialement, votre administrateur Change" />
 			
 		<attribute name="body"><![CDATA[Vous recevez cet e-mail suite à la désactivation de votre compte. Contactez-nous pour plus d'informations.]]></attribute>
 		<notification
@@ -88,7 +83,6 @@ Pour confirmer votre nouvelle adresse e-mail, veuillez suivre l'URL : {emailConf
 			header="Bonjour {receiverFullName},"
 			body-attr=""
 			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte"
 			publicationstatus="DEACTIVATED" />
 	</systemfolder>
 </script>

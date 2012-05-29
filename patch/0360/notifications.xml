@@ -12,7 +12,6 @@
 			header="Bonjour {receiverFullName},"
 			body-attr=""
 			footer="Cordialement, votre administrateur Change"
-			senderUsername="info-compte"
 			publicationstatus="DEACTIVATED" />
 	</systemfolder>
 </script>
