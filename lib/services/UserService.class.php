@@ -122,7 +122,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		
 		if (!$this->isLoginCaseSensitive())
 		{
-			$document->setLogin(f_util_StringUtils::strtolower($document->getLogin()));
+			$document->setLogin(f_util_StringUtils::toLower($document->getLogin()));
 		}
 	}
 	
@@ -139,7 +139,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		
 		if (!$this->isLoginCaseSensitive())
 		{
-			$newLogin = f_util_StringUtils::strtolower($newLogin);
+			$newLogin = f_util_StringUtils::toLower($newLogin);
 		}
 		
 		$query = $this->createQuery()->add(Restrictions::eq('login', $newLogin));
@@ -368,7 +368,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		if (!$this->isLoginCaseSensitive())
 		{
-			$login = f_util_StringUtils::strtolower($login);
+			$login = f_util_StringUtils::toLower($login);
 		}
 		
 		$query = $this->createQuery()->add(Restrictions::published())
@@ -414,7 +414,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		
 		if (!$this->isLoginCaseSensitive())
 		{
-			$login = f_util_StringUtils::strtolower($login);
+			$login = f_util_StringUtils::toLower($login);
 		}
 		
 		$group = DocumentHelper::getDocumentInstance($groupId);
@@ -1521,7 +1521,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		
 		if (!$this->isLoginCaseSensitive())
 		{
-			$login = f_util_StringUtils::strtolower($login);
+			$login = f_util_StringUtils::toLower($login);
 		}
 		$passwordMD5 = $this->encodePassword($password);
 		
@@ -1552,7 +1552,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		{
 			if (!$this->isLoginCaseSensitive())
 			{
-				$login = f_util_StringUtils::strtolower($login);
+				$login = f_util_StringUtils::toLower($login);
 			}
 			return $this->createQuery()
 			->add(Restrictions::eq('groups.id', users_BackendgroupService::getInstance()->getBackendGroupId()))
@@ -1585,7 +1585,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		{
 			if (!$this->isLoginCaseSensitive())
 			{
-				$login = f_util_StringUtils::strtolower($login);
+				$login = f_util_StringUtils::toLower($login);
 			}
 			
 			if (intval($websiteId) > 0)
