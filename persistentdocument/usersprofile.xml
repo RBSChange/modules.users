@@ -20,7 +20,7 @@
 		
 		<property name="location" type="String" />
 		<property name="personnalwebsiteurl" type="String">
-			<constraints>url:true</constraints>
+			<constraint name="url" />
 		</property>		 
 	</serializedproperties>
 </document>
