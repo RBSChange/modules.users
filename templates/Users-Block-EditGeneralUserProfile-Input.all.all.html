@@ -1,9 +1,8 @@
 <form change:form="beanClass users_persistentdocument_usersprofile; beanName profile">
 	<fieldset>
-		<legend>${title}</legend>
+		<legend class="h-2">${title}</legend>
 		<ul change:errors=""></ul>
 		<ul change:messages=""></ul>
-		<input change:field="name beanId" hidden="true" />	
 		<ol>
 			<li>
 				<input change:field="name titleid" />
@@ -22,7 +21,8 @@
 				<input change:field="name timezone" />
 			</li>
 			<li>
-				<input change:field="name dateformat" id="field_dateformat" /> <select change:selectinput="" listId="modules_users/dateformat" name="dateformatList" id="field_dateformatList" style="display: none;"></select>
+				<input change:field="name dateformat" id="field_dateformat" />
+				<select change:selectinput="" listId="modules_users/dateformat" name="dateformatList" id="field_dateformatList" style="display: none;"></select>
 				<p class="help-text">
 					${trans:m.users.document.usersprofile.dateformat-help,ucf}
 					<br />
@@ -37,7 +37,8 @@
 				</script>
 			</li>
 			<li>
-				<input change:field="name datetimeformat" id="field_datetimeformat" /> <select change:selectinput="" listId="modules_users/datetimeformat" name="datetimeformatList" id="field_datetimeformatList" style="display: none;"></select>
+				<input change:field="name datetimeformat" id="field_datetimeformat" />
+				<select change:selectinput="" listId="modules_users/datetimeformat" name="datetimeformatList" id="field_datetimeformatList" style="display: none;"></select>
 				<p class="help-text">
 					${trans:m.users.document.usersprofile.datetimeformat-help,ucf}
 					<br />
@@ -65,7 +66,8 @@
 			</li>
 		</ol>
 		<p class="buttons">
-			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" class="button" name="save" />
+			<input change:field="name beanId" hidden="true" />
+			<input change:submit="labeli18n m.users.frontoffice.editprofil.submitbutton" name="save" />
 		</p>
 	</fieldset>
 </form>

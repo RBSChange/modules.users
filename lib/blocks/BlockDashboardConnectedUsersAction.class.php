@@ -13,15 +13,16 @@ class users_BlockDashboardConnectedUsersAction extends dashboard_BlockDashboardA
 	{
 		if ($forEdition) {return;}
 		
-		$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 6);		
+		$usersArray = array();
+		
 		$users = users_UserService::getInstance()->createQuery()
 			->add(Restrictions::published())
-			->add(Restrictions::ge('lastping', $latestMinutes->toString()))
+			->add(Restrictions::ge('lastping', date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 10)->toString()))
 			->addOrder(Order::desc('lastlogin'))
 			->find();
 
 		$ls = LocaleService::getInstance();
-		$usersArray = array();
+		$latestMinutes = date_Calendar::getInstance()->sub(date_Calendar::MINUTE, 1);		
 		foreach ($users as $user)
 		{
 			if (date_Calendar::getInstance($user->getLastlogin())->isAfter($latestMinutes))

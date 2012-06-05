@@ -1,17 +1,18 @@
-<form change:form="" class="cmxform" action="${authenticateUrl}">
+<form change:form="" action="${authenticateUrl}">
 	<fieldset>
-		<legend>${trans:m.users.frontoffice.authentication.title,ucf}</legend>
+		<legend class="h-2">${trans:m.users.frontoffice.authentication.title,ucf}</legend>
 		<tal:block change:block="" module="website" name="messages" container="" />
 		<ol>
 			<li>
-				<input change:textinput="name login" labeli18n="m.users.frontoffice.authentication.login" />
+				<input change:textinput="name login" autocorrect="off" autocapitalize="off" labeli18n="m.users.frontoffice.authentication.login" />
 			</li>
 			<li>
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
 			<li tal:condition="allowAutoLogin">
-				<input change:checkboxinput="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" value="yes" />
-				<p class="help-text">${trans: m.users.frontoffice.authentication.auto-login-me-help}</p>
+				<label change:fieldlabel="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" class="textfield"></label>
+				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" standalone="true" />
+				<p class="help-text">${trans:m.users.frontoffice.authentication.auto-login-me-help}</p>
 			</li>
 		</ol>
 		<p class="buttons">

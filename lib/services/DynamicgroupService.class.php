@@ -62,8 +62,9 @@ class users_DynamicgroupService extends users_GroupService
 	{
 		$resume = parent::getResume($document, $forModuleName, $allowedSections);
 
-		$keyPart = $document->getRefreshing() ? 'Yes' : 'No';
-		$resume['properties']['refreshing'] = f_Locale::translateUI('&modules.generic.backoffice.'.$keyPart.';');
+		$ls = LocaleService::getInstance();
+		$keyPart = $document->getRefreshing() ? 'yes' : 'no';
+		$resume['properties']['refreshing'] = $ls->trans('m.generic.backoffice.'.$keyPart, array('ucf'));
 
 		try
 		{
@@ -76,7 +77,7 @@ class users_DynamicgroupService extends users_GroupService
 		catch (Exception $e)
 		{
 			Framework::exception($e);
-			$resume['properties']['reference'] = f_Locale::translateUI('&modules.users.bo.doceditor.UNexisting-reference;');
+			$resume['properties']['reference'] = $ls->trans('m.users.bo.doceditor.unexisting-reference', array('uc'));
 		}
 
 		return $resume;

@@ -3,6 +3,7 @@
 	<panel name="resume" />
 	<panel name="properties" />
 	<panel name="profile" icon="resume-section" labeli18n="m.users.bo.doceditor.tab-profile" />
+	<panel name="publication"/>
 	<panel name="history" />
 	<panel name="create" />
 </panels>

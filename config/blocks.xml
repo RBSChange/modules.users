@@ -1,20 +1,18 @@
 <?xml version="1.0"?>
 <blocks>
-	<block type="modules_users_register" icon="add">
+	<block type="modules_users_register" icon="add" beforeAll="true">
 		<parameters>
 			<parameter name="showLoginField" type="Boolean" default-value="true" />
 			<parameter name="showNameField" type="Boolean" default-value="false" />
 			<parameter name="showPasswordFields" type="Boolean" default-value="false" />
 		</parameters>
 	</block>
-	<block type="modules_users_authentication" icon="user-frontoffice" labeli18n="m.users.bo.layout.authentication" />
+	<block type="modules_users_authentication" icon="user-frontoffice" beforeAll="true" labeli18n="m.users.bo.layout.authentication" />
 	<block type="modules_users_showinfo" icon="user-frontoffice" labeli18n="m.users.bo.layout.showinfo" />
 	<block type="modules_users_resetpassword" icon="change-password" labeli18n="m.users.bo.layout.resetpassword" />
 	<block type="modules_users_changepassword" icon="change-password" labeli18n="m.users.bo.layout.changepassword" />
 	<block type="modules_users_editprofil" icon="edit" labeli18n="m.users.bo.layout.editprofil" />
-	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
-	<block type="modules_users_EditGeneralUserProfile" hidden="true" />
-	<block type="modules_users_Su" icon="user-frontoffice" labeli18n="m.users.bo.blocks.su">
+	<block type="modules_users_Su" icon="user-frontoffice">
 		<parameters>
 			<parameter name="itemsperpage" type="Integer" default-value="10" />
 			<parameter name="masknonfiltered" type="Boolean" default-value="false" />
@@ -31,7 +29,11 @@
 			<meta name="registrationdate" allow="title,description" />
 		</metas>
 	</block>
-	<block type="modules_users_adminauthentication" icon="user-backoffice" labeli18n="m.users.bo.layout.adminauthentication" />
+	
+	<!-- Hidden blocks -->
+	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
+	<block type="modules_users_EditGeneralUserProfile" hidden="true" />	
+	
 	<!-- Dashboard blocks -->
 	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" labeli18n="m.users.bo.dashboard.statistics" />
 	<block type="modules_users_DashboardConnectedUsers" icon="users" dashboard="true" />

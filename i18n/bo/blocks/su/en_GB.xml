@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.users.bo.blocks.su" lcid="en_GB">
+  <key id="title">Su</key>
   <key id="itemsperpage">users per page</key>
   <key id="itemsperpage-help">This is the number of users displayed on each page in the users list.</key>
   <key id="masknonfiltered">mask filter-less lists</key>

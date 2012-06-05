@@ -1,4 +1,4 @@
-<h1 change:h="" tal:content="trans:m.users.frontoffice.edit-profile,ucf"></h1>
+<h1 change:h="">${trans:m.users.frontoffice.edit-profile,ucf}</h1>
 <ul class="normal panels">
 	<tal:block tal:repeat="panel panels">
 		<li tal:condition="panel/isCurrent" class="current">${panel/label}</li>

@@ -5,8 +5,28 @@
  */
 class users_persistentdocument_user extends users_persistentdocument_userbase
 {
+	/**
+	 * @var string
+	 */
 	private $password = null;
+	
+	/**
+	 * @var boolean
+	 */
 	private $generatepassword = false;
+	
+	/**
+	 * @param String $email
+	 * @return Boolean
+	 */
+	protected function setEmailInternal($email)
+	{
+		if ($email != null)
+		{
+			$email = f_util_StringUtils::strtolower(strval($email));
+		}
+		return parent::setEmailInternal($email);
+	}
 	
 	/**
 	 * @param list_persistentdocument_item $title
@@ -100,23 +120,32 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 	
 	/**
-	 * Return the Fullname of the user composed by Name and Firstname.
+	 * Return the Fullname of the user composed by Name and Firstname (or email if both are empty).
 	 * @return string
 	 */
 	public function getFullname()
 	{
-		return $this->getFirstname() . ' ' . $this->getLastname();
+		$fullName = $this->getFirstname() . ' ' . $this->getLastname();
+		if (f_util_StringUtils::isEmpty(trim($fullName)))
+		{
+			return $this->getEmail();
+		}
+		return $fullName;
 	}
 	
 	/**
-	 * Return the Fullname of the user composed by Name and Firstname.
+	 * Return the Fullname of the user composed by Name and Firstname (or email if both are empty).
 	 * @return string
 	 */
 	public function getFullnameAsHtml()
 	{
-		return $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
+		$fullName = $this->getFirstnameAsHtml() . ' ' . $this->getLastnameAsHtml();
+		if (f_util_StringUtils::isEmpty(trim($fullName)))
+		{
+			return $this->getEmailAsHtml();
+		}
+		return $fullName;
 	}
-	
 	
 	/**
 	 * @return string[]

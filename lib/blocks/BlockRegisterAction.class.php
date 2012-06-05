@@ -6,17 +6,15 @@
 class users_BlockRegisterAction extends website_BlockAction
 {
 	/**
-	 * @see website_BlockAction::execute()
-	 *
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
-	function execute($request, $response)
+	public function execute($request, $response)
 	{
-		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 		if ($this->isInBackoffice())
 		{
+			$this->prepareInputView($request);
 			return website_BlockView::INPUT;
 		}
 		$request->setAttribute('backUrl', LinkHelper::getDocumentUrl($this->getContext()->getPersistentPage()));
@@ -28,6 +26,7 @@ class users_BlockRegisterAction extends website_BlockAction
 			$request->setAttribute('user', $user);	
 			return 'Logged';
 		}
+		
 		$storageId = $this->getContext()->getId() . '_' . $this->getBlockId();
 		$request->setAttribute('storageId', $storageId);
 		
@@ -40,8 +39,9 @@ class users_BlockRegisterAction extends website_BlockAction
 			}
 			change_Controller::getInstance()->getStorage()->remove($storageId);
 		}
-
 		$request->setAttribute('authenticateUrl', LinkHelper::getActionUrl('users', 'Authenticate', array('location'=> $request->getAttribute('backUrl'))));
+		
+		$this->prepareInputView($request);
 		return website_BlockView::INPUT;
 	}
 		
@@ -49,7 +49,7 @@ class users_BlockRegisterAction extends website_BlockAction
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @param users_persistentdocument_user $user
-	 * @return String
+	 * @return string
 	 */
 	public function executeSave($request, $response, users_persistentdocument_user $user)
 	{
@@ -80,6 +80,7 @@ class users_BlockRegisterAction extends website_BlockAction
 	 */
 	public function validateSaveInput($request, $user)
 	{
+		$ls = LocaleService::getInstance();
 		$validationRules = BeanUtils::getBeanValidationRules('users_persistentdocument_user', array('email'));
 		if ($this->getConfiguration()->getShowPasswordFields())
 		{
@@ -92,17 +93,16 @@ class users_BlockRegisterAction extends website_BlockAction
 		$website = website_WebsiteService::getInstance()->getCurrentWebsite();
 		$group = $website->getGroup();
 		$user->addGroups($group);
-		$ls = LocaleService::getInstance();
 		$login = ($request->hasNonEmptyParameter('login')) ? $request->getParameter('login') : $request->getParameter('email');
 		
 		if (in_array($login, users_ModuleService::getInstance()->getDisallowedLogins()))
 		{
-			$this->addError($ls->transFO('m.users.frontoffice.login-disallowed', array('ucf')), 'registration-form');
+			$this->addError($ls->trans('m.users.frontoffice.login-disallowed', array('ucf')), 'registration-form');
 			$isOk = false;
 		}
 		else if (!users_UserService::getInstance()->validateUserLogin($login, $user))
 		{
-			$this->addError($ls->transFO('m.users.frontoffice.login-used', array('ucf')), 'registration-form');
+			$this->addError($ls->trans('m.users.frontoffice.login-used', array('ucf')), 'registration-form');
 			$isOk = false;
 		}
 		
@@ -110,12 +110,7 @@ class users_BlockRegisterAction extends website_BlockAction
 		if ($this->getConfiguration()->getShowPasswordFields())
 		{
 			$password = $request->getParameter('password');
-			if ($password !== $request->getParameter('password_confirm'))
-			{
-				$this->addError($ls->transFO('m.users.frontoffice.password-wrong', array('ucf')), 'registration-form');
-				$isOk = false;
-			}
-			$property = new validation_Property($ls->transFO('users.document.user.password', array('ucf')), $password);	
+			$property = new validation_Property($ls->trans('m.users.document.user.password', array('ucf')), $password);
 			$passwordValidator = new validation_PasswordValidator($user);
 			$errors = new validation_Errors();
 			if (!$passwordValidator->validate($property, $errors))
@@ -123,7 +118,29 @@ class users_BlockRegisterAction extends website_BlockAction
 				$this->addError($errors[0], 'registration-form');
 				$isOk = false;
 			}
+			
+			if ($password !== $request->getParameter('password_confirm'))
+			{
+				$this->addError($ls->transFO('m.users.frontoffice.password-not-confirmed', array('ucf')), 'registration-form');
+				$isOk = false;
+			}
 		}
 		return $isOk;
+	}
+	
+	/**
+	 * @param f_mvc_Request $request
+	 */
+	public function onValidateInputFailed($request)
+	{
+		$this->prepareInputView($request);
+	}
+	
+	/**
+	 * @param f_mvc_Request $request
+	 */
+	protected function prepareInputView($request)
+	{
+		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
 	}
 }

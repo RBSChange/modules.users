@@ -15,14 +15,24 @@ class users_RefreshDynamicgroupTask extends task_SimpleSystemTask
 			Framework::error(__METHOD__ . ': No group id to refresh!');	
 			return;
 		}
+		
 		$groupId = intval($this->getParameter('groupId'));
-		$group = DocumentHelper::getDocumentInstance($groupId);
-		if (!($group instanceof users_persistentdocument_dynamicgroup))
+		$pp = f_persistentdocument_PersistentProvider::getInstance();
+		$modelName = $pp->getDocumentModelName($groupId);
+		if (!$modelName)
 		{
-			Framework::error(__METHOD__ . ': The given document (id = '.$groupId.') is not a dynamic group!');	
+			Framework::error(__METHOD__ . ': The given document (id = ' . $groupId . ') does not exist any more!');
+			return;
+		}
+		
+		$model = f_persistentdocument_PersistentDocumentModel::getInstanceFromDocumentModelName($modelName);
+		if (!$model->isModelCompatible('modules_users/dynamicgroup'))
+		{
+			Framework::error(__METHOD__ . ': The given document (id = ' . $groupId . ') is not a dynamic group (modelName = ' . $modelName . '!');
 			return;
 		}
 		$errors = array();
+		$group = users_persistentdocument_dynamicgroup::getInstanceById($groupId);
 		$service = $group->getDocumentService();
 		$feeder = $service->getFeeder($group);
 		

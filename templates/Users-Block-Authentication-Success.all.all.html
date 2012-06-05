@@ -6,10 +6,12 @@
 	<li>
 		<a change:link="tag contextual_website_website_modules_users_edit-profil">${trans:m.users.frontoffice.edit-profile,ucf}</a>
 	</li>
-	<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
-	<tal:block tal:condition="php: customerRegistrationPage && !customer_CustomerService::getInstance().getCurrentCustomer()">
-		<li>
-			<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
-		</li>
+	<tal:block tal:condition="not: hideRegistrationLinks">
+		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="customerRegistrationPage, contextual_website_website_modules_customer_new-account" />
+		<tal:block tal:condition="php: customerRegistrationPage && !customer_CustomerService::getInstance().getCurrentCustomer()">
+			<li>
+				<a change:link="document customerRegistrationPage; formParam[usebacklink] 'true'">${trans:m.customer.frontoffice.new-account-link,ucf}</a>
+			</li>
+		</tal:block>
 	</tal:block>
 </ul>

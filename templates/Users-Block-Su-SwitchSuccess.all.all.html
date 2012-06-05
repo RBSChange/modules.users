@@ -1,3 +1,5 @@
-<h2 change:h="" tal:content="trans:m.users.frontoffice.su.switched-success-title,ucf"></h2>
+<h1 change:h="">${trans:m.users.frontoffice.su.switched-success-title,ucf}</h1>
 
-<p tal:content="trans:m.users.frontoffice.su.switched-success,ucf,fullName=user/getFullName,login=user/getLogin"></p>
+<ul class="messages">
+	<li>${trans:m.users.frontoffice.su.Switched-success,fullName=user/getFullName,login=user/getLogin,ucf}</li>
+</ul>

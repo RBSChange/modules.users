@@ -46,8 +46,12 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		{
 			change_Controller::getInstance()->getStorage()->removeForUser('users_illegalAccessPage');
 		}
-		
 		$request->setAttribute('location', $location);
+		
+		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
+		{
+			$request->setAttribute('hideRegistrationLinks', true);
+		}
 		
 		$user = users_UserService::getInstance()->getCurrentUser();
 		if ($user !== null)
@@ -70,10 +74,6 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		}
 		
 		$request->setAttribute('authenticateUrl', LinkHelper::getActionUrl('users', 'Authenticate'));
-		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
-		{
-			$request->setAttribute('hideRegistrationLinks', true);
-		}
 		return website_BlockView::INPUT;
 	}
 }

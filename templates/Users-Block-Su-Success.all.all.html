@@ -1,20 +1,20 @@
-<h2 change:h="" tal:content="trans:m.users.frontoffice.su.switch-user,ucf"></h2>
+<h1 change:h="">${trans:m.users.frontoffice.su.switch-user,ucf}</h1>
 
 <form change:form="" id="searchUser" method="get">
 	<input type="text" change:textinput="" name="userWords" />
 	<input type="submit" change:submit="" name="filter" value="Rechercher" class="button" />
 </form>
 
-<p tal:condition="php: usersCount LE 0" tal:content="trans:m.users.frontoffice.su.search-no-result,ucf"></p>
+<p class="normal" tal:condition="php: usersCount LE 0">${trans:m.users.frontoffice.su.search-no-result,ucf}</p>
 <tal:block tal:condition="php: usersCount GT 0">
-	<p tal:content="trans:m.users.frontoffice.su.result-users-count,ucf,usersCount=usersCount" />
+	<p class="normal">${trans:m.users.frontoffice.su.result-users-count,ucf,usersCount=usersCount}</p>
 	<table class="normal">
-		<caption tal:content="trans:m.users.frontoffice.su.users-list,ucf"></caption>
+		<caption class="h-2">${trans:m.users.frontoffice.su.users-list,ucf}</caption>
 		<thead>
 			<tr>
-				<th tal:content="trans:m.users.frontoffice.su.last-name,ucf" />
-				<th tal:content="trans:m.users.frontoffice.su.first-name,ucf" />
-				<th tal:content="trans:m.users.frontoffice.su.login,ucf" />
+				<th>${trans:m.users.frontoffice.su.last-name,ucf}</th>
+				<th>${trans:m.users.frontoffice.su.first-name,ucf}</th>
+				<th>${trans:m.users.frontoffice.su.login,ucf}</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -23,7 +23,7 @@
 	   			<td>${user/getLastname}</td>
 	   			<td>${user/getFirstname}</td>
 	   			<td>${user/getLogin}</td>
-	   			<td><a class="link" change:actionlink="" block="users_su" action="switch" userId="${user/getId}" tal:content="trans:m.users.frontoffice.su.switch,ucf"></a></td>
+	   			<td><a change:actionlink="" block="users_su" action="switch" userId="${user/getId}">${trans:m.users.frontoffice.su.switch,ucf}</a></td>
 			</tr>
 		</tbody>
 	</table>
