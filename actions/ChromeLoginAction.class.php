@@ -17,7 +17,7 @@ class users_ChromeLoginAction extends change_Action
 		$result = array();
 		if (empty($login) || empty($password))
 		{		
-			$result['error'] = f_Locale::translate('&modules.users.errors.Invalid-login-or-password;');
+			$result['error'] = LocaleService::getInstance()->trans('m.users.errors.invalid-login-or-password', array('ucf'));
 		}
 		elseif (!empty($adminemail))
 		{
@@ -90,7 +90,7 @@ class users_ChromeLoginAction extends change_Action
 		}
 		else
 		{
-			$result['error'] = f_Locale::translate('&modules.users.errors.Invalid-authentification;');
+			$result['error'] = LocaleService::getInstance()->trans('m.users.errors.invalid-authentification', array('ucf'));
 		}
 
 		echo JsonService::getInstance()->encode($result);
@@ -108,6 +108,9 @@ class users_ChromeLoginAction extends change_Action
 		'token' => $tokenKey, 'tokenSecret' => $tokenValue);
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function isSecure()
 	{
 		return false;

@@ -815,7 +815,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function sendUserInformations($user, $newAccount = true)
 	{
-		$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', "users_DefaultUsersNotificationStrategy");
+		$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', 'users_DefaultUsersNotificationStrategy');
 		$strategy =  new $strategyClassName();
 		$code = $newAccount ? $strategy->getNewAccountNotificationCodeByUser($user) : $strategy->getPasswordChangeNotificationCodeByUser($user);
 		if ($code === null)
@@ -824,11 +824,12 @@ class users_UserService extends f_persistentdocument_DocumentService
 		}
 		
 		$websiteId = $strategy->getNotificationWebsiteIdByUser($user);
-		$configuredNotif = notification_NotificationService::getInstance()->getConfiguredByCodeName($code, $websiteId);
+		$configuredNotif = notification_NotificationService::getInstance()->getConfiguredByCodeName($code, $websiteId, null, $user->getId());
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
 			$configuredNotif->setSendingModuleName('users');
-			$configuredNotif->registerCallback($this, 'getUserInformationNotifParameters', array('user' => $user, 'code' => $code, 'strategy' => $strategy));
+			$params = array('user' => $user, 'code' => $code, 'strategy' => $strategy);
+			$configuredNotif->registerCallback($this, 'getUserInformationNotifParameters', $params);
 			$this->registerNotificationCallback($configuredNotif, $user);
 			return $configuredNotif->send($user->getEmail());
 		}
@@ -1275,7 +1276,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function sendEmailConfirmationMessage($user, $isNew, $password = null)
 	{
-
 		$userKey = f_util_StringUtils::randomString();		
 		$user->setMeta(self::EMAIL_CONFIRMATION_META_KEY, $userKey);
 		$user->saveMeta();
@@ -1286,7 +1286,6 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$configuredNotif = $ns->getConfiguredByCodeName($notificationCode);
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
-
 			$configuredNotif->setSendingModuleName('users');
 			$callback = array($this, 'getEmailConfirmationParameters');
 			$params = array('user' => $user, 'key' => $userKey, 'password' => $password);
