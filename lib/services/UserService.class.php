@@ -1287,9 +1287,11 @@ class users_UserService extends f_persistentdocument_DocumentService
 		if ($configuredNotif instanceof notification_persistentdocument_notification)
 		{
 			$configuredNotif->setSendingModuleName('users');
-			$callback = array($this, 'getEmailConfirmationParameters');
 			$params = array('user' => $user, 'key' => $userKey, 'password' => $password);
-			return $this->sendNotificationToUserCallback($configuredNotif, $user, $callback, $params);
+			$configuredNotif->registerCallback($this, 'getEmailConfirmationParameters', $params);
+			$this->registerNotificationCallback($configuredNotif, $user);
+			// Here we can't use sendToUser because the user may not be published.
+			return $configuredNotif->send($user->getEmail());
 		}
 		return false;
 	}
