@@ -2,7 +2,7 @@
 /**
  * @package modules.users
  */
-abstract class users_GroupFeederBaseService extends BaseService
+abstract class users_GroupFeederBaseService extends change_BaseService
 {
 	/**
 	 * @param users_persistentdocument_dynamicgroup $group

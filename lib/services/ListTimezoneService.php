@@ -3,7 +3,7 @@
  * users_ListTimezoneService
  * @package modules.users.lib.services
  */
-class users_ListTimezoneService extends BaseService implements list_ListItemsService
+class users_ListTimezoneService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @var users_ListTimezoneService

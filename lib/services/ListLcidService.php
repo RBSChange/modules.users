@@ -3,7 +3,7 @@
  * users_ListLcidService
  * @package modules.users.lib.services
  */
-class users_ListLcidService extends BaseService implements list_ListItemsService
+class users_ListLcidService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @var users_ListLcidService

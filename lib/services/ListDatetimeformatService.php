@@ -3,7 +3,7 @@
  * users_ListDatetimeformatService
  * @package modules.users.lib.services
  */
-class users_ListDatetimeformatService extends BaseService implements list_ListItemsService
+class users_ListDatetimeformatService extends change_BaseService implements list_ListItemsService
 {
 	/**
 	 * @var users_ListDatetimeformatService
