@@ -7,7 +7,7 @@ class users_PermissionScriptDocumentElement extends import_ScriptBaseElement
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 */
-    public function setPermission($document)
+	public function setPermission($document)
 	{
 		if (isset($this->attributes['module']) && isset($this->attributes['role']))
 		{

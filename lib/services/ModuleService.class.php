@@ -1,28 +1,10 @@
 <?php
 /**
- * users_ModuleService
- * @package modules.users.lib.services
+ * @package modules.users
+ * @method users_ModuleService getInstance()
  */
 class users_ModuleService extends ModuleBaseService
 {
-	/**
-	 * Singleton
-	 * @var users_ModuleService
-	 */
-	private static $instance = null;
-
-	/**
-	 * @return users_ModuleService
-	 */
-	public static function getInstance()
-	{
-		if (is_null(self::$instance))
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-	
 	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 * @return f_persistentdocument_PersistentDocument or null
@@ -41,7 +23,7 @@ class users_ModuleService extends ModuleBaseService
 	}
 	
 	/**
-	 * @return String[]
+	 * @return string[]
 	 */
 	public function getDisallowedLogins()
 	{
@@ -51,7 +33,7 @@ class users_ModuleService extends ModuleBaseService
 	// Auto-login handling.
 	
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function allowAutoLogin()
 	{
@@ -59,19 +41,19 @@ class users_ModuleService extends ModuleBaseService
 	}
 	
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function setAutoLogin($user)
 	{
 		if ($this->allowAutoLogin())
 		{
 			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
-      		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
+	  		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
 		}
 	}
 	
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function unsetAutoLogin()
 	{

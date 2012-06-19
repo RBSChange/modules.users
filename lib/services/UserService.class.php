@@ -1,31 +1,17 @@
 <?php
+/**
+ * @package modules.users
+ * @method users_UserService getInstance()
+ */
 class users_UserService extends f_persistentdocument_DocumentService
 {
 	const USER_LOGIN_EVENT = 'userLogin';
 	const USER_LOGOUT_EVENT = 'userLogout';
 
 	/**
-	 * @var users_UserService
-	 */
-	private static $instance;
-	
-	/**
 	 * @var boolean
 	 */
 	private $isLoginCaseSensitive;
-	
-	/**
-	 * Returns the unique instance of UserService.
-	 * @return users_UserService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
 
 	/**
 	 * @return users_persistentdocument_user
@@ -56,7 +42,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/user');
+		return $this->getPersistentProvider()->createQuery('modules_users/user');
 	}
 
 	/**
@@ -199,7 +185,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 	/**
 	 * @param users_persistentdocument_user $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
 	protected function preUpdate($document, $parentNodeId = null)
@@ -216,7 +202,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param users_persistentdocument_user $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postUpdate($document, $parentNodeId)
 	{
@@ -251,7 +237,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param users_persistentdocument_user $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postInsert($document, $parentNodeId)
 	{
@@ -270,7 +256,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param users_persistentdocument_user $document
-	 * @param String $oldPublicationStatus
+	 * @param string $oldPublicationStatus
 	 * @param array $params
 	 * @return void
 	 */
@@ -323,8 +309,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 
 	/**
-	 * @param Integer[] $accessorIds
-	 * @return Integer[]
+	 * @param integer[] $accessorIds
+	 * @return integer[]
 	 */
 	public function convertToUserIds($accessorIds)
 	{
@@ -346,8 +332,8 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @param Integer[] $accessorIds
-	 * @return Integer[]
+	 * @param integer[] $accessorIds
+	 * @return integer[]
 	 */
 	public function convertToPublishedUserIds($accessorIds)
 	{
@@ -693,7 +679,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param date_Calendar $dateCalendarInstance
-	 * @return Integer
+	 * @return integer
 	 */
 	public function getInactiveSinceDateCountByGroupId($groupId, $dateCalendarInstance)
 	{
@@ -1320,7 +1306,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	/**
 	 * @param users_persistentdocument_user $user
 	 * @param string $key
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function confirmEmail($user, $key)
 	{
@@ -1407,7 +1393,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @param String $name
+	 * @param string $name
 	 * @param array $arguments
 	 */
 	public function __call($name, $arguments)

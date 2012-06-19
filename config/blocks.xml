@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <blocks>
 	<block type="modules_users_register" icon="add" beforeAll="true">
 		<parameters>
@@ -29,11 +29,9 @@
 			<meta name="registrationdate" allow="title,description" />
 		</metas>
 	</block>
-	
 	<!-- Hidden blocks -->
 	<block type="modules_users_EditFrontendUserProfile" hidden="true" />
-	<block type="modules_users_EditGeneralUserProfile" hidden="true" />	
-	
+	<block type="modules_users_EditGeneralUserProfile" hidden="true" />
 	<!-- Dashboard blocks -->
 	<block type="modules_users_dashboardstatistics" icon="statistics" dashboard="true" labeli18n="m.users.bo.dashboard.statistics" />
 	<block type="modules_users_DashboardConnectedUsers" icon="users" dashboard="true" />

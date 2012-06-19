@@ -1,7 +1,7 @@
 <?php
 class users_LogoutAction extends change_JSONAction
 {
-    /**
+	/**
 	 * @param change_Context $context
 	 * @param change_Request $request
 	 */
@@ -23,5 +23,5 @@ class users_LogoutAction extends change_JSONAction
 			}
 			return change_Controller::getInstance()->forward('website', 'Redirect');
 		}
-    }
+	}
 }

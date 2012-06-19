@@ -1,27 +1,10 @@
 <?php
 /**
- * users_ListLcidService
- * @package modules.users.lib.services
+ * @package modules.users
+ * @method users_ListLcidService getInstance()
  */
 class users_ListLcidService extends change_BaseService implements list_ListItemsService
 {
-	/**
-	 * @var users_ListLcidService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_ListLcidService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @see list_persistentdocument_dynamiclist::getItems()
 	 * @return list_Item[]

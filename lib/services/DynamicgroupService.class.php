@@ -1,27 +1,10 @@
 <?php
 /**
- * users_DynamicgroupService
  * @package modules.users
+ * @method users_DynamicgroupService getInstance()
  */
 class users_DynamicgroupService extends users_GroupService
 {
-	/**
-	 * @var users_DynamicgroupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_DynamicgroupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return users_persistentdocument_dynamicgroup
 	 */
@@ -38,7 +21,7 @@ class users_DynamicgroupService extends users_GroupService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/dynamicgroup');
+		return $this->getPersistentProvider()->createQuery('modules_users/dynamicgroup');
 	}
 
 	/**
@@ -49,7 +32,7 @@ class users_DynamicgroupService extends users_GroupService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_users/dynamicgroup', false);
+		return $this->getPersistentProvider()->createQuery('modules_users/dynamicgroup', false);
 	}
 
 	/**
@@ -113,7 +96,7 @@ class users_DynamicgroupService extends users_GroupService
 
 	/**
 	 * @param users_persistentdocument_dynamicgroup $group
-	 * @return Integer[]
+	 * @return integer[]
 	 */
 	public function getUserIds($group)
 	{

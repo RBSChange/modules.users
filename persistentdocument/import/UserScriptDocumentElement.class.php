@@ -7,15 +7,15 @@ class users_UserScriptDocumentElement extends import_ScriptDocumentElement
 {
 	protected $userProfileAttribute = array();
 	
-    /**
-     * @return users_persistentdocument_user
-     */
-    protected function initPersistentDocument()
-    {
-    	return users_UserService::getInstance()->getNewDocumentInstance();
-    }
-    
-    /**
+	/**
+	 * @return users_persistentdocument_user
+	 */
+	protected function initPersistentDocument()
+	{
+		return users_UserService::getInstance()->getNewDocumentInstance();
+	}
+	
+	/**
 	 * @return users_persistentdocument_usermodel
 	 */
 	protected function getDocumentModel()
@@ -63,16 +63,16 @@ class users_UserScriptDocumentElement extends import_ScriptDocumentElement
 	 * @return users_persistentdocument_user
 	 */
  	public function getPersistentDocument()
-    {
-    	$pd = parent::getPersistentDocument();
-    	$grp = $this->getAncestorByClassName('users_GroupScriptDocumentElement');
-    	if ($grp !== null)
-    	{
-    		$pd->addGroups($grp->getPersistentDocument());
-    	}
-    	return $pd;
-    }
-    
+	{
+		$pd = parent::getPersistentDocument();
+		$grp = $this->getAncestorByClassName('users_GroupScriptDocumentElement');
+		if ($grp !== null)
+		{
+			$pd->addGroups($grp->getPersistentDocument());
+		}
+		return $pd;
+	}
+	
 	/**
 	 * @see import_ScriptDocumentElement::saveDocument()
 	 */

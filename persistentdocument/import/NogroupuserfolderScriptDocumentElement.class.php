@@ -5,15 +5,15 @@
  */
 class users_NogroupuserfolderScriptDocumentElement extends import_ScriptDocumentElement
 {
-    /**
-     * @return users_persistentdocument_nogroupuserfolder
-     */
-    protected function initPersistentDocument()
-    {
-    	return users_NogroupuserfolderService::getInstance()->getNoGroupUserFolder();
-    }
-    
-    /**
+	/**
+	 * @return users_persistentdocument_nogroupuserfolder
+	 */
+	protected function initPersistentDocument()
+	{
+		return users_NogroupuserfolderService::getInstance()->getNoGroupUserFolder();
+	}
+	
+	/**
 	 * @return users_persistentdocument_nogroupuserfoldermodel
 	 */
 	protected function getDocumentModel()

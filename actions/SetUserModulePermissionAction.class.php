@@ -2,7 +2,7 @@
 class users_SetUserModulePermissionAction extends change_JSONAction
 {
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	protected function isDocumentAction()
 	{

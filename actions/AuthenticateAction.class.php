@@ -31,7 +31,7 @@ class users_AuthenticateAction extends change_Action
 		}
 		else 
 		{
-			$error = LocaleService::getInstance()->transFO('m.users.frontoffice.authentication.badauthentication', array('ucf'));
+			$error = LocaleService::getInstance()->trans('m.users.frontoffice.authentication.badauthentication', array('ucf'));
 			website_SessionMessage::addVolatileError($error);
 				
 			if ($request->hasParameter('errorlocation'))

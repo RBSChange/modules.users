@@ -1,27 +1,10 @@
 <?php
 /**
- * users_ListTimezoneService
- * @package modules.users.lib.services
+ * @package modules.users
+ * @method users_ListTimezoneService getInstance()
  */
 class users_ListTimezoneService extends change_BaseService implements list_ListItemsService
 {
-	/**
-	 * @var users_ListTimezoneService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_ListTimezoneService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @see list_persistentdocument_dynamiclist::getItems()
 	 * @return list_Item[]

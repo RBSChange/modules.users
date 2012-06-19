@@ -1,28 +1,10 @@
 <?php
 /**
- * users_ProfileService
  * @package modules.users
+ * @method users_ProfileService getInstance()
  */
 class users_ProfileService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var users_ProfileService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_ProfileService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	
 	/**
 	 * @return users_persistentdocument_profile
 	 */
@@ -39,7 +21,7 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/profile');
+		return $this->getPersistentProvider()->createQuery('modules_users/profile');
 	}
 	
 	/**
@@ -50,7 +32,7 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_users/profile', false);
+		return $this->getPersistentProvider()->createQuery('modules_users/profile', false);
 	}
 	
 	/**
@@ -64,7 +46,7 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 		{
 			throw new Exception($serviceClassName . ' Profile service class not found.');
 		}
-		return f_util_ClassUtils::callMethod($serviceClassName, 'getInstance');
+		return $serviceClassName::getInstance();
 	}
 	
 	/**
@@ -397,7 +379,7 @@ class users_ProfileService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param users_persistentdocument_profile $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */	
 	protected function preSave($document, $parentNodeId)

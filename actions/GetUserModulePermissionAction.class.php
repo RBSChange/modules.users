@@ -2,7 +2,7 @@
 class users_GetUserModulePermissionAction extends change_JSONAction
 {
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	protected function isDocumentAction()
 	{
@@ -21,12 +21,12 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 		if ($accessor instanceof users_persistentdocument_group)
 		{
 			$type = 'group';
-			$label = $ls->transBO('m.users.bo.dialog.group-title', array('ucf'), array('name' => $accessor->getLabel()));
+			$label = $ls->trans('m.users.bo.dialog.group-title', array('ucf'), array('name' => $accessor->getLabel()));
 		}
 		else
 		{
 			$type = 'user';
-			$label = $ls->transBO('m.users.bo.dialog.user-title', array('ucf'), array('name' => $accessor->getLabel()));
+			$label = $ls->trans('m.users.bo.dialog.user-title', array('ucf'), array('name' => $accessor->getLabel()));
 		}
 		$documentIds = array();
 		$result = array();
@@ -37,7 +37,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 		foreach ($allowedRoles as $roleName) 
 		{
 			$result['roles'][$roleName]  = array(
-				'name' => $ls->transBO('m.users.document.permission.'. strtolower($roleName), array('ucf')), 
+				'name' => $ls->trans('m.users.document.permission.'. strtolower($roleName), array('ucf')), 
 				'used' => 0);
 		}	
 		$modules = ModuleService::getInstance()->getPackageNames();
@@ -63,7 +63,7 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 				$documentIds[$rootfolderid] = $moduleName;
 				
 				$result['modules'][$moduleName]['rootfolderid'] = ModuleService::getInstance()->getRootFolderId($moduleName);
-				$result['modules'][$moduleName]['name'] = $ls->transBO('m.'. $moduleName.'.bo.general.module-name', array('ucf'));
+				$result['modules'][$moduleName]['name'] = $ls->trans('m.'. $moduleName.'.bo.general.module-name', array('ucf'));
 			}
 			
 			$roles = array();
@@ -108,10 +108,10 @@ class users_GetUserModulePermissionAction extends change_JSONAction
 	public static function sortModule($a, $b)
 	{
 		$al = strtolower($a['name']);
-        $bl = strtolower($b['name']);
-        if ($al == $bl) {
-            return 0;
-        }
-        return ($al > $bl) ? +1 : -1;	
+		$bl = strtolower($b['name']);
+		if ($al == $bl) {
+			return 0;
+		}
+		return ($al > $bl) ? +1 : -1;	
 	}
 }

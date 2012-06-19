@@ -16,14 +16,14 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	private $generatepassword = false;
 	
 	/**
-	 * @param String $email
-	 * @return Boolean
+	 * @param string $email
+	 * @return boolean
 	 */
 	protected function setEmailInternal($email)
 	{
 		if ($email != null)
 		{
-			$email = f_util_StringUtils::strtolower(strval($email));
+			$email = f_util_StringUtils::toLower(strval($email));
 		}
 		return parent::setEmailInternal($email);
 	}
@@ -241,7 +241,7 @@ class users_persistentdocument_user extends users_persistentdocument_userbase
 	}
 		
 	/**
-	 * @param String $name
+	 * @param string $name
 	 * @param array $arguments
 	 */
 	final function __call($name, $arguments)

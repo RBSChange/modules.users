@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.users
+ * @method users_BackendgroupService getInstance()
+ */
 class users_BackendgroupService extends users_GroupService
 {
-	/**
-	 * @var users_BackendgroupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_BackendgroupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return users_persistentdocument_backendgroup
 	 */

@@ -26,7 +26,7 @@ class users_persistentdocument_dynamicgroup extends users_persistentdocument_dyn
 	}
 	
 	/**
-	 * @param String $key
+	 * @param string $key
 	 * @return Mixed
 	 */
 	public function getParameter($key)
@@ -40,7 +40,7 @@ class users_persistentdocument_dynamicgroup extends users_persistentdocument_dyn
 	}
 	
 	/**
-	 * @param String $key
+	 * @param string $key
 	 * @param Mixed $value
 	 */
 	public function setParameter($key, $value)

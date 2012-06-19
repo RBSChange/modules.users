@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<module>
 		<visible>true</visible>
@@ -6,7 +6,6 @@
 		<category>admin</category>
 	</module>
 	<project>
-
 		<!--
 		<entry name="loginCaseSensitive">false</entry>
 		<entry name="allowedRoles">Admin,Writer,Validator,Translator,Guest,User</entry>
@@ -14,7 +13,6 @@
 		<entry name="profileNamesViewOrder">users</entry>
 		<entry name="profileNamesEditOrder">users,dashboard</entry>
 		 -->
-		 
 		<entry name="anonymousEmailAddress">anonymous@domain.net</entry>
 	</project>
 </config>

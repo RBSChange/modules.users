@@ -16,11 +16,11 @@ class users_ResetPasswordAction extends change_JSONAction
 				$users = $us->getUsersByLoginAndGroup($login, users_BackendgroupService::getInstance()->getBackendGroup());
 				if (count($users) != 1)
 				{
-					return $this->sendJSONError(LocaleService::getInstance()->transBO('m.users.messages.error.logindoesnotexist', array('ucf')), false);
+					return $this->sendJSONError(LocaleService::getInstance()->trans('m.users.messages.error.logindoesnotexist', array('ucf')), false);
 				}
 				$user = $users[0];
 				$us->prepareNewPassword($user);
-				$result = array('message' => LocaleService::getInstance()->transBO('m.users.bo.general.resetpassword.successtext', 
+				$result = array('message' => LocaleService::getInstance()->trans('m.users.bo.general.resetpassword.successtext', 
 					array('ucf'), array('email' => $user->getEmail())));
 					
 				return $this->sendJSON($result);

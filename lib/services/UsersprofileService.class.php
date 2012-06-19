@@ -1,28 +1,10 @@
 <?php
 /**
- * users_UsersprofileService
  * @package modules.users
+ * @method users_UsersprofileService getInstance()
  */
 class users_UsersprofileService extends users_ProfileService
 {
-	/**
-	 * @var users_UsersprofileService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_UsersprofileService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	
 	/**
 	 * @return users_persistentdocument_usersprofile
 	 */
@@ -39,7 +21,7 @@ class users_UsersprofileService extends users_ProfileService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/usersprofile');
+		return $this->getPersistentProvider()->createQuery('modules_users/usersprofile');
 	}
 	
 	/**
@@ -50,7 +32,7 @@ class users_UsersprofileService extends users_ProfileService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_users/usersprofile', false);
+		return $this->getPersistentProvider()->createQuery('modules_users/usersprofile', false);
 	}
 	
 	/**

@@ -8,7 +8,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -23,7 +23,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function executeFilter($request, $response)
 	{
@@ -34,7 +34,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function executeSwitch($request, $response)
 	{
@@ -49,12 +49,12 @@ class users_BlockSuAction extends website_TaggerBlockAction
 			}
 			else
 			{
-				$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-do-not-have-permission', array('ucf'), array('fullName' => $user->getLabel(), 'login' => $user->getLogin())));
+				$this->addError($ls->trans('m.users.frontoffice.su.switched-error-do-not-have-permission', array('ucf'), array('fullName' => $user->getLabel(), 'login' => $user->getLogin())));
 			}
 		}
 		else
 		{
-			$this->addError($ls->transFO('m.users.frontoffice.su.switched-error-bad-arguments', array('ucf')));
+			$this->addError($ls->trans('m.users.frontoffice.su.switched-error-bad-arguments', array('ucf')));
 		}
 		return 'SwitchError';
 	}
@@ -63,7 +63,7 @@ class users_BlockSuAction extends website_TaggerBlockAction
 	 * Called when the block is inserted into a page content:
 	 * hide page From Menus And SiteMap and call website_TaggerBlockAction::onPageInsertion()
 	 * @param website_persistentdocument_Page $page
-	 * @param Boolean $absolute true if block was introduced considering all versions (langs) of the page
+	 * @param boolean $absolute true if block was introduced considering all versions (langs) of the page
 	 * @see lib/blocks/website_TaggerBlockAction#onPageInsertion($page, $absolute)
 	 */
 	function onPageInsertion($page, $absolute = false)

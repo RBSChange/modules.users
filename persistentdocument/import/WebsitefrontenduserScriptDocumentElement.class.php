@@ -13,21 +13,21 @@ class users_WebsitefrontenduserScriptDocumentElement extends users_UserScriptDoc
 		return users_UserService::getInstance()->getNewDocumentInstance();
 	}
 	
-    public function getPersistentDocument()
-    {
-    	$pd = parent::getPersistentDocument();
-    	$parentDocument = $this->getAncestorByClassName("users_WebsitefrontendgroupScriptDocumentElement");
+	public function getPersistentDocument()
+	{
+		$pd = parent::getPersistentDocument();
+		$parentDocument = $this->getAncestorByClassName("users_WebsitefrontendgroupScriptDocumentElement");
 		if ($parentDocument !== null)
 		{
 			if ($pd instanceof users_persistentdocument_user)
-	    	{
-	    		$pd->addGroups($parentDocument->getPersistentDocument());
-	    	}
+			{
+				$pd->addGroups($parentDocument->getPersistentDocument());
+			}
 		}  
 		return  $pd; 	
-    }
-    
-    
+	}
+	
+	
 	/**
 	 * @see import_ScriptDocumentElement::getDocumentProperties()
 	 *

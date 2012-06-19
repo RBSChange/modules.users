@@ -17,7 +17,7 @@ class users_GetBackEndUserAccessAction extends change_JSONAction
 			$result['userinfos'] = array('fullname' => $user->getFullname(),
 										 'login' => $user->getLogin(),
 										 'email' => $user->getEmail(),
-									     'id' => $user->getId(),
+										 'id' => $user->getId(),
 										 'root' => $fullAccess,
 										 'userPreferences' => null);
 			

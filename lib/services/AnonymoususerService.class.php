@@ -1,28 +1,10 @@
 <?php
 /**
- * users_AnonymoususerService
  * @package modules.users
+ * @method users_AnonymoususerService getInstance() 
  */
 class users_AnonymoususerService extends users_UserService
 {
-	/**
-	 * @var users_AnonymoususerService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_AnonymoususerService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	
 	/**
 	 * @return users_persistentdocument_anonymoususer
 	 */
@@ -99,7 +81,7 @@ class users_AnonymoususerService extends users_UserService
 	
 	/**
 	 * @param users_persistentdocument_anonymoususer $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal => can be null !).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId)

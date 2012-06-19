@@ -9,7 +9,7 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	 * @see website_BlockAction::execute()
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -36,7 +36,7 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @param users_persistentdocument_user $user
-	 * @return String
+	 * @return string
 	 */
 	public function executeSave($request, $response, users_persistentdocument_user $user)
 	{

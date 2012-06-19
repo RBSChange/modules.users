@@ -4,12 +4,8 @@
 		<field name="label" />
 		<field name="email" />
 		<field name="login" />
-		
-		<field name="generatepassword" id="users_user_create_generatepassword" anonid="field_generatepassword"
-			type="boolean" labeli18n="m.users.document.user.generatepassword" />
-			
-		<field name="password" id="users_user_create_password" anonid="field_password" type="text" required="true"
-			labeli18n="m.users.document.user.password" shorthelpi18n="m.users.document.user.password-help">
+		<field name="generatepassword" id="users_user_create_generatepassword" anonid="field_generatepassword" type="boolean" labeli18n="m.users.document.user.generatepassword" />
+		<field name="password" id="users_user_create_password" anonid="field_password" type="text" required="true" labeli18n="m.users.document.user.password" shorthelpi18n="m.users.document.user.password-help">
 			<constraint name="password" />
 		</field>
 	</section>
@@ -21,15 +17,13 @@
 				
 				this.addEventListener('panelInitializeComplete', function (event) {me.onPanelInitializeComplete(event);}, true);
 			]]></constructor>
-			
 			<method name="onGeneratepassword">
 				<parameter name="event" />
 				<body><![CDATA[
 					var genPassword = (this.fields.generatepassword.value === 'true');
 					this.fields['password'].disabled = genPassword;
 				]]></body>
-			</method>	
-			
+			</method>
 			<method name="onPanelInitializeComplete">
 				<parameter name="event" />
 				<body><![CDATA[

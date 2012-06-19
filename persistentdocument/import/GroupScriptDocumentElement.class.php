@@ -5,28 +5,28 @@
  */
 class users_GroupScriptDocumentElement extends import_ScriptDocumentElement
 {
-    /**
-     * @return users_persistentdocument_group
-     */
-    protected function initPersistentDocument()
-    {
-    	if (isset($this->attributes['byWebsite-refid']))
-    	{
-    		$website = $this->getComputedAttribute('byWebsite');
-    		if ($website && $website->getGroup())
-    		{
-    			return  $website->getGroup();
-    		}
-    		else
-    		{
-    			throw new Exception('Invalid byWebsite-refid: ' . $this->attributes['byWebsite-refid']);
-    		}
-    		unset($this->attributes['byWebsite-refid']);
-    	}
-    	return users_GroupService::getInstance()->getNewDocumentInstance();
-    }
-    
-    /**
+	/**
+	 * @return users_persistentdocument_group
+	 */
+	protected function initPersistentDocument()
+	{
+		if (isset($this->attributes['byWebsite-refid']))
+		{
+			$website = $this->getComputedAttribute('byWebsite');
+			if ($website && $website->getGroup())
+			{
+				return  $website->getGroup();
+			}
+			else
+			{
+				throw new Exception('Invalid byWebsite-refid: ' . $this->attributes['byWebsite-refid']);
+			}
+			unset($this->attributes['byWebsite-refid']);
+		}
+		return users_GroupService::getInstance()->getNewDocumentInstance();
+	}
+	
+	/**
 	 * @return users_persistentdocument_groupmodel
 	 */
 	protected function getDocumentModel()

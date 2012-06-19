@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" 
-	model-version="4.0" extend="modules_users/profile">
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="4.0" extend="modules_users/profile">
 	<properties>
 		<property name="birthmonthandday" type="String" />
 		<property name="birthyear" type="Integer" />
-	</properties>	
+	</properties>
 	<serializedproperties>
 		<property name="registeredwebsiteid" type="Integer" />
 		<property name="titleid" from-list="modules_users/title" type="Integer" />
 		<property name="firstname" type="String" />
 		<property name="lastname" type="String" />
 		<property name="displayname" type="Boolean" default-value="false" />
-		
 		<property name="timezone" type="String" from-list="modules_users/timezone" />
 		<property name="dateformat" type="String" />
 		<property name="datetimeformat" type="String" />
 		<property name="lcid" type="String" from-list="modules_users/lcid" />
-		
 		<property name="location" type="String" />
 		<property name="personnalwebsiteurl" type="String">
 			<constraint name="url" />
-		</property>		 
+		</property>
 	</serializedproperties>
 </document>

@@ -5,28 +5,23 @@
 		<field name="email" hidehelp="true" />
 		<field name="login" />
 		<field name="issudoer" />
-		<field name="groups" allow="[modules_users_group]"/>
+		<field name="groups" allow="[modules_users_group]" />
 	</section>
-
 	<section labeli18n="m.users.bo.doceditor.fieldsgroup.updatepassword">
-		<field name="password" anonid="field_password" id="users_user_properties_password" type="text"
-			labeli18n="m.users.document.user.passwordupdate" shorthelpi18n="m.users.document.user.password-help">
+		<field name="password" anonid="field_password" id="users_user_properties_password" type="text" labeli18n="m.users.document.user.passwordupdate" shorthelpi18n="m.users.document.user.password-help">
 			<constraint name="password" />
 		</field>
 	</section>
-
 	<section labeli18n="m.users.bo.doceditor.fieldsgroup.validityperiod">
 		<field name="startpublicationdate" />
 		<field name="endpublicationdate" />
 	</section>
-	
 	<xul>
 		<javascript>
 			<constructor><![CDATA[
 				var me = this
 				this.addEventListener('panelInitializeComplete', function (event) {me.onPanelInitializeComplete(event);}, true);
 			]]></constructor>
-			
 			<method name="onPanelInitializeComplete">
 				<parameter name="event" />
 				<body><![CDATA[
@@ -65,7 +60,7 @@
 						wCore.debug('ERR: onPanelInitializeComplete');
 					}
 				]]></body>
-			</method>	
+			</method>
 		</javascript>
 	</xul>
 </panel>

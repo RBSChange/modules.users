@@ -81,7 +81,7 @@ class users_RefreshDynamicgroupTask extends task_SimpleSystemTask
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	private function getBatchRemoverPath()
 	{
@@ -89,7 +89,7 @@ class users_RefreshDynamicgroupTask extends task_SimpleSystemTask
 	}
 	
 	/**
-	 * @return String
+	 * @return string
 	 */
 	private function getBatchAdderPath()
 	{

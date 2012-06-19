@@ -1,27 +1,10 @@
 <?php
 /**
- * users_NogroupuserfolderService
  * @package modules.users
+ * @method users_NogroupuserfolderService getInstance()
  */
 class users_NogroupuserfolderService extends generic_FolderService
 {
-	/**
-	 * @var users_NogroupuserfolderService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_NogroupuserfolderService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return users_persistentdocument_nogroupuserfolder
 	 */
@@ -38,7 +21,7 @@ class users_NogroupuserfolderService extends generic_FolderService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/nogroupuserfolder');
+		return $this->getPersistentProvider()->createQuery('modules_users/nogroupuserfolder');
 	}
 	
 	/**
@@ -49,7 +32,7 @@ class users_NogroupuserfolderService extends generic_FolderService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_users/nogroupuserfolder', false);
+		return $this->getPersistentProvider()->createQuery('modules_users/nogroupuserfolder', false);
 	}
 	
 	/**
@@ -106,34 +89,34 @@ class users_NogroupuserfolderService extends generic_FolderService
 			$startIndex = 0;
 			
 			$idsArray = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::isEmpty('groups'))
-          			 ->addOrder(Order::asc('label'))
-           		 ->setProjection(Projections::property('id', 'id'))->find(); 
-           		          		 
-           	$totalCount = count($idsArray);
-           	foreach ($idsArray as $index => $row)
-           	{            		
-           		if ($row['id'] == $locateDocumentId)
-           		{
-           			$startIndex = $index - ($index % $pageSize);
-           			break;
-           		}
-           	}	 
+		  			 ->add(Restrictions::isEmpty('groups'))
+		  			 ->addOrder(Order::asc('label'))
+		   		 ->setProjection(Projections::property('id', 'id'))->find(); 
+		   				  		 
+		   	$totalCount = count($idsArray);
+		   	foreach ($idsArray as $index => $row)
+		   	{					
+		   		if ($row['id'] == $locateDocumentId)
+		   		{
+		   			$startIndex = $index - ($index % $pageSize);
+		   			break;
+		   		}
+		   	}	 
 		}
 		else
 		{
 			$countQuery = users_UserService::getInstance()->createQuery()
 				 ->add(Restrictions::isEmpty('groups'))
 					->setProjection(Projections::rowCount('countItems'));
-      		$resultCount = $countQuery->find();
+	  		$resultCount = $countQuery->find();
 			$totalCount = intval($resultCount[0]['countItems']);
 			Framework::info(__METHOD__  . "  $pageSize $startIndex $totalCount");
 		}
 		
 		$query = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::isEmpty('groups'))
-          			 ->addOrder(Order::asc('label'))
-           		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
+		  			 ->add(Restrictions::isEmpty('groups'))
+		  			 ->addOrder(Order::asc('label'))
+		   		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
 		return $query->find();
 	}
 }

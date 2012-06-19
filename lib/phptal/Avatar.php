@@ -19,7 +19,7 @@
 class PHPTAL_Php_Attribute_CHANGE_Avatar extends ChangeTalAttribute 
 {	
 	/**
-	 * @return Boolean
+	 * @return boolean
 	 */
 	protected function evaluateAll()
 	{
@@ -28,7 +28,7 @@ class PHPTAL_Php_Attribute_CHANGE_Avatar extends ChangeTalAttribute
 	
 	/**
 	 * @param Array $params
-	 * @return String
+	 * @return string
 	 */
 	public static function renderAvatar($params)
 	{
@@ -77,7 +77,7 @@ class PHPTAL_Php_Attribute_CHANGE_Avatar extends ChangeTalAttribute
 		$html[] = 'src="' . $src . '"';
 				
 		$html[] = '/>';
-    	return implode(' ', $html);
+		return implode(' ', $html);
 	}
 	
 	/**

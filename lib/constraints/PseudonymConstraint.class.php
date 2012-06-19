@@ -1,37 +1,37 @@
 <?php
 class change_PseudonymConstraint extends Zend_Validate_Abstract
 {
-    const INVALID_PSEUDONYM = 'invalidPseudonym';
-    
-     /**
-     * @var integer
-     */
-    protected $_userId = 0;
-    
+	const INVALID_PSEUDONYM = 'invalidPseudonym';
+	
+	 /**
+	 * @var integer
+	 */
+	protected $_userId = 0;
+	
  	/**
 	 * @param array $params <documentId => integer || [parameter => integer,]>
 	 */   
-    public function __construct($params = array())
-    {
+	public function __construct($params = array())
+	{
 		$this->_messageTemplates = array(self::INVALID_PSEUDONYM => LocaleService::getInstance()->trans('f.constraints.notunique', array('ucf')));
-    	if (isset($params['documentId']) && intval($params['documentId']) > 0)
-    	{
-    		$this->_userId = intval($params['documentId']);
-    	}
-    	elseif (isset($params['parameter']) && intval($params['parameter']) > 0)
-    	{
-    		$this->_userId = intval($params['parameter']);
-    	}
-    }
-    
-    /**
-     * @param  mixed $value
-     * @return boolean
-     */
-    public function isValid($value)
-    {
-    	$this->_setValue($value);
-    	$user = null;
+		if (isset($params['documentId']) && intval($params['documentId']) > 0)
+		{
+			$this->_userId = intval($params['documentId']);
+		}
+		elseif (isset($params['parameter']) && intval($params['parameter']) > 0)
+		{
+			$this->_userId = intval($params['parameter']);
+		}
+	}
+	
+	/**
+	 * @param  mixed $value
+	 * @return boolean
+	 */
+	public function isValid($value)
+	{
+		$this->_setValue($value);
+		$user = null;
 		$groupIds = array();
 		if ($this->_userId > 0)
 		{
@@ -48,8 +48,8 @@ class change_PseudonymConstraint extends Zend_Validate_Abstract
 		if (!users_UserService::getInstance()->validateUserLabel($value, $user, $groupIds))
 		{
 			$this->_error(self::INVALID_PSEUDONYM);
-            return false;
+			return false;
 		}
-        return true;
-    }    
+		return true;
+	}	
 }

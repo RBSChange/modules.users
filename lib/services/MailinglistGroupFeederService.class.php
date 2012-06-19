@@ -1,27 +1,10 @@
 <?php
 /**
- * users_MailinglistGroupFeederService
- * @package modules.emailing
+ * @package modules.users
+ * @method users_MailinglistGroupFeederService getInstance()
  */
 class users_MailinglistGroupFeederService extends emailing_MailinglistFeederBaseService
 {
-	/**
-	 * @var users_MailinglistGroupFeederService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_MailinglistGroupFeederService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}	
-
 	/**
 	 * @param emailing_persistentdocument_dynamicmailinglist $list
 	 */
@@ -44,7 +27,7 @@ class users_MailinglistGroupFeederService extends emailing_MailinglistFeederBase
 	}
 	
 	/**
-	 * @param Integer $id
+	 * @param integer $id
 	 * @param emailing_persistentdocument_dynamicmailinglist $list
 	 */
 	public function refreshSubscriber($id, $list)

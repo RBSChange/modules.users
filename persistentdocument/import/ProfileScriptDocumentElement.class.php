@@ -5,5 +5,5 @@
  */
 class users_ProfileScriptDocumentElement extends import_ScriptDocumentElement
 {
-    
+	
 }

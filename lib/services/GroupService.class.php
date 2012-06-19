@@ -1,23 +1,10 @@
 <?php
+/**
+ * @package modules.users
+ * @method users_GroupService getInstance()
+ */
 class users_GroupService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var users_GroupService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_GroupService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return users_persistentdocument_group
 	 */
@@ -32,7 +19,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_users/group');
+		return $this->getPersistentProvider()->createQuery('modules_users/group');
 	}
 
 	/**
@@ -46,7 +33,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	}
 
 	/**
-	 * @param String $label
+	 * @param string $label
 	 * @return users_persistentdocument_group or null
 	 */
 	public function getByLabel($label)
@@ -86,33 +73,33 @@ class users_GroupService extends f_persistentdocument_DocumentService
 			$startIndex = 0;
 			
 			$idsArray = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::eq('groups', $document))
-          			 ->addOrder(Order::asc('label'))
-           		 ->setProjection(Projections::property('id', 'id'))->find(); 
-           		          		 
-           	$totalCount = count($idsArray);
-           	foreach ($idsArray as $index => $row)
-           	{            		
-           		if ($row['id'] == $locateDocumentId)
-           		{
-           			$startIndex = $index - ($index % $pageSize);
-           			break;
-           		}
-           	}	 
+		  			 ->add(Restrictions::eq('groups', $document))
+		  			 ->addOrder(Order::asc('label'))
+		   		 ->setProjection(Projections::property('id', 'id'))->find(); 
+		   				  		 
+		   	$totalCount = count($idsArray);
+		   	foreach ($idsArray as $index => $row)
+		   	{					
+		   		if ($row['id'] == $locateDocumentId)
+		   		{
+		   			$startIndex = $index - ($index % $pageSize);
+		   			break;
+		   		}
+		   	}	 
 		}
 		else
 		{
 			$countQuery = users_UserService::getInstance()->createQuery()
 				->add(Restrictions::eq('groups', $document))
 				->setProjection(Projections::rowCount('countItems'));
-      			$resultCount = $countQuery->find();
+	  			$resultCount = $countQuery->find();
 			$totalCount = intval($resultCount[0]['countItems']);
 		}
 		
 		$query = users_UserService::getInstance()->createQuery()
-          			 ->add(Restrictions::eq('groups', $document))
-          			 ->addOrder(Order::asc('label'))
-           		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
+		  			 ->add(Restrictions::eq('groups', $document))
+		  			 ->addOrder(Order::asc('label'))
+		   		 ->setFirstResult($startIndex)->setMaxResults($pageSize);
 		return $query->find();
 	}
 	
@@ -146,7 +133,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
-	 * @param String $name
+	 * @param string $name
 	 * @param array $arguments
 	 */
 	public function __call($name, $arguments)

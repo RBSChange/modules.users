@@ -4,9 +4,9 @@
  */
 class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
 {
-    /**
-     * @return void
-     */
+	/**
+	 * @return void
+	 */
 	public function setPermissions($document)
 	{		
 		$children = $this->script->getChildren($this);

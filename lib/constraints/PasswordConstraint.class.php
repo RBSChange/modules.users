@@ -1,54 +1,54 @@
 <?php
 class change_PasswordConstraint extends Zend_Validate_Abstract
 {
-    const INVALID_PASSWORD = 'invalidPassword';
-    
-    protected $_levelArray;
-    
-     /**
-     * @var integer
-     */
-    protected $_accessorId = 0;
-    
-    /**
-     * @var string
-     */
-    protected $_securityLevel = 'minimal';
-    
+	const INVALID_PASSWORD = 'invalidPassword';
+	
+	protected $_levelArray;
+	
+	 /**
+	 * @var integer
+	 */
+	protected $_accessorId = 0;
+	
+	/**
+	 * @var string
+	 */
+	protected $_securityLevel = 'minimal';
+	
  	/**
 	 * @param array $params <documentId => integer, securityLevel => string || [parameter => integer,]>
 	 */   
-    public function __construct($params = array())
-    {
+	public function __construct($params = array())
+	{
 		$this->_levelArray = users_GroupService::getInstance()->getSecurityLevelArray();
-    	if (isset($params['documentId']) && intval($params['documentId']) > 0)
-    	{
-    		$this->_accessorId = intval($params['documentId']);
-    	}
-    	elseif (isset($params['parameter']))
-    	{
-    		if (intval($params['parameter']) > 0)
-    		{
-    			$this->_accessorId = intval($params['parameter']);
-    		}
-    		elseif(is_string($params['parameter']) && in_array($params['parameter'], $this->_levelArray))
-    		{
-    			$this->_securityLevel = $params['parameter'];
-    		}
-    	}
-    	
-    	if (isset($params['securityLevel']) && is_string($params['securityLevel']) && in_array($params['securityLevel'], $this->_levelArray))
-    	{
-    		$this->_securityLevel = $params['securityLevel'];
-    	}
-    	elseif ($this->_accessorId > 0)
-    	{
-    		$pp = f_persistentdocument_PersistentProvider::getInstance();
-    		$modelName = $pp->getDocumentModelName($this->_accessorId);
-    		if ($modelName)
-    		{
-    			$accessor = $pp->getDocumentInstance($this->_accessorId, $modelName);
-    			if ($accessor instanceof users_persistentdocument_group)	
+		if (isset($params['documentId']) && intval($params['documentId']) > 0)
+		{
+			$this->_accessorId = intval($params['documentId']);
+		}
+		elseif (isset($params['parameter']))
+		{
+			if (intval($params['parameter']) > 0)
+			{
+				$this->_accessorId = intval($params['parameter']);
+			}
+			elseif(is_string($params['parameter']) && in_array($params['parameter'], $this->_levelArray))
+			{
+				$this->_securityLevel = $params['parameter'];
+			}
+		}
+		
+		if (isset($params['securityLevel']) && is_string($params['securityLevel']) && in_array($params['securityLevel'], $this->_levelArray))
+		{
+			$this->_securityLevel = $params['securityLevel'];
+		}
+		elseif ($this->_accessorId > 0)
+		{
+			$pp = f_persistentdocument_PersistentProvider::getInstance();
+			$modelName = $pp->getDocumentModelName($this->_accessorId);
+			if ($modelName)
+			{
+				$accessor = $pp->getDocumentInstance($this->_accessorId, $modelName);
+				if ($accessor instanceof users_persistentdocument_group)	
 				{
 					if (in_array($accessor->getSecuritylevel(), $this->_levelArray))
 					{
@@ -76,20 +76,20 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 						$this->_securityLevel = $this->_levelArray[$lvlIndex];
 					}
 				}
-    		}
-    	}
-    	
-    	$this->_messageTemplates = array(self::INVALID_PASSWORD => 
-    		LocaleService::getInstance()->trans('m.users.constraints.invalidpassword-' . $this->_securityLevel, array('ucf')));
-    }
-    
-    /**
-     * @param  mixed $value
-     * @return boolean
-     */
-    public function isValid($value)
-    {
-    	$this->_setValue($value);
+			}
+		}
+		
+		$this->_messageTemplates = array(self::INVALID_PASSWORD => 
+			LocaleService::getInstance()->trans('m.users.constraints.invalidpassword-' . $this->_securityLevel, array('ucf')));
+	}
+	
+	/**
+	 * @param  mixed $value
+	 * @return boolean
+	 */
+	public function isValid($value)
+	{
+		$this->_setValue($value);
 		switch ($this->_securityLevel)
 		{
 			case 'low':
@@ -107,10 +107,10 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 		if (!$valid)
 		{
 			$this->_error(self::INVALID_PASSWORD);
-            return false;
+			return false;
 		}
-        return true;
-    }   
+		return true;
+	}   
 
 	/**
 	 * Password check: 1 char min 

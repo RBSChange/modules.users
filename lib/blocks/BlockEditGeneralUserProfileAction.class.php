@@ -7,7 +7,7 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 {
 	/**
 	 * @param f_mvc_Request $request
-	 * @return String
+	 * @return string
 	 */
 	protected function initRequest($request)
 	{
@@ -21,7 +21,7 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 	 * @see website_BlockAction::execute()
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -55,7 +55,7 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @param users_persistentdocument_usersprofile $profile
-	 * @return String
+	 * @return string
 	 */
 	public function executeSave($request, $response, users_persistentdocument_usersprofile $profile)
 	{
@@ -72,7 +72,7 @@ class users_BlockEditGeneralUserProfileAction extends website_BlockAction
 		$request->setAttribute('profile', $profile);
 		RequestContext::getInstance()->resetProfile();
 		users_ProfileService::getInstance()->initCurrent(false);
-		$this->addMessage(LocaleService::getInstance()->transFO('m.users.frontoffice.informations-updated', array('ucf', 'html')));
+		$this->addMessage(LocaleService::getInstance()->trans('m.users.frontoffice.informations-updated', array('ucf', 'html')));
 		$this->initRequest($request);
 		return website_BlockView::INPUT;
 	}

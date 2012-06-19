@@ -121,7 +121,7 @@ class users_BlockRegisterAction extends website_BlockAction
 			
 			if ($password !== $request->getParameter('password_confirm'))
 			{
-				$this->addError($ls->transFO('m.users.frontoffice.password-not-confirmed', array('ucf')), 'registration-form');
+				$this->addError($ls->trans('m.users.frontoffice.password-not-confirmed', array('ucf')), 'registration-form');
 				$isOk = false;
 			}
 		}

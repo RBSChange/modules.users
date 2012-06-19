@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<tags extends="generic">
+<?xml version="1.0" encoding="UTF-8"?>
+<tags>
 	<tag labeli18n="m.users.bo.tags.reset-password" icon="change-password">contextual_website_website_modules_users_reset-password</tag>
 	<tag labeli18n="m.users.bo.tags.change-password" icon="change-password">contextual_website_website_modules_users_change-password</tag>
 	<tag labeli18n="m.users.bo.tags.edit-profil" icon="edit">contextual_website_website_modules_users_edit-profil</tag>

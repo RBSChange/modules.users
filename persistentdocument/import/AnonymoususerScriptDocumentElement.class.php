@@ -5,15 +5,15 @@
  */
 class users_AnonymoususerScriptDocumentElement extends users_UserScriptDocumentElement
 {
-    /**
-     * @return users_persistentdocument_anonymoususer
-     */
-    protected function initPersistentDocument()
-    {
-    	return users_AnonymoususerService::getInstance()->getAnonymousUser();
-    }
-    
-    /**
+	/**
+	 * @return users_persistentdocument_anonymoususer
+	 */
+	protected function initPersistentDocument()
+	{
+		return users_AnonymoususerService::getInstance()->getAnonymousUser();
+	}
+	
+	/**
 	 * @return users_persistentdocument_anonymoususermodel
 	 */
 	protected function getDocumentModel()

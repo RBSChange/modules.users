@@ -4,7 +4,7 @@ class users_BlockResetpasswordAction extends website_BlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -14,8 +14,8 @@ class users_BlockResetpasswordAction extends website_BlockAction
 		}
 		
 		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
-        if ($request->hasParameter('submit') && (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Resetpassword'))
-        {
+		if ($request->hasParameter('submit') && (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Resetpassword'))
+		{
 			$login = trim($request->getParameter('login'));
 			if (!empty($login))
 			{
@@ -39,7 +39,7 @@ class users_BlockResetpasswordAction extends website_BlockAction
 			}
 			else
 			{
-				$error = LocaleService::getInstance()->transFO('m.users.frontoffice.resetpassword.emptylogin', array('ucf'));
+				$error = LocaleService::getInstance()->trans('m.users.frontoffice.resetpassword.emptylogin', array('ucf'));
 				$this->addError($error);
 			}
 		}

@@ -1,27 +1,10 @@
 <?php
 /**
- * users_ListDatetimeformatService
- * @package modules.users.lib.services
+ * @package modules.users
+ * @method users_ListDatetimeformatService getInstance()
  */
 class users_ListDatetimeformatService extends change_BaseService implements list_ListItemsService
 {
-	/**
-	 * @var users_ListDatetimeformatService
-	 */
-	private static $instance;
-
-	/**
-	 * @return users_ListDatetimeformatService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @see list_persistentdocument_dynamiclist::getItems()
 	 * @return list_Item[]

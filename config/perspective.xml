@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <perspective>
 	<models>
 		<model name="modules_generic/rootfolder">
@@ -36,7 +36,7 @@
 		<model name="modules_generic/systemfolder">
 			<children>
 				<child model="modules_users/dynamicgroup" />
-			</children>	
+			</children>
 			<columns>
 				<column name="refreshing" />
 				<column name="autoRefresh" />
@@ -85,7 +85,7 @@
 		</model>
 		<model name="modules_users/backendgroup">
 			<children>
-				<child model="modules_users/user" from="function"/>
+				<child model="modules_users/user" from="function" />
 			</children>
 			<drops>
 				<drop model="modules_users/user" action="move" />
@@ -100,11 +100,11 @@
 				<contextaction name="setRolesForModule" />
 				<contextaction name="createUser" />
 			</contextactions>
-		</model>		
+		</model>
 		<model name="modules_users/nogroupuserfolder">
 			<children>
-				<child model="modules_users/user" from="function"/>
-				<child model="modules_users/anonymoususer" from="function"/>
+				<child model="modules_users/user" from="function" />
+				<child model="modules_users/anonymoususer" from="function" />
 			</children>
 			<drops>
 				<drop model="modules_users/user" action="move" />
@@ -140,7 +140,7 @@
 		<action name="move" permission="Move" icon="up_down" labeli18n="m.uixul.bo.actions.move" />
 		<action name="createGroup" icon="add" single="true" permission="Insert_group" />
 		<action name="openFolder" icon="open-folder" labeli18n="m.uixul.bo.actions.openfolder" />
-		<action name="refreshDynamicgroup" single="true" icon="users-frontoffice-refresh" />.
+		<action name="refreshDynamicgroup" single="true" icon="users-frontoffice-refresh" />
 		<action name="initDefaultStructure" single="true" permission="InitDefaultStructure" icon="add" />
 	</actions>
 </perspective>
