@@ -46,11 +46,8 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 		}
 		$user->save();
 		$request->setAttribute('user', $user);
-	
-		//TODO: Email confirmation.
-		//$user->getDocumentService()->sendEmailConfirmationMessage($user, false);
 
-		$this->addMessage(LocaleService::getInstance()->transFO('m.users.frontoffice.informations-updated', array('ucf', 'html')));
+		$this->addMessage(LocaleService::getInstance()->trans('m.users.frontoffice.informations-updated', array('ucf', 'html')));
 
 		return website_BlockView::INPUT;
 	}
@@ -71,12 +68,12 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 			$login = ($request->hasParameter('login')) ? $request->getParameter('login') : $request->getParameter('email');
 			if (in_array($login, users_ModuleService::getInstance()->getDisallowedLogins()))
 			{
-				$this->addError(LocaleService::getInstance()->transFO('m.users.frontoffice.login-disallowed', array('ucf', 'html')));
+				$this->addError(LocaleService::getInstance()->trans('m.users.frontoffice.login-disallowed', array('ucf', 'html')));
 				$isOk = false;
 			}
 			else if (!users_UserService::getInstance()->validateUserLogin($login, $user))
 			{
-				$this->addError(LocaleService::getInstance()->transFO('m.users.frontoffice.login-used', array('ucf', 'html')));
+				$this->addError(LocaleService::getInstance()->trans('m.users.frontoffice.login-used', array('ucf', 'html')));
 				$isOk = false;
 			}
 		}
