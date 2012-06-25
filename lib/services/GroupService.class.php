@@ -21,6 +21,19 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	{
 		return $this->getPersistentProvider()->createQuery('modules_users/group');
 	}
+	
+	/**
+	 * @param users_persistentdocument_group $document
+	 * @param Integer $parentNodeId
+	 */
+	protected function postInsert($document, $parentNodeId)
+	{
+		// Replace linked-to-root-module document model attribute.
+		if ($document->getTreeId() === null)
+		{
+			TreeService::getInstance()->newLastChild(ModuleService::getInstance()->getRootFolderId('users'), $document->getId());
+		}
+	}
 
 	/**
 	 * @param users_persistentdocument_group $document
@@ -31,7 +44,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 			->add(Restrictions::eq('group', $document))
 			->delete();
 	}
-
+	
 	/**
 	 * @param string $label
 	 * @return users_persistentdocument_group or null
