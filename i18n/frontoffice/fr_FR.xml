@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice" lcid="fr_FR">
 	<key id="address">Adresse(s)</key>
 	<key id="salutation">Cher {title} {name}</key>

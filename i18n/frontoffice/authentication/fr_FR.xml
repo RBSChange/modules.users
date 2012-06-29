@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.authentication" lcid="fr_FR">
-  <key id="title">authentification</key>
-  <key id="badauthentication">identifiant ou mot de passe incorrect</key>
-  <key id="logout">Déconnexion</key>
-  <key id="login">votre identifiant</key>
-  <key id="email">adresse e-mail</key>
-  <key id="password">votre mot de passe</key>
-  <key id="confirmpassword">confirmer votre mot de passe</key>
-  <key id="submitbutton">valider</key>
-  <key id="anonymoususer">Invité</key>
-  <key id="resetpasswordlink">J'ai oublié mon mot de passe</key>
-  <key id="auto-login-me">connexion automatique</key>
-  <key id="auto-login-me-help">Cochez cette case pour être reconnecté automatiquement lors de vos prochaines visites sur le site.</key>
+	<key id="title">authentification</key>
+	<key id="badauthentication">identifiant ou mot de passe incorrect</key>
+	<key id="logout">Déconnexion</key>
+	<key id="login">votre identifiant</key>
+	<key id="email">adresse e-mail</key>
+	<key id="password">votre mot de passe</key>
+	<key id="confirmpassword">confirmer votre mot de passe</key>
+	<key id="submitbutton">valider</key>
+	<key id="anonymoususer">Invité</key>
+	<key id="resetpasswordlink">J'ai oublié mon mot de passe</key>
+	<key id="auto-login-me">connexion automatique</key>
+	<key id="auto-login-me-help">Cochez cette case pour être reconnecté automatiquement lors de vos prochaines visites sur le site.</key>
 </i18n>

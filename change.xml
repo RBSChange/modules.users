@@ -7,35 +7,35 @@
   <license>os</license>
   <repository>public</repository>
   <dependencies>
-    <dependency>
-      <name>change-lib/framework</name>
-      <versions>
-        <version>4.0.0</version>
-      </versions>
-    </dependency>
-    <dependency>
-      <name>change-module/list</name>
-      <versions>
-        <version>4.0.0</version>
-      </versions>
-    </dependency>
-    <dependency>
-      <name>change-module/uixul</name>
-      <versions>
-        <version>4.0.0</version>
-      </versions>
-    </dependency>
-    <dependency>
-      <name>change-module/notification</name>
-      <versions>
-        <version>4.0.0</version>
-      </versions>
-    </dependency>
-    <dependency>
-      <name>change-module/preferences</name>
-      <versions>
-        <version>4.0.0</version>
-      </versions>
-    </dependency>
+	<dependency>
+	  <name>change-lib/framework</name>
+	  <versions>
+		<version>4.0.0</version>
+	  </versions>
+	</dependency>
+	<dependency>
+	  <name>change-module/list</name>
+	  <versions>
+		<version>4.0.0</version>
+	  </versions>
+	</dependency>
+	<dependency>
+	  <name>change-module/uixul</name>
+	  <versions>
+		<version>4.0.0</version>
+	  </versions>
+	</dependency>
+	<dependency>
+	  <name>change-module/notification</name>
+	  <versions>
+		<version>4.0.0</version>
+	  </versions>
+	</dependency>
+	<dependency>
+	  <name>change-module/preferences</name>
+	  <versions>
+		<version>4.0.0</version>
+	  </versions>
+	</dependency>
   </dependencies>
 </change>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.fo" lcid="fr_FR">
 	<key id="current-value">valeur actuelle</key>
 	<key id="authdisplayname">(Afficher votre nom et votre prénom dans votre profil public)</key>

@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.messages.error" lcid="fr_FR">
-  <key id="badauthentication">identifiant ou mot de passe incorrect</key>
-  <key id="badusertype">impossible de se connecter à l'administration avec cet utilisateur</key>
-  <key id="loginandpasswordrequired">identifiant et mot de passe obligatoires</key>
-  <key id="enddatemustbeafterstartdate">la date de fin de validité doit être supérieur à la date de début.</key>
-  <key id="logindoesnotexist">l'identifiant n'éxiste pas.</key>
-  <key id="allfieldsarerequired">tous les champs sont obligatoires.</key>
-  <key id="newpasswordsnotsames">les nouveaux mot de passe ne sont pas identiques.</key>
-  <key id="badoldpassword">l'ancien mot de passe n'est pas correct.</key>
-  <key id="passwordnotsecure">votre mot de passe ne répond pas aux critères de sécurité</key>
-  <key id="cannotresetadminaccount">Vous ne pouvez pas demander un nouveau mot de passe pour ce compte.</key>
+	<key id="badauthentication">identifiant ou mot de passe incorrect</key>
+	<key id="badusertype">impossible de se connecter à l'administration avec cet utilisateur</key>
+	<key id="loginandpasswordrequired">identifiant et mot de passe obligatoires</key>
+	<key id="enddatemustbeafterstartdate">la date de fin de validité doit être supérieur à la date de début.</key>
+	<key id="logindoesnotexist">l'identifiant n'éxiste pas.</key>
+	<key id="allfieldsarerequired">tous les champs sont obligatoires.</key>
+	<key id="newpasswordsnotsames">les nouveaux mot de passe ne sont pas identiques.</key>
+	<key id="badoldpassword">l'ancien mot de passe n'est pas correct.</key>
+	<key id="passwordnotsecure">votre mot de passe ne répond pas aux critères de sécurité</key>
+	<key id="cannotresetadminaccount">Vous ne pouvez pas demander un nouveau mot de passe pour ce compte.</key>
 </i18n>

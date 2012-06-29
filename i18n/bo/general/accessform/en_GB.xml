@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.general.accessform" lcid="en_GB">
-  <key id="navigatorerrormessage">In order to access the RBS Change administration interface, please use Firefox 3.0 as your web browser. Thank you for your understanding.</key>
-  <key id="title">authentication</key>
-  <key id="downloadfirefox">download Firefox</key>
-  <key id="introduction">To access the RBS Change administration interface, you have to use the RBS Change manager extension.</key>
-  <key id="check-title">check whether the extension is installed</key>
-  <key id="check-description">To check whether the RBS Change manager extension is installed in your browser, please click on the Firefox ″Tools″ menu, ″Add-ons″ section, ″Extensions″ tab, and look for ″RBS Change Manager″ in the extension list (they are sorted alphabetically).</key>
-  <key id="install-title">install the extension</key>
-  <key id="install-description">If the RBS Change manager extension is not installed in your browser, click here.</key>
-  <key id="connect-title">log into RBS Change</key>
-  <key id="connect-description">You can log into RBS Change via the ″Tools″ menu by clicking on ″Log into RBS Change…″ or by using the Alt-C keyboard shortcut. The login window will open up to let you type in the website's URL, your ID, and your password.</key>
-  <key id="checkingextension">To log into the RBS Change administration interface, please install the ″RBS Change manager″ extension that is available here.</key>
+	<key id="navigatorerrormessage">In order to access the RBS Change administration interface, please use Firefox 3.0 as your web browser. Thank you for your understanding.</key>
+	<key id="title">authentication</key>
+	<key id="downloadfirefox">download Firefox</key>
+	<key id="introduction">To access the RBS Change administration interface, you have to use the RBS Change manager extension.</key>
+	<key id="check-title">check whether the extension is installed</key>
+	<key id="check-description">To check whether the RBS Change manager extension is installed in your browser, please click on the Firefox ″Tools″ menu, ″Add-ons″ section, ″Extensions″ tab, and look for ″RBS Change Manager″ in the extension list (they are sorted alphabetically).</key>
+	<key id="install-title">install the extension</key>
+	<key id="install-description">If the RBS Change manager extension is not installed in your browser, click here.</key>
+	<key id="connect-title">log into RBS Change</key>
+	<key id="connect-description">You can log into RBS Change via the ″Tools″ menu by clicking on ″Log into RBS Change…″ or by using the Alt-C keyboard shortcut. The login window will open up to let you type in the website's URL, your ID, and your password.</key>
+	<key id="checkingextension">To log into the RBS Change administration interface, please install the ″RBS Change manager″ extension that is available here.</key>
 </i18n>

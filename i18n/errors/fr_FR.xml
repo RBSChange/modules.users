@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.errors" lcid="fr_FR">
-  <key id="modules-users-enabled">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Accès au module″</key>
-  <key id="modules-users-editlocale">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Editer une locale″</key>
-  <key id="modules-users-order">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Modifier l'ordre des éléments″</key>
-  <key id="invalid-login">identifiant non valide</key>
-  <key id="unable-to-generate-password">impossible de generer un nouveau mot de passe</key>
-  <key id="unable-to-send-password">impossible d'envoyer le nouveau mot de passe</key>
-  <key id="invalid-authentification">erreur d'authentification</key>
-  <key id="invalid-login-or-password">Identifiant ou mot de passe non valide</key>
-  <key id="cant-remove-from-default-group">Aucun utilisateur ne peut être retiré de ce groupe. Si vous souhaitez supprimer un utilisateur, utilisez plutôt le bouton "supprimer".</key>
+	<key id="modules-users-enabled">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Accès au module″</key>
+	<key id="modules-users-editlocale">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Editer une locale″</key>
+	<key id="modules-users-order">vous n'avez pas les permissions suffisantes pour effectuer l'action suivante : ″Modifier l'ordre des éléments″</key>
+	<key id="invalid-login">identifiant non valide</key>
+	<key id="unable-to-generate-password">impossible de generer un nouveau mot de passe</key>
+	<key id="unable-to-send-password">impossible d'envoyer le nouveau mot de passe</key>
+	<key id="invalid-authentification">erreur d'authentification</key>
+	<key id="invalid-login-or-password">Identifiant ou mot de passe non valide</key>
+	<key id="cant-remove-from-default-group">Aucun utilisateur ne peut être retiré de ce groupe. Si vous souhaitez supprimer un utilisateur, utilisez plutôt le bouton "supprimer".</key>
 </i18n>

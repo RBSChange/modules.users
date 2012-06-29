@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.changepassword" lcid="en_GB">
-  <key id="oldpassword">old password</key>
-  <key id="newpassword">new password</key>
-  <key id="confirmnewpassword">confirm the new password</key>
-  <key id="submitbutton">edit</key>
-  <key id="success">you are going to receive an email confirming that your password has been changed successfully.</key>
-  <key id="exception">an error occurred while saving your password</key>
-  <key id="invalidoldpassword">your old password does not match.</key>
-  <key id="notconfirmpassword">your new password has not been confirmed.</key>
-  <key id="emptypassword">all form fields are mandatory.</key>
-  <key id="title">changing my password</key>
+	<key id="oldpassword">old password</key>
+	<key id="newpassword">new password</key>
+	<key id="confirmnewpassword">confirm the new password</key>
+	<key id="submitbutton">edit</key>
+	<key id="success">you are going to receive an email confirming that your password has been changed successfully.</key>
+	<key id="exception">an error occurred while saving your password</key>
+	<key id="invalidoldpassword">your old password does not match.</key>
+	<key id="notconfirmpassword">your new password has not been confirmed.</key>
+	<key id="emptypassword">all form fields are mandatory.</key>
+	<key id="title">changing my password</key>
 </i18n>

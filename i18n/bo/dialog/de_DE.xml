@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.dialog" lcid="de_DE">
-  <key id="base-title">Rollendefinition.</key>
-  <key id="user-title">Rollendefinition für den Benutzer ″{name}″.</key>
-  <key id="group-title">Rollendefinition für die Gruppe ″{name}″.</key>
-  <key id="module-role">Module / Rollen</key>
+	<key id="base-title">Rollendefinition.</key>
+	<key id="user-title">Rollendefinition für den Benutzer ″{name}″.</key>
+	<key id="group-title">Rollendefinition für die Gruppe ″{name}″.</key>
+	<key id="module-role">Module / Rollen</key>
 </i18n>

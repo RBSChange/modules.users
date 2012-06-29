@@ -95,9 +95,9 @@ class validation_PasswordValidator extends validation_ValidatorImpl implements v
 		
 		if ($this->getSecurityLevel())
 		{
-			$code = str_replace('.Message;', '.Message.' . ucfirst($this->getSecurityLevel()) . ';', $code);
+			$code = str_replace('.message', '.message.' . strtolower($this->getSecurityLevel()), $code);
 		}
-		return f_Locale::translate($code, array('param' => $this->getParameter()));
+		return LocaleService::getInstance()->trans($code, array('ucf'), array('param' => $this->getParameter()));
 	}
 	
 	/**

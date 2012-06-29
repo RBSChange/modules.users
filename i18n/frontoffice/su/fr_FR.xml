@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.su" lcid="fr_FR">
-  <key id="switch-user">prendre l'identité d'un autre utilisateur</key>
-  <key id="search">filtrer</key>
-  <key id="search-no-result">aucun utilisateur ne correspond à votre recherche.</key>
-  <key id="result-users-count">{usersCount} utilisateurs trouvés.</key>
-  <key id="users-list">liste des utilisateurs</key>
-  <key id="full-name">nom complet</key>
-  <key id="first-name">prénom</key>
-  <key id="last-name">nom</key>
-  <key id="login">login</key>
-  <key id="switch">connexion</key>
-  <key id="switched-success-title">connexion réussie</key>
-  <key id="switched-success">vous êtes maintenant connecté en tant que {fullName} ({login}).</key>
-  <key id="switched-error-title">connexion échouée</key>
-  <key id="switched-error-bad-arguments">paramètres incorrects.</key>
-  <key id="switched-error-do-not-have-permission">vous n'avez pas l'autorisation de vous connecter en tant que {fullName} ({login}).</key>
+	<key id="switch-user">prendre l'identité d'un autre utilisateur</key>
+	<key id="search">filtrer</key>
+	<key id="search-no-result">aucun utilisateur ne correspond à votre recherche.</key>
+	<key id="result-users-count">{usersCount} utilisateurs trouvés.</key>
+	<key id="users-list">liste des utilisateurs</key>
+	<key id="full-name">nom complet</key>
+	<key id="first-name">prénom</key>
+	<key id="last-name">nom</key>
+	<key id="login">login</key>
+	<key id="switch">connexion</key>
+	<key id="switched-success-title">connexion réussie</key>
+	<key id="switched-success">vous êtes maintenant connecté en tant que {fullName} ({login}).</key>
+	<key id="switched-error-title">connexion échouée</key>
+	<key id="switched-error-bad-arguments">paramètres incorrects.</key>
+	<key id="switched-error-do-not-have-permission">vous n'avez pas l'autorisation de vous connecter en tant que {fullName} ({login}).</key>
 </i18n>

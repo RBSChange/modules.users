@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.messages.error" lcid="en_GB">
-  <key id="badauthentication">wrong username or password</key>
-  <key id="badusertype">cannot login to the administration site with that user</key>
-  <key id="loginandpasswordrequired">username and password required</key>
-  <key id="enddatemustbeafterstartdate">the end date must be later than the start date.</key>
-  <key id="logindoesnotexist">the username does not exist.</key>
-  <key id="allfieldsarerequired">all fields are mandatory.</key>
-  <key id="newpasswordsnotsames">the new passwords do not match.</key>
-  <key id="badoldpassword">the old password is incorrect.</key>
-  <key id="passwordnotsecure">your password does not meet the security requirements</key>
-  <key id="cannotresetadminaccount">You cannot request a new password for this account.</key>
+	<key id="badauthentication">wrong username or password</key>
+	<key id="badusertype">cannot login to the administration site with that user</key>
+	<key id="loginandpasswordrequired">username and password required</key>
+	<key id="enddatemustbeafterstartdate">the end date must be later than the start date.</key>
+	<key id="logindoesnotexist">the username does not exist.</key>
+	<key id="allfieldsarerequired">all fields are mandatory.</key>
+	<key id="newpasswordsnotsames">the new passwords do not match.</key>
+	<key id="badoldpassword">the old password is incorrect.</key>
+	<key id="passwordnotsecure">your password does not meet the security requirements</key>
+	<key id="cannotresetadminaccount">You cannot request a new password for this account.</key>
 </i18n>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n lcid="en_GB" baseKey="m.users.constraints">
-  <key id="invalidpassword-low"/>
-  <key id="invalidpassword-medium"/>
-  <key id="invalidpassword-high"/>
+	<key id="invalidpassword-low" />
+	<key id="invalidpassword-medium" />
+	<key id="invalidpassword-high" />
 </i18n>

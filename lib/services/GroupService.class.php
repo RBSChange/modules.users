@@ -24,7 +24,7 @@ class users_GroupService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param users_persistentdocument_group $document
-	 * @param Integer $parentNodeId
+	 * @param integer $parentNodeId
 	 */
 	protected function postInsert($document, $parentNodeId)
 	{

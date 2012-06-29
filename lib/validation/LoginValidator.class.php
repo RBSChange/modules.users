@@ -41,6 +41,6 @@ class validation_LoginValidator extends validation_ValidatorImpl implements vali
 	 */
 	protected function getMessage()
 	{
-		return '&modules.users.bo.validation.validator.login.Message;';
+		return 'm.users.bo.validation.validator.login.message';
 	}
 }

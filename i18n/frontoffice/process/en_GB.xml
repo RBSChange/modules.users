@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.process" lcid="en_GB">
-  <key id="deliveryaddress">my DELIVERY address</key>
-  <key id="informationaddaddress">If you wish to have your order delivered to an address that is different from the ones that are currently displayed, create a new delivery address that will be added to your user account</key>
-  <key id="usethisaddress">use this address</key>
+	<key id="deliveryaddress">my DELIVERY address</key>
+	<key id="informationaddaddress">If you wish to have your order delivered to an address that is different from the ones that are currently displayed, create a new delivery address that will be added to your user account</key>
+	<key id="usethisaddress">use this address</key>
 </i18n>

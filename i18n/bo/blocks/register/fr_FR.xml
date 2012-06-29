@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.blocks.register" lcid="fr_FR">
-  <key id="title">inscription</key>
-  <key id="showloginfield">afficher le champ identifiant</key>
-  <key id="showloginfield-help">Afficher ou non le champs 'identifiant'.</key>
-  <key id="shownamefield">afficher le pseudonyme</key>
-  <key id="shownamefield-help">Afficher ou non le champs 'pseudonyme'.</key>
-  <key id="showpasswordfields">choix du mot de passe</key>
-  <key id="showpasswordfields-help">Autoriser ou non le choix du mot de passe par l'utilisateur. 
-  	Dans tous les cas l'utilisateur pourra le modifier ultérieurement.</key>
+	<key id="title">inscription</key>
+	<key id="showloginfield">afficher le champ identifiant</key>
+	<key id="showloginfield-help">Afficher ou non le champs 'identifiant'.</key>
+	<key id="shownamefield">afficher le pseudonyme</key>
+	<key id="shownamefield-help">Afficher ou non le champs 'pseudonyme'.</key>
+	<key id="showpasswordfields">choix du mot de passe</key>
+	<key id="showpasswordfields-help">Autoriser ou non le choix du mot de passe par l'utilisateur. 
+		Dans tous les cas l'utilisateur pourra le modifier ultérieurement.</key>
 </i18n>

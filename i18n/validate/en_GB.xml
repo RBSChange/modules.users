@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.validate" lcid="en_GB">
-  <key id="errors-header-message">Errors during validation:</key>
-  <key id="passwords-do-not-match">The passwords do not match.</key>
-  <key id="lastname-is-not-valid">The "Last name" field is not valid.</key>
-  <key id="firstname-is-not-valid">The "First name" field is not valid.</key>
-  <key id="email-is-not-valid">The "Email address" field is not valid.</key>
-  <key id="password-is-not-valid">The ″Password″ field is not valid.</key>
-  <key id="addressline1-is-not-valid">The "Address (line 1)" field is not valid.</key>
-  <key id="label-is-not-valid">The "Label" field is not valid.</key>
-  <key id="zipcode-is-not-valid">The "postal code" field is not valid.</key>
-  <key id="city-is-not-valid">The "City" field is not valid.</key>
-  <key id="country-is-not-valid">The "Country" field is not valid.</key>
-  <key id="phone-is-not-valid">The "Phone number" field is not valid.</key>
-  <key id="email-address-already-used-message">The provided email address is used by another user account.</key>
+	<key id="errors-header-message">Errors during validation:</key>
+	<key id="passwords-do-not-match">The passwords do not match.</key>
+	<key id="lastname-is-not-valid">The "Last name" field is not valid.</key>
+	<key id="firstname-is-not-valid">The "First name" field is not valid.</key>
+	<key id="email-is-not-valid">The "Email address" field is not valid.</key>
+	<key id="password-is-not-valid">The ″Password″ field is not valid.</key>
+	<key id="addressline1-is-not-valid">The "Address (line 1)" field is not valid.</key>
+	<key id="label-is-not-valid">The "Label" field is not valid.</key>
+	<key id="zipcode-is-not-valid">The "postal code" field is not valid.</key>
+	<key id="city-is-not-valid">The "City" field is not valid.</key>
+	<key id="country-is-not-valid">The "Country" field is not valid.</key>
+	<key id="phone-is-not-valid">The "Phone number" field is not valid.</key>
+	<key id="email-address-already-used-message">The provided email address is used by another user account.</key>
 </i18n>

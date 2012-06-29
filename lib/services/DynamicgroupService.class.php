@@ -54,7 +54,7 @@ class users_DynamicgroupService extends users_GroupService
 			$reference = DocumentHelper::getDocumentInstance($document->getParameter('referenceId'));
 			if ($reference !== null)
 			{
-				$resume['properties']['reference'] = $reference->getLabel() . ' (' . f_Locale::translateUI($reference->getPersistentModel()->getLabel()) . ' - ' . $reference->getId() . ')';
+				$resume['properties']['reference'] = $reference->getLabel() . ' (' . LocaleService::getInstance()->trans($reference->getPersistentModel()->getLabelKey()) . ' - ' . $reference->getId() . ')';
 			}
 		}
 		catch (Exception $e)

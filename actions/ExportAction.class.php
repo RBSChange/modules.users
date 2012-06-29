@@ -47,13 +47,13 @@ class users_ExportAction extends change_Action
 	private function generateFields($model)
 	{
 		$fieldNames = array();
-		$key = '&modules.' . $model->getModuleName() . '.document.' . $model->getDocumentName() . '.';
+		$key = 'm.' . $model->getModuleName() . '.document.' . $model->getDocumentName() . '.';
 		
 		foreach ($model->getPropertiesInfos() as $property) 
 		{
 			if ($property->isDocument() && $property->isArray()) {continue;}
 			$name = $property->getName();
-			$translation = f_Locale::translate($key. ucfirst($name) . ';', null, null, false);
+			$translation = LocaleService::getInstance()->trans($key. strtolower($name), array('ucf'), null, null, false);
 			if ($translation)
 			{
 				$fieldNames[$name] = $translation;
@@ -84,7 +84,7 @@ class users_ExportAction extends change_Action
 			else if ($property->getType() == 'Boolean')
 			{
 				$getter = 'get'.ucfirst($propertyName);
-				$values[$propertyName] = $document->{$getter}() ? f_Locale::translate('&modules.uixul.bo.general.Yes;') : f_Locale::translate('&modules.uixul.bo.general.No;');   
+				$values[$propertyName] = $document->{$getter}() ? LocaleService::getInstance()->trans('m.uixul.bo.general.yes', array('ucf')) : LocaleService::getInstance()->trans('m.uixul.bo.general.no', array('ucf'));   
 			}
 			else if ($property->isDocument() && !$property->isArray())
 			{

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.doceditor.property" lcid="fr_FR">
-  <key id="lastlogin-empty">jamais connecté</key>
-  <key id="cardinality">nombre d'utilisateurs</key>
-  <key id="refreshing">rafraichissement en cours</key>
-  <key id="reference">référence</key>
-  <key id="website">utilisateur du site</key>
-  <key id="linkedwebsites">site lié pour l'authentification</key>
+	<key id="lastlogin-empty">jamais connecté</key>
+	<key id="cardinality">nombre d'utilisateurs</key>
+	<key id="refreshing">rafraichissement en cours</key>
+	<key id="reference">référence</key>
+	<key id="website">utilisateur du site</key>
+	<key id="linkedwebsites">site lié pour l'authentification</key>
 </i18n>

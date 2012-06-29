@@ -875,7 +875,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		
 		$rq = RequestContext::getInstance();
 		$params = array(
-			'browsername' => f_Locale::translate('&modules.generic.browsers.' . $rq->getUserAgentType() . '_' . $rq->getUserAgentTypeVersion() . ';')
+			'browsername' => LocaleService::getInstance()->trans('m.generic.browsers.' . $rq->getUserAgentType() . '_' . $rq->getUserAgentTypeVersion())
 		);
 		UserActionLoggerService::getInstance()->addCurrentUserDocumentEntry($action, $user, $params, 'users');
 
@@ -1106,7 +1106,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 		if (!$user->getTitle())
 		{
-			$localeKey = "&modules.users.frontoffice.salutation-undefined;";
+			$localeKey = 'm.users.frontoffice.salutation-undefined';
 		}
 		else
 		{
@@ -1114,15 +1114,15 @@ class users_UserService extends f_persistentdocument_DocumentService
 
 			if (preg_match('/^(mm|mll|mad)/i', $title))
 			{
-				$localeKey = "&modules.users.frontoffice.salutation-woman;";
+				$localeKey = 'm.users.frontoffice.salutation-woman';
 			}
 			else
 			{
-				$localeKey = "&modules.users.frontoffice.salutation;";
+				$localeKey = 'm.users.frontoffice.salutation';
 			}
 		}
 
-		return f_Locale::translate($localeKey, array("title" => $title, "name"  => $name));
+		return LocaleService::getInstance()->trans($localeKey, array(), array("title" => $title, "name"  => $name));
 	}
 	
 	/**
@@ -1139,7 +1139,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		$lastLogin = $document->getUILastlogin();
 		if ($lastLogin === null)
 		{
-			$lastLogin = f_Locale::translateUI("&modules.users.bo.doceditor.property.Lastlogin-empty;");
+			$lastLogin = LocaleService::getInstance()->trans("m.users.bo.doceditor.property.lastlogin-empty", array('ucf'));
 		}
 		$data['history']['lastlogin'] = $lastLogin;
 		$lastping = $document->getUILastping();

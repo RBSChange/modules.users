@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.changepassword" lcid="fr_FR">
-  <key id="title">modification de mon mot de passe</key>
-  <key id="oldpassword">ancien mot de passe</key>
-  <key id="newpassword">nouveau mot de passe</key>
-  <key id="confirmnewpassword">confirmer le nouveau mot de passe</key>
-  <key id="submitbutton">modifier</key>
-  <key id="success">la confirmation du changement de votre mot de passe va vous être envoyé par email.</key>
-  <key id="exception">une erreur est survenu pendant la sauvegarde de votre mot passe.</key>
-  <key id="invalidoldpassword">votre ancien mot de passe ne correspond pas.</key>
-  <key id="notconfirmpassword">votre nouveau mot de passe n'a pas été confirmé.</key>
-  <key id="emptypassword">tout les champs du formulaire sont obligatoires.</key>
+	<key id="title">modification de mon mot de passe</key>
+	<key id="oldpassword">ancien mot de passe</key>
+	<key id="newpassword">nouveau mot de passe</key>
+	<key id="confirmnewpassword">confirmer le nouveau mot de passe</key>
+	<key id="submitbutton">modifier</key>
+	<key id="success">la confirmation du changement de votre mot de passe va vous être envoyé par email.</key>
+	<key id="exception">une erreur est survenu pendant la sauvegarde de votre mot passe.</key>
+	<key id="invalidoldpassword">votre ancien mot de passe ne correspond pas.</key>
+	<key id="notconfirmpassword">votre nouveau mot de passe n'a pas été confirmé.</key>
+	<key id="emptypassword">tout les champs du formulaire sont obligatoires.</key>
 </i18n>

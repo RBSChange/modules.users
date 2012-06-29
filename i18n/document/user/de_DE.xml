@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.document.user" lcid="de_DE">
-  <key id="startpublicationdate">Gültigkeitsanfang des Kontos</key>
-  <key id="startpublicationdate-help">das Konto kann nur ab diesem Datum genutzt werden</key>
-  <key id="endpublicationdate">Gültigkeitsende des Kontos</key>
-  <key id="endpublicationdate-help">das Konto wird ab diesem Datum nicht mehr verfügbar sein</key>
-  <key id="email">E-mail Adresse</key>
-  <key id="email-help">E-mail Adresse des Benutzers</key>
-  <key id="login">Benutzername</key>
-  <key id="login-help">Login</key>
-  <key id="password">Passwort</key>
-  <key id="password-help">Passwort des Benutzers. Dieses Feld kann nicht geändert werden, nur resettet.</key>
-  <key id="id">Change Benutzername</key>
-  <key id="label">Konto</key>
-  <key id="author">Erstellt von</key>
-  <key id="creationdate">Erstellt am</key>
-  <key id="modificationdate">Geändert am</key>
-  <key id="publicationstatus">Status</key>
-  <key id="lastlogin">Letzte Anmeldung</key>
-  <key id="lastping">Letzter Besuch</key>
-  
-  <key id="issudoer">sudoer</key>
-  <key id="issudoer-help">die selektierten Benutzer werden die möglichkeit haben die Identität jedes beliebigen Mitglieds dieser Gruppe	einzunehmen.</key>
-
+	<key id="startpublicationdate">Gültigkeitsanfang des Kontos</key>
+	<key id="startpublicationdate-help">das Konto kann nur ab diesem Datum genutzt werden</key>
+	<key id="endpublicationdate">Gültigkeitsende des Kontos</key>
+	<key id="endpublicationdate-help">das Konto wird ab diesem Datum nicht mehr verfügbar sein</key>
+	<key id="email">E-mail Adresse</key>
+	<key id="email-help">E-mail Adresse des Benutzers</key>
+	<key id="login">Benutzername</key>
+	<key id="login-help">Login</key>
+	<key id="password">Passwort</key>
+	<key id="password-help">Passwort des Benutzers. Dieses Feld kann nicht geändert werden, nur resettet.</key>
+	<key id="id">Change Benutzername</key>
+	<key id="label">Konto</key>
+	<key id="author">Erstellt von</key>
+	<key id="creationdate">Erstellt am</key>
+	<key id="modificationdate">Geändert am</key>
+	<key id="publicationstatus">Status</key>
+	<key id="lastlogin">Letzte Anmeldung</key>
+	<key id="lastping">Letzter Besuch</key>
+	<key id="issudoer">sudoer</key>
+	<key id="issudoer-help">die selektierten Benutzer werden die möglichkeit haben die Identität jedes beliebigen Mitglieds dieser Gruppe	einzunehmen.</key>
 </i18n>

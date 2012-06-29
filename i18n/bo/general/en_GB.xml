@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.general" lcid="en_GB">
-  <key id="module-name">users</key>
-  <key id="tree-root-name">users</key>
-  <key id="system-folder-name">users</key>
-  <key id="changepassword">change my password</key>
-  <key id="disconnect">log out</key>
-  <key id="disconnectconfirm">Do you really want to log out?</key>
-  <key id="dashboard-userslisttitle">logged in user list</key>
-  <key id="dashboard-userslistmore">display the users who are not logged in</key>
-  <key id="dashboard-userslistless">hide the users who are not logged in</key>
-  <key id="dashboard-statusnull">never logged in</key>
-  <key id="dashboard-statusdisconnected">not logged in</key>
-  <key id="dashboard-statusnullfemale">never logged in</key>
-  <key id="dashboard-statusdisconnectedfemale">not logged in</key>
-  <key id="dashboard-statusnew">has just logged in</key>
-  <key id="dashboard-statussince">since</key>
-  <key id="dashboard-statuslastconnection">last login</key>
-  <key id="generate-random-password">generate random password</key>
-  <key id="confirmexportmessage">do you want to export the group in CSV format?</key>
+	<key id="module-name">users</key>
+	<key id="tree-root-name">users</key>
+	<key id="system-folder-name">users</key>
+	<key id="changepassword">change my password</key>
+	<key id="disconnect">log out</key>
+	<key id="disconnectconfirm">Do you really want to log out?</key>
+	<key id="dashboard-userslisttitle">logged in user list</key>
+	<key id="dashboard-userslistmore">display the users who are not logged in</key>
+	<key id="dashboard-userslistless">hide the users who are not logged in</key>
+	<key id="dashboard-statusnull">never logged in</key>
+	<key id="dashboard-statusdisconnected">not logged in</key>
+	<key id="dashboard-statusnullfemale">never logged in</key>
+	<key id="dashboard-statusdisconnectedfemale">not logged in</key>
+	<key id="dashboard-statusnew">has just logged in</key>
+	<key id="dashboard-statussince">since</key>
+	<key id="dashboard-statuslastconnection">last login</key>
+	<key id="generate-random-password">generate random password</key>
+	<key id="confirmexportmessage">do you want to export the group in CSV format?</key>
 </i18n>

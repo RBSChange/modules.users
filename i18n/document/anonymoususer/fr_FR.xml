@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.document.anonymoususer" lcid="fr_FR">
-  <include id="m.users.document.user"/>
-  <key id="document-name">utilisateur anonyme</key>
+	<include id="m.users.document.user" />
+	<key id="document-name">utilisateur anonyme</key>
 </i18n>

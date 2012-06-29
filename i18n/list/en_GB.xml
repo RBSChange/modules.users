@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n lcid="en_GB" baseKey="m.users.list">
-  <key id="timezone-label"/>
-  <key id="timezone-description"/>
-  <key id="dateformat-label"/>
-  <key id="dateformat-description"/>
-  <key id="datetimeformat-label"/>
-  <key id="datetimeformat-description"/>
-  <key id="lcid-label"/>
-  <key id="lcid-description"/>
+	<key id="timezone-label" />
+	<key id="timezone-description" />
+	<key id="dateformat-label" />
+	<key id="dateformat-description" />
+	<key id="datetimeformat-label" />
+	<key id="datetimeformat-description" />
+	<key id="lcid-label" />
+	<key id="lcid-description" />
 </i18n>

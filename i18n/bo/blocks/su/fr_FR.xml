@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.blocks.su" lcid="fr_FR">
-  <key id="title">Su</key>
-  <key id="itemsperpage">utilisateurs par page</key>
-  <key id="itemsperpage-help">nombre d'utilisateur affichés par page dans la liste des utilisateurs disponibles.</key>
-  <key id="masknonfiltered">masquer liste sans filtre</key>
-  <key id="masknonfiltered-help">Ne pas afficher la liste d'utilisateurs si aucun mot-clé n'est saisi.</key>
+	<key id="title">Su</key>
+	<key id="itemsperpage">utilisateurs par page</key>
+	<key id="itemsperpage-help">nombre d'utilisateur affichés par page dans la liste des utilisateurs disponibles.</key>
+	<key id="masknonfiltered">masquer liste sans filtre</key>
+	<key id="masknonfiltered-help">Ne pas afficher la liste d'utilisateurs si aucun mot-clé n'est saisi.</key>
 </i18n>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.messages.error.passwordnotsecure" lcid="de_DE">
-  <key id="low">Ihr Passwort muss zwichen 6 und 12 Zeichen beinhalten</key>
-  <key id="medium">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen beinhalten</key>
-  <key id="high">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen und sowohl Gross- als Kleinbuchstaben beinhalten</key>
+	<key id="low">Ihr Passwort muss zwichen 6 und 12 Zeichen beinhalten</key>
+	<key id="medium">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen beinhalten</key>
+	<key id="high">Ihr Passwort muss zwichen 6 und 12 alfanumerische Zeichen und sowohl Gross- als Kleinbuchstaben beinhalten</key>
 </i18n>

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.mail" lcid="en_GB">
-  <key id="starting">You have received this email because you have just created an account.</key>
-  <key id="accesstoyouraccount">In order to access our website and your account :</key>
-  <key id="mailsubject">Account creation</key>
-  <key id="accountcreationend">See you on our website soon.</key>
+	<key id="starting">You have received this email because you have just created an account.</key>
+	<key id="accesstoyouraccount">In order to access our website and your account :</key>
+	<key id="mailsubject">Account creation</key>
+	<key id="accountcreationend">See you on our website soon.</key>
 </i18n>

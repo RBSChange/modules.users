@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.document.backendgroup" lcid="de_DE">
-  <include id="m.users.document.group"/>
-  <key id="document-name">Change Gruppe</key>
+	<include id="m.users.document.group" />
+	<key id="document-name">Change Gruppe</key>
 </i18n>

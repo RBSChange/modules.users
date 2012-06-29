@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.document.dynamicgroup" lcid="en_GB">
-  <include id="m.users.document.group"/>
-  <key id="document-name">dynamic users group</key>
-  <key id="autorefresh">refresh automatically</key>
-  <key id="autorefresh-help"/>
+	<include id="m.users.document.group" />
+	<key id="document-name">dynamic users group</key>
+	<key id="autorefresh">refresh automatically</key>
+	<key id="autorefresh-help" />
 </i18n>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.blocks.dashboardconnectedusers" lcid="fr_FR">
-  <key id="title">utilisateurs connectés</key>
+	<key id="title">utilisateurs connectés</key>
 </i18n>

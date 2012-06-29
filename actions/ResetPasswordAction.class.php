@@ -29,7 +29,7 @@ class users_ResetPasswordAction extends change_JSONAction
 			{
 				if ($e->getKey())
 				{
-					$error = f_Locale::translate('&' . $e->getKey() . ';', $e->getAttributes());
+					$error = LocaleService::getInstance()->trans($e->getKey(), array(), $e->getAttributes());
 				}
 				else
 				{
@@ -39,13 +39,13 @@ class users_ResetPasswordAction extends change_JSONAction
 			catch (Exception $e)
 			{
 				Framework::exception($e);
-				$error = f_Locale::translate('&modules.users.frontoffice.resetpassword.Exception;');
+				$error = LocaleService::getInstance()->trans('m.users.frontoffice.resetpassword.exception', array('ucf'));
 			}
 			
 			return $this->sendJSONError($error, false);
 		
 		}
-		return $this->sendJSONError(f_Locale::translate('&modules.users.messages.error.LoginDoesNotExist;'), false);
+		return $this->sendJSONError(LocaleService::getInstance()->trans('m.users.messages.error.logindoesnotexist', array('ucf')), false);
 	}
 	
 	public function getRequestMethods()

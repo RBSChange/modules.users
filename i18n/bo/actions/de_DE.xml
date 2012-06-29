@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.actions" lcid="de_DE">
-  <key id="createuserr">einen Benutzer erstellen</key>
-  <key id="creategroup">eine Benutzergruppe erstellen</key>
-  <key id="removeuser">Löschvorgang eines Benutzers</key>
-  <key id="exportusers">Veröffentlichte Benutzer exportieren</key>
-  <key id="setrolesformodule">Basisrollen für alle Module definieren</key>
+	<key id="createuserr">einen Benutzer erstellen</key>
+	<key id="creategroup">eine Benutzergruppe erstellen</key>
+	<key id="removeuser">Löschvorgang eines Benutzers</key>
+	<key id="exportusers">Veröffentlichte Benutzer exportieren</key>
+	<key id="setrolesformodule">Basisrollen für alle Module definieren</key>
 </i18n>

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.actions" lcid="en_GB">
-  <key id="createuser">create user</key>
-  <key id="creategroup">create group</key>
-  <key id="removeuser">remove from group</key>
-  <key id="exportusers">Export published users</key>
-  <key id="setrolesformodule">Define base roles for all modules</key>
-  <key id="refreshdynamicgroup"/>
-  <key id="initdefaultstructure"/>
+	<key id="createuser">create user</key>
+	<key id="creategroup">create group</key>
+	<key id="removeuser">remove from group</key>
+	<key id="exportusers">Export published users</key>
+	<key id="setrolesformodule">Define base roles for all modules</key>
+	<key id="refreshdynamicgroup" />
+	<key id="initdefaultstructure" />
 </i18n>

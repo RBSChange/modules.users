@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.general.changepassword" lcid="fr_FR">
-  <key id="title">Changer mon mot de passe</key>
-  <key id="foruser">Utilisateur: </key>
-  <key id="oldpassword">Ancien mot de passe</key>
-  <key id="newpassword">Nouveau mot de passe</key>
-  <key id="newpasswordconfirmation">Confirmation du mot de passe</key>
-  <key id="submit">Changer mon mot de passe</key>
-  <key id="success">mot de passe changé avec succès</key>
-  <key id="successtext">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</key>
+	<key id="title">Changer mon mot de passe</key>
+	<key id="foruser">Utilisateur: </key>
+	<key id="oldpassword">Ancien mot de passe</key>
+	<key id="newpassword">Nouveau mot de passe</key>
+	<key id="newpasswordconfirmation">Confirmation du mot de passe</key>
+	<key id="submit">Changer mon mot de passe</key>
+	<key id="success">mot de passe changé avec succès</key>
+	<key id="successtext">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</key>
 </i18n>

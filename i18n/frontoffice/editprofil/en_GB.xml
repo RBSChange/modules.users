@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.editprofil" lcid="en_GB">
-  <key id="login">username</key>
-  <key id="changepassword">change the password</key>
-  <key id="title">title</key>
-  <key id="firstname">first name</key>
-  <key id="lastname">last name</key>
-  <key id="email">email address</key>
-  <key id="modify">edit</key>
-  <key id="submitbutton">edit</key>
+	<key id="login">username</key>
+	<key id="changepassword">change the password</key>
+	<key id="title">title</key>
+	<key id="firstname">first name</key>
+	<key id="lastname">last name</key>
+	<key id="email">email address</key>
+	<key id="modify">edit</key>
+	<key id="submitbutton">edit</key>
 </i18n>

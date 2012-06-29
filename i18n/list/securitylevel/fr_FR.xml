@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.list.securitylevel" lcid="fr_FR">
-  <key id="minimal">minimale</key>
-  <key id="low">basse</key>
-  <key id="medium">moyenne</key>
-  <key id="high">haute</key>
+	<key id="minimal">minimale</key>
+	<key id="low">basse</key>
+	<key id="medium">moyenne</key>
+	<key id="high">haute</key>
 </i18n>

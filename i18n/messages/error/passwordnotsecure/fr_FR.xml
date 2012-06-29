@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.messages.error.passwordnotsecure" lcid="fr_FR">
-  <key id="low">votre mot de passe doit comporter entre 6 et 12 caractères</key>
-  <key id="medium">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques</key>
-  <key id="high">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques comprenant des lettres minuscules et majuscules</key>
+	<key id="low">votre mot de passe doit comporter entre 6 et 12 caractères</key>
+	<key id="medium">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques</key>
+	<key id="high">votre mot de passe doit comporter entre 6 et 12 caractères alpha-numériques comprenant des lettres minuscules et majuscules</key>
 </i18n>

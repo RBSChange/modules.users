@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.adminauthentification" lcid="en_GB">
-  <key id="lostpassword-nouser">No user account is associated to the username ″{login}″.</key>
-  <key id="lostpassword-success">Your request for a new password for account ″{login}″ has been  processed. An email has been sent to you at the address  associated with your account.</key>
+	<key id="lostpassword-nouser">No user account is associated to the username ″{login}″.</key>
+	<key id="lostpassword-success">Your request for a new password for account ″{login}″ has been	processed. An email has been sent to you at the address	associated with your account.</key>
 </i18n>

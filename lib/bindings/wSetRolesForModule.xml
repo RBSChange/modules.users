@@ -190,7 +190,7 @@
 					if (modifiedRoles.length > 0)
 					{
 						var me = this;
-        				var callBack = function(result) {me.onSetUserModulePermission(result);};
+						var callBack = function(result) {me.onSetUserModulePermission(result);};
 						wCore.executeJSON('users', 'SetUserModulePermission', 
 							{cmpref:this.roleData.user.id, acl:modifiedRoles}, callBack, true);
 					}
@@ -216,22 +216,22 @@
 			xmlns:html="http://www.w3.org/1999/xhtml"
 			xmlns:xbl="http://www.mozilla.org/xbl">
 			<vbox flex="1">
-				<label anonid="titleinfo" value="${trans:m.users.bo.dialog.Base-title,ucf,attr}" class="wizardTitle" />
+				<label anonid="titleinfo" value="${trans:m.users.bo.dialog.base-title,ucf,attr}" class="wizardTitle" />
 				<spacer height="5px" />
 				<vbox flex="1" style="min-height:200px">
 					<grid style="height:20px;border-bottom : black solid 2px">
 						<columns anonid="headerColumnDef1">
-					    	<column style="width:150px" />	
+							<column style="width:150px" />	
 					  	</columns>
 						<rows>
 							<row anonid="rowHeader">
-								<label value="${trans:m.users.bo.dialog.Module-role,ucf,attr}" style="font-weight: bolder" crop="end"/>
+								<label value="${trans:m.users.bo.dialog.module-role,ucf,attr}" style="font-weight: bolder" crop="end"/>
 							</row>
 						</rows>
 					</grid>
 					<grid flex="1" style="overflow: auto;border-bottom : black solid 2px">
 						<columns anonid="headerColumnDef2">
-					    	<column style="width:150px" />	
+							<column style="width:150px" />	
 					  	</columns>
 						<rows anonid="rowContainer">
 						</rows>
@@ -239,9 +239,9 @@
 				</vbox>
 				<spacer height="5px" />
 				<hbox>
-					<button width="100px" image="{IconsBase}/small/check.png" oncommand="onOk();" label="${trans:m.uixul.bo.dialog.Apply,ucf,attr}" />
+					<button width="100px" image="{IconsBase}/small/check.png" oncommand="onOk();" label="${trans:m.uixul.bo.dialog.apply,ucf,attr}" />
 					<spacer flex="1" />
-					<button width="100px" image="{IconsBase}/small/delete.png" oncommand="onCancel();" label="${trans:m.uixul.bo.dialog.Cancel,ucf,attr}" />
+					<button width="100px" image="{IconsBase}/small/delete.png" oncommand="onCancel();" label="${trans:m.uixul.bo.dialog.cancel,ucf,attr}" />
 				</hbox>
 			</vbox>		
 		</xbl:content>

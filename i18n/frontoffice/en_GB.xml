@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice" lcid="en_GB">
-  <key id="password-wrong">wrong password</key>
-  <key id="registration-confirmed">registration confirmed</key>
-  <key id="email-confirmation-required">You will receive an email. You must reply to it to validate your account.</key>
-  <key id="edit-profile">edit your profile</key>
-  <key id="informations-updated">Your information has been updated successfully.</key>
-  <key id="user-informations">user information</key>
-  <key id="login-button">log in</key>
-  <key id="already-registered">already registered?</key>
-  <key id="already-logged-in">you're logged in</key>
-  <key id="you-are-logged-as">you are logged in as {fullName}</key>
-  <key id="address">Address(es)</key>
-  <key id="create-my-account">create my account</key>
-  <key id="login-disallowed">unauthorised login</key>
-  <key id="login-used">this username is already in use</key>
-  <key id="password-successfully-changed">your new password has been sent to you by email.</key>
-  <key id="register-link">create my user account</key>
-  <key id="registration">registration</key>
-  <key id="registration-login-help">leave this field empty to use your email address as your username.</key>
-  <key id="salutation">Dear {title} {name}</key>
-  <key id="salutation-undefined">Dear {title} {name}</key>
-  <key id="salutation-woman">Dear {title} {name}</key>
-  <key id="general-informations"/>
-  <key id="registration-label-help"/>
+	<key id="password-wrong">wrong password</key>
+	<key id="registration-confirmed">registration confirmed</key>
+	<key id="email-confirmation-required">You will receive an email. You must reply to it to validate your account.</key>
+	<key id="edit-profile">edit your profile</key>
+	<key id="informations-updated">Your information has been updated successfully.</key>
+	<key id="user-informations">user information</key>
+	<key id="login-button">log in</key>
+	<key id="already-registered">already registered?</key>
+	<key id="already-logged-in">you're logged in</key>
+	<key id="you-are-logged-as">you are logged in as {fullName}</key>
+	<key id="address">Address(es)</key>
+	<key id="create-my-account">create my account</key>
+	<key id="login-disallowed">unauthorised login</key>
+	<key id="login-used">this username is already in use</key>
+	<key id="password-successfully-changed">your new password has been sent to you by email.</key>
+	<key id="register-link">create my user account</key>
+	<key id="registration">registration</key>
+	<key id="registration-login-help">leave this field empty to use your email address as your username.</key>
+	<key id="salutation">Dear {title} {name}</key>
+	<key id="salutation-undefined">Dear {title} {name}</key>
+	<key id="salutation-woman">Dear {title} {name}</key>
+	<key id="general-informations" />
+	<key id="registration-label-help" />
 </i18n>

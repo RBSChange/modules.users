@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.tags" lcid="fr_FR">
-  <key id="reset-password">Nouveau mot de passe</key>
-  <key id="change-password">Changer de mot de passe</key>
-  <key id="edit-profil">Editer votre profil</key>
-  <key id="secure-homepage">Page d'accueil sécurisée</key>
-  <key id="register-block">inscription</key>
+	<key id="reset-password">Nouveau mot de passe</key>
+	<key id="change-password">Changer de mot de passe</key>
+	<key id="edit-profil">Editer votre profil</key>
+	<key id="secure-homepage">Page d'accueil sécurisée</key>
+	<key id="register-block">inscription</key>
 </i18n>

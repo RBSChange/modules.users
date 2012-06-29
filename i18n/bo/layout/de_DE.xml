@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.layout" lcid="de_DE">
-  <key id="authentication">Authentifizierung</key>
-  <key id="showinfo">Benutzerinformation</key>
-  <key id="resetpassword">Neues Passwort</key>
-  <key id="changepassword">Ändern Sie Ihr Passwort</key>
-  <key id="editprofil">Ihr Profil bearbeiten</key>
+	<key id="authentication">Authentifizierung</key>
+	<key id="showinfo">Benutzerinformation</key>
+	<key id="resetpassword">Neues Passwort</key>
+	<key id="changepassword">Ändern Sie Ihr Passwort</key>
+	<key id="editprofil">Ihr Profil bearbeiten</key>
 </i18n>

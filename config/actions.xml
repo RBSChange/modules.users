@@ -10,7 +10,7 @@
 		<parameter name="listWidget" />
 		<body><![CDATA[
 			this.createDocumentEditor('modules_users_group', listWidget.getSelectedItems()[0].id);
-    	]]></body>
+		]]></body>
 	</action>	
 	<action name="removeUser">
 		<parameter name="listWidget" />
@@ -23,7 +23,7 @@
 	<action name="exportUsers">
 		<parameter name="listWidget" />
 		<body><![CDATA[			
-			if (confirm("${trans:m.users.bo.general.ConfirmExportMessage,ucf,js}"))
+			if (confirm("${trans:m.users.bo.general.confirmexportmessage,ucf,js}"))
 			{
 				var docId = listWidget.getSelectedIds()[0];
 				var lang = this.getContextLang(listWidget);
@@ -34,9 +34,9 @@
 	<action name="setRolesForModule">
 		<parameter name="listWidget" />
 		<body><![CDATA[
-	    	var ids = listWidget.getSelectedIds();
-	    	var lang = this.getContextLang(listWidget);
-	    	this.getController().openModalDialog(this, "setrolesformodule", {id: ids[0], lang: lang});
+			var ids = listWidget.getSelectedIds();
+			var lang = this.getContextLang(listWidget);
+			this.getController().openModalDialog(this, "setrolesformodule", {id: ids[0], lang: lang});
 		]]></body>
 	</action>	
 	<action name="refreshDynamicgroup">

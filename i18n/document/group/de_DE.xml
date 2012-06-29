@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.document.group" lcid="de_DE">
-  <key id="label">Name</key>
-  <key id="description">Beschreibung</key>
-  <key id="users">Benutzer</key>
-  <key id="securitylevel">Sicherheitsniveau der Passwörter</key>
-  <key id="securitylevel-help">Es gibt drei Sicherheitsniveaus, jedes Sicherheitsniveau erbt die Konditionen des vorhergehenden Niveaus:
-  1) niedrig, die Passwörter müssen aus mindestens 6 und maximal 12 Zeichen bestehen; 
-  2) mittel, die Passwörter müssen Buchstaben und Zahlen enthalten; 
-  3) die Passwörter müssen Gross-/ und Kleinbuchstaben enthalten.</key>
+	<key id="label">Name</key>
+	<key id="description">Beschreibung</key>
+	<key id="users">Benutzer</key>
+	<key id="securitylevel">Sicherheitsniveau der Passwörter</key>
+	<key id="securitylevel-help">Es gibt drei Sicherheitsniveaus, jedes Sicherheitsniveau erbt die Konditionen des vorhergehenden Niveaus:
+	1) niedrig, die Passwörter müssen aus mindestens 6 und maximal 12 Zeichen bestehen; 
+	2) mittel, die Passwörter müssen Buchstaben und Zahlen enthalten; 
+	3) die Passwörter müssen Gross-/ und Kleinbuchstaben enthalten.</key>
 </i18n>

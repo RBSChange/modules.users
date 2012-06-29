@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.general.resetpasswordform" lcid="en_GB">
-  <key id="explanation">This form allows you to generate a new password for your account. The new password will be sent to you by email.</key>
-  <key id="login">your login</key>
-  <key id="or">or</key>
-  <key id="email">email address</key>
-  <key id="generatenewpassword">receive a new password.</key>
+	<key id="explanation">This form allows you to generate a new password for your account. The new password will be sent to you by email.</key>
+	<key id="login">your login</key>
+	<key id="or">or</key>
+	<key id="email">email address</key>
+	<key id="generatenewpassword">receive a new password.</key>
 </i18n>

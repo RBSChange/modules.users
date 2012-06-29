@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.bo.general.resetpassword" lcid="fr_FR">
-  <key id="title">ré-initialisation du mot de passe</key>
-  <key id="success">mot de passe ré-initialisé avec succès</key>
-  <key id="successtext">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</key>
-  <key id="closepopup">fermer la fenêtre</key>
+	<key id="title">ré-initialisation du mot de passe</key>
+	<key id="success">mot de passe ré-initialisé avec succès</key>
+	<key id="successtext">votre nouveau mot de passe vient de vous être envoyé par e-mail à l'adresse suivante : {email}</key>
+	<key id="closepopup">fermer la fenêtre</key>
 </i18n>

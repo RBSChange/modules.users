@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.frontoffice.adminauthentication" lcid="en_GB">
-  <key id="email">Email</key>
-  <key id="logged">Logged in as {fullName}</key>
-  <key id="login">login</key>
-  <key id="logout">Logout</key>
-  <key id="logout-success">You are now logged out</key>
-  <key id="lostpassword">Forgot your password?</key>
-  <key id="password">Password</key>
-  <key id="remember-me">Remember me</key>
-  <key id="remember-me-help">If you choose this option, your login information will be stored in a persistent cookie. Enable this function only if you are at your computer.</key>
+	<key id="email">Email</key>
+	<key id="logged">Logged in as {fullName}</key>
+	<key id="login">login</key>
+	<key id="logout">Logout</key>
+	<key id="logout-success">You are now logged out</key>
+	<key id="lostpassword">Forgot your password?</key>
+	<key id="password">Password</key>
+	<key id="remember-me">Remember me</key>
+	<key id="remember-me-help">If you choose this option, your login information will be stored in a persistent cookie. Enable this function only if you are at your computer.</key>
 </i18n>
