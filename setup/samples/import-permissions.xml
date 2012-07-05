@@ -2,7 +2,6 @@
 <script>
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
-
 	<website tagname="default_modules_website_default-website">
 		<topic byLabel="Test permissions">
 			<permissions>
@@ -18,7 +17,6 @@
 			<frontendpermission module="website" role="AuthenticatedFrontUser" group="Utilisateurs du site Site web par défaut" />
 		</permissions>
 	</website>
-	
 	<rootfolder module="media">
 		<permissions>
 			<backendpermission module="media" role="Translator" group="Utilisateurs Change" />

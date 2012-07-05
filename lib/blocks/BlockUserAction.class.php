@@ -37,11 +37,11 @@ class users_BlockUserAction extends website_BlockAction
 		$ls = LocaleService::getInstance();
 		$ps = users_ProfileService::getInstance();
 		$profiles = array();
-		$resolver = TemplateResolver::getInstance()->setDirectory('templates')->setMimeContentType('html');
+		$resolver = change_TemplateLoader::getNewInstance()->setExtension('html');
 		foreach ($this->getProfileNames() as $profileName)
 		{
 			$template = ucfirst($profileName) . '-Inc-Profile-View';
-			if ($resolver->setPackageName('modules_'.$profileName)->getPath($template))
+			if ($resolver->getPath('modules', $profileName, 'templates', $template))
 			{
 				$profiles[$profileName] = array(
 					'label' => $ls->trans('m.'.$profileName.'.document.'.$profileName.'profile.document-name'),

@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
 	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
-
 	<systemfolder module="list" relatedmodule="users">
-		<dynamiclist listid="modules_users/timezone" label="m.users.list.timezone-label"
-			description="m.users.list.timezone-description" />
-					
-		<dynamiclist listid="modules_users/dateformat" label="m.users.list.dateformat-label"
-			description="m.users.list.dateformat-description" />
-		
-		<dynamiclist listid="modules_users/datetimeformat" label="m.users.list.datetimeformat-label"
-			description="m.users.list.datetimeformat-description" />
-		
-		<dynamiclist listid="modules_users/lcid" label="m.users.list.lcid-label"
-			description="m.users.list.lcid-description" />
-			
+		<dynamiclist listid="modules_users/timezone" label="m.users.list.timezone-label" description="m.users.list.timezone-description" />
+		<dynamiclist listid="modules_users/dateformat" label="m.users.list.dateformat-label" description="m.users.list.dateformat-description" />
+		<dynamiclist listid="modules_users/datetimeformat" label="m.users.list.datetimeformat-label" description="m.users.list.datetimeformat-description" />
+		<dynamiclist listid="modules_users/lcid" label="m.users.list.lcid-label" description="m.users.list.lcid-description" />
 		<staticlistupdate listid="modules_users/editprofilepanels">
 			<staticitem label="m.users.frontoffice.general-informations" value="users/EditGeneralUserProfile" />
 		</staticlistupdate>
-		
 	</systemfolder>
 </script>

@@ -14,8 +14,8 @@ class users_LoginInputView extends change_View
 			$rq->beginI18nWork($lang);
 			$this->forceModuleName("users");
 			$templateName = 'Users-Login-'.$lang;
-			$path = TemplateResolver::getInstance()->setPackageName('modules_users')
-				->setDirectory('templates')->getPath($templateName);			
+			$path = change_TemplateLoader::getNewInstance()->setExtension('html')
+				->getPath('modules', 'users', 'templates', $templateName) ;
 			if ($path === null)
 			{
 				$templateName = 'Users-Login-en';

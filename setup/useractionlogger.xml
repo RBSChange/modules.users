@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
-  <binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml"/>
-  <actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser"/>
-  <actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend"/>
-  <actiondef modulename="users" actionname="removeusers.backendgroup" label="modules.users.bo.useractionlogger.removeusers-backendgroup"/>
-  <actiondef modulename="users" actionname="update.backendgroup" label="modules.users.bo.useractionlogger.update-backendgroup"/>
-  <actiondef modulename="users" actionname="delete.backendgroup" label="modules.users.bo.useractionlogger.delete-backendgroup"/>
-  <actiondef modulename="users" actionname="insert.backendgroup" label="modules.users.bo.useractionlogger.insert-backendgroup"/>
-  <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
-  <actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend"/>
-  <actiondef modulename="users" actionname="Login" label="modules.users.bo.useractionlogger.Login"/>
-  <actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend"/>
-  <actiondef modulename="users" actionname="refreshdynamicgroup.dynamicgroup" label="m.users.bo.useractionlogger.refreshdynamicfrontendgroup-dynamicfrontendgroup"/>
-  <actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user"/>
-  <actiondef modulename="users" actionname="insert.user" label="m.users.bo.useractionlogger.insert-user"/>
-  <actiondef modulename="users" actionname="delete.group" label="m.users.bo.useractionlogger.delete-group"/>
-  <actiondef modulename="users" actionname="changepassword.user" label="m.users.bo.useractionlogger.changepassword-user"/>
-  <actiondef modulename="users" actionname="move.user" label="m.users.bo.useractionlogger.move-user"/>
-  <actiondef modulename="users" actionname="update.user" label="m.users.bo.useractionlogger.update-user"/>
-  <actiondef modulename="users" actionname="activate.user" label="m.users.bo.useractionlogger.activate-user"/>
-  <actiondef modulename="users" actionname="update.group" label="m.users.bo.useractionlogger.update-group"/>
-  <actiondef modulename="users" actionname="saveprofiles.user" label="m.users.bo.useractionlogger.saveprofiles-user"/>
-  <actiondef modulename="users" actionname="saveprofiles.anonymoususer" label="m.users.bo.useractionlogger.saveprofiles-anonymoususer"/>
-  <actiondef modulename="users" actionname="saveprofiles.backendgroup" label="m.users.bo.useractionlogger.saveprofiles-backendgroup"/>
-  <actiondef modulename="users" actionname="saveprofiles.group" label="m.users.bo.useractionlogger.saveprofiles-group"/>
-  <actiondef modulename="users" actionname="saveprofiles.user" label="m.users.bo.useractionlogger.saveprofiles-user"/>
-  <actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user"/>
-  <actiondef modulename="users" actionname="activate.user" label="m.users.bo.useractionlogger.activate-user"/>
-  <actiondef modulename="users" actionname="update.user" label="m.users.bo.useractionlogger.update-user"/>
-  <actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user"/>
+	<binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml" />
+	<actiondef modulename="users" actionname="chromelogin.backenduser" label="modules.users.bo.useractionlogger.chromelogin-backenduser" />
+	<actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend" />
+	<actiondef modulename="users" actionname="removeusers.backendgroup" label="modules.users.bo.useractionlogger.removeusers-backendgroup" />
+	<actiondef modulename="users" actionname="update.backendgroup" label="modules.users.bo.useractionlogger.update-backendgroup" />
+	<actiondef modulename="users" actionname="delete.backendgroup" label="modules.users.bo.useractionlogger.delete-backendgroup" />
+	<actiondef modulename="users" actionname="insert.backendgroup" label="modules.users.bo.useractionlogger.insert-backendgroup" />
+	<actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend" />
+	<actiondef modulename="users" actionname="login.frontend" label="modules.users.bo.useractionlogger.login-frontend" />
+	<actiondef modulename="users" actionname="Login" label="modules.users.bo.useractionlogger.Login" />
+	<actiondef modulename="users" actionname="login.backend" label="modules.users.bo.useractionlogger.login-backend" />
+	<actiondef modulename="users" actionname="refreshdynamicgroup.dynamicgroup" label="m.users.bo.useractionlogger.refreshdynamicfrontendgroup-dynamicfrontendgroup" />
+	<actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user" />
+	<actiondef modulename="users" actionname="insert.user" label="m.users.bo.useractionlogger.insert-user" />
+	<actiondef modulename="users" actionname="delete.group" label="m.users.bo.useractionlogger.delete-group" />
+	<actiondef modulename="users" actionname="changepassword.user" label="m.users.bo.useractionlogger.changepassword-user" />
+	<actiondef modulename="users" actionname="move.user" label="m.users.bo.useractionlogger.move-user" />
+	<actiondef modulename="users" actionname="update.user" label="m.users.bo.useractionlogger.update-user" />
+	<actiondef modulename="users" actionname="activate.user" label="m.users.bo.useractionlogger.activate-user" />
+	<actiondef modulename="users" actionname="update.group" label="m.users.bo.useractionlogger.update-group" />
+	<actiondef modulename="users" actionname="saveprofiles.user" label="m.users.bo.useractionlogger.saveprofiles-user" />
+	<actiondef modulename="users" actionname="saveprofiles.anonymoususer" label="m.users.bo.useractionlogger.saveprofiles-anonymoususer" />
+	<actiondef modulename="users" actionname="saveprofiles.backendgroup" label="m.users.bo.useractionlogger.saveprofiles-backendgroup" />
+	<actiondef modulename="users" actionname="saveprofiles.group" label="m.users.bo.useractionlogger.saveprofiles-group" />
+	<actiondef modulename="users" actionname="saveprofiles.user" label="m.users.bo.useractionlogger.saveprofiles-user" />
+	<actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user" />
+	<actiondef modulename="users" actionname="activate.user" label="m.users.bo.useractionlogger.activate-user" />
+	<actiondef modulename="users" actionname="update.user" label="m.users.bo.useractionlogger.update-user" />
+	<actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user" />
 </script>

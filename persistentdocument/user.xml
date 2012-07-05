@@ -4,15 +4,15 @@
 		<property name="label">
 			<constraint name="pseudonym" />
 		</property>
-		<property name="email" type="String" min-occurs="1">
+		<property name="email" type="String" required="true">
 			<constraint name="email" />
 		</property>
 		<property name="isroot" type="Boolean" default-value="false" />
 		<property name="issudoer" type="Boolean" default-value="false" />
-		<property name="login" type="String" min-occurs="1">
+		<property name="login" type="String" required="true">
 			<constraint name="login" />
 		</property>
-		<property name="passwordmd5" type="String" min-occurs="1" indexed="none" db-size="50" />
+		<property name="passwordmd5" type="String" indexed="none" db-size="50" required="true" />
 		<property name="groups" type="DocumentArray" inverse="true" document-type="modules_users/group" />
 		<property name="lastlogin" type="DateTime" />
 		<property name="lastping" type="DateTime" />

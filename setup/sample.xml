@@ -2,9 +2,7 @@
 <script>
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
 	<binding fileName="modules/users/persistentdocument/import/users_binding.xml" />
-
-	<websitefrontendgroup for-default-website="true" id="websitefrontendgroup"/>
-
+	<websitefrontendgroup for-default-website="true" id="websitefrontendgroup" />
 	<website byTag="default_modules_website_default-website">
 		<topic byLabel="Outils">
 			<page label="Inscription" navigationVisibility="visible" id="register">
@@ -16,12 +14,10 @@
 			<page label="Authentification">
 				<tag name="contextual_website_website_error401-1" />
 				<changecontent for="content-block">
-					<changeblock type="richtext">
-						<![CDATA[Pour accéder à cet espace, vous devez être authentifié.]]>
-					</changeblock>
+					<changeblock type="richtext"><![CDATA[Pour accéder à cet espace, vous devez être authentifié.]]></changeblock>
 					<changeblock type="modules_users_authentication" />
 				</changecontent>
-			</page>			
+			</page>
 			<page label="J'ai oublié mon mot de passe">
 				<tag name="contextual_website_website_modules_users_reset-password" />
 				<changecontent for="content-block">
@@ -29,23 +25,20 @@
 				</changecontent>
 			</page>
 		</topic>
-
 		<topic label="Extranet" byLabel="Extranet">
 			<page label="Bienvenue">
 				<tag name="contextual_website_website_modules_users_secure-homepage" />
 				<changecontent for="content-block">
 					<changeblock type="modules_users_showinfo" />
-					<changeblock type="richtext">
-						<![CDATA[Bienvenue dans l'extranet.]]>
-					</changeblock>
+					<changeblock type="richtext"><![CDATA[Bienvenue dans l'extranet.]]></changeblock>
 				</changecontent>
-			</page>			
+			</page>
 			<page label="Changer votre mot de passe">
 				<tag name="contextual_website_website_modules_users_change-password" />
 				<changecontent for="content-block">
 					<changeblock type="modules_users_changepassword" />
 				</changecontent>
-			</page>			
+			</page>
 			<page label="Modifier votre profil" navigationVisibility="visible" id="editprofile">
 				<tag name="contextual_website_website_modules_users_edit-profil" />
 				<changecontent for="content-block">
@@ -53,10 +46,9 @@
 				</changecontent>
 			</page>
 			<permissions>
-				<frontendpermission module="website" role="AuthenticatedFrontUser" group-refid="websitefrontendgroup"/>
+				<frontendpermission module="website" role="AuthenticatedFrontUser" group-refid="websitefrontendgroup" />
 			</permissions>
 		</topic>
-		
 		<menus>
 			<menu byTag="contextual_website_website_menu-main">
 				<menuitempage pageid="register" />
