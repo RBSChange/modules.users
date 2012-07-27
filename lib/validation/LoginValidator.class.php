@@ -73,7 +73,7 @@ class validation_LoginValidator extends validation_UniqueValidator
 	 * Returns the error message.
 	 * @return string
 	 */
-	protected function getMessage()
+	protected function getMessage($args = null)
 	{
 		$key = '&modules.users.bo.validation.validator.login.Message;';
 		return f_Locale::translate($key, array('param' => $this->getParameter()));
