@@ -37,9 +37,10 @@ class validation_LoginValidator extends validation_ValidatorImpl implements vali
 	
 	/**
 	 * Returns the error message.
+	 * @param array|null $args
 	 * @return string
 	 */
-	protected function getMessage()
+	protected function getMessage($args = null)
 	{
 		return 'm.users.bo.validation.validator.login.message';
 	}
