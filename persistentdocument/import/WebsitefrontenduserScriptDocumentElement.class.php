@@ -26,20 +26,7 @@ class users_WebsitefrontenduserScriptDocumentElement extends users_UserScriptDoc
 		}  
 		return  $pd; 	
 	}
-	
-	
-	/**
-	 * @see import_ScriptDocumentElement::getDocumentProperties()
-	 *
-	 * @return array
-	 */
-	protected function getDocumentProperties()
-	{
-		$props = parent::getDocumentProperties();
 		
-		return $props;
-	}
-	
 	/**
 	 * @see import_ScriptDocumentElement::getParentInTree()
 	 */

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <script>
 	<binding fileName="modules/website/persistentdocument/import/website_binding.xml" />
-	<documentRef byDocumentId-attr="" type-attr="">
+	<documentRef byDocumentId-attr="">
 		<topic byLabel="Membres">
 			<page byTag="contextual_website_website_modules_users_userslist" label="Liste des membres" isIndexPage="true" navigationVisibility="hidden" indexingstatus="false">
 				<changecontent for="content-block">

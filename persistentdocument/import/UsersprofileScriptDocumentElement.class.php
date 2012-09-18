@@ -5,28 +5,6 @@
  */
 class users_UsersprofileScriptDocumentElement extends users_ProfileScriptDocumentElement
 {
-	/**
-	 * @return users_persistentdocument_usersprofile
-	 */
-	protected function initPersistentDocument()
-	{
-		$userDoc = $this->getAncestorByClassName('users_UserScriptDocumentElement');
-		if ($userDoc)
-		{
-			$user = $userDoc->getPersistentDocument();
-			$profile = users_UsersprofileService::getInstance()->getByAccessorId($user->getId());
-			if ($profile === null)
-			{
-				$profile = users_UsersprofileService::getInstance()->getNewDocumentInstance();
-				$profile->setAccessor($user);
-			}
-		}
-		else
-		{
-			throw new Exception("No user found for profile");
-		}
-		return $profile;
-	}
 	
 	/**
 	 * @see import_ScriptDocumentElement::getDocumentProperties()
