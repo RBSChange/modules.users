@@ -1,5 +1,5 @@
 <?php
-class change_PasswordConstraint extends Zend_Validate_Abstract
+class change_PasswordConstraint extends \Zend\Validator\AbstractValidator
 {
 	const INVALID_PASSWORD = 'invalidPassword';
 	
@@ -20,6 +20,11 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 	 */   
 	public function __construct($params = array())
 	{
+
+		$messageTemplates = array(self::INVALID_PASSWORD =>
+			LocaleService::getInstance()->trans('m.users.constraints.invalidpassword-' . $this->_securityLevel, array('ucf')));
+		parent::__construct(array('messageTemplates' => $messageTemplates));
+		
 		$this->_levelArray = users_GroupService::getInstance()->getSecurityLevelArray();
 		if (isset($params['documentId']) && intval($params['documentId']) > 0)
 		{
@@ -78,9 +83,7 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 				}
 			}
 		}
-		
-		$this->_messageTemplates = array(self::INVALID_PASSWORD => 
-			LocaleService::getInstance()->trans('m.users.constraints.invalidpassword-' . $this->_securityLevel, array('ucf')));
+
 	}
 	
 	/**
@@ -89,7 +92,7 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 	 */
 	public function isValid($value)
 	{
-		$this->_setValue($value);
+		$this->setValue($value);
 		switch ($this->_securityLevel)
 		{
 			case 'low':
@@ -106,7 +109,7 @@ class change_PasswordConstraint extends Zend_Validate_Abstract
 		}		
 		if (!$valid)
 		{
-			$this->_error(self::INVALID_PASSWORD);
+			$this->error(self::INVALID_PASSWORD);
 			return false;
 		}
 		return true;

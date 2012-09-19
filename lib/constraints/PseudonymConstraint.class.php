@@ -1,5 +1,5 @@
 <?php
-class change_PseudonymConstraint extends Zend_Validate_Abstract
+class change_PseudonymConstraint extends \Zend\Validator\AbstractValidator
 {
 	const INVALID_PSEUDONYM = 'invalidPseudonym';
 	
@@ -13,7 +13,9 @@ class change_PseudonymConstraint extends Zend_Validate_Abstract
 	 */   
 	public function __construct($params = array())
 	{
-		$this->_messageTemplates = array(self::INVALID_PSEUDONYM => LocaleService::getInstance()->trans('f.constraints.notunique', array('ucf')));
+		$messageTemplates = array(self::INVALID_PSEUDONYM => LocaleService::getInstance()->trans('f.constraints.notunique', array('ucf')));
+		parent::__construct(array('messageTemplates' => $messageTemplates));
+		
 		if (isset($params['documentId']) && intval($params['documentId']) > 0)
 		{
 			$this->_userId = intval($params['documentId']);
@@ -30,7 +32,7 @@ class change_PseudonymConstraint extends Zend_Validate_Abstract
 	 */
 	public function isValid($value)
 	{
-		$this->_setValue($value);
+		$this->setValue($value);
 		$user = null;
 		$groupIds = array();
 		if ($this->_userId > 0)
@@ -47,7 +49,7 @@ class change_PseudonymConstraint extends Zend_Validate_Abstract
 		}		
 		if (!users_UserService::getInstance()->validateUserLabel($value, $user, $groupIds))
 		{
-			$this->_error(self::INVALID_PSEUDONYM);
+			$this->error(self::INVALID_PSEUDONYM);
 			return false;
 		}
 		return true;

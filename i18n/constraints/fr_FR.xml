@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.users.constraints" lcid="fr_FR">
+	<key id="invalidpassword-minimal">le mot de passe doit contenir au moins un caractère.</key>
 	<key id="invalidpassword-low">le mot de passe doit contenir au moins 6 caractères.</key>
 	<key id="invalidpassword-medium">le mot de passe doit contenir au moins 6 caractères dont des lettres et des chiffres.</key>
 	<key id="invalidpassword-high">le mot de passe doit contenir au moins 6 caractères dont des lettres (majuscules et minuscules) et des chiffres.</key>
