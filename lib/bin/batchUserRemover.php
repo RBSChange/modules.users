@@ -1,4 +1,6 @@
 <?php
+/* @var $arguments array */
+$arguments = isset($arguments) ? $arguments : array();
 $group = users_persistentdocument_dynamicgroup::getInstanceById($arguments[0]);
 $userIdArray = array_slice($arguments, 1);
 foreach ($userIdArray as $userId) 
