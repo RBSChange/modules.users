@@ -1,7 +1,7 @@
 <?php
 class change_PseudonymConstraint extends \Zend\Validator\AbstractValidator
 {
-	const INVALID_PSEUDONYM = 'invalidPseudonym';
+	const INVALID_PSEUDONYM = 'notUnique';
 	
 	 /**
 	 * @var integer
@@ -13,9 +13,9 @@ class change_PseudonymConstraint extends \Zend\Validator\AbstractValidator
 	 */   
 	public function __construct($params = array())
 	{
-		$messageTemplates = array(self::INVALID_PSEUDONYM => LocaleService::getInstance()->trans('f.constraints.notunique', array('ucf')));
-		parent::__construct(array('messageTemplates' => $messageTemplates));
-		
+		$params += change_Constraints::getDefaultOptions();
+		$this->messageTemplates = array(self::INVALID_PSEUDONYM => self::INVALID_PSEUDONYM);
+		parent::__construct($params);
 		if (isset($params['documentId']) && intval($params['documentId']) > 0)
 		{
 			$this->_userId = intval($params['documentId']);

@@ -1,7 +1,7 @@
 <?php
 class change_LoginConstraint extends \Zend\Validator\AbstractValidator
 {
-	const INVALID_LOGIN = 'invalidLogin';
+	const INVALID_LOGIN = 'notUnique';
 	
 	 /**
 	 * @var integer
@@ -13,9 +13,9 @@ class change_LoginConstraint extends \Zend\Validator\AbstractValidator
 	 */   
 	public function __construct($params = array())
 	{
-		$messageTemplates = array(self::INVALID_LOGIN => LocaleService::getInstance()->trans('f.constraints.notunique', array('ucf')));
-		parent::__construct(array('messageTemplates' => $messageTemplates));
-		
+		$this->messageTemplates = array(self::INVALID_LOGIN => self::INVALID_LOGIN);
+		$params += change_Constraints::getDefaultOptions();
+		parent::__construct($params);
 		if (isset($params['documentId']) && intval($params['documentId']) > 0)
 		{
 			$this->_userId = intval($params['documentId']);

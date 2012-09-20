@@ -15,75 +15,90 @@ class change_PasswordConstraint extends \Zend\Validator\AbstractValidator
 	 */
 	protected $_securityLevel = 'minimal';
 	
+	
+	public function setSecurityLevel($securityLevel)
+	{
+		if (in_array($securityLevel, $this->_levelArray))
+		{
+			$this->_securityLevel = $securityLevel;
+		}
+	}
+
+	public function getSecurityLevel()
+	{
+		return $this->_securityLevel;
+	}
+	
+	public function setDocumentId($documentId)
+	{
+		$this->_accessorId = intval($documentId);
+	}
+	
+	public function getDocumentId()
+	{
+		return $this->_accessorId;
+	}
+	
+	public function setParameter($parameter)
+	{
+		if (in_array($parameter, $this->_levelArray))
+		{
+			$this->setSecurityLevel($parameter);
+		}
+		elseif (intval($parameter) > 0)
+		{
+			$this->setDocumentId($parameter);
+		}
+	}
+	
+	
  	/**
 	 * @param array $params <documentId => integer, securityLevel => string || [parameter => integer,]>
 	 */   
 	public function __construct($params = array())
 	{
-
-		$messageTemplates = array(self::INVALID_PASSWORD =>
-			LocaleService::getInstance()->trans('m.users.constraints.invalidpassword-' . $this->_securityLevel, array('ucf')));
-		parent::__construct(array('messageTemplates' => $messageTemplates));
-		
+		$params += change_Constraints::getDefaultOptions();
+		$params['translatorTextDomain'] = 'm.users.constraints';
 		$this->_levelArray = users_GroupService::getInstance()->getSecurityLevelArray();
-		if (isset($params['documentId']) && intval($params['documentId']) > 0)
+		$this->messageTemplates = array();
+		foreach ($this->_levelArray as $level)
 		{
-			$this->_accessorId = intval($params['documentId']);
+			$this->messageTemplates[self::INVALID_PASSWORD.'-'.$level] = $level;
 		}
-		elseif (isset($params['parameter']))
+		parent::__construct($params);
+
+		if ($this->_accessorId > 0)
 		{
-			if (intval($params['parameter']) > 0)
+			$accessor = DocumentHelper::getDocumentInstanceIfExists($this->_accessorId);
+			if ($accessor instanceof users_persistentdocument_group)	
 			{
-				$this->_accessorId = intval($params['parameter']);
-			}
-			elseif(is_string($params['parameter']) && in_array($params['parameter'], $this->_levelArray))
-			{
-				$this->_securityLevel = $params['parameter'];
-			}
-		}
-		
-		if (isset($params['securityLevel']) && is_string($params['securityLevel']) && in_array($params['securityLevel'], $this->_levelArray))
-		{
-			$this->_securityLevel = $params['securityLevel'];
-		}
-		elseif ($this->_accessorId > 0)
-		{
-			$pp = f_persistentdocument_PersistentProvider::getInstance();
-			$modelName = $pp->getDocumentModelName($this->_accessorId);
-			if ($modelName)
-			{
-				$accessor = $pp->getDocumentInstance($this->_accessorId, $modelName);
-				if ($accessor instanceof users_persistentdocument_group)	
+				if (in_array($accessor->getSecuritylevel(), $this->_levelArray))
 				{
-					if (in_array($accessor->getSecuritylevel(), $this->_levelArray))
-					{
-						$this->_securityLevel = $accessor->getSecuritylevel();
-					}
+					$this->_securityLevel = $accessor->getSecuritylevel();
 				}
-				elseif ($accessor instanceof users_persistentdocument_user)
+			}
+			elseif ($accessor instanceof users_persistentdocument_user)
+			{
+				$lvlIndex = null;				
+				foreach ($accessor->getGroupsArray() as $group) 
 				{
-					$lvlIndex = null;				
-					foreach ($accessor->getGroupsArray() as $group) 
+					/* @var $group users_persistentdocument_group */
+					$lvl = $group->getSecuritylevel();
+					if (!empty($lvl))
 					{
-						/* @var $group users_persistentdocument_group */
-						$lvl = $group->getSecuritylevel();
-						if (!empty($lvl))
+						$grpLvlIndex = array_search($lvl, $this->_levelArray);
+						if ($grpLvlIndex !== false && ($lvlIndex === null || $grpLvlIndex < $lvlIndex))
 						{
-							$grpLvlIndex = array_search($lvl, $this->_levelArray);
-							if ($grpLvlIndex !== false && ($lvlIndex === null || $grpLvlIndex < $lvlIndex))
-							{
-								$lvlIndex = $grpLvlIndex;
-							}
+							$lvlIndex = $grpLvlIndex;
 						}
 					}
-					if ($lvlIndex !== null)
-					{
-						$this->_securityLevel = $this->_levelArray[$lvlIndex];
-					}
+				}
+				if ($lvlIndex !== null)
+				{
+					$this->_securityLevel = $this->_levelArray[$lvlIndex];
 				}
 			}
 		}
-
 	}
 	
 	/**
@@ -109,7 +124,7 @@ class change_PasswordConstraint extends \Zend\Validator\AbstractValidator
 		}		
 		if (!$valid)
 		{
-			$this->error(self::INVALID_PASSWORD);
+			$this->error(self::INVALID_PASSWORD.'-'.$this->_securityLevel);
 			return false;
 		}
 		return true;
