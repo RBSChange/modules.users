@@ -1,5 +1,5 @@
-<img change:avatar="user user" size="64" />
-<dl class="document-infos">
+<img change:avatar="user user" class="image document-visual" size="64" />
+<dl class="inline-items">
 	<tal:block tal:condition="profile/getDisplayName">
 		<dt>${trans:m.users.document.usersprofile.firstname,ucf}</dt>
 		<dd>${user/getFirstname}</dd>
