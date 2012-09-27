@@ -27,7 +27,7 @@ class users_LoginInputView extends change_View
 			$this->setAttribute('UIHOST', Framework::getUIBaseUrl());
 			$link = new f_web_ChromeParametrizedLink('rbschange/content/ext/' . PROJECT_ID);
 			$link->setQueryParameters(array('module' => 'uixul', 'action' => 'Admin'));
-			$link->setArgSeparator(f_web_HttpLink::ESCAPE_SEPARATOR);
+			$link->setArgSeparator(f_web_HttpLink::STANDARD_SEPARATOR);
 			$this->setAttribute('xchromeURL', $link->getUrl());
 			$rq->endI18nWork();
 		}

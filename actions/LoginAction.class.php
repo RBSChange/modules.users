@@ -14,7 +14,7 @@ class users_LoginAction extends change_Action
 		
 		if (!RequestContext::getInstance()->inHTTPS() && DEFAULT_UI_PROTOCOL === 'https')
 		{
-			change_Controller::getInstance()->redirectToUrl(LinkHelper::getUIActionLink('users', 'Login')->getUrl());
+			change_Controller::getInstance()->redirectToUrl(LinkHelper::getUIActionLink('users', 'Login')->setArgSeparator('&')->getUrl());
 			return null;
 		}
 		return change_View::INPUT;

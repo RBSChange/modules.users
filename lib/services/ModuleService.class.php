@@ -37,7 +37,7 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function allowAutoLogin()
 	{
-		return (f_util_ClassUtils::methodExists(change_Controller::getInstance(), 'allowAutoLogin') && change_Controller::getInstance()->allowAutoLogin() === true);
+		return (change_Controller::getInstance()->allowAutoLogin() === true);
 	}
 	
 	/**
@@ -47,8 +47,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
-	  		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
+			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
+	  		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
 		}
 	}
 	
@@ -59,8 +59,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time() - 3600, '/');
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
+			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', '', time() - 3600, '/');
+			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
 		}
 	}
 	
