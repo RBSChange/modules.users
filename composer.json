@@ -1,0 +1,6 @@
+{
+	"name": "rbschange/users",
+	"description": "RBS Change Users module",
+	"type": "rbschange-compatibility-module",
+	"license":"AGPL-3.0"
+}
