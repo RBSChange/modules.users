@@ -151,24 +151,6 @@ class users_FrontenduserService extends users_UserService
 		}
 		return null;
 	}
-	
-	/**
-	 * @param array $params
-	 * @return array
-	 */
-	public function getNewpasswordNotifParamters($params)
-	{
-		$user = $params['user'];
-	
-		return array(
-			'login' => $user->getLogin(),
-			'password' => $params['password'],
-			'accesslink' => Framework::getUIBaseUrl(),
-			'fullname' => $user->getFullname(),
-			'ip' => $_SERVER["REMOTE_ADDR"],
-			'date' => date_DateFormat::format(date_Converter::convertDateToLocal(date_Calendar::now())) 
-		);
-	}
 
 	/**
 	 * @return Integer
