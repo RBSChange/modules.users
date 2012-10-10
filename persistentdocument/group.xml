@@ -4,5 +4,5 @@
 		<property name="description" type="LongString" />
 		<property name="securitylevel" type="String" db-size="25" from-list="modules_users/securitylevel" default-value="medium" />
 	</properties>
-	<statuses default="PUBLICATED" />
+	<statuses default="PUBLISHED" />
 </document>

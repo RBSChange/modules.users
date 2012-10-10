@@ -266,7 +266,7 @@ class users_UserService extends f_persistentdocument_DocumentService
 		{
 			$this->activate($document->getId());
 		}
-		elseif ($oldPublicationStatus == 'PUBLICATED')
+		elseif ($oldPublicationStatus == 'PUBLISHED')
 		{
 			$strategyClassName = Framework::getConfigurationValue('modules/users/notificationStrategy', 'users_DefaultUsersNotificationStrategy');
 			/* @var $strategy users_UsersNotificationStrategy */
