@@ -5,13 +5,21 @@
 class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElement
 {
 	/**
+	 * @return string|null
+	 */
+	public function getModuleName()
+	{
+		return isset($this->attributes['module']) ? $this->attributes['module'] : null;
+	}
+	
+	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 */
 	public function setPermission($document)
 	{
 		if (isset($this->attributes['module']) && isset($this->attributes['role']))
 		{
-			$roleName = 'modules_'.$this->attributes['module'].'.'.$this->attributes['role'];		
+			$roleName = 'modules_' . $this->attributes['module'] . '.' . $this->attributes['role'];
 			
 			// handle groups.
 			if (isset($this->attributes['group']))
@@ -21,9 +29,9 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				{
 					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid group "'.$this->attributes['group'].'".');
+					Framework::warn(__METHOD__ . ' invalid group "' . $this->attributes['group'] . '".');
 				}
 			}
 			else if (isset($this->attributes['group-refid']))
@@ -33,9 +41,9 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				{
 					change_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid group refid '.$this->attributes['group-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid group refid ' . $this->attributes['group-refid'] . '".');
 				}
 			}
 			
@@ -46,14 +54,14 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				$users = users_UserService::getInstance()->getUsersByLoginAndGroup($login, users_BackendgroupService::getInstance()->getBackendGroup());
 				if (count($users))
 				{
-					foreach ($users as $user) 
+					foreach ($users as $user)
 					{
 						change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 					}
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid bagend user "'.$login.'".');
+					Framework::warn(__METHOD__ . ' invalid bagend user "' . $login . '".');
 				}
 			}
 			else if (isset($this->attributes['user-refid']))
@@ -63,9 +71,9 @@ class users_BackendPermissionScriptDocumentElement extends import_ScriptBaseElem
 				{
 					change_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid user refid '.$this->attributes['user-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid user refid ' . $this->attributes['user-refid'] . '".');
 				}
 			}
 		}

@@ -5,26 +5,45 @@
 class users_PermissionsScriptDocumentElement extends import_ScriptBaseElement
 {
 	/**
-	 * @return void
+	 * @param f_persistentdocument_PersistentDocument $document
 	 */
 	public function setPermissions($document)
-	{		
-		$children = $this->script->getChildren($this);
-		
-		foreach ($children as $child)
+	{
+		$moduleNames = array();
+		$children = array();
+		foreach ($this->script->getChildren($this) as $child)
 		{
 			if ($child instanceof users_PermissionScriptDocumentElement)
 			{
-				$child->setPermission($document);
+				$moduleNames[] = $child->getModuleName();
+				$children[] = $child;
 			}
 			elseif ($child instanceof users_BackendPermissionScriptDocumentElement)
 			{
-				$child->setPermission($document);
+				$moduleNames[] = $child->getModuleName();
+				$children[] = $child;
 			}
 			elseif ($child instanceof users_FrontendPermissionScriptDocumentElement)
 			{
-				$child->setPermission($document);
+				$moduleNames[] = $child->getModuleName();
+				$children[] = $child;
 			}
+		}
+		$moduleNames = array_unique($moduleNames);
+		
+		// Handle inheritance.
+		if (isset($this->attributes['inherits']) && $this->attributes['inherits'] == 'true')
+		{
+			foreach ($moduleNames as $moduleName)
+			{
+				users_ModuleService::getInstance()->replicateACLsFromAncestorDefinitionPoint($document->getId(), $moduleName);
+			}
+		}
+		
+		// Handle permissions.
+		foreach ($children as $child)
+		{
+			$child->setPermission($document);
 		}
 	}
 	

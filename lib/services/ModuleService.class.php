@@ -30,6 +30,39 @@ class users_ModuleService extends ModuleBaseService
 		return array('wwwadmin', 'www-admin', 'www.admin', 'root', 'admin', 'administrator', 'administrateur');
 	}
 	
+	/**
+	 * @param integer $documentId
+	 * @param string $moduleName
+	 */
+	public function replicateACLsFromAncestorDefinitionPoint($documentId, $moduleName)
+	{
+		$ps = f_permission_PermissionService::getInstance();
+		$defId = $ps->getDefinitionPointForPackage($documentId, 'modules_' . $moduleName);
+		if ($defId === null)
+		{
+			$defId = ModuleService::getInstance()->getRootFolderId($moduleName);
+		}
+		else if ($defId == $documentId)
+		{
+			// Nothing to do: the document is already a definition point.
+			return;
+		}
+		
+		// Replicate all ACLs from the definition point.
+		$ACLs = $ps->getACLForNode($defId);
+		foreach ($ACLs as $acl)
+		{
+			if ($acl instanceof generic_persistentdocument_userAcl)
+			{
+				$ps->addRoleToUser($acl->getUser(), $acl->getRole(), array($documentId));
+			}
+			elseif ($acl instanceof generic_persistentdocument_groupAcl)
+			{
+				$ps->addRoleToGroup($acl->getGroup(), $acl->getRole(), array($documentId));
+			}
+		}
+	}
+	
 	// Auto-login handling.
 	
 	/**
@@ -47,8 +80,8 @@ class users_ModuleService extends ModuleBaseService
 	{
 		if ($this->allowAutoLogin())
 		{
-			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
-	  		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
+			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365 * 24 * 3600, '/');
+			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365 * 24 * 3600, '/');
 		}
 	}
 	
@@ -79,8 +112,8 @@ class users_ModuleService extends ModuleBaseService
 			case 'memberDefaultStructure' :
 				return $this->getUsersStructureInitializationAttributes($container, $attributes, $script);
 			
-			default:
-				throw new BaseException('Unknown structure initialization script: '.$script, 'm.website.bo.actions.unknown-structure-initialization-script', array('script' => $script));
+			default :
+				throw new BaseException('Unknown structure initialization script: ' . $script, 'm.website.bo.actions.unknown-structure-initialization-script', array('script' => $script));
 		}
 	}
 	
@@ -102,15 +135,14 @@ class users_ModuleService extends ModuleBaseService
 		{
 			$websiteId = $container->getId();
 		}
-		else 
+		else
 		{
 			$websiteId = $container->getDocumentService()->getWebsiteId($container);
 		}
 		
 		$ts = TagService::getInstance();
 		$website = DocumentHelper::getDocumentInstance($websiteId, 'modules_website/website');
-		if ($ts->hasDocumentByContextualTag('contextual_website_website_modules_users_userlist', $website) || 
-			$ts->hasDocumentByContextualTag('contextual_website_website_modules_users_user', $website))
+		if ($ts->hasDocumentByContextualTag('contextual_website_website_modules_users_userlist', $website) || $ts->hasDocumentByContextualTag('contextual_website_website_modules_users_user', $website))
 		{
 			throw new BaseException('Some pages are already initialized', 'm.website.bo.actions.some-pages-already-initialized');
 		}
