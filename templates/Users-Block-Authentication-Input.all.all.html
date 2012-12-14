@@ -9,6 +9,11 @@
 			<li>
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
+			<li>
+				<p class="help-text">
+					<a change:link="tag contextual_website_website_modules_users_reset-password">${trans:m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
+				</p>
+			</li>
 			<li tal:condition="allowAutoLogin">
 				<label change:fieldlabel="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" class="textfield"></label>
 				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" standalone="true" />
@@ -17,14 +22,11 @@
 		</ol>
 		<p class="buttons">
 			<input name="usersParam[forBlockName]" type="hidden" value="Authentication" />
-			<input name="usersParam[submit]" type="submit" class="button" value="${trans:m.users.frontoffice.authentication.submitbutton,ucf}" />
+			<input name="usersParam[submit]" type="submit" class="button primary" value="${trans:m.users.frontoffice.authentication.submitbutton,ucf}" />
 		</p>
 	</fieldset>	
 </form>
 <ul class="menu-list">
-	<li>
-		<a change:link="tag contextual_website_website_modules_users_reset-password">${trans:m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
-	</li>
 	<tal:block tal:condition="not: hideRegistrationLinks">
 		<tal:block change:loadhandler="generic_TaggedDocumentLoadHandler" args="registrationPage, contextual_website_website_modules_users_register" />
 		<li tal:condition="registrationPage">

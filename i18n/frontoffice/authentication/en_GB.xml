@@ -5,10 +5,10 @@
   <key id="login">your login</key>
   <key id="password">your password</key>
   <key id="confirmpassword">confirm your password</key>
-  <key id="submitbutton">submit</key>
+  <key id="submitbutton">Log In</key>
   <key id="anonymoususer">Anonymous</key>
   <key id="resetpasswordlink">I forgot my password</key>
   <key id="auto-login-me">automatic login</key>
-  <key id="auto-login-me-help">Check this box to be logged in automatically on your next visits to the website.</key>
-  <key id="title">authentication</key>
+  <key id="auto-login-me-help">Check this box to be logged in automatically on your next visits.</key>
+  <key id="title">Log In</key>
 </i18n>
