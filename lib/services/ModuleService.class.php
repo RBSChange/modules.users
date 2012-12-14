@@ -45,6 +45,39 @@ class users_ModuleService extends ModuleBaseService
 		// TODO: Module preference? Websitefrontendgroup preference?
 	}
 	
+	/**
+	 * @param integer $documentId
+	 * @param string $moduleName
+	 */
+	public function replicateACLsFromAncestorDefinitionPoint($documentId, $moduleName)
+	{
+		$ps = f_permission_PermissionService::getInstance();
+		$defId = $ps->getDefinitionPointForPackage($documentId, 'modules_'.$moduleName);
+		if ($defId === null)
+		{
+			$defId = ModuleService::getInstance()->getRootFolderId($moduleName);
+		}
+		else if ($defId == $documentId)
+		{
+			// Nothing to do: the document is already a definition point.
+			return;
+		}
+	
+		// Replicate all ACLs from the definition point.
+		$ACLs = $ps->getACLForNode($defId);
+		foreach ($ACLs as $acl)
+		{
+			if ($acl instanceof generic_persistentdocument_userAcl)
+			{
+				$ps->addRoleToUser($acl->getUser(), $acl->getRole(), array($documentId));
+			}
+			elseif ($acl instanceof generic_persistentdocument_groupAcl )
+			{
+				$ps->addRoleToGroup($acl->getGroup(), $acl->getRole(), array($documentId));
+			}
+		}
+	}
+	
 	// Auto-login handling.
 	
 	/**

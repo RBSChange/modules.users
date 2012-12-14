@@ -5,14 +5,22 @@
 class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseElement
 {
 	/**
+	 * @return string|null
+	 */
+	public function getModuleName()
+	{
+		return isset($this->attributes['module']) ? $this->attributes['module'] : null;
+	}
+	
+	/**
 	 * @param f_persistentdocument_PersistentDocument $document
 	 * @param website_persistentdicument_website $document
 	 */
-    public function setPermission($document, $website)
+	public function setPermission($document, $website)
 	{
 		if (isset($this->attributes['module']) && isset($this->attributes['role']))
 		{
-			$roleName = 'modules_'.$this->attributes['module'].'.'.$this->attributes['role'];
+			$roleName = 'modules_' . $this->attributes['module'] . '.' . $this->attributes['role'];
 			
 			// Handle groups.
 			if (isset($this->attributes['group']))
@@ -22,9 +30,9 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				{
 					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid group '.$this->attributes['group'].'".');
+					Framework::warn(__METHOD__ . ' invalid group ' . $this->attributes['group'] . '".');
 				}
 			}
 			else if (isset($this->attributes['group-refid']))
@@ -34,9 +42,9 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				{
 					f_permission_PermissionService::getInstance()->addRoleToGroup($group, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid group refid '.$this->attributes['group-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid group refid ' . $this->attributes['group-refid'] . '".');
 				}
 			}
 			
@@ -45,7 +53,7 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 			{
 				if (!($website instanceof website_persistentdocument_website))
 				{
-					Framework::warn(__METHOD__ . ' user identified by login can\'t be found outside from the context of a website! Permission on "'.$this->attributes['user'].'" skipped.');
+					Framework::warn(__METHOD__ . ' user identified by login can\'t be found outside from the context of a website! Permission on "' . $this->attributes['user'] . '" skipped.');
 					return;
 				}
 				
@@ -54,9 +62,9 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				{
 					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid user '.$this->attributes['user'].'".');
+					Framework::warn(__METHOD__ . ' invalid user ' . $this->attributes['user'] . '".');
 				}
 			}
 			else if (isset($this->attributes['user-refid']))
@@ -66,9 +74,9 @@ class users_FrontendPermissionScriptDocumentElement extends import_ScriptBaseEle
 				{
 					f_permission_PermissionService::getInstance()->addRoleToUser($user, $roleName, array($document->getId()));
 				}
-				else 
+				else
 				{
-					Framework::warn(__METHOD__ . ' invalid user refid '.$this->attributes['user-refid'].'".');
+					Framework::warn(__METHOD__ . ' invalid user refid ' . $this->attributes['user-refid'] . '".');
 				}
 			}
 		}
