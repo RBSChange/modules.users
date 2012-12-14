@@ -9,6 +9,11 @@
 			<li>
 				<input change:passwordinput="name password" labeli18n="m.users.frontoffice.authentication.password" />
 			</li>
+			<li>
+				<p class="help-text">
+					<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password">${trans: m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
+				</p>
+			</li>
 			<li tal:condition="allowAutoLogin">
 				<label change:fieldlabel="name autoLogin" labeli18n="m.users.frontoffice.authentication.auto-login-me" class="textfield"></label>
 				<input change:checkboxinput="name autoLogin" labeled="false" value="yes" standalone="true" />
@@ -19,8 +24,7 @@
 			<input type="hidden" name="storageId" value="${storageId}" />
 			<input type="hidden" name="location" value="${location}" />
 			<input type="hidden" name="errorlocation" value="${errorlocation}" />
-			<input change:submit="" label="${trans: m.users.frontoffice.login-button,ucf}" class="button" name="login" />
-			<a rel="nofollow" change:link="tag contextual_website_website_modules_users_reset-password" class="button">${trans: m.users.frontoffice.authentication.resetpasswordlink,ucf}</a>
+			<input change:submit="" label="${trans: m.users.frontoffice.login-button,ucf}" class="button primary" name="login" />
 		</p>
 	</fieldset>	
 </form>

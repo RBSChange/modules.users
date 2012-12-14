@@ -40,4 +40,6 @@
   <key id="log-saveprofiles-group">log saveprofiles group</key>
   <key id="users-user">users.user {documentlabel}</key>
   <key id="log-users-user">log users user</key>
+  <key id="chromelogin">chromelogin {documentlabel}</key>
+  <key id="log-chromelogin">log chromelogin</key>
 </i18n>

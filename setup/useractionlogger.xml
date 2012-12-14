@@ -30,4 +30,10 @@
   <actiondef modulename="users" actionname="update.user" label="m.users.bo.useractionlogger.update-user"/>
   <actiondef modulename="users" actionname="chromelogin.user" label="m.users.bo.useractionlogger.chromelogin-user"/>
   <actiondef modulename="users" actionname="users.user" label="m.users.bo.useractionlogger.users-user"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
+  <actiondef modulename="users" actionname="chromelogin" label="m.users.bo.useractionlogger.chromelogin"/>
 </script>
