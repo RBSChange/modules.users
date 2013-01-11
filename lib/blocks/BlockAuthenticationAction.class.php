@@ -17,7 +17,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	{
 		return $this->currentUser;
 	}
-
+	
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -29,7 +29,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		{
 			return;
 		}
-
+		
 		$us = users_UserService::getInstance();
 		$this->currentUser = $us->getCurrentFrontEndUser();
 		if ($this->currentUser !== null && $this->findParameterValue('logout'))
@@ -40,53 +40,63 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			$this->redirectToUrl(website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getUrl());
 		}
 		// FIX #42282: use forBlockName to resolve conflicts between Resetpassword and Authentication...
-        elseif (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Authentication')
+		elseif (!$request->hasNonEmptyParameter('forBlockName') || $request->getParameter('forBlockName') == 'Authentication')
 		{
 			$login = $this->findParameterValue('login');
 			$password = $this->findParameterValue('password');
-			if ($login && $password && $this->findParameterValue('submit'))
+			
+			if ($this->findParameterValue('submit'))
 			{
-				$websiteId = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getId();
-				$user = $us->getIdentifiedFrontendUser($login, $password, $websiteId);
-				if ($user !== null)
+				if ($login && $password)
 				{
-					$this->currentUser = $user;
-					$us->authenticateFrontEndUser($this->currentUser);
-					$autoLogin = $this->findParameterValue('autoLogin');
-					if ($autoLogin === 'yes')
+					$websiteId = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getId();
+					$user = $us->getIdentifiedFrontendUser($login, $password, $websiteId);
+					if ($user !== null)
 					{
-						users_ModuleService::getInstance()->setAutoLogin($user);
-					}
-					
-					$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter('illegalAccessPage');
-					$agaviUser = Controller::getInstance()->getContext()->getUser();
-					if (f_util_StringUtils::isEmpty($illegalAccessPage))
-					{
-						$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
-					}
-					
-					if ($illegalAccessPage)
-					{
-						$agaviUser->setAttribute('illegalAccessPage', null);
-						$this->redirectToUrl($illegalAccessPage);
+						$this->currentUser = $user;
+						$us->authenticateFrontEndUser($this->currentUser);
+						$autoLogin = $this->findParameterValue('autoLogin');
+						if ($autoLogin === 'yes')
+						{
+							users_ModuleService::getInstance()->setAutoLogin($user);
+						}
+						
+						$illegalAccessPage = $this->getConfiguration()->getConfigurationParameter('illegalAccessPage');
+						$agaviUser = Controller::getInstance()->getContext()->getUser();
+						if (f_util_StringUtils::isEmpty($illegalAccessPage))
+						{
+							$illegalAccessPage = $agaviUser->getAttribute('illegalAccessPage');
+						}
+						
+						if ($illegalAccessPage)
+						{
+							$agaviUser->setAttribute('illegalAccessPage', null);
+							$this->redirectToUrl($illegalAccessPage);
+						}
+						else
+						{
+							try
+							{
+								$page = TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_secure-homepage', website_WebsiteModuleService::getInstance()->getCurrentWebsite());
+								$this->redirectToUrl(LinkHelper::getDocumentUrl($page));
+							}
+							catch (TagException $e)
+							{
+								Framework::info($e->getMessage());
+							}
+						}
 					}
 					else
 					{
-					    try 
-					    {
-					        $page = TagService::getInstance()->getDocumentByContextualTag('contextual_website_website_modules_users_secure-homepage', 
-					            website_WebsiteModuleService::getInstance()->getCurrentWebsite());    
-					        $this->redirectToUrl(LinkHelper::getDocumentUrl($page));
-					    }
-					    catch (TagException $e)
-					    {
-					        Framework::info($e->getMessage());
-					    }
+						$message = LocaleService::getInstance()->transFO('m.users.frontoffice.authentication.badauthentication', array('ucf'));
+						$this->addError($message);
+						// For compatibility. Will be removed in 4.0.
+						$request->setAttribute('errors', array($message));
 					}
 				}
 				else
 				{
-					$message = LocaleService::getInstance()->transFO('m.users.frontoffice.authentication.badauthentication', array('ucf'));
+					$message = LocaleService::getInstance()->transFO('m.users.messages.error.LoginAndPasswordRequired', array('ucf'));
 					$this->addError($message);
 					// For compatibility. Will be removed in 4.0.
 					$request->setAttribute('errors', array($message));
@@ -94,7 +104,7 @@ class users_BlockAuthenticationAction extends website_BlockAction
 			}
 		}
 	}
-
+	
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -102,12 +112,12 @@ class users_BlockAuthenticationAction extends website_BlockAction
 	 */
 	public function execute($request, $response)
 	{
-		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
+		$request->setAttribute('allowAutoLogin', $this->getConfiguration()->getAllowAutoLogin());
 		if ($this->isInBackoffice())
 		{
 			return website_BlockView::INPUT;
 		}
-
+		
 		if ($request->hasParameter('hideRegistrationLinks') && $request->getParameter('hideRegistrationLinks') == 'true')
 		{
 			$request->setAttribute('hideRegistrationLinks', true);
@@ -116,10 +126,11 @@ class users_BlockAuthenticationAction extends website_BlockAction
 		if ($this->currentUser !== null)
 		{
 			$request->setAttribute('currentUser', $this->currentUser);
-			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array($this->getModuleName().'Param[logout]' => 'logout')));
+			$request->setAttribute('logoutUrl', LinkHelper::getCurrentUrl(array($this->getModuleName() . 'Param[logout]' => 'logout')));
 			return website_BlockView::SUCCESS;
 		}
 		
 		return website_BlockView::INPUT;
 	}
+	
 }

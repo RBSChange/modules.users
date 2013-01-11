@@ -7,4 +7,6 @@
   <key id="showpersonalfields">display personal information fields</key>
   <key id="showpersonalfields-help">Displays the 'first name', 'last name', and 'title' fields.</key>
   <key id="title">registration</key>
+  <key id="allowautologin">enable possibility to activate the autologin</key>
+  <key id="allowautologin-help">displays the checkbox to enable the autologin</key>
 </i18n>

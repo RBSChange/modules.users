@@ -2,6 +2,7 @@
 <blocks>
 	<block type="modules_users_register" icon="add" beforeAll="true">
 		<parameters>
+			<parameter name="allowAutoLogin" type="Boolean" default-value="true" />
 			<parameter name="showPersonalFields" type="Boolean" default-value="false" />
 			<parameter name="requireNameFields" type="Boolean" default-value="false" />
 			<parameter name="showPasswordFields" type="Boolean" default-value="false" />
@@ -23,7 +24,11 @@
 			</javascript>
 		</xul>
 	</block>
-	<block type="modules_users_authentication" icon="user-frontoffice" beforeAll="true" label="&amp;modules.users.bo.layout.authentication;" />
+	<block type="modules_users_authentication" icon="user-frontoffice" beforeAll="true" label="&amp;modules.users.bo.layout.authentication;">
+		<parameters>
+			<parameter name="allowAutoLogin" type="Boolean" default-value="true" />
+		</parameters>
+	</block>
 	<block type="modules_users_showinfo" icon="user-frontoffice" label="&amp;modules.users.bo.layout.showinfo;" />
 	<block type="modules_users_resetpassword" icon="change-password" label="&amp;modules.users.bo.layout.resetpassword;" />
 	<block type="modules_users_changepassword" icon="change-password" label="&amp;modules.users.bo.layout.changepassword;" />

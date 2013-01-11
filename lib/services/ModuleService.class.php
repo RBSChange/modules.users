@@ -10,7 +10,7 @@ class users_ModuleService extends ModuleBaseService
 	 * @var users_ModuleService
 	 */
 	private static $instance = null;
-
+	
 	/**
 	 * @return users_ModuleService
 	 */
@@ -52,7 +52,7 @@ class users_ModuleService extends ModuleBaseService
 	public function replicateACLsFromAncestorDefinitionPoint($documentId, $moduleName)
 	{
 		$ps = f_permission_PermissionService::getInstance();
-		$defId = $ps->getDefinitionPointForPackage($documentId, 'modules_'.$moduleName);
+		$defId = $ps->getDefinitionPointForPackage($documentId, 'modules_' . $moduleName);
 		if ($defId === null)
 		{
 			$defId = ModuleService::getInstance()->getRootFolderId($moduleName);
@@ -62,7 +62,7 @@ class users_ModuleService extends ModuleBaseService
 			// Nothing to do: the document is already a definition point.
 			return;
 		}
-	
+		
 		// Replicate all ACLs from the definition point.
 		$ACLs = $ps->getACLForNode($defId);
 		foreach ($ACLs as $acl)
@@ -71,7 +71,7 @@ class users_ModuleService extends ModuleBaseService
 			{
 				$ps->addRoleToUser($acl->getUser(), $acl->getRole(), array($documentId));
 			}
-			elseif ($acl instanceof generic_persistentdocument_groupAcl )
+			elseif ($acl instanceof generic_persistentdocument_groupAcl)
 			{
 				$ps->addRoleToGroup($acl->getGroup(), $acl->getRole(), array($documentId));
 			}
@@ -80,12 +80,13 @@ class users_ModuleService extends ModuleBaseService
 	
 	// Auto-login handling.
 	
+
 	/**
-	 * @return Boolean
+	 * @deprecated
 	 */
 	public function allowAutoLogin()
 	{
-		return (f_util_ClassUtils::methodExists(Controller::getInstance(), 'allowAutoLogin') && controller::getInstance()->allowAutoLogin() === true);
+		return true;
 	}
 	
 	/**
@@ -93,11 +94,8 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function setAutoLogin($user)
 	{
-		if ($this->allowAutoLogin())
-		{
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365*24*3600, '/');
-      		setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365*24*3600, '/');
-		}
+		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365 * 24 * 3600, '/');
+		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365 * 24 * 3600, '/');
 	}
 	
 	/**
@@ -105,10 +103,7 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function unsetAutoLogin()
 	{
-		if ($this->allowAutoLogin())
-		{
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
-			setcookie(users_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
-		}
+		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[login]', '', time(), '/');
+		setcookie(controller_ChangeController::AUTO_LOGIN_COOKIE . '[passwd]', '', time(), '/');
 	}
 }

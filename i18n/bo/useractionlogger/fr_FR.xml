@@ -62,4 +62,6 @@
   <key id="log-refreshdynamicfrontendgroup-dynamicfrontendgroup">log refreshdynamicfrontendgroup dynamicfrontendgroup</key>
   <key id="reactivate-websitefrontenduser">reactivate.websitefrontenduser {documentlabel}</key>
   <key id="log-reactivate-websitefrontenduser">log reactivate websitefrontenduser</key>
+  <key id="move-websitefrontenduser">move.websitefrontenduser {destinationlabel} {documentlabel}</key>
+  <key id="log-move-websitefrontenduser">log move websitefrontenduser</key>
 </i18n>

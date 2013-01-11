@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.users.bo.blocks.authentication" lcid="en_GB">
+  <key id="allowautologin">enable possibility to activate the autologin</key>
+  <key id="allowautologin-help">displays the checkbox to enable the autologin</key>
+  <key id="title">authentication</key>
+</i18n>

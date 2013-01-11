@@ -1,13 +1,13 @@
 <?php
 /**
- * @package modules.users.lib.aop
+ * @deprecated
  */
 class users_ChangeController extends controller_ChangeController 
 {
 	const AUTO_LOGIN_COOKIE = 'autologin';
 	
 	/**
-	 * @return void
+	 * @deprecated
 	 */
 	public function dispatch()
 	{
@@ -39,7 +39,7 @@ class users_ChangeController extends controller_ChangeController
 	}
 	
 	/**
-	 * @return Boolean
+	 * @deprecated
 	 */
 	public function allowAutoLogin()
 	{

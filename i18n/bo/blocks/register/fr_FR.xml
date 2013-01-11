@@ -7,4 +7,6 @@
   <key id="requirenamefields-help">Rendre obligatoire ou non la saisie du nom et du prénom.</key>
   <key id="showpasswordfields">choix du mot de passe</key>
   <key id="showpasswordfields-help">Autoriser ou non le choix du mot de passe par l'utilisateur. Dans tous les cas l'utilisateur pourra le modifier ultérieurement.</key>
+  <key id="allowautologin">permettre d'activer l'auto login</key>
+  <key id="allowautologin-help">affiche ou non la case à cocher permettant d'activer l'auto login</key>
 </i18n>

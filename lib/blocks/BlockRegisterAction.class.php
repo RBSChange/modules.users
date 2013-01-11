@@ -40,25 +40,36 @@ class users_BlockRegisterAction extends website_BlockAction
 		$us = users_UserService::getInstance();
 		$login = $this->findParameterValue('login');
 		$password = $this->findParameterValue('password');
-		$websiteId = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getId();
-		$user = $us->getIdentifiedFrontendUser($login, $password, $websiteId);
-		if ($user !== null)
+		
+		if ($login && $password)
 		{
-			$us->authenticateFrontEndUser($user);
-			$request->setAttribute('user', $user);
-			$autoLogin = $this->findParameterValue('autoLogin');
-			if ($autoLogin === 'yes')
+			$websiteId = website_WebsiteModuleService::getInstance()->getCurrentWebsite()->getId();
+			$user = $us->getIdentifiedFrontendUser($login, $password, $websiteId);
+			if ($user !== null)
 			{
-				users_ModuleService::getInstance()->setAutoLogin($user);
+				$us->authenticateFrontEndUser($user);
+				$request->setAttribute('user', $user);
+				$autoLogin = $this->findParameterValue('autoLogin');
+				if ($autoLogin === 'yes')
+				{
+					users_ModuleService::getInstance()->setAutoLogin($user);
+				}
+				return 'Logged';
 			}
-			return 'Logged';
+			else
+			{
+				$this->addError(f_Locale::translate('&modules.users.frontoffice.authentication.BadAuthentication;'), 'login-form');
+				$this->prepareInputView($request);
+				return website_BlockView::INPUT;
+			}
 		}
 		else
 		{
-			$this->addError(f_Locale::translate('&modules.users.frontoffice.authentication.BadAuthentication;'), 'login-form');
+			$this->addError(LocaleService::getInstance()->transFO('m.users.messages.error.LoginAndPasswordRequired', array('ucf')), 'login-form');
 			$this->prepareInputView($request);
 			return website_BlockView::INPUT;
 		}
+	
 	}
 	
 	/**
@@ -177,6 +188,6 @@ class users_BlockRegisterAction extends website_BlockAction
 	 */
 	protected function prepareInputView($request)
 	{
-		$request->setAttribute('allowAutoLogin', users_ModuleService::getInstance()->allowAutoLogin());
+		$request->setAttribute('allowAutoLogin', $this->getConfiguration()->getAllowAutoLogin());
 	}
 }
