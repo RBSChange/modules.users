@@ -65,12 +65,13 @@ class users_ModuleService extends ModuleBaseService
 	
 	// Auto-login handling.
 	
+
 	/**
-	 * @return boolean
+	 * @deprecated
 	 */
 	public function allowAutoLogin()
 	{
-		return (change_Controller::getInstance()->allowAutoLogin() === true);
+		return true;
 	}
 	
 	/**
@@ -78,11 +79,8 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function setAutoLogin($user)
 	{
-		if ($this->allowAutoLogin())
-		{
-			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365 * 24 * 3600, '/');
-			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365 * 24 * 3600, '/');
-		}
+		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', $user->getLogin(), time() + 365 * 24 * 3600, '/');
+		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', sha1($user->getPasswordmd5()), time() + 365 * 24 * 3600, '/');
 	}
 	
 	/**
@@ -90,15 +88,13 @@ class users_ModuleService extends ModuleBaseService
 	 */
 	public function unsetAutoLogin()
 	{
-		if ($this->allowAutoLogin())
-		{
-			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', '', time() - 3600, '/');
-			setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
-		}
+		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[login]', '', time() - 3600, '/');
+		setcookie(change_Controller::AUTO_LOGIN_COOKIE . '[passwd]', '', time() - 3600, '/');
 	}
 	
 	// Default structure importation.
 	
+
 	/**
 	 * @param f_peristentdocument_PersistentDocument $container
 	 * @param array $attributes
@@ -113,7 +109,8 @@ class users_ModuleService extends ModuleBaseService
 				return $this->getUsersStructureInitializationAttributes($container, $attributes, $script);
 			
 			default :
-				throw new BaseException('Unknown structure initialization script: ' . $script, 'm.website.bo.actions.unknown-structure-initialization-script', array('script' => $script));
+				throw new BaseException('Unknown structure initialization script: ' . $script, 'm.website.bo.actions.unknown-structure-initialization-script', array(
+					'script' => $script));
 		}
 	}
 	
