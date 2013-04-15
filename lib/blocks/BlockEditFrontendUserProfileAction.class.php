@@ -6,7 +6,6 @@
 class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 {
 	/**
-	 * @see website_BlockAction::execute()
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @return String
@@ -31,7 +30,19 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	{
 		return true;
 	}
-	
+
+	/**
+	 * @return string[]|null
+	 */
+	public function getUserBeanInclude()
+	{
+		if (Framework::getConfigurationValue('modules/website/useBeanPopulateStrictMode') != 'false')
+		{
+			return array('email', 'titleid', 'firstname', 'lastname', 'login');
+		}
+		return null;
+	}
+
 	/**
 	 * @return string[]
 	 */
@@ -44,10 +55,17 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
 	 * @param users_persistentdocument_websitefrontenduser $user
+	 * @throws Exception
 	 * @return String
 	 */
 	public function executeSave($request, $response, users_persistentdocument_websitefrontenduser $user)
 	{
+		$currentUser = users_UserService::getInstance()->getCurrentFrontEndUser();
+		if (!DocumentHelper::equals($currentUser, $user))
+		{
+			throw new Exception("Bad parameter");
+		}
+
 		if ($user->getLogin() === null)
 		{
 			$user->setLogin($user->getEmail());
@@ -65,6 +83,7 @@ class users_BlockEditFrontendUserProfileAction extends website_BlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param users_persistentdocument_websitefrontenduser $user
+	 * @return bool
 	 */
 	public function validateSaveInput($request, $user)
 	{

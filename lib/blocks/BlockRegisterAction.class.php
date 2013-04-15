@@ -84,7 +84,27 @@ class users_BlockRegisterAction extends website_BlockAction
 		HttpController::getInstance()->redirectToUrl(LinkHelper::getDocumentUrl($this->getContext()->getPersistentPage()));
 		return website_BlockView::NONE;
 	}
-	
+
+	/**
+	 * @return string[]|null
+	 */
+	public function getUserBeanInclude()
+	{
+		if (Framework::getConfigurationValue('modules/website/useBeanPopulateStrictMode') != 'false')
+		{
+			$include = array('email', 'login');
+			$config = $this->getConfiguration();
+			if ($config->getShowPersonalFields())
+			{
+				$include[] = 'titleid';
+				$include[] = 'firstname';
+				$include[] = 'lastname';
+			}
+			return $include;
+		}
+		return null;
+	}
+
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
@@ -120,6 +140,7 @@ class users_BlockRegisterAction extends website_BlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param users_persistentdocument_websitefrontenduser $user
+	 * @return bool
 	 */
 	public function validateSaveInput($request, $user)
 	{
