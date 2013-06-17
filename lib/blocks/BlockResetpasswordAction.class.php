@@ -29,8 +29,17 @@ class users_BlockResetpasswordAction extends website_BlockAction
 				}
 				catch (BaseException $e)
 				{
-					$this->addError($e->getLocaleMessage());
-					$request->setAttribute('errors', array($e->getLocaleMessage())); // For compatibility. Will be removed in 4.0.
+					$key = $e->getKey();
+					if (!empty($key))
+					{
+						$error = LocaleService::getInstance()->transFO($key, array('ucf'), $e->getAttributes());
+					}
+					else
+					{
+						$error = $e->getMessage();
+					}
+					$this->addError($error);
+					$request->setAttribute('errors', array($error)); // For compatibility. Will be removed in 4.0.
 				}
 			}
 			else
