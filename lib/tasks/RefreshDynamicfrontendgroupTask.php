@@ -49,7 +49,7 @@ class users_RefreshDynamicfrontendgroupTask extends task_SimpleSystemTask
 		foreach (array_chunk($subscriberIdArray, 500) as $batch)
 		{
 			$this->plannedTask->ping();
-			$result = f_util_System::execScript($batchPath, $batch);
+			$result = f_util_System::execScript($batchPath, array_merge(array($groupId), $batch));
 			// Log fatal errors...
 			if ($result != 'OK')
 			{
