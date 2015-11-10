@@ -5,7 +5,7 @@ foreach ($userIdArray as $userId)
 {
 	try 
 	{
-		$user = DocumentHelper::getDocumentInstance($userId, 'modules_usersFrontenduser');
+		$user = DocumentHelper::getDocumentInstance($userId, 'modules_users/frontenduser');
 		$user->removeGroups($group);
 		$user->save();
 	} 
